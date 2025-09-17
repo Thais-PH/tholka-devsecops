@@ -1,0 +1,25 @@
+uuid: e4fd0ec2-4015-4146-b1bd-f59e46e7dbb6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_posting_job_vacancies
+    - node.type.job_posting
+id: node.job_posting.field_posting_job_vacancies
+field_name: field_posting_job_vacancies
+entity_type: node
+bundle: job_posting
+label: 'Postes à pourvoir'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

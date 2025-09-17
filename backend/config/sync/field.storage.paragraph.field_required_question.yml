@@ -1,0 +1,18 @@
+uuid: 90bbb98c-0b5d-4440-b02d-e9b8bbf57d1d
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_required_question
+field_name: field_required_question
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

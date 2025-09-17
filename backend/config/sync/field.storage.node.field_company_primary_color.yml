@@ -1,0 +1,20 @@
+uuid: 7a322302-c9af-4c26-9deb-b17e15f55d95
+langcode: fr
+status: true
+dependencies:
+  module:
+    - color_field
+    - node
+id: node.field_company_primary_color
+field_name: field_company_primary_color
+entity_type: node
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

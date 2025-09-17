@@ -1,0 +1,29 @@
+uuid: 7e2028c8-4ed1-4f35-a5f1-2462c37f8c3f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company_status
+    - node.type.company
+    - taxonomy.vocabulary.company_status
+id: node.company.field_company_status
+field_name: field_company_status
+entity_type: node
+bundle: company
+label: "Statut de l'entreprise"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      company_status: company_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,9 @@
+uuid: 9ab5bffb-45c4-4d95-bdda-f7dda72827e3
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Annonce'
+vid: job_posting_status
+description: null
+weight: 0
+new_revision: false

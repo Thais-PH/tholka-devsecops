@@ -1,0 +1,23 @@
+uuid: 8a9f8c1d-7dac-4e24-a732-8292905e7221
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_required_question
+    - paragraphs.paragraphs_type.custom_question
+id: paragraph.custom_question.field_required_question
+field_name: field_required_question
+entity_type: paragraph
+bundle: custom_question
+label: 'Question requise'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Oui
+  off_label: Non
+field_type: boolean

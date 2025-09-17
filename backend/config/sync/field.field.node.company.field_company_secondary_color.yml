@@ -1,0 +1,22 @@
+uuid: df74246a-53ff-4795-9ffb-c3c6c3164e28
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company_secondary_color
+    - node.type.company
+  module:
+    - color_field
+id: node.company.field_company_secondary_color
+field_name: field_company_secondary_color
+entity_type: node
+bundle: company
+label: 'Couleur secondaire'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

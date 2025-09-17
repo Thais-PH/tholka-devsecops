@@ -1,0 +1,19 @@
+uuid: cecefda8-9a55-4bbd-abcb-51b30bb75aef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_required_web_links
+    - node.type.job_posting
+id: node.job_posting.field_required_web_links
+field_name: field_required_web_links
+entity_type: node
+bundle: job_posting
+label: 'Liens web requis'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 0c900ae5-aed1-4163-9afe-b28c1cc4c152
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_posting_ia_description
+field_name: field_posting_ia_description
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

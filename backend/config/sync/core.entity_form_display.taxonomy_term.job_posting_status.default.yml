@@ -1,0 +1,52 @@
+uuid: 5029d0de-4c41-4384-92f7-843ec5cfac53
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.job_posting_status.field_taxo_system_name
+    - taxonomy.vocabulary.job_posting_status
+  module:
+    - path
+id: taxonomy_term.job_posting_status.default
+targetEntityType: taxonomy_term
+bundle: job_posting_status
+mode: default
+content:
+  field_taxo_system_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

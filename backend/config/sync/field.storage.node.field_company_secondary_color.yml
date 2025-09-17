@@ -1,0 +1,20 @@
+uuid: 09ce23ed-cc02-44f1-8ed3-f7b0118e8c2b
+langcode: fr
+status: true
+dependencies:
+  module:
+    - color_field
+    - node
+id: node.field_company_secondary_color
+field_name: field_company_secondary_color
+entity_type: node
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

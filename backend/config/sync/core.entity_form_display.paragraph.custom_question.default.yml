@@ -1,0 +1,38 @@
+uuid: d1ad28a0-bc54-47a7-a485-48d5e0247184
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.custom_question.field_question_label
+    - field.field.paragraph.custom_question.field_question_type
+    - field.field.paragraph.custom_question.field_required_question
+    - paragraphs.paragraphs_type.custom_question
+id: paragraph.custom_question.default
+targetEntityType: paragraph
+bundle: custom_question
+mode: default
+content:
+  field_question_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_question_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_required_question:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

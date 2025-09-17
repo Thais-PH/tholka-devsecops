@@ -1,0 +1,18 @@
+uuid: 9cad278c-b4c4-4ca9-9ef5-a62bf148eb8c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.job_posting
+id: node.job_posting.title
+field_name: title
+entity_type: node
+bundle: job_posting
+label: "Titre de l'annonce"
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

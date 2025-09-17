@@ -1,0 +1,19 @@
+uuid: ef5cca42-1169-44ee-a7e4-c0e1ec1cb04d
+langcode: fr
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_posting_url_share
+field_name: field_posting_url_share
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

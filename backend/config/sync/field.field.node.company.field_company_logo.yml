@@ -1,0 +1,38 @@
+uuid: 7f842765-dae5-44e7-8c2a-9d6e35b0b382
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company_logo
+    - node.type.company
+  module:
+    - image
+id: node.company.field_company_logo
+field_name: field_company_logo
+entity_type: node
+bundle: company
+label: "Logo de l'entreprise"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: entreprise
+  file_extensions: 'png gif jpg jpeg webp svg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

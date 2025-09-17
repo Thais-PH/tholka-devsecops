@@ -1,0 +1,63 @@
+uuid: 8e157cb0-7f46-4c34-b5aa-c455e7a8dd76
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.company.field_company_logo
+    - field.field.node.company.field_company_primary_color
+    - field.field.node.company.field_company_secondary_color
+    - field.field.node.company.field_company_status
+    - node.type.company
+  module:
+    - color_field
+    - image
+    - user
+id: node.company.default
+targetEntityType: node
+bundle: company
+mode: default
+content:
+  field_company_logo:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_company_primary_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_company_secondary_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_company_status:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
