@@ -1,0 +1,19 @@
+uuid: 9fe6771c-076b-4181-997e-9cb176c1ace8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_taxo_system_name
+    - taxonomy.vocabulary.departments
+id: taxonomy_term.departments.field_taxo_system_name
+field_name: field_taxo_system_name
+entity_type: taxonomy_term
+bundle: departments
+label: 'Nom système'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: aa0581eb-2422-4623-8e5f-56f6970c63aa
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_job_posting
+    - node.type.application
+    - node.type.job_posting
+id: node.application.field_related_job_posting
+field_name: field_related_job_posting
+entity_type: node
+bundle: application
+label: "Annonce d'emploi concernée"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      job_posting: job_posting
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

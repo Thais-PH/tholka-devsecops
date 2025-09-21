@@ -1,0 +1,19 @@
+uuid: d0afd32b-332c-45b7-949a-6c9b25598c4c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_taxo_system_name
+    - taxonomy.vocabulary.absence_type
+id: taxonomy_term.absence_type.field_taxo_system_name
+field_name: field_taxo_system_name
+entity_type: taxonomy_term
+bundle: absence_type
+label: 'Nom système'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 8599dc25-b1f2-4c9a-b264-dde0397d7122
+langcode: fr
+status: true
+dependencies:
+  module:
+    - datetime
+    - paragraphs
+id: paragraph.field_event_end_datetime
+field_name: field_event_end_datetime
+entity_type: paragraph
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,9 @@
+uuid: c0a60a18-998f-4c77-bd06-02eca4c6231c
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Candidature'
+vid: application_status
+description: null
+weight: 0
+new_revision: false

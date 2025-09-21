@@ -1,0 +1,43 @@
+uuid: 72f75367-ee75-4c7c-90d7-d7eba53a9f6e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_survey_answers
+    - node.type.survey_response
+    - paragraphs.paragraphs_type.survey_answer
+  module:
+    - entity_reference_revisions
+id: node.survey_response.field_survey_answers
+field_name: field_survey_answers
+entity_type: node
+bundle: survey_response
+label: "Réponses à l'enquête"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      survey_answer: survey_answer
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 7
+        enabled: false
+      custom_answer:
+        weight: 8
+        enabled: false
+      custom_question:
+        weight: 9
+        enabled: false
+      survey_answer:
+        weight: 6
+        enabled: true
+      survey_question:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

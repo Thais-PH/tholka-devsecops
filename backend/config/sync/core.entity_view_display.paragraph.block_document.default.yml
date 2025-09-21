@@ -1,0 +1,40 @@
+uuid: f95bc752-ed81-4192-9dda-013f4c54dc7d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_document.field_doc_description
+    - field.field.paragraph.block_document.field_doc_files
+    - field.field.paragraph.block_document.field_doc_title
+    - paragraphs.paragraphs_type.block_document
+  module:
+    - text
+id: paragraph.block_document.default
+targetEntityType: paragraph
+bundle: block_document
+mode: default
+content:
+  field_doc_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_doc_files:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_doc_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

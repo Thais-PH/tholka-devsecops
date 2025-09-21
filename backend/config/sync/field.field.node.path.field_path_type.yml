@@ -1,0 +1,29 @@
+uuid: 97634bc6-0540-42cd-8ecb-1abfbfcc3ccd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_path_type
+    - node.type.path
+    - taxonomy.vocabulary.path_type
+id: node.path.field_path_type
+field_name: field_path_type
+entity_type: node
+bundle: path
+label: 'Type de parcours'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      path_type: path_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

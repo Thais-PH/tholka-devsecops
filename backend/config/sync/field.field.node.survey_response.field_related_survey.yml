@@ -1,0 +1,29 @@
+uuid: 58e7f162-97e8-4e59-97e7-d03d0f78f5a2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_survey
+    - node.type.survey
+    - node.type.survey_response
+id: node.survey_response.field_related_survey
+field_name: field_related_survey
+entity_type: node
+bundle: survey_response
+label: 'Enquête concernée'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      survey: survey
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

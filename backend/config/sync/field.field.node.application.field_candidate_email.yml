@@ -1,0 +1,19 @@
+uuid: f29794fb-2deb-4c90-a23b-596fc6204abf
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidate_email
+    - node.type.application
+id: node.application.field_candidate_email
+field_name: field_candidate_email
+entity_type: node
+bundle: application
+label: 'Email du candidat'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

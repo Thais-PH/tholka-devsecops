@@ -1,0 +1,41 @@
+uuid: 7202f41b-8909-4447-8d10-856a3edeae8c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.survey_question.field_barometer_inclusion
+    - field.field.paragraph.survey_question.field_question_label
+    - field.field.paragraph.survey_question.field_wellness_axis
+    - paragraphs.paragraphs_type.survey_question
+id: paragraph.survey_question.default
+targetEntityType: paragraph
+bundle: survey_question
+mode: default
+content:
+  field_barometer_inclusion:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_question_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_wellness_axis:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

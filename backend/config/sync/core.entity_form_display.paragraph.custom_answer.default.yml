@@ -1,0 +1,32 @@
+uuid: 8658f6b4-5cf4-46f6-b598-cc1fd73cc129
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.custom_answer.field_answer_value
+    - field.field.paragraph.custom_answer.field_question_label
+    - paragraphs.paragraphs_type.custom_answer
+id: paragraph.custom_answer.default
+targetEntityType: paragraph
+bundle: custom_answer
+mode: default
+content:
+  field_answer_value:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_question_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

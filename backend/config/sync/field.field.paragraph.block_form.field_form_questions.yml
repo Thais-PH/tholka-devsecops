@@ -1,0 +1,61 @@
+uuid: 5de8191f-29ff-4726-bf8f-bdb827f1c3b1
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_form_questions
+    - paragraphs.paragraphs_type.block_form
+    - paragraphs.paragraphs_type.custom_question
+  module:
+    - entity_reference_revisions
+id: paragraph.block_form.field_form_questions
+field_name: field_form_questions
+entity_type: paragraph
+bundle: block_form
+label: 'Champs du formulaire'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      custom_question: custom_question
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 13
+        enabled: false
+      block_document:
+        weight: 14
+        enabled: false
+      block_form:
+        weight: 12
+        enabled: false
+      block_list:
+        weight: 15
+        enabled: false
+      block_text:
+        weight: 16
+        enabled: false
+      block_video:
+        weight: 17
+        enabled: false
+      custom_answer:
+        weight: 18
+        enabled: false
+      custom_question:
+        weight: 19
+        enabled: true
+      list_item:
+        weight: 20
+        enabled: false
+      survey_answer:
+        weight: 21
+        enabled: false
+      survey_question:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

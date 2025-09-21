@@ -1,0 +1,29 @@
+uuid: 6be57d77-1293-4317-af5a-a8b8af7e2aef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_org_scope_department
+    - paragraphs.paragraphs_type.block_orgchart
+    - taxonomy.vocabulary.departments
+id: paragraph.block_orgchart.field_org_scope_department
+field_name: field_org_scope_department
+entity_type: paragraph
+bundle: block_orgchart
+label: "Centrer l'organigramme sur"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      departments: departments
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

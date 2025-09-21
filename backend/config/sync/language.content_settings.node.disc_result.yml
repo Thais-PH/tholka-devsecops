@@ -1,0 +1,11 @@
+uuid: 2cf60c63-fc08-42df-b19f-442643df2864
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.disc_result
+id: node.disc_result
+target_entity_type_id: node
+target_bundle: disc_result
+default_langcode: site_default
+language_alterable: false

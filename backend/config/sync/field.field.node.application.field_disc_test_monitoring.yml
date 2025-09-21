@@ -1,0 +1,24 @@
+uuid: 3765d9b6-84e4-402c-928b-7ccab45f70eb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disc_test_monitoring
+    - filter.format.basic_html
+    - node.type.application
+  module:
+    - text
+id: node.application.field_disc_test_monitoring
+field_name: field_disc_test_monitoring
+entity_type: node
+bundle: application
+label: 'Suivi du test DISC'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

@@ -1,0 +1,74 @@
+uuid: 2ccdbee8-13de-42c8-992d-478aec3fbe65
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.path.field_parent_company
+    - field.field.node.path.field_path_assigned_users
+    - field.field.node.path.field_path_blocks
+    - field.field.node.path.field_path_description
+    - field.field.node.path.field_path_status
+    - field.field.node.path.field_path_type
+    - node.type.path
+  module:
+    - text
+    - user
+id: node.path.default
+targetEntityType: node
+bundle: path
+mode: default
+content:
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_path_assigned_users:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_path_blocks:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_path_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_path_status:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_path_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

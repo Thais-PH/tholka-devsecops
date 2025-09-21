@@ -1,0 +1,19 @@
+uuid: 929039c4-e6cf-4a3a-8306-4af0601bcdce
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_title
+    - paragraphs.paragraphs_type.block_video
+id: paragraph.block_video.field_video_title
+field_name: field_video_title
+entity_type: paragraph
+bundle: block_video
+label: 'Titre du bloc'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

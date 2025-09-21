@@ -1,0 +1,10 @@
+uuid: 19e1e34f-493b-412e-ac8a-d7a8985e12b0
+langcode: fr
+status: true
+dependencies: {  }
+id: survey_question
+label: "Question d'enquête"
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,29 @@
+uuid: 1a9bdb83-5fcd-46f1-86fa-2452172caf47
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_respondent_user
+    - node.type.survey_response
+id: node.survey_response.field_respondent_user
+field_name: field_respondent_user
+entity_type: node
+bundle: survey_response
+label: 'Collaborateur répondant'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

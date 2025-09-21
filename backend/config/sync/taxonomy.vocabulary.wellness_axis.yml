@@ -1,0 +1,9 @@
+uuid: 7352a408-6d0b-4baf-88fa-752c0556a366
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Axes de bien-être'
+vid: wellness_axis
+description: null
+weight: 0
+new_revision: false

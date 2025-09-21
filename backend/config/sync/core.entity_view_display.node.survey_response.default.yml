@@ -1,0 +1,69 @@
+uuid: 12840404-6390-405c-a5b7-2dfcd694ee4e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.survey_response.field_parent_company
+    - field.field.node.survey_response.field_related_survey
+    - field.field.node.survey_response.field_respondent_user
+    - field.field.node.survey_response.field_submission_date
+    - field.field.node.survey_response.field_survey_answers
+    - node.type.survey_response
+  module:
+    - datetime
+    - entity_reference_revisions
+    - user
+id: node.survey_response.default
+targetEntityType: node
+bundle: survey_response
+mode: default
+content:
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_related_survey:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_respondent_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_submission_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_survey_answers:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

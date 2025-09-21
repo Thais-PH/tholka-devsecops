@@ -1,0 +1,21 @@
+uuid: aa3927fc-6d0b-4d98-91c9-3f67c997c3c7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_absence_end_date
+    - node.type.absence_request
+  module:
+    - datetime
+id: node.absence_request.field_absence_end_date
+field_name: field_absence_end_date
+entity_type: node
+bundle: absence_request
+label: "Date de fin de l'absence"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

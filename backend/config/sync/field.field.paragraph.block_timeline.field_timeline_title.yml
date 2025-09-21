@@ -1,0 +1,19 @@
+uuid: ec65ed1f-d3ea-4ce4-9351-d30af68f8976
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_title
+    - paragraphs.paragraphs_type.block_timeline
+id: paragraph.block_timeline.field_timeline_title
+field_name: field_timeline_title
+entity_type: paragraph
+bundle: block_timeline
+label: 'Titre du bloc'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

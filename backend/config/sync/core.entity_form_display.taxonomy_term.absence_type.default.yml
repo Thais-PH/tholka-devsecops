@@ -1,0 +1,52 @@
+uuid: fcff2986-7f44-4981-af8e-583ecbaf1520
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.absence_type.field_taxo_system_name
+    - taxonomy.vocabulary.absence_type
+  module:
+    - path
+id: taxonomy_term.absence_type.default
+targetEntityType: taxonomy_term
+bundle: absence_type
+mode: default
+content:
+  field_taxo_system_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

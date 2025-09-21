@@ -1,0 +1,20 @@
+uuid: 9434c378-91d2-4006-9e0f-99c5d327672d
+langcode: fr
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_survey_end_date
+field_name: field_survey_end_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

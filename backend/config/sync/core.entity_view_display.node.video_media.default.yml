@@ -1,0 +1,39 @@
+uuid: 982ba976-b1a2-4222-bfe8-f32cc3a580fb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.video_media.field_parent_company
+    - field.field.node.video_media.field_video_file
+    - node.type.video_media
+  module:
+    - file
+    - user
+id: node.video_media.default
+targetEntityType: node
+bundle: video_media
+mode: default
+content:
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_video_file:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

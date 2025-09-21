@@ -1,0 +1,11 @@
+uuid: 33fc4ae6-06c1-4c81-94b0-6ea1f8540d81
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.wellness_axis
+id: taxonomy_term.wellness_axis
+target_entity_type_id: taxonomy_term
+target_bundle: wellness_axis
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,21 @@
+uuid: 0f6438b0-2804-4468-a8d6-29b8e3b91d05
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_event_start_datetime
+    - paragraphs.paragraphs_type.timeline_event
+  module:
+    - datetime
+id: paragraph.timeline_event.field_event_start_datetime
+field_name: field_event_start_datetime
+entity_type: paragraph
+bundle: timeline_event
+label: "Date de début de l'événement"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

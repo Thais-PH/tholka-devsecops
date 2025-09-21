@@ -1,0 +1,18 @@
+uuid: 07ee4edc-e861-41ea-ac47-454af4c27219
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.application
+id: node.application.title
+field_name: title
+entity_type: node
+bundle: application
+label: 'Titre de la candidature'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,31 @@
+uuid: 873663d8-eefd-4969-a380-cbf411cde3ca
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.wellness_axis.field_taxo_system_name
+    - taxonomy.vocabulary.wellness_axis
+  module:
+    - text
+id: taxonomy_term.wellness_axis.default
+targetEntityType: taxonomy_term
+bundle: wellness_axis
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_taxo_system_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

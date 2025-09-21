@@ -1,0 +1,19 @@
+uuid: 93d24593-9a89-4ae6-829b-dd79c12054f5
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_rh_monitoring
+field_name: field_rh_monitoring
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

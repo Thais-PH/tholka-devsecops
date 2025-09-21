@@ -1,0 +1,9 @@
+uuid: f8ad5f49-2655-4e0f-b218-82ffbde515b4
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Enquête'
+vid: survey_status
+description: null
+weight: 0
+new_revision: false

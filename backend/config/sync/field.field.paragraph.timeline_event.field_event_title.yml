@@ -1,0 +1,19 @@
+uuid: f691b20e-c381-41d8-a916-ff968ab2fcab
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_event_title
+    - paragraphs.paragraphs_type.timeline_event
+id: paragraph.timeline_event.field_event_title
+field_name: field_event_title
+entity_type: paragraph
+bundle: timeline_event
+label: "Titre de l'événement"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

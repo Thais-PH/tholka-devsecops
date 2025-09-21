@@ -1,0 +1,72 @@
+uuid: 57c1d22b-fee7-440c-9efb-8a025cd33abd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.job_description.field_job_description_status
+    - field.field.node.job_description.field_job_desired_profile
+    - field.field.node.job_description.field_job_missions
+    - field.field.node.job_description.field_job_required_skills
+    - field.field.node.job_description.field_job_responsibilities
+    - field.field.node.job_description.field_parent_company
+    - node.type.job_description
+  module:
+    - text
+    - user
+id: node.job_description.default
+targetEntityType: node
+bundle: job_description
+mode: default
+content:
+  field_job_description_status:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_job_desired_profile:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_job_missions:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_job_required_skills:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_job_responsibilities:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,9 @@
+uuid: afc0a1b0-715b-4352-8965-f74318d914b4
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Dossier Document'
+vid: document_folder
+description: null
+weight: 0
+new_revision: false

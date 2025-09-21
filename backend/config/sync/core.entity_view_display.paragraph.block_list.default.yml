@@ -1,0 +1,42 @@
+uuid: 2167dd23-6b73-45e1-941b-6dda710f4639
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_list.field_list_description
+    - field.field.paragraph.block_list.field_list_items
+    - field.field.paragraph.block_list.field_list_title
+    - paragraphs.paragraphs_type.block_list
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.block_list.default
+targetEntityType: paragraph
+bundle: block_list
+mode: default
+content:
+  field_list_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_list_items:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_list_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

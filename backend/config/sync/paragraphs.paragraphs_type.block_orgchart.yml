@@ -1,0 +1,10 @@
+uuid: 052d26b7-3f14-4058-91a8-4e255636c6e7
+langcode: fr
+status: true
+dependencies: {  }
+id: block_orgchart
+label: Organigramme
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

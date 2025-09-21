@@ -1,0 +1,24 @@
+uuid: c3270bea-3933-4a82-94a7-1f3dfaa17c83
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_description
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.block_external_link
+  module:
+    - text
+id: paragraph.block_external_link.field_link_description
+field_name: field_link_description
+entity_type: paragraph
+bundle: block_external_link
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

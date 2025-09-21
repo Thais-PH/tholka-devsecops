@@ -1,0 +1,29 @@
+uuid: 5211afdc-9309-4533-adec-8d2a958a43bd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parent_company
+    - node.type.company
+    - node.type.overtime_declaration
+id: node.overtime_declaration.field_parent_company
+field_name: field_parent_company
+entity_type: node
+bundle: overtime_declaration
+label: 'Entreprise parente'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      company: company
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

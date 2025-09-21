@@ -1,0 +1,33 @@
+uuid: 1a7af989-05e0-48b1-97f3-47b53bcd02a5
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_disc_predominant_profile
+field_name: field_disc_predominant_profile
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: d_profile_disc
+      label: D
+    -
+      value: i_profile_disc
+      label: I
+    -
+      value: s_profile_disc
+      label: S
+    -
+      value: c_profile_disc
+      label: C
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

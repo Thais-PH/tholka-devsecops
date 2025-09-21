@@ -1,0 +1,10 @@
+uuid: 4d24d37d-cd40-4312-9332-31bc23912539
+langcode: fr
+status: true
+dependencies: {  }
+id: custom_answer
+label: 'Réponse personnalisée'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,29 @@
+uuid: 6b25a9c5-f1d2-46b5-a483-5620ee7597d4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_parent_company
+    - node.type.company
+    - taxonomy.vocabulary.skills
+id: taxonomy_term.skills.field_parent_company
+field_name: field_parent_company
+entity_type: taxonomy_term
+bundle: skills
+label: 'Entreprise parente'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      company: company
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: 1f9c0daf-dd9e-49c4-ace4-d793f3d2df0a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_barometer_inclusion
+    - paragraphs.paragraphs_type.survey_question
+id: paragraph.survey_question.field_barometer_inclusion
+field_name: field_barometer_inclusion
+entity_type: paragraph
+bundle: survey_question
+label: 'Inclusion dans le baromètre'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Oui
+  off_label: Non
+field_type: boolean

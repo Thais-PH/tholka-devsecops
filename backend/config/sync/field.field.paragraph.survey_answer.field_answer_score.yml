@@ -1,0 +1,23 @@
+uuid: 78577b10-9a8d-43a5-889e-365b0507ea02
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_answer_score
+    - paragraphs.paragraphs_type.survey_answer
+id: paragraph.survey_answer.field_answer_score
+field_name: field_answer_score
+entity_type: paragraph
+bundle: survey_answer
+label: 'Score de la réponse'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 5
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 836e38be-b9d2-4d50-9e1f-813f41408ac7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_approved_user
+    - node.type.overtime_declaration
+id: node.overtime_declaration.field_approved_user
+field_name: field_approved_user
+entity_type: node
+bundle: overtime_declaration
+label: 'Utilisateur approbateur'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

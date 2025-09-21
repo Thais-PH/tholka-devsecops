@@ -1,0 +1,24 @@
+uuid: a9ecce80-45c9-48fd-990d-e1739ca35330
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_description
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.block_text
+  module:
+    - text
+id: paragraph.block_text.field_text_description
+field_name: field_text_description
+entity_type: paragraph
+bundle: block_text
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

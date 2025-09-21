@@ -1,0 +1,19 @@
+uuid: 8091a22e-2290-4094-8117-26a83fc30d43
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_city
+    - paragraphs.paragraphs_type.address
+id: paragraph.address.field_city
+field_name: field_city
+entity_type: paragraph
+bundle: address
+label: Ville
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

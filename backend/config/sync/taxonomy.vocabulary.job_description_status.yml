@@ -1,0 +1,9 @@
+uuid: 363e9799-1937-4ba2-b80f-3741d7a0d5e6
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Fiche de poste'
+vid: job_description_status
+description: null
+weight: 0
+new_revision: false

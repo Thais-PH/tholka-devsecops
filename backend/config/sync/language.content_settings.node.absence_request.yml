@@ -1,0 +1,11 @@
+uuid: ef7a396a-caf1-41e3-8bc4-c2678228533a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.absence_request
+id: node.absence_request
+target_entity_type_id: node
+target_bundle: absence_request
+default_langcode: site_default
+language_alterable: false

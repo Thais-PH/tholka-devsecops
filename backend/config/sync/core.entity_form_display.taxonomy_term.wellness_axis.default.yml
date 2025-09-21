@@ -1,0 +1,52 @@
+uuid: 49e23b22-22fb-4909-8840-0da88c6c6fc7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.wellness_axis.field_taxo_system_name
+    - taxonomy.vocabulary.wellness_axis
+  module:
+    - path
+id: taxonomy_term.wellness_axis.default
+targetEntityType: taxonomy_term
+bundle: wellness_axis
+mode: default
+content:
+  field_taxo_system_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

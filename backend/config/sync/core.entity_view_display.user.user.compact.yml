@@ -4,10 +4,19 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
-    - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - field.field.user.user.field_address
+    - field.field.user.user.field_department
+    - field.field.user.user.field_disc_profile
+    - field.field.user.user.field_effective_date
+    - field.field.user.user.field_firstname
+    - field.field.user.user.field_function
+    - field.field.user.user.field_gross_annual_salary
+    - field.field.user.user.field_lastname
+    - field.field.user.user.field_manager
+    - field.field.user.user.field_parent_company
+    - field.field.user.user.field_phone
+    - field.field.user.user.field_profile_picture
   module:
-    - image
     - user
 _core:
   default_config_hash: 00zr_RBdTjPjBGITD3h4c1ESQZimjdVCcHGt1trLqIY
@@ -15,18 +24,19 @@ id: user.user.compact
 targetEntityType: user
 bundle: user
 mode: compact
-content:
-  user_picture:
-    type: image
-    label: hidden
-    settings:
-      image_style: thumbnail
-      image_link: content
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
+  field_address: true
+  field_department: true
+  field_disc_profile: true
+  field_effective_date: true
+  field_firstname: true
+  field_function: true
+  field_gross_annual_salary: true
+  field_lastname: true
+  field_manager: true
+  field_parent_company: true
+  field_phone: true
+  field_profile_picture: true
   langcode: true
   member_for: true

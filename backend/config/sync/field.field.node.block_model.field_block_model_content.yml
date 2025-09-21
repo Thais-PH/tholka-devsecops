@@ -1,0 +1,95 @@
+uuid: 7adb7577-9173-4b0a-afde-19c27efe8b45
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_block_model_content
+    - node.type.block_model
+    - paragraphs.paragraphs_type.block_document
+    - paragraphs.paragraphs_type.block_external_link
+    - paragraphs.paragraphs_type.block_form
+    - paragraphs.paragraphs_type.block_list
+    - paragraphs.paragraphs_type.block_orgchart
+    - paragraphs.paragraphs_type.block_quizz
+    - paragraphs.paragraphs_type.block_text
+    - paragraphs.paragraphs_type.block_timeline
+    - paragraphs.paragraphs_type.block_video
+  module:
+    - entity_reference_revisions
+id: node.block_model.field_block_model_content
+field_name: field_block_model_content
+entity_type: node
+bundle: block_model
+label: 'Contenu du bloc'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      block_document: block_document
+      block_external_link: block_external_link
+      block_form: block_form
+      block_list: block_list
+      block_orgchart: block_orgchart
+      block_quizz: block_quizz
+      block_text: block_text
+      block_timeline: block_timeline
+      block_video: block_video
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 19
+        enabled: false
+      block_document:
+        weight: 20
+        enabled: true
+      block_external_link:
+        weight: 21
+        enabled: true
+      block_form:
+        weight: 22
+        enabled: true
+      block_list:
+        weight: 23
+        enabled: true
+      block_orgchart:
+        weight: 24
+        enabled: true
+      block_quizz:
+        weight: 25
+        enabled: true
+      block_text:
+        weight: 26
+        enabled: true
+      block_timeline:
+        weight: 27
+        enabled: true
+      block_video:
+        weight: 28
+        enabled: true
+      custom_answer:
+        weight: 29
+        enabled: false
+      custom_question:
+        weight: 30
+        enabled: false
+      list_item:
+        weight: 31
+        enabled: false
+      quizz_question:
+        weight: 32
+        enabled: false
+      survey_answer:
+        weight: 33
+        enabled: false
+      survey_question:
+        weight: 34
+        enabled: false
+      timeline_event:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

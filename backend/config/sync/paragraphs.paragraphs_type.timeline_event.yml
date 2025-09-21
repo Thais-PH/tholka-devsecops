@@ -1,0 +1,10 @@
+uuid: 0d109118-18da-4263-9ff9-edac431c7435
+langcode: fr
+status: true
+dependencies: {  }
+id: timeline_event
+label: 'Événement de chronologie'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

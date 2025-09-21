@@ -1,0 +1,10 @@
+uuid: cdcd8018-13dd-4b8d-87be-63a4e246efbe
+langcode: fr
+status: true
+dependencies: {  }
+id: address
+label: Adresse
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

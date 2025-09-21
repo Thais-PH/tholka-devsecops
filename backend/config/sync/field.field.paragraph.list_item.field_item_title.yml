@@ -1,0 +1,19 @@
+uuid: 5c2bc301-25c3-4c0b-a224-f86e86c6a62a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_item_title
+    - paragraphs.paragraphs_type.list_item
+id: paragraph.list_item.field_item_title
+field_name: field_item_title
+entity_type: paragraph
+bundle: list_item
+label: "Titre de l'élément"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 828607f7-9403-47ee-ade3-f23a0b854330
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.job_description
+id: node.job_description
+target_entity_type_id: node
+target_bundle: job_description
+default_langcode: site_default
+language_alterable: false

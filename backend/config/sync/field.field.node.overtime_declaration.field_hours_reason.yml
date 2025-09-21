@@ -1,0 +1,19 @@
+uuid: 8c1410ff-8514-4e74-9305-432fae288a10
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hours_reason
+    - node.type.overtime_declaration
+id: node.overtime_declaration.field_hours_reason
+field_name: field_hours_reason
+entity_type: node
+bundle: overtime_declaration
+label: Motif
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

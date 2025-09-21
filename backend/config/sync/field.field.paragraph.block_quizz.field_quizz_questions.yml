@@ -1,0 +1,67 @@
+uuid: 7209f1dd-605a-4637-bc0e-4eaccba635f4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quizz_questions
+    - paragraphs.paragraphs_type.block_quizz
+    - paragraphs.paragraphs_type.quizz_question
+  module:
+    - entity_reference_revisions
+id: paragraph.block_quizz.field_quizz_questions
+field_name: field_quizz_questions
+entity_type: paragraph
+bundle: block_quizz
+label: 'Questions du quizz'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      quizz_question: quizz_question
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 15
+        enabled: false
+      block_document:
+        weight: 16
+        enabled: false
+      block_form:
+        weight: 17
+        enabled: false
+      block_list:
+        weight: 18
+        enabled: false
+      block_quizz:
+        weight: 19
+        enabled: false
+      block_text:
+        weight: 20
+        enabled: false
+      block_video:
+        weight: 21
+        enabled: false
+      custom_answer:
+        weight: 22
+        enabled: false
+      custom_question:
+        weight: 23
+        enabled: false
+      list_item:
+        weight: 24
+        enabled: false
+      quizz_question:
+        weight: 14
+        enabled: true
+      survey_answer:
+        weight: 25
+        enabled: false
+      survey_question:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

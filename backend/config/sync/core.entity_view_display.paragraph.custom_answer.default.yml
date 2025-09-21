@@ -1,0 +1,30 @@
+uuid: fccf03ca-0ee0-40be-8cf1-0929ed260955
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.custom_answer.field_answer_value
+    - field.field.paragraph.custom_answer.field_question_label
+    - paragraphs.paragraphs_type.custom_answer
+id: paragraph.custom_answer.default
+targetEntityType: paragraph
+bundle: custom_answer
+mode: default
+content:
+  field_answer_value:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_question_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

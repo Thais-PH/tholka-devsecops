@@ -1,0 +1,18 @@
+uuid: e7ed26a0-6291-400b-8462-0d02d2a319e5
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Résultat DISC'
+type: disc_result
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

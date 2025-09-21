@@ -20,7 +20,7 @@ default_value_callback: ''
 settings:
   handler: 'default:file'
   handler_settings: {  }
-  file_directory: entreprise
+  file_directory: logo-entreprise
   file_extensions: 'png gif jpg jpeg webp svg'
   max_filesize: ''
   max_resolution: ''

@@ -1,0 +1,24 @@
+uuid: 6de3e250-4d06-4090-93e6-86c5f6617ba4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_description
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.block_timeline
+  module:
+    - text
+id: paragraph.block_timeline.field_timeline_description
+field_name: field_timeline_description
+entity_type: paragraph
+bundle: block_timeline
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

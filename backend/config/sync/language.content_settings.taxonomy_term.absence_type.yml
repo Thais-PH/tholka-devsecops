@@ -1,0 +1,11 @@
+uuid: 820b9af0-98a9-4983-91d9-68b4cddafc80
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.absence_type
+id: taxonomy_term.absence_type
+target_entity_type_id: taxonomy_term
+target_bundle: absence_type
+default_langcode: site_default
+language_alterable: false

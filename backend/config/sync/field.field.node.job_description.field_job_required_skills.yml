@@ -1,0 +1,29 @@
+uuid: 6476240f-6457-4569-9d88-1db15c9adf77
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_required_skills
+    - node.type.job_description
+    - taxonomy.vocabulary.skills
+id: node.job_description.field_job_required_skills
+field_name: field_job_required_skills
+entity_type: node
+bundle: job_description
+label: 'Compétences requises'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      skills: skills
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

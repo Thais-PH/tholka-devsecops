@@ -1,0 +1,21 @@
+uuid: 3a5c0994-b7ff-4be8-b136-d6ec09aeccce
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_hours_reason
+field_name: field_hours_reason
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

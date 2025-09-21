@@ -1,0 +1,20 @@
+uuid: e3ff30a1-3d12-4382-84e4-e37fd14160c5
+langcode: fr
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_gross_annual_salary
+field_name: field_gross_annual_salary
+entity_type: user
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

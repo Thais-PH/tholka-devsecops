@@ -1,0 +1,9 @@
+uuid: 15817d19-3465-4334-9a03-10da198e99b4
+langcode: fr
+status: true
+dependencies: {  }
+name: Compétences
+vid: skills
+description: null
+weight: 0
+new_revision: false

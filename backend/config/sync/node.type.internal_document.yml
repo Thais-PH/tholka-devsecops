@@ -1,0 +1,18 @@
+uuid: 150d2753-4ed2-4ff9-9423-b2cdb1428e42
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Document interne'
+type: internal_document
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

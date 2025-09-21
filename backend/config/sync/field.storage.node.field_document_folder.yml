@@ -1,0 +1,20 @@
+uuid: 0417e065-9ab3-44f7-9463-3315fcdf8a58
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_document_folder
+field_name: field_document_folder
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

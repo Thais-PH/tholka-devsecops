@@ -1,0 +1,40 @@
+uuid: 6b938686-b3d7-4172-8dbd-f7511b02cd86
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_survey_questions
+    - node.type.survey
+    - paragraphs.paragraphs_type.survey_question
+  module:
+    - entity_reference_revisions
+id: node.survey.field_survey_questions
+field_name: field_survey_questions
+entity_type: node
+bundle: survey
+label: "Questions de l'enquête"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      survey_question: survey_question
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 5
+        enabled: false
+      custom_answer:
+        weight: 6
+        enabled: false
+      custom_question:
+        weight: 7
+        enabled: false
+      survey_question:
+        weight: 8
+        enabled: true
+field_type: entity_reference_revisions

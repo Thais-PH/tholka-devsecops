@@ -1,0 +1,29 @@
+uuid: 5f42119c-fc3c-4ccb-9917-540d8434648a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_path_blocks
+    - node.type.block_model
+    - node.type.path
+id: node.path.field_path_blocks
+field_name: field_path_blocks
+entity_type: node
+bundle: path
+label: 'Blocs du parcours'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      block_model: block_model
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
