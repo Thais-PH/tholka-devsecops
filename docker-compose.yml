@@ -28,6 +28,7 @@ services:
       - db
     networks:
       - tholka_network
+    user: "${UID:-1000}:${GID:-1000}"
 
   nginx:
     image: nginx:1.25-alpine
