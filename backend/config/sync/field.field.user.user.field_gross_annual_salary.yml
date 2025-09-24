@@ -1,0 +1,24 @@
+uuid: 30dcb73d-95d5-4c14-ad13-ad1d75ba8298
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_gross_annual_salary
+  module:
+    - user
+id: user.user.field_gross_annual_salary
+field_name: field_gross_annual_salary
+entity_type: user
+bundle: user
+label: 'Salaire brut annuel'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: €
+field_type: decimal

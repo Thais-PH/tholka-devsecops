@@ -1,0 +1,20 @@
+uuid: 18c2eb88-8846-4dcd-bb02-6523ba19f059
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_org_scope_department
+field_name: field_org_scope_department
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

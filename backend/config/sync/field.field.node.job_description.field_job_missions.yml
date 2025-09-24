@@ -1,0 +1,24 @@
+uuid: bff34158-a949-4e76-8586-dabf1d853a36
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_missions
+    - filter.format.basic_html
+    - node.type.job_description
+  module:
+    - text
+id: node.job_description.field_job_missions
+field_name: field_job_missions
+entity_type: node
+bundle: job_description
+label: 'Missions principales'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

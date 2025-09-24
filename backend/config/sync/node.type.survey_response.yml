@@ -1,0 +1,18 @@
+uuid: c7e6a006-6425-479d-931a-8761f5dd4197
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: "Réponse d'enquête"
+type: survey_response
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

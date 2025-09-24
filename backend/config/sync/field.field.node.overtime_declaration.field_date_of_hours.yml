@@ -1,0 +1,21 @@
+uuid: 12ebe920-7d5d-4895-b8a3-496de61d25c6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_hours
+    - node.type.overtime_declaration
+  module:
+    - datetime
+id: node.overtime_declaration.field_date_of_hours
+field_name: field_date_of_hours
+entity_type: node
+bundle: overtime_declaration
+label: Date
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

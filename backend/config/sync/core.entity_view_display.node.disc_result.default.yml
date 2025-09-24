@@ -1,0 +1,105 @@
+uuid: a7b433a5-ab35-473f-aa8d-f22701fccf3e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.disc_result.field_disc_completion_date
+    - field.field.node.disc_result.field_disc_context
+    - field.field.node.disc_result.field_disc_detailed_answers
+    - field.field.node.disc_result.field_disc_predominant_profile
+    - field.field.node.disc_result.field_disc_score_c
+    - field.field.node.disc_result.field_disc_score_d
+    - field.field.node.disc_result.field_disc_score_i
+    - field.field.node.disc_result.field_disc_score_s
+    - field.field.node.disc_result.field_parent_company
+    - node.type.disc_result
+  module:
+    - datetime
+    - options
+    - user
+id: node.disc_result.default
+targetEntityType: node
+bundle: disc_result
+mode: default
+content:
+  field_disc_completion_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_disc_context:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_disc_detailed_answers:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_disc_predominant_profile:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_disc_score_c:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_disc_score_d:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_disc_score_i:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_disc_score_s:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

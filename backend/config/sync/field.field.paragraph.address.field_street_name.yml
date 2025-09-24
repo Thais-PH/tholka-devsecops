@@ -1,0 +1,19 @@
+uuid: 007c50bd-ace6-4f70-b904-de92ddc0c9f6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_street_name
+    - paragraphs.paragraphs_type.address
+id: paragraph.address.field_street_name
+field_name: field_street_name
+entity_type: paragraph
+bundle: address
+label: 'Nom de rue'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

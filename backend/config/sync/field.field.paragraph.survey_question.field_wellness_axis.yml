@@ -1,0 +1,29 @@
+uuid: 2d4e680f-a9b5-4f60-b41b-3b277a4a0af4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_wellness_axis
+    - paragraphs.paragraphs_type.survey_question
+    - taxonomy.vocabulary.wellness_axis
+id: paragraph.survey_question.field_wellness_axis
+field_name: field_wellness_axis
+entity_type: paragraph
+bundle: survey_question
+label: 'Axe de bien-être associé'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      wellness_axis: wellness_axis
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

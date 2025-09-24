@@ -1,0 +1,52 @@
+uuid: 178cb48a-108c-4d19-ad2a-ab0ce0694ed9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.company_status.field_taxo_system_name
+    - taxonomy.vocabulary.company_status
+  module:
+    - path
+id: taxonomy_term.company_status.default
+targetEntityType: taxonomy_term
+bundle: company_status
+mode: default
+content:
+  field_taxo_system_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

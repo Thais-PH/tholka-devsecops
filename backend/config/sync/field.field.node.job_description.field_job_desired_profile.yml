@@ -1,0 +1,24 @@
+uuid: feb314d6-c6aa-44d3-8eb0-da7044181b54
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_desired_profile
+    - filter.format.basic_html
+    - node.type.job_description
+  module:
+    - text
+id: node.job_description.field_job_desired_profile
+field_name: field_job_desired_profile
+entity_type: node
+bundle: job_description
+label: 'Profil recherché'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

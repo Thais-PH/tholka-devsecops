@@ -1,0 +1,31 @@
+uuid: ae50c3ef-7be0-49f2-bca7-d480e822369a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.job_posting_status.field_taxo_system_name
+    - taxonomy.vocabulary.job_posting_status
+  module:
+    - text
+id: taxonomy_term.job_posting_status.default
+targetEntityType: taxonomy_term
+bundle: job_posting_status
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_taxo_system_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

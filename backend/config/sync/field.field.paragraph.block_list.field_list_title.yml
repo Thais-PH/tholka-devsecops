@@ -1,0 +1,19 @@
+uuid: f177f1b7-d2f4-4f27-b072-9ef26519aac9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_list_title
+    - paragraphs.paragraphs_type.block_list
+id: paragraph.block_list.field_list_title
+field_name: field_list_title
+entity_type: paragraph
+bundle: block_list
+label: 'Titre du bloc'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

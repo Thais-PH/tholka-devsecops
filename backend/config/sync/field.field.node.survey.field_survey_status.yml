@@ -1,0 +1,29 @@
+uuid: 04c966c9-aab5-4dc6-8f18-52448f4f28f4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_survey_status
+    - node.type.survey
+    - taxonomy.vocabulary.survey_status
+id: node.survey.field_survey_status
+field_name: field_survey_status
+entity_type: node
+bundle: survey
+label: "Statut de l'enquête"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      survey_status: survey_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

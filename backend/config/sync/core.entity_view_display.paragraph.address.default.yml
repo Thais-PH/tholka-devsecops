@@ -1,0 +1,57 @@
+uuid: 317b51f2-cd8d-459f-bab1-d32d4375f10d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.address.field_city
+    - field.field.paragraph.address.field_country
+    - field.field.paragraph.address.field_postal_code
+    - field.field.paragraph.address.field_street_name
+    - field.field.paragraph.address.field_street_number
+    - paragraphs.paragraphs_type.address
+id: paragraph.address.default
+targetEntityType: paragraph
+bundle: address
+mode: default
+content:
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_country:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_postal_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_street_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_street_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

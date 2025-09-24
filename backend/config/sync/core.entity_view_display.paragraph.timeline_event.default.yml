@@ -1,0 +1,61 @@
+uuid: 1e42bd2e-7e55-4f37-9945-61750a27aae2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.timeline_event.field_event_assigned_user
+    - field.field.paragraph.timeline_event.field_event_description
+    - field.field.paragraph.timeline_event.field_event_end_datetime
+    - field.field.paragraph.timeline_event.field_event_start_datetime
+    - field.field.paragraph.timeline_event.field_event_title
+    - paragraphs.paragraphs_type.timeline_event
+  module:
+    - datetime
+    - text
+id: paragraph.timeline_event.default
+targetEntityType: paragraph
+bundle: timeline_event
+mode: default
+content:
+  field_event_assigned_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_event_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_event_end_datetime:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_event_start_datetime:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_event_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

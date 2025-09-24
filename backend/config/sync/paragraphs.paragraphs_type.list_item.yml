@@ -1,0 +1,10 @@
+uuid: 36bce862-baa1-4b02-a00e-06a23dc182cc
+langcode: fr
+status: true
+dependencies: {  }
+id: list_item
+label: 'Élément de liste'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

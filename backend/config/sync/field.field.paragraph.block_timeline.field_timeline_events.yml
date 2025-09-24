@@ -1,0 +1,79 @@
+uuid: 8a9adec4-6647-449e-b0f7-30e7afbcbc82
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_events
+    - paragraphs.paragraphs_type.block_timeline
+    - paragraphs.paragraphs_type.timeline_event
+  module:
+    - entity_reference_revisions
+id: paragraph.block_timeline.field_timeline_events
+field_name: field_timeline_events
+entity_type: paragraph
+bundle: block_timeline
+label: Événements
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      timeline_event: timeline_event
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 19
+        enabled: false
+      block_document:
+        weight: 20
+        enabled: false
+      block_external_link:
+        weight: 21
+        enabled: false
+      block_form:
+        weight: 22
+        enabled: false
+      block_list:
+        weight: 23
+        enabled: false
+      block_orgchart:
+        weight: 24
+        enabled: false
+      block_quizz:
+        weight: 25
+        enabled: false
+      block_text:
+        weight: 26
+        enabled: false
+      block_timeline:
+        weight: 27
+        enabled: false
+      block_video:
+        weight: 28
+        enabled: false
+      custom_answer:
+        weight: 29
+        enabled: false
+      custom_question:
+        weight: 30
+        enabled: false
+      list_item:
+        weight: 31
+        enabled: false
+      quizz_question:
+        weight: 32
+        enabled: false
+      survey_answer:
+        weight: 33
+        enabled: false
+      survey_question:
+        weight: 34
+        enabled: false
+      timeline_event:
+        weight: 18
+        enabled: true
+field_type: entity_reference_revisions

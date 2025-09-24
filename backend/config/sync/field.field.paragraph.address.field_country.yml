@@ -1,0 +1,19 @@
+uuid: 1286b89c-087a-47b1-a22a-49c2b99235cd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_country
+    - paragraphs.paragraphs_type.address
+id: paragraph.address.field_country
+field_name: field_country
+entity_type: paragraph
+bundle: address
+label: Pays
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

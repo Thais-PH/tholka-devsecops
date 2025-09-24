@@ -1,0 +1,11 @@
+uuid: 95c60504-9d2a-4978-a71e-fd77e0e46105
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.survey_status
+id: taxonomy_term.survey_status
+target_entity_type_id: taxonomy_term
+target_bundle: survey_status
+default_langcode: site_default
+language_alterable: false

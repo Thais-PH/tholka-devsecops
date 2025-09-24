@@ -1,0 +1,9 @@
+uuid: 9c45765e-acb5-48fc-989d-d1de85daba90
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Validation'
+vid: validation_status
+description: null
+weight: 0
+new_revision: false

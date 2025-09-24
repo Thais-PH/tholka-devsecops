@@ -1,0 +1,19 @@
+uuid: 469a4372-9ba0-40e4-a5c6-bfa0bab43380
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_posting_localization
+    - node.type.job_posting
+id: node.job_posting.field_posting_localization
+field_name: field_posting_localization
+entity_type: node
+bundle: job_posting
+label: Localisation
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

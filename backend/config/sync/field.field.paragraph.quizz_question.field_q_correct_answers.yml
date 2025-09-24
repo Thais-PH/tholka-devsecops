@@ -1,0 +1,19 @@
+uuid: e96f4305-60eb-45fe-8170-39e1219626f6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_q_correct_answers
+    - paragraphs.paragraphs_type.quizz_question
+id: paragraph.quizz_question.field_q_correct_answers
+field_name: field_q_correct_answers
+entity_type: paragraph
+bundle: quizz_question
+label: 'Bonne(s) réponse(s)'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

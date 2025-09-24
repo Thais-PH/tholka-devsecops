@@ -1,0 +1,19 @@
+uuid: 3818a4d3-2661-4074-a4bc-dd330f7a1c05
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_question_label
+    - paragraphs.paragraphs_type.custom_answer
+id: paragraph.custom_answer.field_question_label
+field_name: field_question_label
+entity_type: paragraph
+bundle: custom_answer
+label: 'Intitulé de la question'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 13b2b518-7be1-4341-9035-a4711736b22f
+langcode: fr
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_candidate_web_links
+field_name: field_candidate_web_links
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,29 @@
+uuid: 0872b6b9-65f9-47fc-b3de-674ab8b977e3
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_absence_type
+    - node.type.absence_request
+    - taxonomy.vocabulary.absence_type
+id: node.absence_request.field_absence_type
+field_name: field_absence_type
+entity_type: node
+bundle: absence_request
+label: "Type de l'absence"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      absence_type: absence_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

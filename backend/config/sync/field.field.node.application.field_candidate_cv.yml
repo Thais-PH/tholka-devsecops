@@ -1,0 +1,27 @@
+uuid: 5b80fdc3-e9ee-4371-84d8-8494eb59b58b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidate_cv
+    - node.type.application
+  module:
+    - file
+id: node.application.field_candidate_cv
+field_name: field_candidate_cv
+entity_type: node
+bundle: application
+label: 'CV du candidat'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: cv-candidat
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file

@@ -1,0 +1,29 @@
+uuid: 27849fc8-4cc2-492c-a8e9-9673f1b42f66
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_parent_company
+    - node.type.company
+    - taxonomy.vocabulary.departments
+id: taxonomy_term.departments.field_parent_company
+field_name: field_parent_company
+entity_type: taxonomy_term
+bundle: departments
+label: 'Entreprise parente'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      company: company
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

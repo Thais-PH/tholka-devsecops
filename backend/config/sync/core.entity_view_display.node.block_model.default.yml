@@ -1,0 +1,49 @@
+uuid: 08bb6e3b-c36e-4bc0-ba2a-85b4f0092b09
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.block_model.field_block_model_content
+    - field.field.node.block_model.field_block_model_type
+    - field.field.node.block_model.field_parent_company
+    - node.type.block_model
+  module:
+    - entity_reference_revisions
+    - options
+    - user
+id: node.block_model.default
+targetEntityType: node
+bundle: block_model
+mode: default
+content:
+  field_block_model_content:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_block_model_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

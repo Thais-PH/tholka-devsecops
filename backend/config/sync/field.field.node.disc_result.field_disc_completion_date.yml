@@ -1,0 +1,21 @@
+uuid: fa50037b-ce83-4eb8-9f5f-d461900b3c95
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disc_completion_date
+    - node.type.disc_result
+  module:
+    - datetime
+id: node.disc_result.field_disc_completion_date
+field_name: field_disc_completion_date
+entity_type: node
+bundle: disc_result
+label: 'Date de passage'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,37 @@
+uuid: 5337fc11-2cb2-4038-85fd-7583559d7de4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_address
+    - paragraphs.paragraphs_type.address
+  module:
+    - entity_reference_revisions
+    - user
+id: user.user.field_address
+field_name: field_address
+entity_type: user
+bundle: user
+label: Adresse
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      address: address
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 4
+        enabled: true
+      custom_answer:
+        weight: 5
+        enabled: false
+      custom_question:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

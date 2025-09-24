@@ -1,0 +1,18 @@
+uuid: 1af7de20-e359-43c7-bd02-618bd30ccc46
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.disc_result
+id: node.disc_result.title
+field_name: title
+entity_type: node
+bundle: disc_result
+label: 'Titre du résultat DISC'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

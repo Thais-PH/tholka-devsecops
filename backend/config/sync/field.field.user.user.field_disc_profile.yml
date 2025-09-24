@@ -1,0 +1,30 @@
+uuid: 47dc6773-5d8a-43b8-a72e-ade3c0f703cc
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_disc_profile
+    - node.type.disc_result
+  module:
+    - user
+id: user.user.field_disc_profile
+field_name: field_disc_profile
+entity_type: user
+bundle: user
+label: 'Profil DISC'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      disc_result: disc_result
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

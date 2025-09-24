@@ -1,0 +1,9 @@
+uuid: f6adae5c-f788-41a4-9a94-7999fdbec392
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Type de parcours'
+vid: path_type
+description: null
+weight: 0
+new_revision: false

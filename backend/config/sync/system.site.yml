@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: fr
+uuid: d4e42351-c692-4c4b-a664-32ccb13c6f9b
+name: Tholka
+mail: lisa.tallet1@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: fr
+mail_notification: ''

@@ -1,0 +1,18 @@
+uuid: 46f9d3ce-0e45-46b5-8f68-00587ee07c9f
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Média Vidéo'
+type: video_media
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,21 @@
+uuid: dea5e0ca-a3cc-45cb-97ab-9677fd2f5405
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_survey_start_date
+    - node.type.survey
+  module:
+    - datetime
+id: node.survey.field_survey_start_date
+field_name: field_survey_start_date
+entity_type: node
+bundle: survey
+label: "Date d'ouverture de l'enquête"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

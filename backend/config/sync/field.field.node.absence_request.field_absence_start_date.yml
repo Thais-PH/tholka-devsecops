@@ -1,0 +1,21 @@
+uuid: 3a369d05-1b7d-46a1-962d-2578a7c4aefd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_absence_start_date
+    - node.type.absence_request
+  module:
+    - datetime
+id: node.absence_request.field_absence_start_date
+field_name: field_absence_start_date
+entity_type: node
+bundle: absence_request
+label: "Date de début de l'absence"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

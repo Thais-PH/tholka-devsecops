@@ -1,0 +1,19 @@
+uuid: 9126418c-a53c-40aa-bc77-c3ddd5fd391c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disc_detailed_answers
+    - node.type.disc_result
+id: node.disc_result.field_disc_detailed_answers
+field_name: field_disc_detailed_answers
+entity_type: node
+bundle: disc_result
+label: 'Réponses détaillées'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

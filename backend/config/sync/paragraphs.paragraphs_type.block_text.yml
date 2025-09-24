@@ -1,0 +1,10 @@
+uuid: 2d93b954-5c3f-4ad9-b892-a59f51f10f62
+langcode: fr
+status: true
+dependencies: {  }
+id: block_text
+label: 'Zone de texte'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

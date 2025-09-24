@@ -1,0 +1,31 @@
+uuid: d2be105c-c0a5-4ee7-9ff5-4d7d325ca862
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.path_type.field_taxo_system_name
+    - taxonomy.vocabulary.path_type
+  module:
+    - text
+id: taxonomy_term.path_type.default
+targetEntityType: taxonomy_term
+bundle: path_type
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_taxo_system_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

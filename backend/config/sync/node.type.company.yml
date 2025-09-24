@@ -1,0 +1,18 @@
+uuid: d6d59d1d-a03d-4ab8-b24b-b2951a6141ac
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Entreprise
+type: company
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,29 @@
+uuid: 7a668eda-d21d-426f-b97a-99a9e258804b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_posting_status
+    - node.type.job_posting
+    - taxonomy.vocabulary.job_posting_status
+id: node.job_posting.field_posting_status
+field_name: field_posting_status
+entity_type: node
+bundle: job_posting
+label: "Statut de l'annonce"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_posting_status: job_posting_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

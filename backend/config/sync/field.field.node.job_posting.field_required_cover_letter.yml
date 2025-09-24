@@ -1,0 +1,23 @@
+uuid: 138eb3ce-d8c1-4013-bff6-d332d3e434d7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_required_cover_letter
+    - node.type.job_posting
+id: node.job_posting.field_required_cover_letter
+field_name: field_required_cover_letter
+entity_type: node
+bundle: job_posting
+label: 'Lettre de motivation requise'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Oui
+  off_label: Non
+field_type: boolean

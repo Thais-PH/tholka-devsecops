@@ -1,0 +1,24 @@
+uuid: 320c8fb4-56e9-40fe-9281-76beaa282492
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_form_description
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.block_form
+  module:
+    - text
+id: paragraph.block_form.field_form_description
+field_name: field_form_description
+entity_type: paragraph
+bundle: block_form
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

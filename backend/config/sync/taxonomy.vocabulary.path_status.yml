@@ -1,0 +1,9 @@
+uuid: d61893f3-fce6-4e98-a6c1-1935ac0f5adf
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Parcours'
+vid: path_status
+description: null
+weight: 0
+new_revision: false

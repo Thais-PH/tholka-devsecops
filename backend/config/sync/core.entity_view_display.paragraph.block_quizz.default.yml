@@ -1,0 +1,42 @@
+uuid: 8874103d-ebdb-4c1e-8e87-9ac2c12b9f7f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_quizz.field_quizz_description
+    - field.field.paragraph.block_quizz.field_quizz_questions
+    - field.field.paragraph.block_quizz.field_quizz_title
+    - paragraphs.paragraphs_type.block_quizz
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.block_quizz.default
+targetEntityType: paragraph
+bundle: block_quizz
+mode: default
+content:
+  field_quizz_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_quizz_questions:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_quizz_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

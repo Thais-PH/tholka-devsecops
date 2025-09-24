@@ -1,0 +1,23 @@
+uuid: 4ccc17ec-99e2-4c05-86d8-95afb305bfb0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_external_url
+    - paragraphs.paragraphs_type.block_video
+  module:
+    - link
+id: paragraph.block_video.field_video_external_url
+field_name: field_video_external_url
+entity_type: paragraph
+bundle: block_video
+label: 'URL externe'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 16
+field_type: link

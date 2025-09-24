@@ -1,0 +1,9 @@
+uuid: daad2b66-fe71-4329-add7-d6253f332814
+langcode: fr
+status: true
+dependencies: {  }
+name: Équipes/Pôles
+vid: departments
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,19 @@
+uuid: 45e75917-0c14-4cf1-a0d0-120cdc18472b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidate_phone
+    - node.type.application
+id: node.application.field_candidate_phone
+field_name: field_candidate_phone
+entity_type: node
+bundle: application
+label: 'Numéro de téléphone du candidat'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

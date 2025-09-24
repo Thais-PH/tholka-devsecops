@@ -1,0 +1,49 @@
+uuid: 62fa8845-90d0-44ac-b4b5-ce6d1258fdfd
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quizz_question.field_q_answer_options
+    - field.field.paragraph.quizz_question.field_q_correct_answers
+    - field.field.paragraph.quizz_question.field_q_question_type
+    - field.field.paragraph.quizz_question.field_question_label
+    - paragraphs.paragraphs_type.quizz_question
+  module:
+    - options
+id: paragraph.quizz_question.default
+targetEntityType: paragraph
+bundle: quizz_question
+mode: default
+content:
+  field_q_answer_options:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_q_correct_answers:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_q_question_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_question_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

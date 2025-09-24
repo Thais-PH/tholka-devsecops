@@ -1,0 +1,29 @@
+uuid: 7ff06270-dddd-4514-93ce-80042b62fa61
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_internal_media
+    - node.type.video_media
+    - paragraphs.paragraphs_type.block_video
+id: paragraph.block_video.field_video_internal_media
+field_name: field_video_internal_media
+entity_type: paragraph
+bundle: block_video
+label: 'Vidéo interne'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      video_media: video_media
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

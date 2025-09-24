@@ -1,0 +1,24 @@
+uuid: dd700c2f-5715-4750-8092-7400c2e1b0da
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_path_description
+    - filter.format.basic_html
+    - node.type.path
+  module:
+    - text
+id: node.path.field_path_description
+field_name: field_path_description
+entity_type: node
+bundle: path
+label: 'Description du parcours'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

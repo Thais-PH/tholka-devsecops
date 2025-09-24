@@ -1,0 +1,10 @@
+uuid: 54f60bb4-2b23-4711-9946-b2062d76e23b
+langcode: fr
+status: true
+dependencies: {  }
+id: block_list
+label: 'Liste structurée'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

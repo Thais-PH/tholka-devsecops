@@ -1,0 +1,21 @@
+uuid: 9974e39f-3e2f-42d2-b2da-202bfc2f3af7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_org_display_mode
+    - paragraphs.paragraphs_type.block_orgchart
+  module:
+    - options
+id: paragraph.block_orgchart.field_org_display_mode
+field_name: field_org_display_mode
+entity_type: paragraph
+bundle: block_orgchart
+label: 'Type de vue'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

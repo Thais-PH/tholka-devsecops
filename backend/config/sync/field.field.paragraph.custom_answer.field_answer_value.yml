@@ -1,0 +1,19 @@
+uuid: 0605670b-ddad-47e0-a46e-b68a1b5d7b05
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_answer_value
+    - paragraphs.paragraphs_type.custom_answer
+id: paragraph.custom_answer.field_answer_value
+field_name: field_answer_value
+entity_type: paragraph
+bundle: custom_answer
+label: Réponse
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,10 @@
+uuid: c0e77770-62d8-493f-917f-727a8bc4a2e6
+langcode: fr
+status: true
+dependencies: {  }
+id: block_form
+label: Formulaire
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

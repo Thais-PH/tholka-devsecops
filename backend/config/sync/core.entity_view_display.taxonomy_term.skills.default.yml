@@ -1,0 +1,40 @@
+uuid: 0aefd582-5262-41c5-9e49-0f0f6892a2b7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.skills.field_parent_company
+    - field.field.taxonomy_term.skills.field_taxo_system_name
+    - taxonomy.vocabulary.skills
+  module:
+    - text
+id: taxonomy_term.skills.default
+targetEntityType: taxonomy_term
+bundle: skills
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_taxo_system_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

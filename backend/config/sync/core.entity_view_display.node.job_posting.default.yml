@@ -1,0 +1,111 @@
+uuid: 6cc0aff7-d468-4dcb-9b9d-836a5a030bc7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.job_posting.field_parent_company
+    - field.field.node.job_posting.field_posting_custom_fields
+    - field.field.node.job_posting.field_posting_ia_description
+    - field.field.node.job_posting.field_posting_job_vacancies
+    - field.field.node.job_posting.field_posting_localization
+    - field.field.node.job_posting.field_posting_status
+    - field.field.node.job_posting.field_posting_url_share
+    - field.field.node.job_posting.field_required_cover_letter
+    - field.field.node.job_posting.field_required_web_links
+    - node.type.job_posting
+  module:
+    - entity_reference_revisions
+    - link
+    - text
+    - user
+id: node.job_posting.default
+targetEntityType: node
+bundle: job_posting
+mode: default
+content:
+  field_parent_company:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_posting_custom_fields:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_posting_ia_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_posting_job_vacancies:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_posting_localization:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_posting_status:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_posting_url_share:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_required_cover_letter:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_required_web_links:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

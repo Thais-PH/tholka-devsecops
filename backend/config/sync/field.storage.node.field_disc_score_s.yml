@@ -1,0 +1,20 @@
+uuid: 1e19e574-9020-4ba3-aede-96e2af96da91
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_disc_score_s
+field_name: field_disc_score_s
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

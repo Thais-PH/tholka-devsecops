@@ -1,0 +1,48 @@
+uuid: 79ce9970-55dd-4d12-913e-65594bb554b9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_orgchart.field_org_description
+    - field.field.paragraph.block_orgchart.field_org_display_mode
+    - field.field.paragraph.block_orgchart.field_org_scope_department
+    - field.field.paragraph.block_orgchart.field_org_title
+    - paragraphs.paragraphs_type.block_orgchart
+  module:
+    - text
+id: paragraph.block_orgchart.default
+targetEntityType: paragraph
+bundle: block_orgchart
+mode: default
+content:
+  field_org_description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_org_display_mode:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_org_scope_department:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_org_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

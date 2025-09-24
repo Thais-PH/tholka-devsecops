@@ -1,0 +1,23 @@
+uuid: 114026b5-114f-4e0c-8838-54cb3d7db0e5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disc_score_i
+    - node.type.disc_result
+id: node.disc_result.field_disc_score_i
+field_name: field_disc_score_i
+entity_type: node
+bundle: disc_result
+label: 'Nombre de I'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

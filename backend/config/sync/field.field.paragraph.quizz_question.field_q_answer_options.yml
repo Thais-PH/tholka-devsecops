@@ -1,0 +1,19 @@
+uuid: b92b5d6e-668a-4df3-a3b8-01745bbafbd2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_q_answer_options
+    - paragraphs.paragraphs_type.quizz_question
+id: paragraph.quizz_question.field_q_answer_options
+field_name: field_q_answer_options
+entity_type: paragraph
+bundle: quizz_question
+label: 'Réponses possibles'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

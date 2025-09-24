@@ -1,0 +1,19 @@
+uuid: 411cf218-b1af-4d37-8a0d-e2bcf745ce51
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_timeline_description
+field_name: field_timeline_description
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

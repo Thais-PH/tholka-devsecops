@@ -1,0 +1,18 @@
+uuid: aff46280-615a-41aa-b702-dad5c8899220
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.video_media
+id: node.video_media.title
+field_name: title
+entity_type: node
+bundle: video_media
+label: 'Titre de la vidéo'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 8b2562e3-b2ed-4ff2-bb93-331b0e950b79
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.survey
+id: node.survey
+target_entity_type_id: node
+target_bundle: survey
+default_langcode: site_default
+language_alterable: false

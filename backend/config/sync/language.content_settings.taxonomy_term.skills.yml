@@ -1,0 +1,11 @@
+uuid: ac94a8bd-5c51-4d95-af49-96aea804d3f4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.skills
+id: taxonomy_term.skills
+target_entity_type_id: taxonomy_term
+target_bundle: skills
+default_langcode: site_default
+language_alterable: false

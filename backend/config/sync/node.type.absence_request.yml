@@ -1,0 +1,18 @@
+uuid: 64ae4bf6-d025-4a48-b53d-b5c9c831d10c
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: "Demande d'absence"
+type: absence_request
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

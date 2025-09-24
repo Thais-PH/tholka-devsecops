@@ -1,0 +1,19 @@
+uuid: 4e967d69-f013-4fe9-aa28-13e6a08643e7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_question_label
+    - paragraphs.paragraphs_type.survey_question
+id: paragraph.survey_question.field_question_label
+field_name: field_question_label
+entity_type: paragraph
+bundle: survey_question
+label: 'Intitulé de la question'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

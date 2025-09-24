@@ -1,0 +1,29 @@
+uuid: d2ccb22f-cbcc-42cf-a2c2-e76b5d913b06
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_assigned_user
+    - node.type.internal_document
+id: node.internal_document.field_assigned_user
+field_name: field_assigned_user
+entity_type: node
+bundle: internal_document
+label: 'Collaborateur affecté'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

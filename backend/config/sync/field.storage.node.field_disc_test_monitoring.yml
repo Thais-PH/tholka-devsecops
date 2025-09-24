@@ -1,0 +1,19 @@
+uuid: aeb3d922-3891-4696-8d8a-d9195eeb2a47
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_disc_test_monitoring
+field_name: field_disc_test_monitoring
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

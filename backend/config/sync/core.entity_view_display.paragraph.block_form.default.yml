@@ -1,0 +1,42 @@
+uuid: 70167a1e-0c90-4b40-b6ea-a24c6937df76
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_form.field_form_description
+    - field.field.paragraph.block_form.field_form_questions
+    - field.field.paragraph.block_form.field_form_title
+    - paragraphs.paragraphs_type.block_form
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.block_form.default
+targetEntityType: paragraph
+bundle: block_form
+mode: default
+content:
+  field_form_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_form_questions:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_form_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

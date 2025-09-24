@@ -1,0 +1,10 @@
+uuid: e4ec1e4d-6388-42fe-ba31-784e7038d3cb
+langcode: fr
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: bqZsN31T2n0UjcbyCpOPi9D2iO0sAOHR7FnEs9qMvaA
+id: comment
+label: 'Commentaires par défaut'
+target_entity_type_id: node
+description: 'Autorise à commenter le contenu'

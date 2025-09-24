@@ -1,0 +1,9 @@
+uuid: ffac4d8e-6aad-4f39-bc68-3b0d9ad290ac
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Statut Entreprise'
+vid: company_status
+description: null
+weight: 0
+new_revision: false

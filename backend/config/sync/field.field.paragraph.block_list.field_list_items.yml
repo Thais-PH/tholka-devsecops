@@ -1,0 +1,58 @@
+uuid: 358ebfe3-d816-40a7-9b45-0a0769f9c431
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_list_items
+    - paragraphs.paragraphs_type.block_list
+    - paragraphs.paragraphs_type.list_item
+  module:
+    - entity_reference_revisions
+id: paragraph.block_list.field_list_items
+field_name: field_list_items
+entity_type: paragraph
+bundle: block_list
+label: 'Éléments de la liste'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      list_item: list_item
+    negate: 0
+    target_bundles_drag_drop:
+      address:
+        weight: 12
+        enabled: false
+      block_document:
+        weight: 13
+        enabled: false
+      block_list:
+        weight: 14
+        enabled: false
+      block_text:
+        weight: 15
+        enabled: false
+      block_video:
+        weight: 16
+        enabled: false
+      custom_answer:
+        weight: 17
+        enabled: false
+      custom_question:
+        weight: 18
+        enabled: false
+      list_item:
+        weight: 11
+        enabled: true
+      survey_answer:
+        weight: 19
+        enabled: false
+      survey_question:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

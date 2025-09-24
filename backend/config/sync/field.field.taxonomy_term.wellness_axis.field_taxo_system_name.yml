@@ -1,0 +1,19 @@
+uuid: 7593c63d-6f00-4d88-abf9-8b95cdfcb1b7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_taxo_system_name
+    - taxonomy.vocabulary.wellness_axis
+id: taxonomy_term.wellness_axis.field_taxo_system_name
+field_name: field_taxo_system_name
+entity_type: taxonomy_term
+bundle: wellness_axis
+label: 'Nom système'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

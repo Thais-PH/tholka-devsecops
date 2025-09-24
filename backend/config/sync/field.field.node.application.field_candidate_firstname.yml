@@ -1,0 +1,19 @@
+uuid: fd1cc7cd-7b9f-47c2-b70d-1985554f0340
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidate_firstname
+    - node.type.application
+id: node.application.field_candidate_firstname
+field_name: field_candidate_firstname
+entity_type: node
+bundle: application
+label: 'Prénom du candidat'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

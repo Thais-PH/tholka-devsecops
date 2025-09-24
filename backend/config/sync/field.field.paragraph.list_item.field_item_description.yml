@@ -1,0 +1,24 @@
+uuid: 7e4f096b-b022-49ac-a3a1-84efcd3e31a0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_item_description
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.list_item
+  module:
+    - text
+id: paragraph.list_item.field_item_description
+field_name: field_item_description
+entity_type: paragraph
+bundle: list_item
+label: "Description de l'élément"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

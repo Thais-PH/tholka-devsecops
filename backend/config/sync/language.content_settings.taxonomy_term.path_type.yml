@@ -1,0 +1,11 @@
+uuid: 9a75d0c7-1fec-495e-a3d3-0eeb97915d51
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.path_type
+id: taxonomy_term.path_type
+target_entity_type_id: taxonomy_term
+target_bundle: path_type
+default_langcode: site_default
+language_alterable: false

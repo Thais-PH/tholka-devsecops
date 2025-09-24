@@ -1,0 +1,31 @@
+uuid: 548da90a-517a-46aa-b699-84ae35d7d2af
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.survey_answer.field_answer_score
+    - field.field.paragraph.survey_answer.field_question_label
+    - paragraphs.paragraphs_type.survey_answer
+id: paragraph.survey_answer.default
+targetEntityType: paragraph
+bundle: survey_answer
+mode: default
+content:
+  field_answer_score:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_question_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

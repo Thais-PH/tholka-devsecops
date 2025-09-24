@@ -1,0 +1,23 @@
+uuid: 56c95e56-7d07-49b3-a372-6526b49f342b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disc_score_s
+    - node.type.disc_result
+id: node.disc_result.field_disc_score_s
+field_name: field_disc_score_s
+entity_type: node
+bundle: disc_result
+label: 'Nombre de S'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

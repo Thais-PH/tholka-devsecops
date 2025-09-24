@@ -1,0 +1,11 @@
+uuid: c7b9792b-e795-4b01-84dc-427e6c6593de
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.company_status
+id: taxonomy_term.company_status
+target_entity_type_id: taxonomy_term
+target_bundle: company_status
+default_langcode: site_default
+language_alterable: false

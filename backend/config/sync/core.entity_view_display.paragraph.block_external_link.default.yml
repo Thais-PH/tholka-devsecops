@@ -1,0 +1,45 @@
+uuid: de0ceb9d-ce8c-40e5-8c2e-2b9f1166e2ee
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_external_link.field_link_description
+    - field.field.paragraph.block_external_link.field_link_title
+    - field.field.paragraph.block_external_link.field_link_url
+    - paragraphs.paragraphs_type.block_external_link
+  module:
+    - link
+    - text
+id: paragraph.block_external_link.default
+targetEntityType: paragraph
+bundle: block_external_link
+mode: default
+content:
+  field_link_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_link_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_link_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

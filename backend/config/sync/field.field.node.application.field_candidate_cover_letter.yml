@@ -1,0 +1,27 @@
+uuid: d6779ab6-9242-4b93-a7f0-735899d6afcb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidate_cover_letter
+    - node.type.application
+  module:
+    - file
+id: node.application.field_candidate_cover_letter
+field_name: field_candidate_cover_letter
+entity_type: node
+bundle: application
+label: 'Lettre de motivation du candidat'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: motivation-candidat
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file

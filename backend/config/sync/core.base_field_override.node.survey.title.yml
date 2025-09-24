@@ -1,0 +1,18 @@
+uuid: e4c8af5e-9e71-491e-b3cb-b03eb974ec41
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.survey
+id: node.survey.title
+field_name: title
+entity_type: node
+bundle: survey
+label: "Titre de l'enquête"
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

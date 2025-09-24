@@ -1,0 +1,42 @@
+uuid: 776484a9-cf9e-4f16-9ee5-07bb32fe87ec
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_timeline.field_timeline_description
+    - field.field.paragraph.block_timeline.field_timeline_events
+    - field.field.paragraph.block_timeline.field_timeline_title
+    - paragraphs.paragraphs_type.block_timeline
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.block_timeline.default
+targetEntityType: paragraph
+bundle: block_timeline
+mode: default
+content:
+  field_timeline_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_timeline_events:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_timeline_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

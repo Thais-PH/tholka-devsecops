@@ -1,0 +1,21 @@
+uuid: c0485924-7915-4f49-acb0-afb4de2dcf72
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_event_end_datetime
+    - paragraphs.paragraphs_type.timeline_event
+  module:
+    - datetime
+id: paragraph.timeline_event.field_event_end_datetime
+field_name: field_event_end_datetime
+entity_type: paragraph
+bundle: timeline_event
+label: "Date de fin de l'événement"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

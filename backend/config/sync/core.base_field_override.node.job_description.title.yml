@@ -1,0 +1,18 @@
+uuid: f7ffacbc-f17b-45d0-8e15-ce26a14d8101
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.job_description
+id: node.job_description.title
+field_name: title
+entity_type: node
+bundle: job_description
+label: 'Titre du poste'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

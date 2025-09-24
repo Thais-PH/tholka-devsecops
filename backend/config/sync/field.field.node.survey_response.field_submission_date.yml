@@ -1,0 +1,21 @@
+uuid: 14baeaf9-2379-480e-8f49-962ff03440c0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_submission_date
+    - node.type.survey_response
+  module:
+    - datetime
+id: node.survey_response.field_submission_date
+field_name: field_submission_date
+entity_type: node
+bundle: survey_response
+label: 'Date de soumission'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

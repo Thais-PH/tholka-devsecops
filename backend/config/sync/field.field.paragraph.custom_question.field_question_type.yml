@@ -1,0 +1,21 @@
+uuid: c3f06a74-6aec-47cd-8e75-ac18d8a56300
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_question_type
+    - paragraphs.paragraphs_type.custom_question
+  module:
+    - options
+id: paragraph.custom_question.field_question_type
+field_name: field_question_type
+entity_type: paragraph
+bundle: custom_question
+label: 'Type de question'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,20 @@
+uuid: e7f540f3-24fc-49ec-aea9-6408338d3273
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_wellness_axis
+field_name: field_wellness_axis
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

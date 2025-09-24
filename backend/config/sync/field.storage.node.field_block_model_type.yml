@@ -1,0 +1,48 @@
+uuid: 2bf3c2f2-ce80-4239-a5f9-50abaf0e41ef
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_block_model_type
+field_name: field_block_model_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: video
+      label: Vidéo
+    -
+      value: document
+      label: Document
+    -
+      value: textarea
+      label: 'Zone de texte'
+    -
+      value: list
+      label: Liste
+    -
+      value: form
+      label: Formulaire
+    -
+      value: quizz
+      label: Quizz
+    -
+      value: orgchart
+      label: Organigramme
+    -
+      value: external_link
+      label: 'Lien externe'
+    -
+      value: timeline
+      label: Chronologie
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

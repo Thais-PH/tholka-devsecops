@@ -1,0 +1,18 @@
+uuid: 81ed4771-1b04-4c4e-a1c5-602c04b1eaa9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.overtime_declaration
+id: node.overtime_declaration.title
+field_name: title
+entity_type: node
+bundle: overtime_declaration
+label: 'Titre de la déclaration'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

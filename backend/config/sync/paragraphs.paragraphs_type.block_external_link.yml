@@ -1,0 +1,10 @@
+uuid: b16992ad-53f9-4143-88c9-753dedc0063f
+langcode: fr
+status: true
+dependencies: {  }
+id: block_external_link
+label: 'Lien externe'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

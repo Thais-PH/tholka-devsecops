@@ -1,0 +1,24 @@
+uuid: d4c2b7cf-cd96-41a1-ba7d-0400a27785e2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_technical_monitoring
+    - filter.format.basic_html
+    - node.type.application
+  module:
+    - text
+id: node.application.field_technical_monitoring
+field_name: field_technical_monitoring
+entity_type: node
+bundle: application
+label: "Suivi de l'entretien technique"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

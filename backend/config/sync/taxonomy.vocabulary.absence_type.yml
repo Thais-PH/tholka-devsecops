@@ -1,0 +1,9 @@
+uuid: 7df46241-73e4-4eed-a442-559bbfcdf49b
+langcode: fr
+status: true
+dependencies: {  }
+name: "Type d'absence"
+vid: absence_type
+description: null
+weight: 0
+new_revision: false

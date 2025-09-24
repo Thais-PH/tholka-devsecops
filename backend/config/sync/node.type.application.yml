@@ -1,0 +1,18 @@
+uuid: 4f5e445a-7244-4bb2-b7a8-09e17d3522bb
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Candidature
+type: application
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

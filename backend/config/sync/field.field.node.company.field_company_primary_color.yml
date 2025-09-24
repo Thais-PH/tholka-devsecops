@@ -1,0 +1,22 @@
+uuid: bf5e2a6a-a699-45aa-ad3d-48ecc4efcc53
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company_primary_color
+    - node.type.company
+  module:
+    - color_field
+id: node.company.field_company_primary_color
+field_name: field_company_primary_color
+entity_type: node
+bundle: company
+label: 'Couleur primaire'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
