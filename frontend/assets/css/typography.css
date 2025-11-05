@@ -1,0 +1,46 @@
+@layer base {
+  /* Titres - Nunito Bold */
+  h1 {
+    @apply text-h1 font-sans;
+  }
+  
+  h2 {
+    @apply text-h2 font-sans;
+  }
+  
+  h3 {
+    @apply text-h3 font-sans;
+  }
+  
+  h4 {
+    @apply text-h4 font-sans;
+  }
+  
+  h5 {
+    @apply text-h5 font-sans;
+  }
+
+  /* Textes - Roboto */
+  p {
+    @apply text-base font-roboto;
+  }
+}
+
+@layer components {
+  /* Classes utilitaires pour les textes */
+  .text-large {
+    @apply text-lg font-roboto font-medium;
+  }
+
+  .text-normal {
+    @apply text-base font-roboto;
+  }
+
+  .text-small {
+    @apply text-sm font-roboto;
+  }
+
+  .text-extra-small {
+    @apply text-xs font-roboto;
+  }
+}
