@@ -45,10 +45,11 @@ services:
   frontend:
     image: node:20-alpine
     container_name: tholka_frontend
-    command: npm run dev -- --host 0.0.0.0
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"    
     working_dir: /app
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
     networks:
