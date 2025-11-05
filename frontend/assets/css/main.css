@@ -1,11 +1,8 @@
-/* nunito-400 */
-@font-face {
-  font-display: swap;
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/Nunito-Regular.woff2') format('woff2'); 
-}
+@import "./typography.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* nunito-700 - font-bold */
 @font-face {
@@ -13,14 +10,23 @@
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 700;
-  src: url('../fonts/Nunito-Bold.woff2') format('woff2'); 
+  src: url('../fonts/Nunito-Bold.woff2') format('woff2');
 }
 
-/* nunito-900 - font-black */
+/* roboto-400 */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2');
+}
+
+/* roboto-500 - font-medium */
 @font-face {
   font-display: swap; 
-  font-family: 'Nunito';
+  font-family: 'Roboto';
   font-style: normal;
-  font-weight: 900;
-  src: url('../fonts/Nunito-Black.woff2') format('woff2'); 
+  font-weight: 500;
+  src: url('../fonts/Roboto-Medium.woff2') format('woff2');
 }
