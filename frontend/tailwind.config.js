@@ -66,5 +66,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: ['preline/plugin'],
 }
