@@ -1,0 +1,4 @@
+services:
+  tholka_comptes.service:
+    class: Drupal\tholka_comptes\Service\ComptesService
+    arguments: ['@entity_type.manager', '@current_user', '@password_generator', '@file_system']

@@ -1,0 +1,11 @@
+access tholka fiches poste:
+  title: 'Consulter les fiches de poste'
+  description: 'Permet de consulter la liste et le détail des fiches de poste'
+
+edit tholka fiches poste:
+  title: 'Modifier les fiches de poste'
+  description: 'Permet de créer et modifier les fiches de poste'
+
+delete tholka fiches poste:
+  title: 'Supprimer les fiches de poste'
+  description: 'Permet de supprimer les fiches de poste'

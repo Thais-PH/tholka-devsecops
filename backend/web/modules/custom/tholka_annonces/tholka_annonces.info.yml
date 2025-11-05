@@ -1,0 +1,10 @@
+name: 'Tholka Annonces'
+type: module
+description: "Gestion des annonces d'emploi avec API REST"
+core_version_requirement: ^10 || ^11
+package: 'Tholka'
+dependencies:
+  - drupal:rest
+  - drupal:serialization
+  - drupal:node
+  - drupal:user

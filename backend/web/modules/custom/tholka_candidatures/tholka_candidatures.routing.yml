@@ -1,0 +1,73 @@
+# API REST pour les candidatures (côté RH)
+tholka_candidatures.api.list:
+  path: '/api/candidatures'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesApiController::getCandidatures'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka candidatures'
+  # options:
+  #   _auth: ['basic_auth', 'cookie']  # Permettre l'auth par cookie
+
+tholka_candidatures.api.get:
+  path: '/api/candidatures/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesApiController::getCandidature'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka candidatures'
+  # options:
+  #   _auth: ['basic_auth', 'cookie']
+
+tholka_candidatures.api.update:
+  path: '/api/candidatures/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesApiController::updateCandidature'
+  methods: [PUT, PATCH]
+  requirements:
+    _permission: 'edit tholka candidatures'
+  # options:
+  #   _auth: ['basic_auth', 'cookie']
+
+# API publique pour candidatures (C1, C2, C3, C4)
+tholka_candidatures.public.form:
+  path: '/api/public/candidature/{job_posting_id}'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesPublicController::getCandidatureForm'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'
+
+tholka_candidatures.public.submit:
+  path: '/api/public/candidature/{job_posting_id}/submit'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesPublicController::submitCandidature'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+
+# API pour test DISC (C5)
+tholka_candidatures.public.disc_test:
+  path: '/api/public/candidature/{candidature_id}/disc-test'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesPublicController::getDiscTest'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'
+
+tholka_candidatures.public.disc_submit:
+  path: '/api/public/candidature/{candidature_id}/disc-test/submit'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesPublicController::submitDiscTest'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+
+# API Annonces publiques (manquant du module annonces)
+tholka_candidatures.public.job_posting:
+  path: '/api/public/annonces/{job_posting_id}'
+  defaults:
+    _controller: '\Drupal\tholka_candidatures\Controller\CandidaturesPublicController::getJobPostingPublic'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'

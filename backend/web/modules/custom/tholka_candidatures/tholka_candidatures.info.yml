@@ -1,0 +1,12 @@
+name: Tholka Candidatures
+type: module
+description: Gestion des candidatures avec API REST et processus DISC
+core_version_requirement: ^10 || ^11
+package: Tholka
+dependencies:
+  - drupal:rest
+  - drupal:serialization
+  - drupal:node
+  - drupal:user
+  - drupal:file
+  - tholka_annonces

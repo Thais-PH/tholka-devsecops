@@ -1,0 +1,4 @@
+services:
+  tholka_fiches_poste.service:
+    class: Drupal\tholka_fiches_poste\Service\FichesPosteService
+    arguments: ['@entity_type.manager', '@current_user']

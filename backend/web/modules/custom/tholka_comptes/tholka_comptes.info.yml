@@ -1,0 +1,9 @@
+name: 'Tholka Comptes Utilisateurs'
+type: module
+description: 'Gestion des comptes utilisateurs - Module L (L1-L8)'
+core_version_requirement: ^10 || ^11
+package: 'Tholka'
+dependencies:
+  - drupal:user
+  - drupal:taxonomy
+  - drupal:paragraphs

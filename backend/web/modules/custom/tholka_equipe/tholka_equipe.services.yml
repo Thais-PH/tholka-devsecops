@@ -1,0 +1,16 @@
+services:
+  tholka_equipe.passport_service:
+    class: Drupal\tholka_equipe\Service\PassportService
+    arguments: ['@entity_type.manager', '@current_user']
+
+  tholka_equipe.organigramme_service:
+    class: Drupal\tholka_equipe\Service\OrganigrammeService
+    arguments: ['@entity_type.manager', '@current_user']
+
+  tholka_equipe.ia_alertes_service:
+    class: Drupal\tholka_equipe\Service\IAAlertesService
+    arguments: ['@entity_type.manager', '@http_client']
+
+  tholka_equipe.dashboard_service:
+    class: Drupal\tholka_equipe\Service\DashboardService
+    arguments: ['@entity_type.manager', '@current_user']

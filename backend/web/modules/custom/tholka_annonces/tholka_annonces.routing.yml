@@ -1,0 +1,66 @@
+# API REST pour les annonces
+tholka_annonces.api.list:
+  path: '/api/annonces'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::getAnnonces'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka annonces'
+
+tholka_annonces.api.get:
+  path: '/api/annonces/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::getAnnonce'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka annonces'
+
+tholka_annonces.api.create:
+  path: '/api/annonces'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::createAnnonce'
+  methods: [POST]
+  requirements:
+    _permission: 'create tholka annonces'
+
+tholka_annonces.api.update:
+  path: '/api/annonces/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::updateAnnonce'
+  methods: [PUT, PATCH]
+  requirements:
+    _permission: 'edit tholka annonces'
+
+tholka_annonces.api.delete:
+  path: '/api/annonces/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::deleteAnnonce'
+  methods: [DELETE]
+  requirements:
+    _permission: 'delete tholka annonces'
+
+# Endpoints spécialisés
+tholka_annonces.api.generate:
+  path: '/api/annonces/generate'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::generateAnnonce'
+  methods: [POST]
+  requirements:
+    _permission: 'create tholka annonces'
+
+tholka_annonces.api.duplicate:
+  path: '/api/annonces/{id}/duplicate'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesApiController::duplicateAnnonce'
+  methods: [POST]
+  requirements:
+    _permission: 'create tholka annonces'
+
+# API publique pour la candidature
+tholka_annonces.api.public:
+  path: '/api/public/annonces/{uuid}'
+  defaults:
+    _controller: '\Drupal\tholka_annonces\Controller\AnnoncesPublicController::getAnnoncePublic'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'

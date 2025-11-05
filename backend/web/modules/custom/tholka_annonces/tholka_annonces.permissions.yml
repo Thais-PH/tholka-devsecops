@@ -1,0 +1,15 @@
+access tholka annonces:
+  title: 'Consulter les annonces'
+  description: 'Permet de consulter la liste et le détail des annonces'
+
+create tholka annonces:
+  title: 'Créer des annonces'
+  description: 'Permet de créer de nouvelles annonces'
+
+edit tholka annonces:
+  title: 'Modifier des annonces'
+  description: 'Permet de modifier les annonces existantes'
+
+delete tholka annonces:
+  title: 'Supprimer des annonces'
+  description: 'Permet de supprimer les annonces'

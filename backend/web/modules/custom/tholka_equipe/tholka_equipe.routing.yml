@@ -1,0 +1,73 @@
+# G1 - Passeport de compétences
+tholka_equipe.api.passport.own:
+  path: '/api/mon-passeport'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\PassportApiController::getMyPassport'
+  methods: [GET]
+  requirements:
+    _permission: 'access own passport'
+
+tholka_equipe.api.passport.user:
+  path: '/api/passeport/{user_id}'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\PassportApiController::getUserPassport'
+  methods: [GET]
+  requirements:
+    _custom_access: '\Drupal\tholka_equipe\Controller\PassportApiController::checkPassportAccess'
+    user_id: '\d+'
+
+tholka_equipe.api.passport.update_salary:
+  path: '/api/passeport/{user_id}/salaire'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\PassportApiController::updateSalary'
+  methods: [PUT]
+  requirements:
+    _permission: 'view salary information'
+    user_id: '\d+'
+
+# G2 & G3 - Organigramme
+tholka_equipe.api.organigramme:
+  path: '/api/organigramme'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\OrganigrammeApiController::getOrganigramme'
+  methods: [GET]
+  requirements:
+    _permission: 'access organigramme'
+
+tholka_equipe.api.organigramme.departments:
+  path: '/api/organigramme/departments'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\OrganigrammeApiController::getDepartments'
+  methods: [GET]
+  requirements:
+    _permission: 'access organigramme'
+
+# G4 - Alertes IA
+# tholka_equipe.api.alertes.user:
+#   path: '/api/passeport/{user_id}/alertes'
+#   defaults:
+#     _controller: '\Drupal\tholka_equipe\Controller\IAAlertesApiController::getUserAlertes'
+#   methods: [GET]
+#   requirements:
+#     _permission: 'access all passports'
+#     user_id: '\d+'
+
+# G5 - Dashboard personnalisé
+tholka_equipe.api.dashboard:
+  path: '/api/dashboard'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\DashboardApiController::getDashboard'
+  methods: [GET]
+  requirements:
+    _permission: 'access home dashboard'
+
+
+# G4 - Alertes IA
+tholka_equipe.api.passport.alertes:
+  path: '/api/passeport/{user_id}/alertes'
+  defaults:
+    _controller: '\Drupal\tholka_equipe\Controller\PassportApiController::getAlertes'
+  methods: [GET]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    user_id: '\d+'

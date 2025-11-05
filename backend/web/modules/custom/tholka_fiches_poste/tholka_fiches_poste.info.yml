@@ -1,0 +1,9 @@
+name: 'Tholka Fiches de Poste'
+type: module
+description: 'Gestion des fiches de poste - Module B (B1-B6)'
+core_version_requirement: ^10 || ^11
+package: 'Tholka'
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:user

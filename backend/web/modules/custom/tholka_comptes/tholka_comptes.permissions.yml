@@ -1,0 +1,15 @@
+access tholka comptes:
+  title: 'Consulter les comptes utilisateurs'
+  description: 'Permet de consulter la liste et le détail des comptes'
+
+edit tholka comptes:
+  title: 'Modifier les comptes utilisateurs'
+  description: 'Permet de créer et modifier les comptes utilisateurs'
+
+delete tholka comptes:
+  title: 'Supprimer les comptes utilisateurs'
+  description: 'Permet de supprimer les comptes utilisateurs'
+
+manage own profile:
+  title: 'Gérer son profil personnel'
+  description: 'Permet de modifier ses propres informations de profil'

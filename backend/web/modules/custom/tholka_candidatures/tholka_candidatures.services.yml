@@ -1,0 +1,8 @@
+services:
+  tholka_candidatures.service:
+    class: Drupal\tholka_candidatures\Service\CandidaturesService
+    arguments: ['@entity_type.manager', '@current_user', '@file_system']
+  
+  tholka_candidatures.disc_service:
+    class: Drupal\tholka_candidatures\Service\DiscService
+    arguments: ['@entity_type.manager', '@current_user']

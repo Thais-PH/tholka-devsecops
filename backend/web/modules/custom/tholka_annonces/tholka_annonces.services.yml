@@ -1,0 +1,4 @@
+services:
+  tholka_annonces.service:
+    class: Drupal\tholka_annonces\Service\AnnoncesService
+    arguments: ['@entity_type.manager', '@current_user']

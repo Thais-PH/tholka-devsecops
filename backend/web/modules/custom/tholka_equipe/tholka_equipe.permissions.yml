@@ -1,0 +1,23 @@
+access own passport:
+  title: 'Consulter son propre passeport de compétences'
+  description: 'Permet à un collaborateur de consulter son propre passeport'
+
+access team passports:
+  title: 'Consulter les passeports de son équipe'
+  description: 'Permet à un manager de consulter les passeports de son équipe'
+
+access all passports:
+  title: 'Consulter tous les passeports'
+  description: "Permet aux RH de consulter tous les passeports de l'entreprise"
+
+view salary information:
+  title: 'Consulter les informations salariales'
+  description: 'Permet de voir et modifier les salaires (RH uniquement)'
+
+access organigramme:
+  title: "Consulter l'organigramme"
+  description: "Permet de consulter l'organigramme de l'entreprise"
+
+access home dashboard:
+  title: "Accéder à la page d'accueil personnalisée"
+  description: "Permet d'accéder au tableau de bord personnalisé"

@@ -1,0 +1,11 @@
+access tholka candidatures:
+  title: 'Consulter les candidatures'
+  description: 'Permet de consulter la liste et le détail des candidatures'
+
+edit tholka candidatures:
+  title: 'Modifier les candidatures'
+  description: 'Permet de modifier les candidatures (suivi RH, statuts)'
+
+delete tholka candidatures:
+  title: 'Supprimer les candidatures'
+  description: 'Permet de supprimer les candidatures'

@@ -1,0 +1,124 @@
+# L1 - Liste des comptes utilisateurs (RH uniquement)
+tholka_comptes.api.list:
+  path: '/api/comptes'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getComptes'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka comptes'
+
+# L2 - Détail d'un compte utilisateur  
+tholka_comptes.api.detail:
+  path: '/api/comptes/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getCompte'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka comptes'
+    id: '\d+'
+
+# L3 - Créer un compte utilisateur (RH uniquement)
+tholka_comptes.api.create:
+  path: '/api/comptes'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::createCompte'
+  methods: [POST]
+  requirements:
+    _permission: 'edit tholka comptes'
+
+# L4 - Modifier un compte utilisateur (RH uniquement)
+tholka_comptes.api.update:
+  path: '/api/comptes/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::updateCompte'
+  methods: [PUT]
+  requirements:
+    _permission: 'edit tholka comptes'
+    id: '\d+'
+
+# L5 - Supprimer un compte utilisateur (RH uniquement)
+tholka_comptes.api.delete:
+  path: '/api/comptes/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::deleteCompte'
+  methods: [DELETE]
+  requirements:
+    _permission: 'delete tholka comptes'
+    id: '\d+'
+
+# L6 - Filtres et tri des comptes
+# (Intégré dans L1 via paramètres GET)
+
+# L7 - Gérer ses informations de profil (Collaborateur)
+tholka_comptes.api.profile:
+  path: '/api/mon-profil'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getMyProfile'
+  methods: [GET]
+  requirements:
+    _permission: 'manage own profile'
+
+tholka_comptes.api.profile.update:
+  path: '/api/mon-profil'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::updateMyProfile'
+  methods: [PUT]
+  requirements:
+    _permission: 'manage own profile'
+
+# L8 - Connexion (utilise l'API Drupal native)
+# Endpoints supplémentaires si nécessaire
+
+# Authentification API
+tholka_comptes.api.login:
+  path: '/api/login'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\AuthApiController::login'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+
+tholka_comptes.api.logout:
+  path: '/api/logout'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\AuthApiController::logout'
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+tholka_comptes.api.me:
+  path: '/api/me'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\AuthApiController::me'
+  methods: [GET]
+  requirements:
+    _access: 'TRUE'
+
+# Départements par entreprise
+tholka_comptes.api.departments:
+  path: '/api/comptes/departments/{company_id}'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getDepartmentsForCompany'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka comptes'
+    company_id: '\d+'
+
+# Managers par entreprise
+tholka_comptes.api.managers:
+  path: '/api/comptes/managers/{company_id}'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getManagersForCompany'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka comptes'
+    company_id: '\d+'
+
+# Liste des rôles disponibles
+tholka_comptes.api.roles:
+  path: '/api/comptes/roles'
+  defaults:
+    _controller: '\Drupal\tholka_comptes\Controller\ComptesApiController::getRoles'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka comptes'

@@ -1,0 +1,9 @@
+name: 'Tholka Équipe'
+type: module
+description: "Gestion de l'équipe : passeports de compétences, organigramme, alertes IA - Module G (G1-G5)"
+core_version_requirement: ^10 || ^11
+package: 'Tholka'
+dependencies:
+  - drupal:user
+  - drupal:taxonomy
+  - drupal:node

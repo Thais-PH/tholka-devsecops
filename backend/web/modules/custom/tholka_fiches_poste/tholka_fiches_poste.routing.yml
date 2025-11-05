@@ -1,0 +1,66 @@
+# B1 & B6 - Liste des fiches de poste avec filtres
+tholka_fiches_poste.api.list:
+  path: '/api/fiches-poste'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::getFichesPoste'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka fiches poste'
+
+# B2 - Détail d'une fiche de poste
+tholka_fiches_poste.api.detail:
+  path: '/api/fiches-poste/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::getFichePoste'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka fiches poste'
+    id: '\d+'
+
+# B3 - Créer une fiche de poste
+tholka_fiches_poste.api.create:
+  path: '/api/fiches-poste'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::createFichePoste'
+  methods: [POST]
+  requirements:
+    _permission: 'edit tholka fiches poste'
+
+# B4 - Modifier une fiche de poste
+tholka_fiches_poste.api.update:
+  path: '/api/fiches-poste/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::updateFichePoste'
+  methods: [PUT]
+  requirements:
+    _permission: 'edit tholka fiches poste'
+    id: '\d+'
+
+# B5 - Supprimer une fiche de poste
+tholka_fiches_poste.api.delete:
+  path: '/api/fiches-poste/{id}'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::deleteFichePoste'
+  methods: [DELETE]
+  requirements:
+    _permission: 'delete tholka fiches poste'
+    id: '\d+'
+
+# Templates pour B3
+tholka_fiches_poste.api.templates:
+  path: '/api/fiches-poste/templates'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::getTemplates'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka fiches poste'
+
+# Compétences par entreprise
+tholka_fiches_poste.api.skills:
+  path: '/api/fiches-poste/skills/{company_id}'
+  defaults:
+    _controller: '\Drupal\tholka_fiches_poste\Controller\FichesPosteApiController::getSkillsForCompany'
+  methods: [GET]
+  requirements:
+    _permission: 'access tholka fiches poste'
+    company_id: '\d+'
