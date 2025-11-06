@@ -45,6 +45,10 @@ export default {
         'Red-disc': '#EB4335',
       },
 
+      backgroundImage: {
+        'gradient-ia': 'linear-gradient(90deg, #1CAB78 0%, #55C3E9 29.33%, #F07F47 77.88%, #FCC253 96.63%)',
+      },
+
       fontFamily: {
         sans: ['Nunito', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],

@@ -1,5 +1,3 @@
-@import "./typography.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,4 +27,64 @@
   font-style: normal;
   font-weight: 500;
   src: url('../fonts/Roboto-Medium.woff2') format('woff2');
+}
+
+@layer base {
+  /* Titres - Nunito Bold */
+  h1 {
+    @apply text-h1 font-sans;
+  }
+
+  h2 {
+    @apply text-h2 font-sans;
+  }
+
+  h3 {
+    @apply text-h3 font-sans;
+  }
+
+  h4 {
+    @apply text-h4 font-sans;
+  }
+
+  h5 {
+    @apply text-h5 font-sans;
+  }
+
+  /* Textes - Roboto */
+  p {
+    @apply text-base font-roboto;
+  }
+}
+
+@layer components {
+  /* Classes utilitaires pour les textes */
+  .text-large {
+    @apply text-lg font-roboto font-medium;
+  }
+
+  .text-normal {
+    @apply text-base font-roboto;
+  }
+
+  .text-small {
+    @apply text-sm font-roboto;
+  }
+
+  .text-extra-small {
+    @apply text-xs font-roboto;
+  }
+}
+
+@layer utilities {
+  /* Classe pour ajouter la bordure gradient au hover */
+  .hover-border-gradient-ia:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #1CAB78 0%, #55C3E9 29.33%, #F07F47 77.88%, #FCC253 96.63%);
+  }
 }
