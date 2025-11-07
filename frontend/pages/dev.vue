@@ -6,6 +6,7 @@
         <h1 class="text-4xl font-bold text-primary-900 mb-2">Design System</h1>
       </div>
 
+      <!-- Couleurs -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Couleurs</h2>
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -13,6 +14,7 @@
         </div>
       </section>
 
+      <!-- Typographies -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Typographies</h2>
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -27,7 +29,7 @@
         <!-- Primary Buttons -->
         <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Primaire</h3>
-          
+
           <!-- Default State -->
           <div class="mb-8">
             <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Default</h4>
@@ -36,49 +38,37 @@
                 <p class="text-xs text-Grey-500 mb-2">Large</p>
                 <AtomsButton variant="primary" size="lg">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-500 mb-2">Medium</p>
                 <AtomsButton variant="primary" size="md">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-500 mb-2">Small</p>
                 <AtomsButton variant="primary" size="sm">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -93,15 +83,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="primary" size="lg" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -110,15 +96,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="primary" size="md" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -127,15 +109,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="primary" size="sm" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -146,7 +124,7 @@
         <!-- Secondary Buttons -->
         <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Secondaire</h3>
-          
+
           <!-- Default State -->
           <div class="mb-8">
             <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Default</h4>
@@ -155,15 +133,11 @@
                 <p class="text-xs text-Grey-500 mb-2">Large</p>
                 <AtomsButton variant="secondary" size="lg">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -172,32 +146,24 @@
                 <p class="text-xs text-Grey-500 mb-2">Medium</p>
                 <AtomsButton variant="secondary" size="md">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-500 mb-2">Small</p>
                 <AtomsButton variant="secondary" size="sm">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -213,15 +179,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="secondary" size="lg" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -230,15 +192,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="secondary" size="md" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -247,15 +205,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="secondary" size="sm" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -266,7 +220,7 @@
         <!-- Tertiary Buttons -->
         <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tertiaire</h3>
-          
+
           <!-- Default State -->
           <div class="mb-8">
             <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Default</h4>
@@ -275,15 +229,11 @@
                 <p class="text-xs text-Grey-500 mb-2">Large</p>
                 <AtomsButton variant="tertiary" size="lg">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -292,15 +242,11 @@
                 <p class="text-xs text-Grey-500 mb-2">Medium</p>
                 <AtomsButton variant="tertiary" size="md">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -309,15 +255,11 @@
                 <p class="text-xs text-Grey-500 mb-2">Small</p>
                 <AtomsButton variant="tertiary" size="sm">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -328,20 +270,15 @@
           <div class="bg-Grey-500 rounded-lg p-6">
             <h4 class="text-sm font-medium text-white mb-4 uppercase">White</h4>
             <div class="flex flex-wrap gap-4 items-end">
-
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="tertiary" size="lg" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -350,15 +287,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="tertiary" size="md" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -367,15 +300,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="tertiary" size="sm" :on-white="true">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -391,51 +320,42 @@
           <div class="bg-Grey-500 rounded-lg p-6">
             <h4 class="text-sm font-medium text-white mb-4 uppercase">Default</h4>
             <div class="flex flex-wrap gap-4 items-end">
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="menu" size="lg">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="menu" size="md">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="menu" size="sm">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -446,7 +366,7 @@
         <!-- Forms Buttons -->
         <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Forms</h3>
-          
+
           <!-- Default State -->
           <div class="bg-Grey-500 rounded-lg p-6">
             <h4 class="text-sm font-medium text-white mb-4 uppercase">Default</h4>
@@ -455,15 +375,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="forms" size="lg">
                   <template #icon-left>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="24" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="24" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -472,15 +388,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="forms" size="md">
                   <template #icon-left>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="20" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="20" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -489,15 +401,11 @@
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="forms" size="sm">
                   <template #icon-left>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
+                    <LucideChevronLeft :size="17" :stroke-width="1" />
                   </template>
                   Button
                   <template #icon-right>
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    <LucideChevronRight :size="17" :stroke-width="1" />
                   </template>
                 </AtomsButton>
               </div>
@@ -517,6 +425,9 @@
                 <p class="text-xs text-Grey-300 mb-2">Large</p>
                 <AtomsButton variant="ia" size="lg">
                   Button
+                  <template #icon-right>
+                    <BadgeIA size="lg" />
+                  </template>
                 </AtomsButton>
               </div>
 
@@ -524,6 +435,9 @@
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="ia" size="md">
                   Button
+                  <template #icon-right>
+                    <BadgeIA size="md" />
+                  </template>
                 </AtomsButton>
               </div>
 
@@ -531,6 +445,9 @@
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="ia" size="sm">
                   Button
+                  <template #icon-right>
+                    <BadgeIA size="sm" />
+                  </template>
                 </AtomsButton>
               </div>
             </div>
@@ -542,6 +459,7 @@
 </template>
 
 <script setup>
+import BadgeIA from '~/components/atoms/BadgeIA.vue'
 // Configuration SEO pour la page
 useHead({
   title: 'Design System - Tholka',

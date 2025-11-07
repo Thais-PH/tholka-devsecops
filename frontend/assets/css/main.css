@@ -55,6 +55,12 @@
   p {
     @apply text-base font-roboto;
   }
+
+  /* Adds pointer cursor to buttons (from Preline) */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer components {
@@ -78,13 +84,18 @@
 
 @layer utilities {
   /* Classe pour ajouter la bordure gradient au hover */
-  .hover-border-gradient-ia:hover::after {
+  .hover-border-gradient-ia::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 0;
     background: linear-gradient(90deg, #1CAB78 0%, #55C3E9 29.33%, #F07F47 77.88%, #FCC253 96.63%);
+    transition: height 200ms ease-in-out;
+  }
+
+  .hover-border-gradient-ia:hover::after {
+    height: 1px;
   }
 }

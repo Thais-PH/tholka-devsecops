@@ -1,5 +1,12 @@
+import { useRouter } from "vue-router";
+
+// Preline UI
+import("preline/dist");
+
 export default defineNuxtPlugin(() => {
-  if (import.meta.client) {
-    import('preline/preline')
-  }
-})
+  const router = useRouter();
+
+  router.afterEach(async () => {
+    setTimeout(() => window.HSStaticMethods.autoInit());
+  });
+});

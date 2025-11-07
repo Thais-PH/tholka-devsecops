@@ -5,17 +5,17 @@
     :disabled="disabled"
     @click="$emit('click', $event)"
   >
+    <!-- Icône gauche (en dehors du gradient pour IA) -->
+    <slot v-if="variant === 'ia'" name="icon-left" />
+
     <span v-if="variant === 'ia'" class="inline-flex items-center gap-[4px] text-transparent bg-clip-text bg-gradient-ia">
-      <!-- Icône gauche -->
-      <slot name="icon-left" />
-
-      <!-- Texte du bouton -->
+      <!-- Texte du bouton avec gradient -->
       <slot />
-
-      <!-- Icône droite -->
-      <slot name="icon-right" />
     </span>
     
+    <!-- Icône droite (en dehors du gradient pour IA) -->
+    <slot v-if="variant === 'ia'" name="icon-right" />
+
     <template v-else>
       <!-- Icône gauche -->
       <slot name="icon-left" />
@@ -52,7 +52,7 @@ const props = defineProps({
 defineEmits(['click'])
 
 const buttonClasses = computed(() => {
-  // Classes de base avec transition all pour smooth animation
+  // Classes de base
   const base = 'font-roboto inline-flex flex-row justify-center items-center gap-[4px] rounded-[8px] border transition-all duration-200 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none'
 
   // Tailles avec padding + largeur minimale + typo
@@ -85,7 +85,7 @@ const buttonClasses = computed(() => {
 
     forms: 'border-transparent bg-transparent text-primary-500 hover:bg-primary-300',
 
-    ia: 'border-transparent bg-transparent relative hover:rounded-none hover-border-gradient-ia'
+    ia: 'border-transparent bg-transparent relative hover:rounded-none hover-border-gradient-ia text-Light'
   }
 
   return [base, sizes[props.size], variants[props.variant]]
