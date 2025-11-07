@@ -22,7 +22,7 @@
         </div>
       </section>
 
-      <!-- Buttons Section -->
+      <!-- Boutons Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Boutons</h2>
 
@@ -450,6 +450,34 @@
                   </template>
                 </AtomsButton>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Menus</h2>
+
+        <!-- Sidebars -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Sidebars</h3>
+          <div class="flex gap-8 justify-center">
+            <div>
+              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
+              <OrganismsSidebarRH active-item="accueil" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
+              <OrganismsSidebarMini active-item="accueil" variant="rh" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
+              <OrganismsSidebarCollaborateur active-item="accueil" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
+              <OrganismsSidebarMini active-item="accueil" variant="collaborateur" />
             </div>
           </div>
         </div>
