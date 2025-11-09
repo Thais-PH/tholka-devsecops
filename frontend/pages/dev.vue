@@ -459,25 +459,39 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Menus</h2>
 
+        <!-- Navbar -->
+        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Navbar</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="relative h-[100px]">
+              <div class="absolute inset-0">
+                <OrganismsNavbar :is-static="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Sidebars -->
         <div class="bg-white rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Sidebars</h3>
-          <div class="flex gap-8 justify-center">
-            <div>
-              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
-              <OrganismsSidebarRH active-item="accueil" />
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
-              <OrganismsSidebarMini active-item="accueil" variant="rh" />
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
-              <OrganismsSidebarCollaborateur active-item="accueil" />
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
-              <OrganismsSidebarMini active-item="accueil" variant="collaborateur" />
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex gap-8 justify-center">
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
+                <OrganismsSidebarRH active-item="accueil" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
+                <OrganismsSidebarMini active-item="accueil" variant="rh" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
+                <OrganismsSidebarCollaborateur active-item="accueil" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
+                <OrganismsSidebarMini active-item="accueil" variant="collaborateur" />
+              </div>
             </div>
           </div>
         </div>

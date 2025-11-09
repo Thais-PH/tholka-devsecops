@@ -34,7 +34,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (value) => ['primary', 'secondary', 'tertiary', 'menu', 'forms', 'ia'].includes(value)
+    validator: (value) => ['primary', 'secondary', 'tertiary', 'menu', 'forms', 'ia', 'navbar'].includes(value)
   },
   size: {
     type: String,
@@ -46,7 +46,8 @@ const props = defineProps({
     default: 'button'
   },
   disabled: Boolean,
-  onWhite: Boolean
+  onWhite: Boolean,
+  iconOnly: Boolean
 })
 
 defineEmits(['click'])
@@ -55,7 +56,7 @@ const buttonClasses = computed(() => {
   // Classes de base
   const base = 'font-roboto inline-flex flex-row justify-center items-center gap-[4px] rounded-[8px] border transition-all duration-200 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none'
 
-  // Tailles avec padding + largeur minimale + typo
+  // Tailles pour boutons avec texte
   const sizes = {
     // Small: 100px min, padding 4px/8px, Roboto Regular 14px/18px
     sm: 'min-w-[100px] h-[26px] px-[8px] py-[4px] text-[14px] leading-[18px] font-normal',
@@ -65,6 +66,13 @@ const buttonClasses = computed(() => {
 
     // Large: 164px min, padding 12px/24px, Roboto Medium 20px/32px
     lg: 'min-w-[164px] h-[56px] px-[24px] py-[12px] text-[20px] leading-[32px] font-medium'
+  }
+
+  // Tailles pour boutons icon-only (carrés)
+  const iconSizes = {
+    sm: 'w-[26px] h-[26px] p-[4px]',
+    md: 'w-[38px] h-[38px] p-[8px]',
+    lg: 'w-[56px] h-[56px] p-[12px]'
   }
 
   // Variantes de couleurs
@@ -81,6 +89,8 @@ const buttonClasses = computed(() => {
       ? 'border-transparent text-Light hover:border-b-[1px] hover:border-b-Light hover:rounded-none'
       : 'border-transparent text-primary-500 hover:border-b-[1px] hover:border-b-primary-500 hover:rounded-none',
 
+    navbar: 'border-transparent text-primary-500 hover:border-b-[1px] hover:border-b-secondary-500 hover:rounded-none',
+
     menu: 'border-transparent bg-transparent text-Light hover:bg-white/15',
 
     forms: 'border-transparent bg-transparent text-primary-500 hover:bg-primary-300',
@@ -88,6 +98,8 @@ const buttonClasses = computed(() => {
     ia: 'border-transparent bg-transparent relative hover:rounded-none hover-border-gradient-ia text-Light'
   }
 
-  return [base, sizes[props.size], variants[props.variant]]
+  const sizeClass = props.iconOnly ? iconSizes[props.size] : sizes[props.size]
+
+  return [base, sizeClass, variants[props.variant]]
 })
 </script>
