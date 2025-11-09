@@ -496,6 +496,62 @@
           </div>
         </div>
       </section>
+
+      <!-- Alertes Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Alertes</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-4">
+              <!-- Warning Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Warning - Soft</p>
+                <AtomsAlert
+                  variant="warning-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Warning Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Warning - Solid</p>
+                <AtomsAlert
+                  variant="warning-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Info -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Info</p>
+                <AtomsAlert
+                  variant="info"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Success Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Success - Soft</p>
+                <AtomsAlert
+                  variant="success-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Success Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Success - Solid</p>
+                <AtomsAlert
+                  variant="success-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
