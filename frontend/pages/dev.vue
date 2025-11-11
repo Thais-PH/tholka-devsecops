@@ -497,6 +497,212 @@
         </div>
       </section>
 
+      <!-- Tags Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
+        
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <!-- Solid Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Solid</h3>
+            
+            <!-- Medium Tags -->
+            <div class="mb-8">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="solid" color="primary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="solid" color="secondary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="solid" color="green" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="solid" color="orange" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="solid" color="yellow" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="solid" color="default" size="md">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Tags -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="solid" color="primary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="solid" color="secondary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="solid" color="green" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="solid" color="orange" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="solid" color="yellow" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="solid" color="default" size="lg">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>          <!-- Soft Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Soft</h3>
+
+            <!-- Medium Soft -->
+            <div class="mb-6">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="soft" color="primary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="soft" color="secondary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="soft" color="green" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="soft" color="orange" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="soft" color="yellow" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="soft" color="default" size="md">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Soft -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="soft" color="primary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="soft" color="secondary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="soft" color="green" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="soft" color="orange" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="soft" color="yellow" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="soft" color="default" size="lg">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stroke Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stroke</h3>
+
+            <!-- Medium Stroke -->
+            <div class="mb-6">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="stroke" color="primary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="stroke" color="secondary" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="stroke" color="green" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="stroke" color="orange" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="stroke" color="yellow" size="md">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="stroke" color="default" size="md">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Stroke -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="stroke" color="primary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="stroke" color="secondary" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="stroke" color="green" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="stroke" color="orange" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="stroke" color="yellow" size="lg">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Default</p>
+                  <AtomsTag variant="stroke" color="default" size="lg">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Alertes Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Alertes</h2>
@@ -558,6 +764,7 @@
 
 <script setup>
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
+import AtomsTag from '~/components/atoms/Tag.vue'
 // Configuration SEO pour la page
 useHead({
   title: 'Design System - Tholka',
