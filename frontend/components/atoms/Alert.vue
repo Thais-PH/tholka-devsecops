@@ -24,7 +24,7 @@
         :class="buttonClasses"
         @click="handleDismiss"
       >
-        <span class="text-sm font-normal text-center">Lu</span>
+        <span class="text-sm font-roboto text-center">Lu</span>
         <LucideCheck :size="17" :stroke-width="1" />
       </button>
     </div>
@@ -72,14 +72,14 @@ const alertClasses = computed(() => {
 })
 
 const textClasses = computed(() => {
-  const base = 'text-base font-normal'
+  const base = 'text-base font-roboto'
   
   if (props.variant === 'warning-soft') {
     return `${base} text-Orange-500`
   } else if (props.variant === 'success-soft') {
     return `${base} text-Green-500`
   }
-  return `${base} text-white`
+  return `${base} text-Light`
 })
 
 const iconColor = computed(() => {
@@ -88,7 +88,7 @@ const iconColor = computed(() => {
   } else if (props.variant === 'success-soft') {
     return 'text-Green-500'
   }
-  return 'text-white'
+  return 'text-Light'
 })
 
 const buttonClasses = computed(() => {
@@ -97,13 +97,13 @@ const buttonClasses = computed(() => {
   
   if (props.variant.startsWith('warning')) {
     return isSoft 
-      ? `${base} border-Orange-500 text-Orange-500 hover:bg-Orange-500 hover:text-white`
-      : `${base} border-white text-white hover:bg-white hover:text-Orange-500`
+      ? `${base} border-Orange-500 text-Orange-500 hover:bg-Orange-500 hover:text-Light`
+      : `${base} border-Light text-Light hover:bg-Light hover:text-Orange-500`
   } else if (props.variant.startsWith('success')) {
     return isSoft
-      ? `${base} border-Green-500 text-Green-500 hover:bg-Green-500 hover:text-white`
-      : `${base} border-white text-white hover:bg-white hover:text-Green-500`
+      ? `${base} border-Green-500 text-Green-500 hover:bg-Green-500 hover:text-Light`
+      : `${base} border-Light text-Light hover:bg-Light hover:text-Green-500`
   }
-  return `${base} border-white text-white hover:bg-white hover:text-secondary-500`
+  return `${base} border-Light text-Light hover:bg-Light hover:text-secondary-500`
 })
 </script>

@@ -1138,6 +1138,45 @@
           </div>
         </div>
       </section>
+
+      <!-- Steps & Stepper Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
+
+        <!-- Steps individuels -->
+        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Steps</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex gap-8 justify-center items-start">
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Default</p>
+                <AtomsStep :step-number="1" label="Step" />
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Active</p>
+                <AtomsStep :step-number="1" label="Step" :is-active="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepper complet -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stepper</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex justify-center">
+              <MoleculesStepper
+                :steps="[
+                  'Intitulé et contexte',
+                  'Compétences techniques',
+                  'Compétences comportementales',
+                  'Contrat et temps de travail',
+                ]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
