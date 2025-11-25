@@ -36,7 +36,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'info',
-    validator: (value) => ['warning-soft', 'warning-solid', 'info', 'success-soft', 'success-solid'].includes(value)
+    validator: (value) => ['warning-soft', 'warning-solid', 'info', 'success-soft', 'success-solid', 'ia-solid', 'ia-soft'].includes(value)
   },
   message: {
     type: String,
@@ -65,7 +65,9 @@ const alertClasses = computed(() => {
     'warning-solid': 'bg-Orange-500',
     'info': 'bg-secondary-500',
     'success-soft': 'bg-Green-300 border-l-2 border-Green-500',
-    'success-solid': 'bg-Green-500'
+    'success-solid': 'bg-Green-500',
+    'ia-solid': 'bg-gradient-to-br from-[#3A3B99] to-[#7F3ADA]',
+    'ia-soft': 'bg-[rgba(127,58,218,0.05)] border-l-2 border-[#7F3ADA]'
   }
 
   return [base, variants[props.variant]]
@@ -78,6 +80,10 @@ const textClasses = computed(() => {
     return `${base} text-Orange-500`
   } else if (props.variant === 'success-soft') {
     return `${base} text-Green-500`
+  } else if (props.variant === 'ia-soft') {
+    return `${base} text-[#6420BE]`
+  } else if (props.variant === 'ia-solid') {
+    return `${base} text-Light`
   }
   return `${base} text-Light`
 })
@@ -87,6 +93,10 @@ const iconColor = computed(() => {
     return 'text-Orange-500'
   } else if (props.variant === 'success-soft') {
     return 'text-Green-500'
+  } else if (props.variant === 'ia-soft') {
+    return 'text-[#6420BE]'
+  } else if (props.variant === 'ia-solid') {
+    return 'text-Light'
   }
   return 'text-Light'
 })
@@ -103,6 +113,10 @@ const buttonClasses = computed(() => {
     return isSoft
       ? `${base} border-Green-500 text-Green-500 hover:bg-Green-500 hover:text-Light`
       : `${base} border-Light text-Light hover:bg-Light hover:text-Green-500`
+  } else if (props.variant.startsWith('ia')) {
+    return isSoft
+      ? `${base} border-[#6420BE] text-[#6420BE] hover:bg-[#6420BE] hover:text-Light`
+      : `${base} border-Light text-Light hover:bg-Light hover:text-[#7F3ADA]`
   }
   return `${base} border-Light text-Light hover:bg-Light hover:text-secondary-500`
 })

@@ -21,10 +21,10 @@
               </div>
             </div>
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-lg bg-primary-700 border border-Grey-300"></div>
+              <div class="w-12 h-12 rounded-lg bg-primary-500 border border-Grey-300"></div>
               <div>
                 <p class="text-sm font-medium text-Black">Title</p>
-                <p class="text-xs text-Grey-500">#252958</p>
+                <p class="text-xs text-Grey-500">#3A3B99</p>
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -1131,6 +1131,24 @@
                 <p class="text-xs text-Grey-500 mb-2">Success - Solid</p>
                 <AtomsAlert
                   variant="success-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- IA Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Soft</p>
+                <AtomsAlert
+                  variant="ia-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- IA Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Solid</p>
+                <AtomsAlert
+                  variant="ia-solid"
                   message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
                 />
               </div>
