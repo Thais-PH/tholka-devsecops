@@ -9,7 +9,7 @@
       <!-- Couleurs -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Couleurs</h2>
-        
+
         <!-- Main Usage -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <div class="flex flex-wrap gap-6">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Brand -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Brand</h3>
@@ -152,7 +152,7 @@
         <!-- Other Colors -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Other Colors</h3>
-          
+
           <!-- Green -->
           <div class="mb-6">
             <h4 class="text-sm font-medium text-Grey-600 mb-3 uppercase">Green</h4>
@@ -298,7 +298,7 @@
       <!-- Typographies -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Typographies</h2>
-        
+
         <!-- Titles - Nunito -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Titles - Nunito</h3>
@@ -312,7 +312,7 @@
                 <p class="text-xs text-Grey-500 mt-1">48px / 4.5rem • 700 Bold • Line height: 72px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H2</p>
@@ -322,7 +322,7 @@
                 <p class="text-xs text-Grey-500 mt-1">40px / 3.75rem • 700 Bold • Line height: 60px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H3</p>
@@ -332,7 +332,7 @@
                 <p class="text-xs text-Grey-500 mt-1">32px / 3rem • 700 Bold • Line height: 48px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H4</p>
@@ -342,7 +342,7 @@
                 <p class="text-xs text-Grey-500 mt-1">28px / 2.625rem • 700 Bold • Line height: 42px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H5</p>
@@ -368,7 +368,7 @@
                 <p class="text-xs text-Grey-500 mt-1">20px / 1.875rem • 500 Medium • Line height: 30px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">Base</p>
@@ -378,7 +378,7 @@
                 <p class="text-xs text-Grey-500 mt-1">16px / 1.5rem • 400 Regular • Line height: 24px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">Small</p>
@@ -388,7 +388,7 @@
                 <p class="text-xs text-Grey-500 mt-1">14px / 1.313rem • 400 Regular • Line height: 21px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">XS</p>
@@ -471,7 +471,7 @@
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="primary" size="md" :on-white="true">
@@ -484,7 +484,7 @@
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="primary" size="sm" :on-white="true">
@@ -1173,6 +1173,51 @@
                   'Contrat et temps de travail',
                 ]"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Doughnut Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesDoughnutChart
+                  :series="[73, 14, 13]"
+                  :labels="['En poste', 'Arrivées', 'Départs']"
+                  :colors="['#1CAB78', '#55C3E9', '#F07F47']"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                />
+              </ClientOnly>
+              <ClientOnly>
+                <MoleculesProgressRingChart
+                  :percentage="73"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                  :stroke-width="22"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Bar Chart DISC</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesBarChart
+                  :series="[8, 25, 78, 65]"
+                  :labels="['D', 'I', 'S', 'C']"
+                  :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
+                />
+              </ClientOnly>
             </div>
           </div>
         </div>
