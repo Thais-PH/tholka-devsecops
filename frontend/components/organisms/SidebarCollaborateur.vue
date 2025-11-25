@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { Home, Users, Rocket, MessagesSquare, Briefcase } from 'lucide-vue-next'
+import { Home, Bookmark, Rocket, MessagesSquare, Users, Briefcase, UserCircle2 } from 'lucide-vue-next'
 
 const props = defineProps({
   activeItem: {
@@ -34,12 +34,12 @@ const props = defineProps({
 
 const menuItems = [
   { id: 'accueil', label: 'Accueil', icon: Home },
-  { id: 'passeport', label: 'Passeport de compétences', icon: Users },
-  { id: 'profil', label: 'Mon profil', icon: Users },
+  { id: 'passeport', label: 'Passeport de compétences', icon: Bookmark },
   { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket },
   { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare },
   { id: 'equipe', label: 'Équipe & Management', icon: Users },
-  { id: 'formation', label: 'Formation', icon: Briefcase }
+  { id: 'formation', label: 'Formation', icon: Briefcase },
+  { id: 'profil', label: 'Profil', icon: UserCircle2 }
 ]
 </script>
 

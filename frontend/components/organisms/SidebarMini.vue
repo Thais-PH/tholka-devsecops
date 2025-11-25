@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { Home, Users, Search, Rocket, MessagesSquare, Files, Euro, Briefcase } from 'lucide-vue-next'
+import { Home, Users, Search, Rocket, MessagesSquare, Files, Euro, Briefcase, Bookmark, UserCircle2 } from 'lucide-vue-next'
 
 const props = defineProps({
   activeItem: {
@@ -44,12 +44,12 @@ const rhMenuItems = [
 
 const collaborateurMenuItems = [
   { id: 'accueil', icon: Home },
-  { id: 'passeport', icon: Users },
-  { id: 'profil', icon: Users },
+  { id: 'passeport', icon: Bookmark },
   { id: 'mobilite', icon: Rocket },
   { id: 'bienetre', icon: MessagesSquare },
   { id: 'equipe', icon: Users },
-  { id: 'formation', icon: Briefcase }
+  { id: 'formation', icon: Briefcase },
+  { id: 'profil', icon: UserCircle2 }
 ]
 
 const menuItems = computed(() => 
