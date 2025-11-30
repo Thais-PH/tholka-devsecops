@@ -875,6 +875,45 @@
             </div>
           </div>
         </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tabs</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Items individuels -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Items individuels</h4>
+                <div class="flex gap-4 items-center justify-center">
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Default</p>
+                    <AtomsTabItem label="Text" variant="default" />
+                  </div>
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Active</p>
+                    <AtomsTabItem label="Text" variant="active" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Menu secondaire -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Menu secondaire</h4>
+                <div class="flex justify-center">
+                  <MoleculesSecondaryMenu
+                    :items="[
+                      { id: 'item1', label: 'Text' },
+                      { id: 'item2', label: 'Text' },
+                      { id: 'item3', label: 'Text' },
+                      { id: 'item4', label: 'Text' }
+                    ]"
+                    @change="(event) => console.log('Menu changed:', event)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Tags Section -->

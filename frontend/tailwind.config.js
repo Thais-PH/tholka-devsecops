@@ -49,6 +49,8 @@ export default {
         // IA
         'IA-700': '#6420BE',
         'IA-500': '#7F3ADA',
+        // Couleurs avec opacité
+        'primary-500/50': 'rgba(58, 59, 153, 0.5)',
       },
 
       backgroundImage: {
