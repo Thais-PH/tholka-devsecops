@@ -1243,7 +1243,7 @@
           <!-- Doughnut Chart -->
           <div class="bg-white rounded-lg p-8 shadow-sm">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
-            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-10 justify-center">
               <ClientOnly>
                 <MoleculesDoughnutChart
                   :series="[73, 14, 13]"
@@ -1279,11 +1279,25 @@
           </div>
         </div>
       </section>
+
+      <!-- Editor -->
+      <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+        <h3 class="text-2xl font-semibold text-primary-700 mb-6">Editor</h3>
+        <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+          <OrganismsEditor
+            v-model="editorContent"
+            :width="564"
+            :height="247"
+            placeholder="Type your message"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
 import AtomsTag from '~/components/atoms/Tag.vue'
 // Configuration SEO pour la page
@@ -1293,4 +1307,6 @@ useHead({
     { name: 'robots', content: 'noindex, nofollow' }
   ]
 })
+
+const editorContent = ref('')
 </script>

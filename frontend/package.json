@@ -10,6 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@tiptap/core": "^3.11.1",
+    "@tiptap/extension-blockquote": "^3.11.1",
+    "@tiptap/extension-bold": "^3.11.1",
+    "@tiptap/extension-bullet-list": "^3.11.1",
+    "@tiptap/extension-link": "^3.11.1",
+    "@tiptap/extension-list-item": "^3.11.1",
+    "@tiptap/extension-ordered-list": "^3.11.1",
+    "@tiptap/extension-paragraph": "^3.11.1",
+    "@tiptap/extension-placeholder": "^3.11.1",
+    "@tiptap/extension-underline": "^3.11.1",
+    "@tiptap/starter-kit": "^3.11.1",
     "apexcharts": "^5.3.6",
     "nuxt": "^4.2.0",
     "nuxt-lucide-icons": "^2.0.0",

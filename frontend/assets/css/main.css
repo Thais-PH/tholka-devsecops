@@ -1,8 +1,8 @@
+@import 'apexcharts/dist/apexcharts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import 'apexcharts/dist/apexcharts.css';
 
 /* nunito-700 - font-bold */
 @font-face {
