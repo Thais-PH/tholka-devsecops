@@ -920,7 +920,26 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
         
-        <div class="bg-white rounded-lg p-8 shadow-sm">
+        <div class="rounded-lg p-8" style="background-color: #ECF8FD;">
+          <!-- Statut Section -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Statut</h3>
+            <div class="flex flex-wrap gap-4">
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Validé</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">En cours</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="orange">Tag</AtomsTag>
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Brouillon</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="yellow">Tag</AtomsTag>
+              </div>
+            </div>
+          </div>
+
           <!-- Solid Tags -->
           <div class="mb-8">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Solid</h3>
@@ -931,27 +950,31 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="solid" color="primary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="solid" color="secondary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="secondary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="solid" color="green" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="green" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="solid" color="orange" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="orange" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="solid" color="yellow" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="yellow" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="solid" color="default" size="md">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="solid" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="solid" color="white" size="md" status-color="green">Tag</AtomsTag>
                 </div>
               </div>
             </div>
@@ -962,27 +985,31 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="solid" color="primary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="primary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="solid" color="secondary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="solid" color="green" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="green" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="solid" color="orange" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="orange" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="solid" color="yellow" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="solid" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="solid" color="default" size="lg">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="solid" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="solid" color="white" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
               </div>
             </div>
@@ -996,27 +1023,35 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="soft" color="primary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="primary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="soft" color="secondary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="secondary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="soft" color="green" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="green" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="soft" color="orange" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="orange" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="soft" color="yellow" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="yellow" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="soft" color="default" size="md">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="soft" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="soft" color="white" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">IA</p>
+                  <AtomsTag variant="soft" color="purple" size="md">Tag</AtomsTag>
                 </div>
               </div>
             </div>
@@ -1027,27 +1062,35 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="soft" color="primary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="primary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="soft" color="secondary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="soft" color="green" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="green" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="soft" color="orange" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="orange" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="soft" color="yellow" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="soft" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="soft" color="default" size="lg">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="soft" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="soft" color="white" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">IA</p>
+                  <AtomsTag variant="soft" color="purple" size="lg">Tag</AtomsTag>
                 </div>
               </div>
             </div>
@@ -1063,27 +1106,31 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="stroke" color="primary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="primary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="stroke" color="secondary" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="secondary" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="stroke" color="green" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="green" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="stroke" color="orange" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="orange" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="stroke" color="yellow" size="md">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="yellow" size="md" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="stroke" color="default" size="md">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="stroke" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="stroke" color="white" size="md" status-color="green">Tag</AtomsTag>
                 </div>
               </div>
             </div>
@@ -1094,27 +1141,31 @@
               <div class="flex flex-wrap gap-4">
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="stroke" color="primary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="primary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="stroke" color="secondary" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="stroke" color="green" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="green" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="stroke" color="orange" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="orange" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
                   <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="stroke" color="yellow" size="lg">Tag</AtomsTag>
+                  <AtomsTag variant="stroke" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
                 <div>
-                  <p class="text-xs text-Grey-500 mb-2">Default</p>
-                  <AtomsTag variant="stroke" color="default" size="lg">Tag</AtomsTag>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="stroke" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="stroke" color="white" size="lg" status-color="green">Tag</AtomsTag>
                 </div>
               </div>
             </div>
