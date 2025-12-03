@@ -1,5 +1,5 @@
 <template>
-  <div class="step" :class="{ 'step-active': isActive }">
+  <div class="step" :class="{ 'step-active': isActive, 'step-completed': isCompleted }">
     <!-- Inline container -->
     <div class="step-inline" :class="inlineJustifyClass">
       <!-- Left Divider -->
@@ -7,8 +7,24 @@
 
       <!-- Button Icon -->
       <div class="step-icon-wrapper">
-        <div class="step-icon">
-          <span class="step-number">{{ stepNumber }}</span>
+        <div class="step-icon" :class="iconClass">
+          <!-- Step Number (default and active states) -->
+          <span
+            v-if="!isCompleted"
+            class="step-number"
+          >
+            {{ stepNumber }}
+          </span>
+
+          <!-- Check Icon (completed state) -->
+          <div v-if="isCompleted" class="step-check-container">
+            <span class="step-number">{{ stepNumber }}</span>
+          </div>
+        </div>
+
+        <!-- Check Badge (for completed state) -->
+        <div v-if="isCompleted" class="step-check-badge">
+          <LucideCheck :size="8" :stroke-width="3" class="text-white" />
         </div>
       </div>
 
@@ -24,6 +40,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   stepNumber: {
     type: [Number, String],
@@ -34,6 +52,10 @@ const props = defineProps({
     default: 'Step'
   },
   isActive: {
+    type: Boolean,
+    default: false
+  },
+  isCompleted: {
     type: Boolean,
     default: false
   },
@@ -48,7 +70,15 @@ const props = defineProps({
 })
 
 const dividerClass = computed(() => {
-  return props.isActive ? 'step-divider-active' : ''
+  if (props.isCompleted) return 'step-divider-completed'
+  if (props.isActive) return 'step-divider-active'
+  return ''
+})
+
+const iconClass = computed(() => {
+  if (props.isCompleted) return 'step-icon-completed'
+  if (props.isActive) return 'step-icon-active'
+  return ''
 })
 
 const inlineJustifyClass = computed(() => {
@@ -83,13 +113,19 @@ const inlineJustifyClass = computed(() => {
   width: 81px;
   height: 1px;
   background: rgba(58, 59, 153, 0.1);
+  transition: background 0.2s ease;
 }
 
 .step-divider-active {
   background: rgba(58, 59, 153, 0.3);
 }
 
+.step-divider-completed {
+  background: rgba(58, 59, 153, 0.3);
+}
+
 .step-icon-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,8 +149,27 @@ const inlineJustifyClass = computed(() => {
   transition: background 0.2s ease;
 }
 
-.step-active .step-icon {
+.step-icon-active {
   background: #3A3B99;
+}
+
+.step-icon-completed {
+  background: #3A3B99;
+}
+
+.step-check-badge {
+  position: absolute;
+  top: 16px;
+  right: -5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #1CAB78;
+  border-radius: 50%;
+  z-index: 10;
 }
 
 .step-number {
@@ -140,6 +195,10 @@ const inlineJustifyClass = computed(() => {
 }
 
 .step-active .step-title span {
+  @apply text-primary-900 font-roboto;
+}
+
+.step-completed .step-title span {
   @apply text-primary-900 font-roboto;
 }
 </style>
