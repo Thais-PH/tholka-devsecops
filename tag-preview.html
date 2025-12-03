@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Component Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f3f4f6;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #003d82;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #003d82;
+            margin-bottom: 2rem;
+            margin-top: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0059b3;
+            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .tag-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 0.375rem;
+        }
+
+        .tag-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tag-label {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* MD Size Tags */
+        .tag-md {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* LG Size Tags */
+        .tag-lg {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            border-radius: 20px;
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* SOLID Variants */
+        .tag-solid-primary { background-color: #0059b3; color: #ffffff; }
+        .tag-solid-secondary { background-color: #ff6b35; color: #ffffff; }
+        .tag-solid-green { background-color: #10b981; color: #ffffff; }
+        .tag-solid-orange { background-color: #f59e0b; color: #ffffff; }
+        .tag-solid-yellow { background-color: #fbbf24; color: #ffffff; }
+        .tag-solid-default { background-color: #000000; color: #ffffff; }
+
+        /* SOFT Variants */
+        .tag-soft-primary { background-color: #b3d9ff; color: #003d82; }
+        .tag-soft-secondary { background-color: #ffcdb5; color: #9e2f0f; }
+        .tag-soft-green { background-color: #a7f3d0; color: #065f46; }
+        .tag-soft-orange { background-color: #fed7aa; color: #92400e; }
+        .tag-soft-yellow { background-color: #fef08a; color: #78350f; }
+        .tag-soft-default { background-color: #d1d5db; color: #000000; }
+
+        /* STROKE Variants */
+        .tag-stroke {
+            border: 1px solid;
+            background-color: transparent;
+        }
+
+        .tag-stroke-primary { border-color: #0059b3; color: #0059b3; }
+        .tag-stroke-secondary { border-color: #ff6b35; color: #ff6b35; }
+        .tag-stroke-green { border-color: #10b981; color: #10b981; }
+        .tag-stroke-orange { border-color: #f59e0b; color: #f59e0b; }
+        .tag-stroke-yellow { border-color: #fbbf24; color: #fbbf24; }
+        .tag-stroke-default { border-color: #000000; color: #000000; }
+
+        .color-name {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+            text-transform: capitalize;
+        }
+
+        .size-section {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏷️ Tag Component Preview</h1>
+        
+        <!-- SOLID TAGS -->
+        <div class="section">
+            <h2>Solid Tags</h2>
+            
+            <div class="size-section">
+                <h3>Medium Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-md tag-solid-primary">• Tag</span>
+                        <span class="color-name">primary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-md tag-solid-secondary">• Tag</span>
+                        <span class="color-name">secondary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-md tag-solid-green">• Tag</span>
+                        <span class="color-name">green-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-md tag-solid-orange">• Tag</span>
+                        <span class="color-name">orange-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-md tag-solid-yellow">• Tag</span>
+                        <span class="color-name">yellow-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-md tag-solid-default">• Tag</span>
+                        <span class="color-name">default-black</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="size-section">
+                <h3>Large Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-lg tag-solid-primary">• Tag</span>
+                        <span class="color-name">primary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-lg tag-solid-secondary">• Tag</span>
+                        <span class="color-name">secondary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-lg tag-solid-green">• Tag</span>
+                        <span class="color-name">green-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-lg tag-solid-orange">• Tag</span>
+                        <span class="color-name">orange-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-lg tag-solid-yellow">• Tag</span>
+                        <span class="color-name">yellow-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-lg tag-solid-default">• Tag</span>
+                        <span class="color-name">default-black</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOFT TAGS -->
+        <div class="section">
+            <h2>Soft Tags</h2>
+            
+            <div class="size-section">
+                <h3>Medium Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-md tag-soft-primary">• Tag</span>
+                        <span class="color-name">primary-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-md tag-soft-secondary">• Tag</span>
+                        <span class="color-name">secondary-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-md tag-soft-green">• Tag</span>
+                        <span class="color-name">green-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-md tag-soft-orange">• Tag</span>
+                        <span class="color-name">orange-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-md tag-soft-yellow">• Tag</span>
+                        <span class="color-name">yellow-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-md tag-soft-default">• Tag</span>
+                        <span class="color-name">default-grey-500</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="size-section">
+                <h3>Large Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-lg tag-soft-primary">• Tag</span>
+                        <span class="color-name">primary-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-lg tag-soft-secondary">• Tag</span>
+                        <span class="color-name">secondary-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-lg tag-soft-green">• Tag</span>
+                        <span class="color-name">green-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-lg tag-soft-orange">• Tag</span>
+                        <span class="color-name">orange-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-lg tag-soft-yellow">• Tag</span>
+                        <span class="color-name">yellow-300</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-lg tag-soft-default">• Tag</span>
+                        <span class="color-name">default-grey-500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STROKE TAGS -->
+        <div class="section">
+            <h2>Stroke Tags</h2>
+            
+            <div class="size-section">
+                <h3>Medium Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-md tag-stroke tag-stroke-primary">• Tag</span>
+                        <span class="color-name">primary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-md tag-stroke tag-stroke-secondary">• Tag</span>
+                        <span class="color-name">secondary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-md tag-stroke tag-stroke-green">• Tag</span>
+                        <span class="color-name">green-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-md tag-stroke tag-stroke-orange">• Tag</span>
+                        <span class="color-name">orange-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-md tag-stroke tag-stroke-yellow">• Tag</span>
+                        <span class="color-name">yellow-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-md tag-stroke tag-stroke-default">• Tag</span>
+                        <span class="color-name">default-black</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="size-section">
+                <h3>Large Size</h3>
+                <div class="tags-container">
+                    <div class="tag-item">
+                        <span class="tag-label">Primary</span>
+                        <span class="tag-lg tag-stroke tag-stroke-primary">• Tag</span>
+                        <span class="color-name">primary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Secondary</span>
+                        <span class="tag-lg tag-stroke tag-stroke-secondary">• Tag</span>
+                        <span class="color-name">secondary-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Green</span>
+                        <span class="tag-lg tag-stroke tag-stroke-green">• Tag</span>
+                        <span class="color-name">green-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Orange</span>
+                        <span class="tag-lg tag-stroke tag-stroke-orange">• Tag</span>
+                        <span class="color-name">orange-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Yellow</span>
+                        <span class="tag-lg tag-stroke tag-stroke-yellow">• Tag</span>
+                        <span class="color-name">yellow-500</span>
+                    </div>
+                    <div class="tag-item">
+                        <span class="tag-label">Default</span>
+                        <span class="tag-lg tag-stroke tag-stroke-default">• Tag</span>
+                        <span class="color-name">default-black</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIFICATIONS -->
+        <div class="section">
+            <h2>📋 Spécifications</h2>
+            
+            <div class="tag-group">
+                <h3>Taille Medium (md)</h3>
+                <div style="padding: 1rem; background-color: #f9fafb; border-radius: 0.375rem; border-left: 4px solid #0059b3;">
+                    <p><strong>Padding:</strong> 4px (vertical) × 8px (horizontal)</p>
+                    <p><strong>Gap:</strong> 4px</p>
+                    <p><strong>Font-size:</strong> 14px</p>
+                    <p><strong>Line-height:</strong> 18px</p>
+                    <p><strong>Border-radius:</strong> 20px</p>
+                    <p><strong>Font-weight:</strong> 500 (Medium)</p>
+                </div>
+            </div>
+
+            <div class="tag-group">
+                <h3>Taille Large (lg)</h3>
+                <div style="padding: 1rem; background-color: #f9fafb; border-radius: 0.375rem; border-left: 4px solid #0059b3;">
+                    <p><strong>Padding:</strong> 8px (all sides)</p>
+                    <p><strong>Gap:</strong> 4px</p>
+                    <p><strong>Font-size:</strong> 16px</p>
+                    <p><strong>Line-height:</strong> 22px</p>
+                    <p><strong>Border-radius:</strong> 20px</p>
+                    <p><strong>Font-weight:</strong> 500 (Medium)</p>
+                </div>
+            </div>
+
+            <div class="tag-group">
+                <h3>Variantes de couleur</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><strong>Solid:</strong> Fond coloré + texte blanc (ou foncé pour default)</li>
+                    <li style="padding: 0.5rem 0;"><strong>Soft:</strong> Fond clair avec couleur + texte foncé de la même couleur</li>
+                    <li style="padding: 0.5rem 0;"><strong>Stroke:</strong> Border + texte de la couleur, fond transparent</li>
+                </ul>
+            </div>
+
+            <div class="tag-group">
+                <h3>Comportement</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><strong>Display:</strong> inline-flex (adaptable à la largeur du contenu)</li>
+                    <li style="padding: 0.5rem 0;"><strong>Text wrapping:</strong> Non (white-space: nowrap)</li>
+                    <li style="padding: 0.5rem 0;"><strong>Alignment:</strong> Center (justify-content + align-items)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
