@@ -46,10 +46,17 @@ export default {
         'Blue-disc': '#476EF6',
         'Yellow-disc': '#FFD83B',
         'Red-disc': '#EB4335',
+        // IA
+        'IA-700': '#6420BE',
+        'IA-500': '#7F3ADA',
+        // Couleurs avec opacité
+        'primary-500/50': 'rgba(58, 59, 153, 0.5)',
       },
 
       backgroundImage: {
         'gradient-ia': 'linear-gradient(90deg, #1CAB78 0%, #55C3E9 29.33%, #F07F47 77.88%, #FCC253 96.63%)',
+        'gradient-blue': 'linear-gradient(90deg, #55C3E9 0%, #3A3B99 100%)',
+        'gradient-ia-new': 'linear-gradient(90deg, #3A3B99 0%, #7F3ADA 100%)',
       },
 
       fontFamily: {

@@ -9,7 +9,7 @@
       <!-- Couleurs -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Couleurs</h2>
-        
+
         <!-- Main Usage -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <div class="flex flex-wrap gap-6">
@@ -21,10 +21,10 @@
               </div>
             </div>
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-lg bg-primary-700 border border-Grey-300"></div>
+              <div class="w-12 h-12 rounded-lg bg-primary-500 border border-Grey-300"></div>
               <div>
                 <p class="text-sm font-medium text-Black">Title</p>
-                <p class="text-xs text-Grey-500">#252958</p>
+                <p class="text-xs text-Grey-500">#3A3B99</p>
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Brand -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Brand</h3>
@@ -152,7 +152,7 @@
         <!-- Other Colors -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Other Colors</h3>
-          
+
           <!-- Green -->
           <div class="mb-6">
             <h4 class="text-sm font-medium text-Grey-600 mb-3 uppercase">Green</h4>
@@ -298,7 +298,7 @@
       <!-- Typographies -->
       <section class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Typographies</h2>
-        
+
         <!-- Titles - Nunito -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Titles - Nunito</h3>
@@ -312,7 +312,7 @@
                 <p class="text-xs text-Grey-500 mt-1">48px / 4.5rem • 700 Bold • Line height: 72px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H2</p>
@@ -322,7 +322,7 @@
                 <p class="text-xs text-Grey-500 mt-1">40px / 3.75rem • 700 Bold • Line height: 60px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H3</p>
@@ -332,7 +332,7 @@
                 <p class="text-xs text-Grey-500 mt-1">32px / 3rem • 700 Bold • Line height: 48px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H4</p>
@@ -342,7 +342,7 @@
                 <p class="text-xs text-Grey-500 mt-1">28px / 2.625rem • 700 Bold • Line height: 42px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">H5</p>
@@ -368,7 +368,7 @@
                 <p class="text-xs text-Grey-500 mt-1">20px / 1.875rem • 500 Medium • Line height: 30px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">Base</p>
@@ -378,7 +378,7 @@
                 <p class="text-xs text-Grey-500 mt-1">16px / 1.5rem • 400 Regular • Line height: 24px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">Small</p>
@@ -388,7 +388,7 @@
                 <p class="text-xs text-Grey-500 mt-1">14px / 1.313rem • 400 Regular • Line height: 21px</p>
               </div>
             </div>
-            
+
             <div class="flex items-center gap-8">
               <div class="w-20">
                 <p class="text-xs text-Grey-500 font-medium uppercase">XS</p>
@@ -471,7 +471,7 @@
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Medium</p>
                 <AtomsButton variant="primary" size="md" :on-white="true">
@@ -484,7 +484,7 @@
                   </template>
                 </AtomsButton>
               </div>
-              
+
               <div>
                 <p class="text-xs text-Grey-300 mb-2">Small</p>
                 <AtomsButton variant="primary" size="sm" :on-white="true">
@@ -875,6 +875,45 @@
             </div>
           </div>
         </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tabs</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Items individuels -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Items individuels</h4>
+                <div class="flex gap-4 items-center justify-center">
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Default</p>
+                    <AtomsTabItem label="Text" variant="default" />
+                  </div>
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Active</p>
+                    <AtomsTabItem label="Text" variant="active" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Menu secondaire -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Menu secondaire</h4>
+                <div class="flex justify-center">
+                  <MoleculesSecondaryMenu
+                    :items="[
+                      { id: 'item1', label: 'Text' },
+                      { id: 'item2', label: 'Text' },
+                      { id: 'item3', label: 'Text' },
+                      { id: 'item4', label: 'Text' }
+                    ]"
+                    @change="(event) => console.log('Menu changed:', event)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Tags Section -->
@@ -1134,15 +1173,131 @@
                   message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
                 />
               </div>
+
+              <!-- IA Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Soft</p>
+                <AtomsAlert
+                  variant="ia-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- IA Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Solid</p>
+                <AtomsAlert
+                  variant="ia-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Steps & Stepper Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
+
+        <!-- Steps individuels -->
+        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Steps</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex gap-8 justify-center items-start">
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Default</p>
+                <AtomsStep :step-number="1" label="Step" />
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Active</p>
+                <AtomsStep :step-number="1" label="Step" :is-active="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepper complet -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stepper</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex justify-center">
+              <MoleculesStepper
+                :steps="[
+                  'Intitulé et contexte',
+                  'Compétences techniques',
+                  'Compétences comportementales',
+                  'Contrat et temps de travail',
+                ]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Doughnut Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-10 justify-center">
+              <ClientOnly>
+                <MoleculesDoughnutChart
+                  :series="[73, 14, 13]"
+                  :labels="['En poste', 'Arrivées', 'Départs']"
+                  :colors="['#1CAB78', '#55C3E9', '#F07F47']"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                />
+              </ClientOnly>
+              <ClientOnly>
+                <MoleculesProgressRingChart
+                  :percentage="73"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                  :stroke-width="22"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Bar Chart DISC</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesBarChart
+                  :series="[8, 25, 78, 65]"
+                  :labels="['D', 'I', 'S', 'C']"
+                  :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Editor -->
+      <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+        <h3 class="text-2xl font-semibold text-primary-700 mb-6">Editor</h3>
+        <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+          <OrganismsEditor
+            v-model="editorContent"
+            :width="564"
+            :height="247"
+            placeholder="Type your message"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
 import AtomsTag from '~/components/atoms/Tag.vue'
 // Configuration SEO pour la page
@@ -1152,4 +1307,6 @@ useHead({
     { name: 'robots', content: 'noindex, nofollow' }
   ]
 })
+
+const editorContent = ref('')
 </script>
