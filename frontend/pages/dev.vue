@@ -920,7 +920,7 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
         
-        <div class="rounded-lg p-8" style="background-color: #ECF8FD;">
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <!-- Statut Section -->
           <div class="mb-8">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Statut</h3>
@@ -1247,6 +1247,149 @@
         </div>
       </section>
 
+      <!-- Cards Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Cards</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Event line</h3>
+          
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="event"
+              :date="new Date(2024, 11, 15)"
+              :tag="{ text: 'Validé', variant: 'stroke', color: 'green', size: 'md', statusColor: 'green' }"
+              content-text="Réunion équipe marketing"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce</h3>
+          
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="annonce"
+              title="Développeur Frontend Vue.js"
+              contract-type="CDI"
+              image-url="/card.jpg"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Formation</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="job"
+              :order-number="1"
+              title="Développeur Full Stack"
+              contract-type="CDI"
+              image-url="/card.jpg"
+              description="Nous recherchons un développeur full stack passionné pour rejoindre notre équipe dynamique. Vous travaillerez sur des projets innovants utilisant les dernières technologies web..."
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Profile</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="profile"
+              title="Jean Dupont"
+              contract-type="Senior"
+              image-url="/card.jpg"
+              description="Développeur senior avec 8 ans d'expérience en Vue.js et Node.js. Passionné par les nouvelles technologies et l'innovation..."
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Stats</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="stats"
+              title="Développeur Frontend Vue.js"
+              :candidates-processed="8"
+              :candidates-pending="12"
+              :candidates-rejected="3"
+              :candidates-total="23"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Modal</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Modal de confirmation</h3>
+          
+          <div class="flex flex-wrap gap-4 mb-6">
+            <button
+              @click="showSuccessModal = true"
+              class="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            >
+              Succès création
+            </button>
+            <button
+              @click="showPublishedModal = true"
+              class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:blue-600"
+            >
+              Succès publication
+            </button>
+            <button
+              @click="showDeletedModal = true"
+              class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            >
+              Succès suppression
+            </button>
+          </div>
+
+          <!-- Modales -->
+          <MoleculesModal
+            :is-open="showSuccessModal"
+            title="Annonce créée avec succès"
+            message="Votre annonce a été créée et sauvegardée. Vous pouvez maintenant la publier ou la modifier."
+            button-text="Parfait"
+            @close="showSuccessModal = false"
+          />
+
+          <MoleculesModal
+            :is-open="showPublishedModal"
+            title="Annonce publiée"
+            message="Votre annonce est maintenant en ligne et visible par les candidats."
+            button-text="Compris"
+            @close="showPublishedModal = false"
+          />
+
+          <MoleculesModal
+            :is-open="showDeletedModal"
+            title="Annonce supprimée"
+            message="L'annonce a été définitivement supprimée de la plateforme."
+            button-text="OK"
+            @close="showDeletedModal = false"
+          />
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tables</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Table basique</h3>
+          
+          <div class="mb-8">
+            <MoleculesTable
+              :data="tableData"
+              :columns="tableColumns"
+              variant="default"
+              hoverable
+              :sortable="true"
+              :default-sort="{ key: 'nom', order: 'asc' }"
+              @sort-change="handleSortChange"
+            />
+          </div>
+        </div>
+      </section>
+
       <!-- Steps & Stepper Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
@@ -1351,6 +1494,90 @@
 import { ref } from 'vue'
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
 import AtomsTag from '~/components/atoms/Tag.vue'
+
+// Variables pour les modales
+const showSuccessModal = ref(false)
+const showPublishedModal = ref(false)
+const showDeletedModal = ref(false)
+
+// Variables pour les tables
+const tableData = ref([
+  { 
+    id: 1, 
+    nom: 'Jean Dupont', 
+    age: 45, 
+    adresse: 'Paris 15e arrondissement', 
+    email: 'jean.dupont@email.com', 
+    status: { text: 'Actif', variant: 'solid', color: 'green' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 2, 
+    nom: 'Marie Martin', 
+    age: 27, 
+    adresse: 'Lyon 3e arrondissement', 
+    email: 'marie.martin@email.com', 
+    status: { text: 'En attente', variant: 'soft', color: 'orange' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 3, 
+    nom: 'Pierre Bernard', 
+    age: 31, 
+    adresse: 'Marseille 2e arrondissement', 
+    email: 'pierre.bernard@email.com', 
+    status: { text: 'Inactif', variant: 'soft', color: 'black' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 4, 
+    nom: 'Sophie Laurent', 
+    age: 38, 
+    adresse: 'Toulouse centre-ville', 
+    email: 'sophie.laurent@email.com', 
+    status: { text: 'Validé', variant: 'stroke', color: 'primary', statusColor: 'green' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 5, 
+    nom: 'Thomas Petit', 
+    age: 29, 
+    adresse: 'Nice vieille ville', 
+    email: 'thomas.petit@email.com', 
+    status: { text: 'Suspendu', variant: 'solid', color: 'yellow' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  }
+])
+
+const tableColumns = ref([
+  { key: 'nom', label: 'NOM', type: 'text', cellClass: 'font-medium' },
+  { key: 'age', label: 'ÂGE', type: 'text' },
+  { key: 'adresse', label: 'ADRESSE', type: 'text' },
+  { key: 'email', label: 'EMAIL', type: 'text', cellClass: 'text-secondary-500', sortable: false },
+  { key: 'status', label: 'STATUS', type: 'tag' },
+  { key: 'actions', label: 'ACCES', type: 'action', headerClass: 'text-center', cellClass: 'text-center' }
+])
+
+// Fonctions pour les tables
+const handleDeleteRow = (data) => {
+  console.log('Supprimer la ligne:', data.row)
+  alert(`Suppression de ${data.row.nom}`)
+}
+
+const handleSortChange = (sortConfig) => {
+  console.log('Tri changé:', sortConfig)
+}
+
 // Configuration SEO pour la page
 useHead({
   title: 'Design System - Tholka',
