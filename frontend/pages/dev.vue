@@ -1407,6 +1407,10 @@
                 <p class="text-xs text-Grey-500 mb-4 text-center">Active</p>
                 <AtomsStep :step-number="1" label="Step" :is-active="true" />
               </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Completed</p>
+                <AtomsStep :step-number="1" label="Step" :is-completed="true" />
+              </div>
             </div>
           </div>
         </div>

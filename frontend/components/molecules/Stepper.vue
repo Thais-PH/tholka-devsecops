@@ -6,6 +6,7 @@
       :step-number="index + 1"
       :label="step.label || step"
       :is-active="index === currentStep"
+      :is-completed="index < currentStep"
       :is-first="index === 0"
       :is-last="index === steps.length - 1"
     />
@@ -19,7 +20,8 @@ const props = defineProps({
     required: true,
   },
   currentStep: {
-    type: Number
+    type: Number,
+    default: 0
   }
 })
 </script>
