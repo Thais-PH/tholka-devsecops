@@ -1419,6 +1419,82 @@
             </div>
           </div>
         </div>
+
+        <!-- Radios -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Radios</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-6">
+              <!-- Basic Examples -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Basic Examples</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Non coché -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Non coché</p>
+                    <AtomsRadio
+                      v-model="selectedRadio"
+                      name="basic-radio"
+                      value="option1"
+                      label="Placeholder"
+                      hint="Hint"
+                    />
+                  </div>
+
+                  <!-- Coché -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Coché</p>
+                    <AtomsRadio
+                      v-model="selectedRadio"
+                      name="basic-radio"
+                      value="option2"
+                      label="Placeholder"
+                      hint="Hint"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Disabled States -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Disabled States</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Disabled coché -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Disabled coché</p>
+                    <AtomsRadio
+                      v-model="disabledRadio"
+                      name="disabled-radio"
+                      value="option1"
+                      :disabled="true"
+                      label="Placeholder"
+                      hint="Hint"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error States -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Error States</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Error non coché -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Error non coché</p>
+                    <AtomsRadio
+                      v-model="errorRadio"
+                      name="error-radio"
+                      value="option1"
+                      :error="true"
+                      label="Placeholder"
+                      hint="Hint"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
@@ -1446,4 +1522,9 @@ const disabledCheckbox = ref(false)         // Disabled non coché
 const disabledCheckedCheckbox = ref(true)   // Disabled coché
 const errorCheckbox = ref(false)            // Error non coché
 const errorCheckedCheckbox = ref(true)      // Error coché
+
+// États des radios
+const selectedRadio = ref('option2')        // Option cochée
+const disabledRadio = ref('option1')        // Disabled coché
+const errorRadio = ref(null)                // Error non coché
 </script>

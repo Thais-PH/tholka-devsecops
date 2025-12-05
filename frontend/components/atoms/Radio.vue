@@ -1,16 +1,17 @@
-<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/Checkbox.vue -->
+<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/Radio.vue -->
 <template>
   <div class="flex items-start gap-[16px]">
-    <!-- Checkbox -->
+    <!-- Radio -->
     <div class="flex items-start pt-1">
       <input
         :id="id"
-        v-model="checked"
-        type="checkbox"
+        v-model="selected"
+        type="radio"
         :value="value"
+        :name="name"
         :disabled="disabled"
-        class="custom-checkbox w-[16px] h-[16px] bg-white border border-primary-300 rounded-[4px] cursor-pointer transition-colors duration-200"
-        :class="{ 'error-checkbox': error }"
+        class="custom-radio w-[16px] h-[16px] bg-white border border-primary-300 rounded-full cursor-pointer transition-colors duration-200"
+        :class="{ 'error-radio': error }"
         @change="handleChange"
       />
     </div>
@@ -43,15 +44,19 @@ import { computed } from 'vue'
 const props = defineProps({
   id: {
     type: String,
-    default: () => `checkbox-${Math.random().toString(36).substr(2, 9)}`
+    default: () => `radio-${Math.random().toString(36).substr(2, 9)}`
   },
   modelValue: {
-    type: [Boolean, Array],
-    default: false
+    type: [String, Number, Boolean],
+    default: null
   },
   value: {
     type: [String, Number, Boolean],
-    default: null
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
   },
   label: {
     type: String,
@@ -73,30 +78,12 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const checked = computed({
+const selected = computed({
   get() {
-    if (Array.isArray(props.modelValue)) {
-      return props.modelValue.includes(props.value)
-    }
     return props.modelValue
   },
   set(newValue) {
-    if (Array.isArray(props.modelValue)) {
-      const updatedValue = [...props.modelValue]
-      if (newValue) {
-        if (!updatedValue.includes(props.value)) {
-          updatedValue.push(props.value)
-        }
-      } else {
-        const index = updatedValue.indexOf(props.value)
-        if (index > -1) {
-          updatedValue.splice(index, 1)
-        }
-      }
-      emit('update:modelValue', updatedValue)
-    } else {
-      emit('update:modelValue', newValue)
-    }
+    emit('update:modelValue', newValue)
   }
 })
 
@@ -122,97 +109,96 @@ const getHintClasses = computed(() => {
 
 const handleChange = (event) => {
   emit('change', {
-    checked: event.target.checked,
-    value: props.value
+    value: event.target.value
   })
 }
 </script>
 
 <style scoped>
-.custom-checkbox {
+.custom-radio {
   --tw-ring-color: #3A3B99 !important;
 }
 
-.custom-checkbox:focus {
+.custom-radio:focus {
   outline: none !important;
   box-shadow: 0 0 0 2px #3A3B99 !important;
   border-color: #3A3B99 !important;
 }
 
-.custom-checkbox:checked {
+.custom-radio:checked {
   background-color: #3A3B99 !important;
   border-color: #3A3B99 !important;
 }
 
-.custom-checkbox:checked:focus {
+.custom-radio:checked:focus {
   background-color: #3A3B99 !important;
   border-color: #3A3B99 !important;
   box-shadow: 0 0 0 2px #3A3B99 !important;
 }
 
 /* États hover */
-.custom-checkbox:hover:not(:disabled) {
+.custom-radio:hover:not(:disabled) {
   border-color: #5A5BB0 !important;
 }
 
-.custom-checkbox:checked:hover:not(:disabled) {
+.custom-radio:checked:hover:not(:disabled) {
   background-color: #5A5BB0 !important;
   border-color: #5A5BB0 !important;
 }
 
 /* États error */
-.custom-checkbox.error-checkbox {
+.custom-radio.error-radio {
   border-color: #EB5035 !important;
   background-color: #FFFFFF !important;
 }
 
-.custom-checkbox.error-checkbox:focus {
+.custom-radio.error-radio:focus {
   outline: none !important;
   box-shadow: 0 0 0 2px #EB5035 !important;
   border-color: #EB5035 !important;
 }
 
-.custom-checkbox.error-checkbox:checked {
+.custom-radio.error-radio:checked {
   background-color: #EB5035 !important;
   border-color: #EB5035 !important;
 }
 
-.custom-checkbox.error-checkbox:checked:focus {
+.custom-radio.error-radio:checked:focus {
   background-color: #EB5035 !important;
   border-color: #EB5035 !important;
   box-shadow: 0 0 0 2px #EB5035 !important;
 }
 
-.custom-checkbox.error-checkbox:hover:not(:disabled) {
+.custom-radio.error-radio:hover:not(:disabled) {
   border-color: #EB5035 !important;
 }
 
-.custom-checkbox.error-checkbox:checked:hover:not(:disabled) {
+.custom-radio.error-radio:checked:hover:not(:disabled) {
   background-color: #EB5035 !important;
   border-color: #EB5035 !important;
 }
 
 /* États disabled */
-.custom-checkbox:disabled {
+.custom-radio:disabled {
   cursor: not-allowed !important;
   --tw-ring-color: #3A3B9950 !important;
   border: none !important;
 }
 
-.custom-checkbox:disabled {
+.custom-radio:disabled {
   background-color: #FFFFFF50 !important;
 }
 
-.custom-checkbox:disabled:checked {
+.custom-radio:disabled:checked {
   background-color: #3A3B9950 !important;
   border: none !important;
 }
 
-.custom-checkbox:disabled:focus {
+.custom-radio:disabled:focus {
   box-shadow: none !important;
 }
 
-.custom-checkbox:disabled:checked:focus {
+.custom-radio:disabled:checked:focus {
   box-shadow: none !important;
 }
 </style>
