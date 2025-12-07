@@ -1495,6 +1495,69 @@
             </div>
           </div>
         </div>
+
+        <!-- Inputs & Selects -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Inputs & Selects</h3>
+          <div class="bg-Grey-300 rounded-lg p-8" style="min-height: 600px;">
+            <div class="space-y-6">
+              <!-- Basic Examples -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Basic Examples</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Input avec Chevron Left -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Input</p>
+                    <AtomsInput
+                      v-model="inputWithIconLeft"
+                      label="Placeholder"
+                      placeholder="label"
+                      hint="Hint"
+                      :icon-right="true"
+                    />
+                  </div>
+
+                  <!-- Input Error -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Input Error</p>
+                    <AtomsInput
+                      v-model="inputError"
+                      label="Placeholder"
+                      placeholder="label"
+                      hint="Hint"
+                      :error="true"
+                    />
+                  </div>
+
+                  <!-- Select fermé -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Select fermé</p>
+                    <AtomsSelect
+                      v-model="selectValue"
+                      label="Placeholder"
+                      placeholder="label"
+                      hint="Hint"
+                      :options="selectOptions"
+                    />
+                  </div>
+
+                  <!-- Select ouvert (forcé) -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Select ouverte</p>
+                    <AtomsSelect
+                      v-model="selectValueOpen"
+                      label="Placeholder"
+                      placeholder="label"
+                      hint="Hint"
+                      :options="selectOptions"
+                      :force-open="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
@@ -1518,13 +1581,26 @@ const editorContent = ref('')
 // États des checkboxes
 const simpleCheckbox = ref(false)           // Non coché
 const checkedCheckbox = ref(true)           // Coché
-const disabledCheckbox = ref(false)         // Disabled non coché
 const disabledCheckedCheckbox = ref(true)   // Disabled coché
 const errorCheckbox = ref(false)            // Error non coché
-const errorCheckedCheckbox = ref(true)      // Error coché
 
 // États des radios
 const selectedRadio = ref('option2')        // Option cochée
 const disabledRadio = ref('option1')        // Disabled coché
 const errorRadio = ref(null)                // Error non coché
+
+// États des inputs et selects
+const inputWithIconLeft = ref('')
+const inputError = ref('')
+const selectValue = ref('')
+const selectValueOpen = ref('')
+
+// Options pour les selects
+const selectOptions = [
+  { value: '1', label: 'Button' },
+  { value: '2', label: 'Button' },
+  { value: '3', label: 'Button' },
+  { value: '4', label: 'Button' },
+  { value: '5', label: 'Button' }
+]
 </script>
