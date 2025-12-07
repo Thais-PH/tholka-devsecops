@@ -1543,7 +1543,7 @@
 
                   <!-- Select ouvert (forcé) -->
                   <div>
-                    <p class="text-xs text-Grey-500 mb-2">Select ouverte</p>
+                    <p class="text-xs text-Grey-500 mb-2">Select ouvert</p>
                     <AtomsSelect
                       v-model="selectValueOpen"
                       label="Placeholder"
@@ -1551,6 +1551,16 @@
                       hint="Hint"
                       :options="selectOptions"
                       :force-open="true"
+                    />
+                  </div>
+
+                  <!-- Search Bar -->
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2">Search Bar</p>
+                    <AtomsSearchBar
+                      v-model="searchValue"
+                      placeholder="label"
+                      @search="handleSearch"
                     />
                   </div>
                 </div>
@@ -1594,6 +1604,14 @@ const inputWithIconLeft = ref('')
 const inputError = ref('')
 const selectValue = ref('')
 const selectValueOpen = ref('')
+
+// État de la barre de recherche
+const searchValue = ref('')
+
+// Fonction de recherche
+const handleSearch = (value) => {
+  console.log('Recherche:', value)
+}
 
 // Options pour les selects
 const selectOptions = [
