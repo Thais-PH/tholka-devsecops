@@ -1,4 +1,3 @@
-<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/Select.vue -->
 <template>
   <div class="flex flex-col gap-[15px]" style="width: 400px;">
     <!-- Label -->

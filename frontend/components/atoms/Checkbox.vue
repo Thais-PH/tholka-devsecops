@@ -1,4 +1,3 @@
-<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/Checkbox.vue -->
 <template>
   <div class="flex items-start gap-[16px]">
     <!-- Checkbox -->

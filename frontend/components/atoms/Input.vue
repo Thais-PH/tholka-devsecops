@@ -1,4 +1,3 @@
-<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/Input.vue -->
 <template>
   <div class="flex flex-col gap-[15px]" style="width: 400px;">
     <!-- Label (si fourni) -->

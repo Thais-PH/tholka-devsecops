@@ -1,4 +1,3 @@
-<!-- filepath: /home/lisa/projects/tholka/frontend/components/atoms/SearchBar.vue -->
 <template>
   <div class="flex flex-row items-center" style="width: 386px; height: 50px;">
     <!-- Input -->

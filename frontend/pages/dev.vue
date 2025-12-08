@@ -1568,6 +1568,40 @@
             </div>
           </div>
         </div>
+
+        <!-- Accordions -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Accordions</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-6">
+              <!-- Accordion fermé -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Accordion (fermé)</p>
+                <AtomsAccordion title="Vendredi 3 mars">
+                  <AtomsButton variant="forms" size="md">08:30</AtomsButton>
+                  <AtomsButton variant="forms" size="md">10:00</AtomsButton>
+                  <AtomsButton variant="forms" size="md">11:15</AtomsButton>
+                  <AtomsButton variant="forms" size="md">14:00</AtomsButton>
+                  <AtomsButton variant="forms" size="md">15:45</AtomsButton>
+                  <AtomsButton variant="forms" size="md">16:30</AtomsButton>
+                </AtomsAccordion>
+              </div>
+
+              <!-- Accordion ouvert -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Accordion (ouvert)</p>
+                <AtomsAccordion title="Vendredi 3 mars" :open="true">
+                  <AtomsButton variant="forms" size="md">08:30</AtomsButton>
+                  <AtomsButton variant="forms" size="md">10:00</AtomsButton>
+                  <AtomsButton variant="forms" size="md">11:15</AtomsButton>
+                  <AtomsButton variant="forms" size="md">14:00</AtomsButton>
+                  <AtomsButton variant="forms" size="md">15:45</AtomsButton>
+                  <AtomsButton variant="forms" size="md">16:30</AtomsButton>
+                </AtomsAccordion>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
