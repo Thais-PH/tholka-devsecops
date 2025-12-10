@@ -47,25 +47,46 @@ const props = defineProps({
   },
   disabled: Boolean,
   onWhite: Boolean,
-  iconOnly: Boolean
+  iconOnly: Boolean,
+  justify: {
+    type: String,
+    default: 'center',
+    validator: (value) => ['start', 'center', 'end', 'between'].includes(value)
+  }
 })
 
 defineEmits(['click'])
 
 const buttonClasses = computed(() => {
   // Classes de base
-  const base = 'font-roboto inline-flex flex-row justify-center items-center gap-[4px] rounded-[8px] border transition-all duration-200 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none'
+  const base = 'font-roboto inline-flex flex-row items-center gap-[4px] rounded-[8px] border transition-all duration-200 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none'
 
-  // Tailles pour boutons avec texte
+  // Classe justify selon la prop
+  const justifyClasses = {
+    start: 'justify-start',
+    center: 'justify-center',
+    end: 'justify-end',
+    between: 'justify-between'
+  }
+
+  // Tailles pour boutons avec texte - enlever tout padding horizontal si justify=start
+  const paddingX = props.justify === 'start' ? 'px-0' : 'px-[8px]'
+  const paddingXMd = props.justify === 'start' ? 'px-0' : 'px-[16px]'
+  const paddingXLg = props.justify === 'start' ? 'px-0' : 'px-[24px]'
+
+  const minWidth = props.justify === 'start' ? '' : 'min-w-[100px]'
+  const minWidthMd = props.justify === 'start' ? '' : 'min-w-[128px]'
+  const minWidthLg = props.justify === 'start' ? '' : 'min-w-[164px]'
+
   const sizes = {
-    // Small: 100px min, padding 4px/8px, Roboto Regular 14px/18px
-    sm: 'min-w-[100px] h-[26px] px-[8px] py-[4px] text-[14px] leading-[18px] font-normal',
+    // Small: 100px min (sauf si justify=start)
+    sm: `${minWidth} h-[26px] ${paddingX} py-[4px] text-[14px] leading-[18px] font-normal`,
 
-    // Medium: 128px min, padding 8px/16px, Roboto Regular 16px/22px
-    md: 'min-w-[128px] h-[38px] px-[16px] py-[8px] text-[16px] leading-[22px] font-normal',
+    // Medium: 128px min (sauf si justify=start)
+    md: `${minWidthMd} h-[38px] ${paddingXMd} py-[8px] text-[16px] leading-[22px] font-normal`,
 
-    // Large: 164px min, padding 12px/24px, Roboto Medium 20px/32px
-    lg: 'min-w-[164px] h-[56px] px-[24px] py-[12px] text-[20px] leading-[32px] font-medium'
+    // Large: 164px min (sauf si justify=start)
+    lg: `${minWidthLg} h-[56px] ${paddingXLg} py-[12px] text-[20px] leading-[32px] font-medium`
   }
 
   // Tailles pour boutons icon-only (carrés)
@@ -100,6 +121,6 @@ const buttonClasses = computed(() => {
 
   const sizeClass = props.iconOnly ? iconSizes[props.size] : sizes[props.size]
 
-  return [base, sizeClass, variants[props.variant]]
+  return [base, justifyClasses[props.justify], sizeClass, variants[props.variant]]
 })
 </script>

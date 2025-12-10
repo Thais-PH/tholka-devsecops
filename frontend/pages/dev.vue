@@ -1491,15 +1491,36 @@
         </div>
       </div>
 
-      <!-- Events Block -->
+      <!-- Blocks Section -->
       <section class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Events Block</h2>
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
+
         <div class="bg-white rounded-lg p-8 shadow-sm">
-          <div class="bg-secondary-300 rounded-lg p-8 flex justify-center">
-            <OrganismsEventsBlock
-              title="Événements"
-              :events="mockEvents"
-            />
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Events Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsEventsBlock
+                    title="Événements"
+                    :events="mockEvents"
+                  />
+                </div>
+              </div>
+
+              <!-- Documents Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Documents Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsDocumentsBlock
+                    title="Derniers documents"
+                    :documents="mockDocuments"
+                    @document-click="handleDocumentClick"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1933,4 +1954,16 @@ const mockEvents = [
     title: 'Titre lorem ispum'
   }
 ]
+
+// Mock data pour les documents
+const mockDocuments = [
+  { label: 'Button', url: '#' },
+  { label: 'Button', url: '#' },
+  { label: 'Button', url: '#' }
+]
+
+// Handler pour le clic sur un document
+const handleDocumentClick = (document) => {
+  console.log('Document cliqué:', document)
+}
 </script>
