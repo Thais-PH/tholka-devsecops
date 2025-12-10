@@ -1520,6 +1520,17 @@
                   />
                 </div>
               </div>
+
+              <!-- Vacations Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Vacations Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsVacationsBlock
+                    title="Mes congés"
+                    :vacations="mockVacations"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1966,4 +1977,11 @@ const mockDocuments = [
 const handleDocumentClick = (document) => {
   console.log('Document cliqué:', document)
 }
+
+// Mock data pour les congés
+const mockVacations = [
+  { type: 'RTT', status: 'Accepté', date: '19/11/2025' },
+  { type: 'RTT', status: 'En attente', date: '19/11/2025' },
+  { type: 'RTT', status: 'Refusé', date: '19/11/2025' }
+]
 </script>
