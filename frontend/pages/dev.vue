@@ -1257,9 +1257,9 @@
           <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="event"
-              :date="new Date(2024, 11, 15)"
-              :tag="{ text: 'Validé', variant: 'stroke', color: 'green', size: 'md', statusColor: 'green' }"
-              content-text="Réunion équipe marketing"
+              :date="new Date(2025, 8, 23)"
+              :tag="{ text: 'Tag', variant: 'stroke', color: 'primary', size: 'md' }"
+              content-text="Titre lorem ipsum"
             />
           </div>
 
@@ -1490,6 +1490,19 @@
           />
         </div>
       </div>
+
+      <!-- Events Block -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Events Block</h2>
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <div class="bg-secondary-300 rounded-lg p-8 flex justify-center">
+            <OrganismsEventsBlock
+              title="Événements"
+              :events="mockEvents"
+            />
+          </div>
+        </div>
+      </section>
 
       <!-- Forms Section -->
       <section class="mt-8 mb-16">
@@ -1880,5 +1893,44 @@ const selectOptions = [
   { value: '3', label: 'Button' },
   { value: '4', label: 'Button' },
   { value: '5', label: 'Button' }
+]
+
+// Mock data pour les événements
+const mockEvents = [
+  {
+    day: '23',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '25',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '26',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '28',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '30',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  }
 ]
 </script>

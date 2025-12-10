@@ -1,38 +1,37 @@
 <template>
   <!-- Event line Card - Structure Preline -->
-  <div v-if="type === 'event'" class="flex items-center p-4 bg-Light rounded-lg w-[292px] h-[59px]">
+  <div v-if="type === 'event'" class="flex items-center py-1 gap-4 w-full max-w-[292px] h-[59px] bg-white rounded-none">
     <!-- Section Date -->
-    <div class="flex flex-col justify-center items-center mr-4">
+    <div class="flex flex-col items-center w-[57px]">
       <!-- Jour -->
-      <h4 class="text-2xl font-bold text-primary-500">
+      <span class="font-nunito font-bold text-[28px] leading-[120%] text-primary-500">
         {{ day }}
-      </h4>
+      </span>
       <!-- Mois et Année -->
-      <p class="text-xs text-Grey-500">
+      <span class="font-roboto font-normal text-xs leading-[140%] text-primary-900">
         {{ formatDate }}
-      </p>
+      </span>
     </div>
 
     <!-- Ligne verticale -->
-    <div class="h-12 border-l border-Grey-300 mr-4"></div>
+    <div class="h-[51px] w-px bg-[#EBEBF5]"></div>
 
     <!-- Section Contenu -->
-    <div class="flex-1">
+    <div class="flex flex-col justify-center items-start gap-2 w-[203px] h-[51px]">
       <!-- Tag -->
-      <div class="mb-1">
-        <AtomsTag 
-          :variant="tag.variant || 'stroke'" 
-          :color="tag.color || 'primary'" 
-          :size="tag.size || 'md'"
-        >
-          {{ tag.text }}
-        </AtomsTag>
-      </div>
+      <AtomsTag
+        v-if="tag.text"
+        :variant="tag.variant || 'stroke'"
+        :color="tag.color || 'primary'"
+        :size="tag.size || 'md'"
+      >
+        {{ tag.text }}
+      </AtomsTag>
       
       <!-- Texte en dessous -->
-      <p style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
+      <span class="font-roboto font-normal text-sm leading-[130%] text-primary-900">
         {{ contentText }}
-      </p>
+      </span>
     </div>
   </div>
 
@@ -54,16 +53,16 @@
         <!-- Type de contrat tag -->
         <div class="flex-shrink-0">
           <AtomsTag 
+            :label="contractType"
             variant="soft" 
             color="primary" 
             size="md"
-          >
-            {{ contractType }}
-          </AtomsTag>
+          />
         </div>
       </div>
     </div>
   </div>
+
   <!-- Job Card - Structure Preline -->
   <div v-else-if="type === 'job'" class="relative" :class="{ 'ml-20': orderNumber }">
     <!-- Numéro d'ordre - Calque arrière-plan, position fixe -->
@@ -78,29 +77,28 @@
            :style="{ backgroundImage: `url(${imageUrl})` }">
       </div>
     
-    <!-- Card body -->
-    <div class="flex-1 p-4 relative z-30">
-      <!-- Tag type de contrat -->
-      <div class="mb-3">
-        <AtomsTag 
-          variant="soft" 
-          color="primary" 
-          size="md"
-        >
-          {{ contractType }}
-        </AtomsTag>
+      <!-- Card body -->
+      <div class="flex-1 p-4 relative z-30">
+        <!-- Tag type de contrat -->
+        <div class="mb-3">
+          <AtomsTag
+            :label="contractType"
+            variant="soft"
+            color="primary"
+            size="md"
+          />
+        </div>
+
+        <!-- Titre du poste -->
+        <h6 class="mb-2" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
+          {{ title }}
+        </h6>
+
+        <!-- Description tronquée -->
+        <p class="line-clamp-3" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
+          {{ description }}
+        </p>
       </div>
-      
-      <!-- Titre du poste -->
-      <h6 class="mb-2" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
-        {{ title }}
-      </h6>
-      
-      <!-- Description tronquée -->
-      <p class="line-clamp-3" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
-        {{ description }}
-      </p>
-    </div>
     </div>
   </div>
 
@@ -119,12 +117,11 @@
           <!-- Tag type de contrat -->
           <div class="mb-3">
             <AtomsTag 
+              :label="contractType"
               variant="soft" 
               color="primary" 
               size="md"
-            >
-              {{ contractType }}
-            </AtomsTag>
+            />
           </div>
           
           <!-- Titre du profil -->
@@ -156,13 +153,12 @@
     <!-- Tag statut avec indicateur -->
     <div class="mb-3">
       <AtomsTag 
+        label="Publiée"
         variant="soft" 
         color="primary" 
         size="md"
         status-color="green"
-      >
-        Publiée
-      </AtomsTag>
+      />
     </div>
     
     <!-- Titre -->
@@ -175,30 +171,27 @@
       <div class="flex flex-wrap gap-2">
         <!-- Candidats traités -->
         <AtomsTag 
+          :label="String(candidatesProcessed)"
           variant="soft" 
           color="green" 
           size="md"
-        >
-          {{ candidatesProcessed }}
-        </AtomsTag>
+        />
         
         <!-- Candidats en attente -->
         <AtomsTag 
+          :label="String(candidatesPending)"
           variant="soft" 
           color="secondary" 
           size="md"
-        >
-          {{ candidatesPending }}
-        </AtomsTag>
+        />
         
         <!-- Candidats refusés -->
         <AtomsTag 
+          :label="String(candidatesRejected)"
           variant="soft" 
           color="orange" 
           size="md"
-        >
-          {{ candidatesRejected }}
-        </AtomsTag>
+        />
       </div>
       
       <!-- Total candidatures à droite -->
@@ -227,7 +220,7 @@ const props = defineProps({
     type: Object,
     required: false,
     default: () => ({
-      text: 'Tag',
+      text: '',
       variant: 'stroke',
       color: 'primary',
       size: 'md',
@@ -275,19 +268,6 @@ const props = defineProps({
     type: Number,
     default: 0
   },
-  // Props pour statistiques (stats card)
-  candidatesProcessed: {
-    type: Number,
-    default: 0
-  },
-  candidatesPending: {
-    type: Number,
-    default: 0
-  },
-  candidatesRejected: {
-    type: Number,
-    default: 0
-  },
   // Total des candidatures
   candidatesTotal: {
     type: Number,
@@ -305,8 +285,8 @@ const formatDate = computed(() => {
   if (props.type !== 'event' || !props.date) return ''
   const dateObj = typeof props.date === 'string' ? new Date(props.date) : props.date
   const monthNames = [
-    'Janv.', 'Févr.', 'Mars', 'Avr.', 'Mai', 'Juin',
-    'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'
+    'janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
+    'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'
   ]
   
   const month = monthNames[dateObj.getMonth()]
