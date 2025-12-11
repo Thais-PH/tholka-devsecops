@@ -1542,6 +1542,17 @@
                   />
                 </div>
               </div>
+
+              <!-- Quick Access Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Quick Access Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsQuickAccessBlock
+                    title="Mes accès rapides"
+                    :quick-access="mockQuickAccess"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1810,6 +1821,11 @@
 import { ref } from 'vue'
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
 import AtomsTag from '~/components/atoms/Tag.vue'
+import {
+  Pencil as LucidePencil,
+  FileQuestion as LucideFileQuestion,
+  Network as LucideNetwork
+} from 'lucide-vue-next'
 
 // Variables pour les modales
 const showSuccessModal = ref(false)
@@ -2000,5 +2016,12 @@ const mockVacations = [
 const mockContacts = [
   { name: 'Manager', email: 'manager@enterprise.com' },
   { name: 'Service RH', email: 'rh@enterprise.com' }
+]
+
+// Mock data pour les accès rapides
+const mockQuickAccess = [
+  { label: 'Créer une annonce', icon: LucidePencil, color: 'secondary' },
+  { label: 'Outil de ticketing', icon: LucideFileQuestion, color: 'orange' },
+  { label: 'Organigramme', icon: LucideNetwork, color: 'green' }
 ]
 </script>
