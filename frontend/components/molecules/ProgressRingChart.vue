@@ -2,13 +2,15 @@
   <div class="flex flex-col justify-center items-center gap-[10px]">
     <!-- Chart -->
     <div class="relative w-[200px] h-[200px]">
-      <apexchart
-        type="radialBar"
-        :options="chartOptions"
-        :series="[percentage]"
-        height="200"
-        width="200"
-      />
+      <ClientOnly>
+        <apexchart
+          type="radialBar"
+          :options="chartOptions"
+          :series="[percentage]"
+          height="200"
+          width="200"
+        />
+      </ClientOnly>
       
       <!-- Center Content -->
       <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">

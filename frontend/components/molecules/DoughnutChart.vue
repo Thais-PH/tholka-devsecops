@@ -2,13 +2,15 @@
   <div class="flex flex-col justify-center items-center gap-[10px]">
     <!-- Chart -->
     <div class="relative w-[200px] h-[200px]">
-      <ApexChart
-        type="donut"
-        :options="chartOptions"
-        :series="props.series"
-        height="200"
-        width="200"
-      />
+      <ClientOnly>
+        <apexchart
+          type="donut"
+          :options="chartOptions"
+          :series="props.series"
+          height="200"
+          width="200"
+        />
+      </ClientOnly>
       
       <!-- Center Content -->
       <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
@@ -23,7 +25,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import ApexChart from 'vue3-apexcharts'
 
 const props = defineProps({
   series: {
