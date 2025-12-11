@@ -1498,6 +1498,25 @@
         <div class="bg-white rounded-lg p-8 shadow-sm">
           <div class="bg-Grey-300 rounded-lg p-8">
             <div class="space-y-8">
+              <!-- Calendar Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsCalendarBlock />
+                </div>
+              </div>
+
+              <!-- Annonce Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsAnnonceBlock
+                    title="Opportunités internes"
+                    :annonces="mockAnnonces"
+                  />
+                </div>
+              </div>
+
               <!-- Events Block -->
               <div>
                 <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
@@ -1506,6 +1525,14 @@
                     title="Événements"
                     :events="mockEvents"
                   />
+                </div>
+              </div>
+
+              <!-- Chart Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsChartBlock />
                 </div>
               </div>
 
@@ -2023,5 +2050,24 @@ const mockQuickAccess = [
   { label: 'Créer une annonce', icon: LucidePencil, color: 'secondary' },
   { label: 'Outil de ticketing', icon: LucideFileQuestion, color: 'orange' },
   { label: 'Organigramme', icon: LucideNetwork, color: 'green' }
+]
+
+// Mock data pour les annonces
+const mockAnnonces = [
+  {
+    title: 'Chef de Projet Digital',
+    contractType: 'CDI',
+    imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop'
+  },
+  {
+    title: 'Développeur Frontend Vue.js',
+    contractType: 'CDI',
+    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&h=200&fit=crop'
+  },
+  {
+    title: 'Designer UX/UI',
+    contractType: 'Stage',
+    imageUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=300&h=200&fit=crop'
+  }
 ]
 </script>

@@ -53,11 +53,12 @@
         <!-- Type de contrat tag -->
         <div class="flex-shrink-0">
           <AtomsTag 
-            :label="contractType"
             variant="soft" 
             color="primary" 
             size="md"
-          />
+          >
+            {{ contractType }}
+          </AtomsTag>
         </div>
       </div>
     </div>
@@ -82,11 +83,12 @@
         <!-- Tag type de contrat -->
         <div class="mb-3">
           <AtomsTag
-            :label="contractType"
             variant="soft"
             color="primary"
             size="md"
-          />
+          >
+            {{ contractType }}
+          </AtomsTag>
         </div>
 
         <!-- Titre du poste -->
@@ -117,11 +119,12 @@
           <!-- Tag type de contrat -->
           <div class="mb-3">
             <AtomsTag 
-              :label="contractType"
               variant="soft" 
               color="primary" 
               size="md"
-            />
+            >
+              {{ contractType }}
+            </AtomsTag>
           </div>
           
           <!-- Titre du profil -->
@@ -153,12 +156,13 @@
     <!-- Tag statut avec indicateur -->
     <div class="mb-3">
       <AtomsTag 
-        label="Publiée"
         variant="soft" 
         color="primary" 
         size="md"
         status-color="green"
-      />
+      >
+        Publiée
+      </AtomsTag>
     </div>
     
     <!-- Titre -->
@@ -168,30 +172,33 @@
     
     <!-- Tags statistiques et total -->
     <div class="flex items-center justify-between">
-      <div class="flex flex-wrap gap-2">
+      <div class="flex gap-2 flex-nowrap">
         <!-- Candidats traités -->
         <AtomsTag 
-          :label="String(candidatesProcessed)"
           variant="soft" 
           color="green" 
           size="md"
-        />
+        >
+          {{ candidatesProcessed }}
+        </AtomsTag>
         
         <!-- Candidats en attente -->
         <AtomsTag 
-          :label="String(candidatesPending)"
           variant="soft" 
           color="secondary" 
           size="md"
-        />
+        >
+          {{ candidatesPending }}
+        </AtomsTag>
         
         <!-- Candidats refusés -->
         <AtomsTag 
-          :label="String(candidatesRejected)"
           variant="soft" 
           color="orange" 
           size="md"
-        />
+        >
+          {{ candidatesRejected }}
+        </AtomsTag>
       </div>
       
       <!-- Total candidatures à droite -->

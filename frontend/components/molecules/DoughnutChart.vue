@@ -2,10 +2,10 @@
   <div class="flex flex-col justify-center items-center gap-[10px]">
     <!-- Chart -->
     <div class="relative w-[200px] h-[200px]">
-      <apexchart
+      <ApexChart
         type="donut"
         :options="chartOptions"
-        :series="series"
+        :series="props.series"
         height="200"
         width="200"
       />
@@ -22,6 +22,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import ApexChart from 'vue3-apexcharts'
+
 const props = defineProps({
   series: {
     type: Array,
@@ -56,30 +59,19 @@ const chartOptions = computed(() => ({
     },
     zoom: {
       enabled: false
-    },
-    animations: {
-      enabled: true,
-      speed: 800,
-      animateGradually: {
-        enabled: true,
-        delay: 150
-      },
-      dynamicAnimation: {
-        enabled: true,
-        speed: 350
-      }
     }
   },
   plotOptions: {
     pie: {
       donut: {
-        size: '10%'
+        size: '70%',
+        background: 'transparent'
       }
     }
   },
   colors: props.colors,
-  series: props.series,
   labels: props.labels,
+  series: props.series,
   legend: {
     show: false
   },
@@ -87,16 +79,7 @@ const chartOptions = computed(() => ({
     enabled: false
   },
   stroke: {
-    width: 5, // Même valeur que l'exemple Preline
-    colors: ['#efeeee'] // Blanc pour l'espacement
-  },
-  grid: {
-    padding: {
-      top: -12,
-      bottom: -12,
-      left: -12,
-      right: -12
-    }
+    width: 0
   },
   states: {
     hover: {
@@ -111,14 +94,7 @@ const chartOptions = computed(() => ({
     }
   },
   tooltip: {
-    enabled: true,
-    style: {
-      fontSize: '14px',
-      fontFamily: 'Roboto, sans-serif'
-    },
-    y: {
-      formatter: (value) => `${value}%`
-    }
+    enabled: false
   }
 }))
 </script>
