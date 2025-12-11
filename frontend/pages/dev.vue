@@ -1531,6 +1531,17 @@
                   />
                 </div>
               </div>
+
+              <!-- Contacts Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Contacts Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsContactsBlock
+                    title="Mes contacts de référence"
+                    :contacts="mockContacts"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1983,5 +1994,11 @@ const mockVacations = [
   { type: 'RTT', status: 'Accepté', date: '19/11/2025' },
   { type: 'RTT', status: 'En attente', date: '19/11/2025' },
   { type: 'RTT', status: 'Refusé', date: '19/11/2025' }
+]
+
+// Mock data pour les contacts
+const mockContacts = [
+  { name: 'Manager', email: 'manager@enterprise.com' },
+  { name: 'Service RH', email: 'rh@enterprise.com' }
 ]
 </script>

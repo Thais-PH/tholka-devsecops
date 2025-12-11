@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] md:p-6 gap-4 w-full max-w-[340px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] md:p-6 gap-[16px] w-full max-w-[340px] max-h-[412px] bg-white rounded-lg shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>

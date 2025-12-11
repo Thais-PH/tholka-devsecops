@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[356px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[356px] max-h-[167px] bg-white rounded-lg shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
@@ -14,15 +14,15 @@
         class="flex flex-row items-center w-full gap-[15px]"
       >
         <!-- Type et Statut -->
-        <div class="flex flex-row items-center gap-[5px] flex-1">
+        <div class="flex flex-row items-center gap-[20px] flex-1 min-w-0">
           <!-- Type -->
-          <span class="font-roboto font-normal text-base leading-[140%] text-primary-900 min-w-[43px]">
+          <span class="font-roboto font-normal text-base leading-[140%] text-primary-900 whitespace-nowrap">
             {{ vacation.type }}
           </span>
           
           <!-- Statut -->
           <span 
-            class="font-roboto font-medium text-base leading-[140%] flex-1 min-w-[169px]"
+            class="font-roboto font-medium text-base leading-[140%] truncate"
             :class="getStatusColor(vacation.status)"
           >
             {{ vacation.status }}
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Date -->
-        <span class="font-roboto font-normal text-base leading-[140%] text-primary-900 w-[86px]">
+        <span class="font-roboto font-normal text-base leading-[140%] text-primary-900 whitespace-nowrap flex-shrink-0">
           {{ vacation.date }}
         </span>
       </div>
