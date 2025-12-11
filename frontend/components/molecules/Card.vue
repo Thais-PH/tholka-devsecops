@@ -35,30 +35,38 @@
     </div>
   </div>
 
-  <!-- Annonce Card - Structure Preline -->
-  <div v-else-if="type === 'annonce'" class="rounded-lg w-[258px] min-h-[139px]">
+  <!-- Annonce Card -->
+  <div v-else-if="type === 'annonce'" class="flex flex-col items-start p-0 w-[258px] h-[139px]">
     <!-- Image section -->
-    <div class="h-[106px] bg-cover bg-center rounded-lg m-1" 
+    <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[258px] h-[106px] bg-cover bg-center rounded-lg flex-none order-0 self-stretch"
          :style="{ backgroundImage: `url(${imageUrl})` }">
+      <!-- Video icon badge -->
+      <div v-if="hasVideo" class="flex flex-row justify-center items-center p-[3px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
+        <LucideYoutube :size="17" :stroke-width="1.5" class="text-white" />
+      </div>
     </div>
     
-    <!-- Card body -->
-    <div class="p-3">
-      <div class="flex justify-between items-start gap-2">
-        <!-- Titre -->
-        <h6 class="flex-1 line-clamp-2" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
-          {{ title }}
-        </h6>
-        
-        <!-- Type de contrat tag -->
-        <div class="flex-shrink-0">
-          <AtomsTag 
-            variant="soft" 
-            color="primary" 
-            size="md"
-          >
-            {{ contractType }}
-          </AtomsTag>
+    <!-- Content -->
+    <div class="flex flex-col items-start px-[4px] pt-[8px] pb-0 gap-[16px] w-[258px] h-[33px] flex-none order-1 self-stretch">
+      <div class="flex flex-col items-start p-0 gap-[8px] w-[250px] h-[25px] flex-none order-0 self-stretch">
+        <!-- Frame avec titre et tag -->
+        <div class="flex flex-row justify-between items-center p-0 w-[250px] h-[25px] flex-none order-0 self-stretch">
+          <!-- Titre -->
+          <h6 class="font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-0 overflow-hidden text-ellipsis whitespace-nowrap" style="max-width: 206px;">
+            {{ title }}
+          </h6>
+
+          <!-- Type de contrat tag - Container avec largeur fixe -->
+          <div class="flex-shrink-0 flex items-center justify-center order-1" style="width: 40px; height: 25px; overflow: hidden;">
+            <AtomsTag
+              variant="soft"
+              color="primary"
+              size="md"
+              class="!px-1 !py-1 !text-[11px]"
+            >
+              {{ contractType }}
+            </AtomsTag>
+          </div>
         </div>
       </div>
     </div>
@@ -211,6 +219,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { Youtube as LucideYoutube } from 'lucide-vue-next'
 
 const props = defineProps({
   type: {
@@ -251,6 +260,10 @@ const props = defineProps({
   imageUrl: {
     type: String,
     required: false
+  },
+  hasVideo: {
+    type: Boolean,
+    default: false
   },
   // Props pour Job
   description: {

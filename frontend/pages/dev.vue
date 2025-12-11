@@ -1268,9 +1268,10 @@
           <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="annonce"
-              title="Développeur Frontend Vue.js"
-              contract-type="CDI"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
               image-url="/card.jpg"
+              :has-video="true"
             />
           </div>
 
@@ -1280,10 +1281,10 @@
             <MoleculesCard
               type="job"
               :order-number="1"
-              title="Développeur Full Stack"
-              contract-type="CDI"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
               image-url="/card.jpg"
-              description="Nous recherchons un développeur full stack passionné pour rejoindre notre équipe dynamique. Vous travaillerez sur des projets innovants utilisant les dernières technologies web..."
+              description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
             />
           </div>
 
@@ -1292,10 +1293,10 @@
           <div class="flex flex-wrap gap-6">
             <MoleculesCard
               type="profile"
-              title="Jean Dupont"
-              contract-type="Senior"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
               image-url="/card.jpg"
-              description="Développeur senior avec 8 ans d'expérience en Vue.js et Node.js. Passionné par les nouvelles technologies et l'innovation..."
+              description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
             />
           </div>
 
@@ -1304,11 +1305,11 @@
           <div class="flex flex-wrap gap-6">
             <MoleculesCard
               type="stats"
-              title="Développeur Frontend Vue.js"
-              :candidates-processed="8"
-              :candidates-pending="12"
-              :candidates-rejected="3"
-              :candidates-total="23"
+              title="Titre lorem ipsum"
+              :candidates-processed="10"
+              :candidates-pending="1"
+              :candidates-rejected="2"
+              :candidates-total="13"
             />
           </div>
         </div>
