@@ -70,16 +70,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 // Statistiques RH
-const departures = ref(8)
-const arrivals = ref(12)
-const inPosition = ref(50)
+const departures = ref(20)
+const arrivals = ref(30)
+const inPosition = ref(80)
 
-// Mock data pour le doughnut chart
-const chartSeries = ref([12, 8, 50])
+// Données du chart calculées dynamiquement
+const chartSeries = computed(() => [arrivals.value, departures.value, inPosition.value])
 const chartLabels = ref(['Arrivées', 'Départs', 'En poste'])
 const chartColors = ref(['#55C3E9', '#F07F47', '#1CAB78']) // [secondary/cyan, orange, green]
-const totalCollaborateurs = ref(70)
+const totalCollaborateurs = computed(() => arrivals.value + departures.value + inPosition.value)
 </script>
