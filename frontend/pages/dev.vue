@@ -1285,6 +1285,7 @@
               contract-type="CDD"
               image-url="/card.jpg"
               description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
+              :has-video="true"
             />
           </div>
 

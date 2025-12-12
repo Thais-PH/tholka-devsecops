@@ -27,7 +27,7 @@
       >
         {{ tag.text }}
       </AtomsTag>
-      
+
       <!-- Texte en dessous -->
       <span class="font-roboto font-normal text-sm leading-[130%] text-primary-900">
         {{ contentText }}
@@ -39,13 +39,13 @@
   <div v-else-if="type === 'annonce'" class="flex flex-col items-start p-0 w-[258px] h-[139px]">
     <!-- Image section -->
     <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[258px] h-[106px] bg-cover bg-center rounded-lg flex-none order-0 self-stretch"
-         :style="{ backgroundImage: `url(${imageUrl})` }">
+     :style="{ backgroundImage: `url(${imageUrl})` }">
       <!-- Video icon badge -->
       <div v-if="hasVideo" class="flex flex-row justify-center items-center p-[3px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
         <LucideYoutube :size="17" :stroke-width="1.5" class="text-white" />
       </div>
     </div>
-    
+
     <!-- Content -->
     <div class="flex flex-col items-start px-[4px] pt-[8px] pb-0 gap-[16px] w-[258px] h-[33px] flex-none order-1 self-stretch">
       <div class="flex flex-col items-start p-0 gap-[8px] w-[250px] h-[25px] flex-none order-0 self-stretch">
@@ -72,40 +72,56 @@
     </div>
   </div>
 
-  <!-- Job Card - Structure Preline -->
+  <!-- Job Card - Structure Preline (Formation) -->
   <div v-else-if="type === 'job'" class="relative" :class="{ 'ml-20': orderNumber }">
     <!-- Numéro d'ordre - Calque arrière-plan, position fixe -->
-    <div v-if="orderNumber" class="absolute font-bold pointer-events-none" style="top: 0; left: -80px; font-family: 'Nunito', sans-serif; font-size: 150px; color: #F07F47; line-height: 1; z-index: 0; font-weight: 700;">
+    <div v-if="orderNumber" class="absolute font-nunito font-bold pointer-events-none" style="width: 90px; height: 165px; left: -71px; top: -4px; font-size: 150px; line-height: 110%; color: #F07F47; z-index: 0;">
       {{ orderNumber }}
     </div>
-    
-    <!-- Carte elle-même - Calque dessus, décalée vers la gauche pour mordre -->
-    <div class="relative flex flex-col bg-Light rounded-lg overflow-hidden w-[311px] min-h-[259px]" :class="{ '-ml-1': orderNumber }" style="z-index: 1;">
+
+    <!-- Carte elle-même - Layout vertical -->
+    <div class="relative flex flex-col items-center p-0 w-[311px] h-[259px] bg-white rounded-lg" style="isolation: isolate; z-index: 1;">
       <!-- Image section -->
-      <div class="h-[135px] bg-cover bg-center rounded-t-lg" 
-           :style="{ backgroundImage: `url(${imageUrl})` }">
+      <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[311px] h-[135px] bg-cover bg-center rounded-t-lg flex-none order-1 self-stretch" 
+           :style="{ backgroundImage: `url(${imageUrl})`, zIndex: 1 }">
+        <!-- Video icon badge (optionnel) -->
+        <div v-if="hasVideo" class="flex flex-row justify-between items-center p-[3px] gap-[10px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
+          <LucideYoutube :size="17" :stroke-width="1.5" class="text-white" />
+        </div>
       </div>
-    
-      <!-- Card body -->
-      <div class="flex-1 p-4 relative z-30">
-        <!-- Tag type de contrat -->
-        <div class="mb-3">
-          <AtomsTag
-            variant="soft"
-            color="primary"
-            size="md"
-          >
-            {{ contractType }}
-          </AtomsTag>
+
+      <!-- Barre de progression (optionnelle, masquée par défaut) -->
+      <div v-if="false" class="w-[307px] h-[9px] flex-none order-2" style="z-index: 2;">
+        <!-- Fond de la barre -->
+        <div class="absolute w-[307px] h-[9px] bg-secondary-300 rounded-full" style="left: 2px; top: 135px;"></div>
+        <!-- Progression -->
+        <div class="absolute h-[9px] bg-Orange-500 rounded-full" style="width: 116.76px; left: 2px; top: 135px;"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="flex flex-col items-start p-[16px] gap-[8px] w-[311px] h-[124px] flex-none order-3 self-stretch" style="z-index: 3;">
+        <!-- First bloc -->
+        <div class="flex flex-col items-start p-0 gap-[8px] w-[279px] h-[52px] flex-none order-0 self-stretch">
+          <!-- Tag list -->
+          <div class="flex flex-row items-start p-0 gap-[8px] w-[40px] h-[25px] flex-none order-0">
+            <AtomsTag
+              variant="soft"
+              color="primary"
+              size="md"
+              class="!w-[40px] !h-[25px] !font-roboto !text-xs"
+            >
+              {{ contractType }}
+            </AtomsTag>
+          </div>
+
+          <!-- Title -->
+          <h6 class="w-[279px] h-[19px] font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-1 self-stretch">
+            {{ title }}
+          </h6>
         </div>
 
-        <!-- Titre du poste -->
-        <h6 class="mb-2" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
-          {{ title }}
-        </h6>
-
-        <!-- Description tronquée -->
-        <p class="line-clamp-3" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
+        <!-- Content/Description -->
+        <p class="w-[279px] h-[32px] font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-2 self-stretch overflow-hidden">
           {{ description }}
         </p>
       </div>
@@ -113,48 +129,50 @@
   </div>
 
   <!-- Profile Card - Structure horizontale -->
-  <div v-else-if="type === 'profile'" class="relative">
-    <!-- Carte elle-même - Layout horizontal -->
-    <div class="relative flex bg-Light rounded-lg overflow-hidden w-[400px] h-[200px]" style="z-index: 1;">
-      <!-- Image section à gauche -->
-      <div class="w-[150px] h-full bg-cover bg-center flex-shrink-0 rounded-l-lg" 
-           :style="{ backgroundImage: `url(${imageUrl})` }">
-      </div>
-      
-      <!-- Contenu à droite -->
-      <div class="flex-1 p-4 flex flex-col justify-between">
-        <div>
-          <!-- Tag type de contrat -->
-          <div class="mb-3">
+  <div v-else-if="type === 'profile'" class="flex flex-row justify-center items-start p-0 w-[334px] h-[203px] bg-white border border-primary-300 rounded-lg">
+    <!-- Image section à gauche -->
+    <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[167px] h-[203px] bg-cover bg-center flex-none order-0 self-stretch flex-grow rounded-tl-lg" 
+         :style="{ backgroundImage: `url(${imageUrl})` }">
+    </div>
+
+    <!-- Content à droite -->
+    <div class="flex flex-col justify-between items-start p-[16px] gap-[8px] w-[167px] h-[203px] flex-none order-2 flex-grow">
+      <!-- Frame principal -->
+      <div class="flex flex-col items-start p-0 gap-[8px] w-[135px] h-[124px] flex-none order-1 self-stretch">
+        <!-- First bloc -->
+        <div class="flex flex-col items-start p-0 gap-[8px] w-[135px] h-[52px] flex-none order-0 self-stretch">
+          <!-- Tag list -->
+          <div class="flex flex-row items-start p-0 gap-[8px] w-[40px] h-[25px] flex-none order-0">
             <AtomsTag 
               variant="soft" 
               color="primary" 
               size="md"
+              class="!w-[40px] !h-[25px] !font-roboto !text-xs"
             >
               {{ contractType }}
             </AtomsTag>
           </div>
-          
-          <!-- Titre du profil -->
-          <h6 class="mb-2" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
+
+          <!-- Title -->
+          <h6 class="w-[135px] h-[19px] font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-1 self-stretch">
             {{ title }}
           </h6>
-          
-          <!-- Description -->
-          <p class="line-clamp-3 mb-4" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
-            {{ description }}
-          </p>
         </div>
-        
-        <!-- Lien voir le profil -->
-        <div>
-          <a href="#" class="inline-flex items-center gap-x-1 hover:text-primary-700 font-medium" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
-            Voir le profil
-            <svg class="flex-shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </a>
-        </div>
+
+        <!-- Content/Description -->
+        <p class="w-[135px] h-[64px] font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-1 self-stretch overflow-hidden">
+          {{ description }}
+        </p>
+      </div>
+
+      <!-- Button "Voir le profil" -->
+      <div class="flex flex-row items-center py-[4px] px-0 gap-[4px] h-[26px] rounded-lg flex-none order-2">
+        <AtomsButton variant="tertiary" size="sm" justify="start">
+          Voir le profil
+          <template #icon-right>
+            <LucideChevronRight :size="17" :stroke-width="1" />
+          </template>
+        </AtomsButton>
       </div>
     </div>
   </div>
@@ -236,7 +254,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Youtube as LucideYoutube } from 'lucide-vue-next'
+import { Youtube as LucideYoutube, ChevronRight as LucideChevronRight } from 'lucide-vue-next'
 
 const props = defineProps({
   type: {
