@@ -44,7 +44,7 @@ const props = defineProps({
   statusColor: {
     type: String,
     default: null,
-    validator: (v) => v === null || ['green', 'orange', 'yellow', 'secondary'].includes(v)
+    validator: (v) => v === null || ['primary', 'secondary', 'green', 'orange', 'yellow'].includes(v)
   }
 })
 
@@ -99,10 +99,11 @@ const statusIndicatorClasses = computed(() => {
   if (!props.statusColor) return ''
   
   const colorMap = {
-    green: 'size-1.5 bg-Green-500 rounded-full',
-    orange: 'size-1.5 bg-Orange-500 rounded-full', 
-    yellow: 'size-1.5 bg-Yellow-500 rounded-full',
-    secondary: 'size-1.5 bg-secondary-500 rounded-full'
+    primary: 'size-1.5 bg-primary-500 rounded-full flex-shrink-0',
+    secondary: 'size-1.5 bg-secondary-500 rounded-full flex-shrink-0',
+    green: 'size-1.5 bg-Green-500 rounded-full flex-shrink-0',
+    orange: 'size-1.5 bg-Orange-500 rounded-full flex-shrink-0',
+    yellow: 'size-1.5 bg-Yellow-500 rounded-full flex-shrink-0'
   }
   
   return colorMap[props.statusColor] || ''

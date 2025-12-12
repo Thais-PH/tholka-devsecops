@@ -159,60 +159,77 @@
     </div>
   </div>
 
-  <!-- Stats Card - Carte simple avec statistiques -->
-  <div v-else-if="type === 'stats'" class="bg-Light rounded-lg p-4 w-[280px]">
-    <!-- Tag statut avec indicateur -->
-    <div class="mb-3">
-      <AtomsTag 
-        variant="soft" 
-        color="primary" 
-        size="md"
-        status-color="green"
-      >
-        Publiée
-      </AtomsTag>
-    </div>
-    
-    <!-- Titre -->
-    <h6 class="mb-4" style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px; color: #3A3B99; line-height: 1.2;">
-      {{ title }}
-    </h6>
-    
-    <!-- Tags statistiques et total -->
-    <div class="flex items-center justify-between">
-      <div class="flex gap-2 flex-nowrap">
-        <!-- Candidats traités -->
-        <AtomsTag 
-          variant="soft" 
-          color="green" 
-          size="md"
-        >
-          {{ candidatesProcessed }}
-        </AtomsTag>
-        
-        <!-- Candidats en attente -->
-        <AtomsTag 
-          variant="soft" 
-          color="secondary" 
-          size="md"
-        >
-          {{ candidatesPending }}
-        </AtomsTag>
-        
-        <!-- Candidats refusés -->
-        <AtomsTag 
-          variant="soft" 
-          color="orange" 
-          size="md"
-        >
-          {{ candidatesRejected }}
-        </AtomsTag>
+  <!-- Stats Card - Corrigée selon maquette -->
+  <div v-else-if="type === 'stats'" class="flex flex-col items-start p-[24px] w-[240px] h-[149px] bg-white rounded-lg">
+    <!-- Content -->
+    <div class="flex flex-col justify-center items-end px-[4px] py-0 gap-[24px] w-[174px] h-[101px] rounded-lg flex-none order-0">
+      <!-- Frame principal -->
+      <div class="flex flex-col items-start p-0 gap-[24px] w-[166px] h-[101px] flex-none order-0">
+        <!-- Frame avec tag et titre -->
+        <div class="flex flex-col items-start p-0 gap-[8px] w-[133px] h-[52px] flex-none order-0">
+          <!-- Bloc tag -->
+          <div class="flex flex-row items-center p-0 gap-[8px] w-[65px] h-[25px] flex-none order-0">
+            <AtomsTag
+              variant="soft"
+              color="primary"
+              size="md"
+              status-color="primary"
+              class="!w-[65px] !h-[25px] !font-roboto"
+            >
+              Publiée
+            </AtomsTag>
+          </div>
+
+          <!-- Titre -->
+          <h6 class="w-[133px] h-[19px] font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-1">
+            {{ title }}
+          </h6>
+        </div>
+
+        <!-- Frame statistiques -->
+        <div class="flex flex-col items-start p-0 gap-[16px] w-[166px] h-[25px] flex-none order-1">
+          <!-- Row avec tags et total -->
+          <div class="flex flex-row items-center p-0 gap-[12px] w-[166px] h-[25px] flex-none order-0">
+            <!-- Tags groupe -->
+            <div class="flex flex-row items-start p-0 gap-[4px] w-[84px] h-[25px] flex-none order-0">
+              <!-- Tag vert -->
+              <AtomsTag
+                variant="soft"
+                color="green"
+                size="md"
+                class="!w-[30px] !h-[25px] !text-xs !font-normal !px-0 !justify-center !font-roboto"
+              >
+                {{ candidatesProcessed }}
+              </AtomsTag>
+
+              <!-- Tag bleu -->
+              <AtomsTag
+                variant="soft"
+                color="secondary"
+                size="md"
+                class="!w-[23px] !h-[25px] !text-xs !font-normal !px-0 !justify-center !font-roboto"
+              >
+                {{ candidatesPending }}
+              </AtomsTag>
+
+              <!-- Tag orange -->
+              <AtomsTag
+                variant="soft"
+                color="orange"
+                size="md"
+                class="!w-[23px] !h-[25px] !text-xs !font-normal !px-0 !justify-center !font-roboto"
+              >
+                {{ candidatesRejected }}
+              </AtomsTag>
+            </div>
+
+            <!-- Total candidatures -->
+            <span class="w-[70px] h-[17px] font-roboto font-normal text-xs leading-[140%] text-primary-900 flex-none order-1">
+              {{ candidatesTotal }} candidats
+            </span>
+          </div>
+        </div>
       </div>
-      
-      <!-- Total candidatures à droite -->
-      <p class="ml-4" style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; color: #050D2E;">
-        {{ candidatesTotal }} candidatures
-      </p>
     </div>
   </div>
 </template>
