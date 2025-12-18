@@ -33,13 +33,14 @@ const itemClasses = computed(() => {
   const baseClasses = [
     'flex flex-row items-center justify-center',
     'px-4 py-2',
-    'w-[63px] h-[38px]',
+    'h-[38px]',
+    'min-w-fit',
     'transition-all duration-300 ease-in-out',
     'focus:outline-none',
     'focus:ring-0',
     'outline-none',
-    'flex-none',
-    'rounded-[20px]'
+    'rounded-full',
+    'whitespace-nowrap'
   ]
 
   if (props.variant === 'active') {
@@ -58,9 +59,7 @@ const itemClasses = computed(() => {
 const textClasses = computed(() => {
   const baseClasses = [
     'font-roboto font-normal text-base leading-[140%]',
-    'flex-none',
-    'transition-colors duration-300 ease-in-out',
-    'text-center'
+    'transition-colors duration-300 ease-in-out'
   ]
 
   if (props.variant === 'active') {

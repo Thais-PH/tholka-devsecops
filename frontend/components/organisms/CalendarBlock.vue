@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-[413px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
     <!-- Calendar Grid -->
     <div class="w-full">
       <!-- Month Navigation -->
@@ -71,6 +71,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { ChevronLeft as LucideChevronLeft, ChevronRight as LucideChevronRight } from 'lucide-vue-next'
 
 interface Event {
   day: string
@@ -185,24 +186,24 @@ const isSelected = (day: CalendarDay): boolean => {
 // Example events - replace with your data
 const events = ref<Event[]>([
   {
-    day: '15',
-    monthYear: 'janv.',
-    tagLabel: 'Réunion',
-    title: 'Réunion d\'équipe',
-    year: 2025
-  },
-  {
-    day: '20',
-    monthYear: 'janv.',
-    tagLabel: 'Deadline',
-    title: 'Deadline projet frontend',
+    day: '23',
+    monthYear: 'dec.',
+    tagLabel: 'CSE',
+    title: 'Café du CSE',
     year: 2025
   },
   {
     day: '25',
-    monthYear: 'janv.',
-    tagLabel: 'Conférence',
-    title: 'Conférence Vue 3',
+    monthYear: 'dec.',
+    tagLabel: 'Afterwork',
+    title: 'Bowling Atlantis',
+    year: 2025
+  },
+  {
+    day: '28',
+    monthYear: 'dec.',
+    tagLabel: 'Réunion',
+    title: 'Point d’équipe',
     year: 2025
   }
 ])

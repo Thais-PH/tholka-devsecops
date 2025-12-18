@@ -1,7 +1,7 @@
 <template>
   <nav
     class="flex flex-row items-center p-1 relative bg-white rounded-[1000px]"
-    style="width: 260px; height: 46px;"
+    :style="{ width: 'fit-content', minWidth: '260px', height: '46px' }"
     aria-label="Secondary Menu"
     role="tablist"
     aria-orientation="horizontal"

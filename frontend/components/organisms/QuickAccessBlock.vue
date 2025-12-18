@@ -1,17 +1,17 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[356px] max-h-[171px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
       <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
     </div>
 
-    <!-- Quick Access List -->
-    <div class="flex flex-col items-start w-full gap-1">
+    <!-- Quick Access List - Horizontal -->
+    <div class="flex flex-row items-start w-full gap-6">
       <div 
         v-for="(access, index) in quickAccess" 
         :key="index"
-        class="flex flex-row items-center w-full gap-0"
+        class="flex flex-row items-center gap-2"
       >
         <!-- Icône avec couleur -->
         <div 
@@ -21,44 +21,37 @@
           <component :is="access.icon" :size="17" :stroke-width="1.5" class="text-Light" />
         </div>
 
-        <!-- Wrapper pour le bouton -->
-        <div class="flex-1">
-          <AtomsButton
-            variant="tertiary"
-            size="sm"
-            justify="start"
-            class="inline-flex"
-            @click="handleAccessClick(access)"
-          >
-            {{ access.label }}
-          </AtomsButton>
-        </div>
+        <!-- Bouton -->
+        <AtomsButton
+          variant="tertiary"
+          size="sm"
+          justify="start"
+          @click="handleAccessClick(access)"
+        >
+          {{ access.label }}
+        </AtomsButton>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import type { Component } from 'vue'
+<script setup>
+import { Rocket as LucideRocket } from 'lucide-vue-next'
 
-interface QuickAccess {
-  label: string
-  icon: Component
-  color: 'primary' | 'secondary' | 'orange' | 'green'
-  url?: string
-  action?: () => void
-}
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Accès rapides'
+  },
+  quickAccess: {
+    type: Array,
+    required: true
+  }
+})
 
-defineProps<{
-  title?: string
-  quickAccess: QuickAccess[]
-}>()
+const emit = defineEmits(['access-click'])
 
-const emit = defineEmits<{
-  'access-click': [access: QuickAccess]
-}>()
-
-const getIconBackgroundColor = (color: QuickAccess['color']) => {
+const getIconBackgroundColor = (color) => {
   const colors = {
     'primary': 'bg-primary-500',
     'secondary': 'bg-secondary-500',
@@ -68,7 +61,7 @@ const getIconBackgroundColor = (color: QuickAccess['color']) => {
   return colors[color] || 'bg-primary-500'
 }
 
-const handleAccessClick = (access: QuickAccess) => {
+const handleAccessClick = (access) => {
   if (access.action) {
     access.action()
   } else if (access.url) {

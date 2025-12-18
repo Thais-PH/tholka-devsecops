@@ -129,45 +129,52 @@
   </div>
 
   <!-- Profile Card - Structure horizontale -->
-  <div v-else-if="type === 'profile'" class="flex flex-row justify-center items-start p-0 w-[334px] h-[203px] bg-white border border-primary-300 rounded-lg">
+  <div v-else-if="type === 'profile'" class="flex flex-row justify-center items-start p-0 w-[302.75px] h-[203px] bg-white border border-primary-300 rounded-lg overflow-hidden">
     <!-- Image section à gauche -->
-    <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[167px] h-[203px] bg-cover bg-center flex-none order-0 self-stretch flex-grow rounded-tl-lg" 
-         :style="{ backgroundImage: `url(${imageUrl})` }">
+    <div 
+      class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[151.38px] h-[203px] rounded-tl-lg flex-none order-0 self-stretch flex-grow"
+      :style="{ 
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: imagePosition || 'center',
+        backgroundRepeat: 'no-repeat'
+      }"
+    >
     </div>
 
     <!-- Content à droite -->
-    <div class="flex flex-col justify-between items-start p-[16px] gap-[8px] w-[167px] h-[203px] flex-none order-2 flex-grow">
+    <div class="flex flex-col justify-between items-start p-[16px] gap-[8px] w-[151.38px] h-[203px] flex-none order-2 flex-grow">
       <!-- Frame principal -->
-      <div class="flex flex-col items-start p-0 gap-[8px] w-[135px] h-[124px] flex-none order-1 self-stretch">
+      <div class="flex flex-col items-start p-0 gap-[8px] w-full h-[105px] flex-none order-1 self-stretch">
         <!-- First bloc -->
-        <div class="flex flex-col items-start p-0 gap-[8px] w-[135px] h-[52px] flex-none order-0 self-stretch">
+        <div class="flex flex-col items-start p-0 gap-[8px] w-full h-[49px] flex-none order-0 self-stretch">
           <!-- Tag list -->
-          <div class="flex flex-row items-start p-0 gap-[8px] w-[40px] h-[25px] flex-none order-0">
+          <div class="flex flex-row items-start p-0 gap-[8px] h-[25px] flex-none order-0">
             <AtomsTag 
               variant="soft" 
               color="primary" 
               size="md"
-              class="!w-[40px] !h-[25px] !font-roboto !text-xs"
+              class="!h-[25px] !font-roboto !text-xs !px-2 !w-auto"
             >
               {{ contractType }}
             </AtomsTag>
           </div>
 
           <!-- Title -->
-          <h6 class="w-[135px] h-[19px] font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-1 self-stretch">
+          <h6 class="w-full h-[16px] font-nunito font-bold text-[13.24px] leading-[120%] text-primary-500 flex-none order-1 self-stretch truncate">
             {{ title }}
           </h6>
         </div>
 
         <!-- Content/Description -->
-        <p class="w-[135px] h-[64px] font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-1 self-stretch overflow-hidden">
+        <p class="w-full h-[48px] font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-1 self-stretch overflow-hidden line-clamp-3">
           {{ description }}
         </p>
       </div>
 
       <!-- Button "Voir le profil" -->
-      <div class="flex flex-row items-center py-[4px] px-0 gap-[4px] h-[26px] rounded-lg flex-none order-2">
-        <AtomsButton variant="tertiary" size="sm" justify="start">
+      <div class="flex flex-row items-center gap-[4px] flex-none order-2 w-full">
+        <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto whitespace-nowrap">
           Voir le profil
           <template #icon-right>
             <LucideChevronRight :size="17" :stroke-width="1" />
@@ -327,6 +334,12 @@ const props = defineProps({
   candidatesTotal: {
     type: Number,
     default: 0
+  },
+  // Props pour positionner l'image
+  imagePosition: {
+    type: String,
+    required: false,
+    default: 'center'
   }
 })
 

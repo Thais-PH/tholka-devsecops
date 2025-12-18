@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[385px] max-h-[191px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
@@ -14,7 +14,7 @@
         class="flex flex-col justify-center items-start w-full gap-[5px]"
       >
         <!-- Nom du contact -->
-        <span class="font-roboto font-semibold text-base leading-[140%] text-primary-900">
+        <span class="font-roboto font-semibold text-base leading-[140%] text-primary-500">
           {{ contact.name }}
         </span>
         
@@ -27,14 +27,17 @@
   </div>
 </template>
 
-<script setup lang="ts">
-interface Contact {
-  name: string
-  email: string
-}
+<script setup>
+import { Contact2 as LucideContact2 } from 'lucide-vue-next'
 
-defineProps<{
-  title?: string
-  contacts: Contact[]
-}>()
+defineProps({
+  title: {
+    type: String,
+    default: 'Contact de référence'
+  },
+  contacts: {
+    type: Array,
+    required: true
+  }
+})
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[356px] max-h-[163px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
@@ -25,22 +25,23 @@
   </div>
 </template>
 
-<script setup lang="ts">
-interface Document {
-  label: string
-  url?: string
-}
+<script setup>
+import { File as LucideFile, ChevronRight as LucideChevronRight } from 'lucide-vue-next'
 
-const props = defineProps<{
-  title?: string
-  documents: Document[]
-}>()
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Derniers documents'
+  },
+  documents: {
+    type: Array,
+    required: true
+  }
+})
 
-const emit = defineEmits<{
-  'document-click': [document: Document]
-}>()
+const emit = defineEmits(['document-click'])
 
-const handleDocumentClick = (document: Document) => {
+const handleDocumentClick = (document) => {
   if (document.url) {
     window.open(document.url, '_blank')
   }
