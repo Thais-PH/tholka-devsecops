@@ -1550,6 +1550,23 @@
         </div>
       </section>
 
+      <!-- Filter Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Filter</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Dropdown Filter</h3>
+          <div class="bg-Grey-300 rounded-lg p-8 flex justify-start">
+            <MoleculesFilter
+              :filter-options="filterOptions"
+              v-model="activeFilters"
+              @apply="handleFilterApply"
+            />
+          </div>
+          <p class="text-sm text-Grey-500 mt-4">Filtres actifs: {{ activeFilters.join(', ') || 'Aucun' }}</p>
+        </div>
+      </section>
+
       <!-- Blocks Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
@@ -2008,6 +2025,19 @@ const editorContent = ref('')
 
 // State for pagination
 const currentPaginationPage = ref(1)
+
+// State for filter
+const filterOptions = [
+  { id: 'quiz', label: 'Quiz' },
+  { id: 'test', label: 'Test' },
+  { id: 'exam', label: 'Examen' },
+  { id: 'training', label: 'Formation' }
+]
+const activeFilters = ref([])
+
+const handleFilterApply = (filters) => {
+  console.log('Filtres appliqués:', filters)
+}
 
 // États des checkboxes
 const simpleCheckbox = ref(false)           // Non coché

@@ -98,7 +98,7 @@ const chartOptions = computed(() => ({
     enabled: false
   },
   grid: {
-    show: false,
+    show: true,
     padding: {
       top: 0,
       right: 0,
@@ -112,7 +112,7 @@ const chartOptions = computed(() => ({
     },
     yaxis: {
       lines: {
-        show: false
+        show: true
       }
     }
   },
