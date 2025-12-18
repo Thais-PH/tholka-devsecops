@@ -66,7 +66,9 @@ const chartOptions = computed(() => ({
     axisBorder: {
       show: false
     },
-    labels: {      rotate: 0,      style: {
+    labels: {
+      rotate: 0,
+      style: {
         fontSize: '12px',
         fontWeight: 400,
         lineHeight: '1.125rem',

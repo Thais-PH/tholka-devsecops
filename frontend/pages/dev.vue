@@ -1533,6 +1533,23 @@
         </div>
       </div>
 
+      <!-- Pagination Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Pagination</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Basic Pagination</h3>
+          <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+            <MoleculesPagination
+              :current-page="currentPaginationPage"
+              :total-pages="10"
+              @page-change="currentPaginationPage = $event"
+            />
+          </div>
+          <p class="text-sm text-Grey-500 mt-4">Page actuelle: {{ currentPaginationPage }}</p>
+        </div>
+      </section>
+
       <!-- Blocks Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
@@ -1988,6 +2005,9 @@ useHead({
 })
 
 const editorContent = ref('')
+
+// State for pagination
+const currentPaginationPage = ref(1)
 
 // États des checkboxes
 const simpleCheckbox = ref(false)           // Non coché
