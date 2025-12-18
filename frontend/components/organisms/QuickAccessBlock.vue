@@ -70,5 +70,3 @@ const handleAccessClick = (access) => {
   emit('access-click', access)
 }
 </script>
-
-quick access block

@@ -920,7 +920,7 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
         
-        <div class="rounded-lg p-8" style="background-color: #ECF8FD;">
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <!-- Statut Section -->
           <div class="mb-8">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Statut</h3>
@@ -1247,6 +1247,151 @@
         </div>
       </section>
 
+      <!-- Cards Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Cards</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Event line</h3>
+          
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="event"
+              :date="new Date(2025, 8, 23)"
+              :tag="{ text: 'Tag', variant: 'stroke', color: 'primary', size: 'md' }"
+              content-text="Titre lorem ipsum"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce</h3>
+          
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="annonce"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
+              image-url="/card.jpg"
+              :has-video="true"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Formation</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="job"
+              :order-number="1"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
+              image-url="/card.jpg"
+              description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
+              :has-video="true"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Profile</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="profile"
+              title="Titre lorem ipsum"
+              contract-type="CDD"
+              image-url="/card.jpg"
+              description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Stats</h3>
+          
+          <div class="flex flex-wrap gap-6">
+            <MoleculesCard
+              type="stats"
+              title="Titre lorem ipsum"
+              :candidates-processed="10"
+              :candidates-pending="1"
+              :candidates-rejected="2"
+              :candidates-total="13"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Modal</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Modal de confirmation</h3>
+          
+          <div class="flex flex-wrap gap-4 mb-6">
+            <button
+              @click="showSuccessModal = true"
+              class="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            >
+              Succès création
+            </button>
+            <button
+              @click="showPublishedModal = true"
+              class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:blue-600"
+            >
+              Succès publication
+            </button>
+            <button
+              @click="showDeletedModal = true"
+              class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            >
+              Succès suppression
+            </button>
+          </div>
+
+          <!-- Modales -->
+          <MoleculesModal
+            :is-open="showSuccessModal"
+            title="Annonce créée avec succès"
+            message="Votre annonce a été créée et sauvegardée. Vous pouvez maintenant la publier ou la modifier."
+            button-text="Parfait"
+            @close="showSuccessModal = false"
+          />
+
+          <MoleculesModal
+            :is-open="showPublishedModal"
+            title="Annonce publiée"
+            message="Votre annonce est maintenant en ligne et visible par les candidats."
+            button-text="Compris"
+            @close="showPublishedModal = false"
+          />
+
+          <MoleculesModal
+            :is-open="showDeletedModal"
+            title="Annonce supprimée"
+            message="L'annonce a été définitivement supprimée de la plateforme."
+            button-text="OK"
+            @close="showDeletedModal = false"
+          />
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tables</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Table basique</h3>
+          
+          <div class="mb-8">
+            <MoleculesTable
+              :data="tableData"
+              :columns="tableColumns"
+              variant="default"
+              hoverable
+              :sortable="true"
+              :default-sort="{ key: 'nom', order: 'asc' }"
+              @sort-change="handleSortChange"
+            />
+          </div>
+        </div>
+      </section>
+
       <!-- Steps & Stepper Section -->
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
@@ -1294,7 +1439,7 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 gap-8">
           <!-- Doughnut Chart -->
           <div class="bg-white rounded-lg p-8 shadow-sm">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
@@ -1325,11 +1470,51 @@
             <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
               <ClientOnly>
                 <MoleculesBarChart
-                  :series="[8, 25, 78, 65]"
+                  :series="[2, 45, 78, 65]"
                   :labels="['D', 'I', 'S', 'C']"
                   :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
                 />
               </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Multiple Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Multiple Bar Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesMultipleBarChart
+                  :series="[
+                    { name: 'Income', data: [30, 45, 60, 40] },
+                    { name: 'Outcome', data: [20, 35, 50, 30] }
+                  ]"
+                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
+                  :colors="['#3A3B99', '#3A3B9933']"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Progress Bar</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-8">
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 25%</p>
+                <MoleculesProgressBar :percentage="25" label="Étape 1" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 50%</p>
+                <MoleculesProgressBar :percentage="50" label="Étape 2" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 75%</p>
+                <MoleculesProgressBar :percentage="75" label="Étape 3" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 100%</p>
+                <MoleculesProgressBar :percentage="100" label="Complété" />
+              </div>
             </div>
           </div>
         </div>
@@ -1347,6 +1532,100 @@
           />
         </div>
       </div>
+
+      <!-- Blocks Section -->
+      <section class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Calendar Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsCalendarBlock />
+                </div>
+              </div>
+
+              <!-- Annonce Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsAnnonceBlock
+                    title="Opportunités internes"
+                    :annonces="mockAnnonces"
+                  />
+                </div>
+              </div>
+
+              <!-- Events Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsEventsBlock
+                    title="Événements"
+                    :events="mockEvents"
+                  />
+                </div>
+              </div>
+
+              <!-- Chart Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsChartBlock />
+                </div>
+              </div>
+
+              <!-- Documents Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Documents Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsDocumentsBlock
+                    title="Derniers documents"
+                    :documents="mockDocuments"
+                    @document-click="handleDocumentClick"
+                  />
+                </div>
+              </div>
+
+              <!-- Vacations Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Vacations Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsVacationsBlock
+                    title="Mes congés"
+                    :vacations="mockVacations"
+                  />
+                </div>
+              </div>
+
+              <!-- Contacts Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Contacts Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsContactsBlock
+                    title="Mes contacts de référence"
+                    :contacts="mockContacts"
+                  />
+                </div>
+              </div>
+
+              <!-- Quick Access Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Quick Access Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsQuickAccessBlock
+                    title="Mes accès rapides"
+                    :quick-access="mockQuickAccess"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Forms Section -->
       <section class="mt-8 mb-16">
@@ -1611,6 +1890,94 @@
 import { ref } from 'vue'
 import BadgeIA from '~/components/atoms/BadgeIA.vue'
 import AtomsTag from '~/components/atoms/Tag.vue'
+import {
+  Pencil as LucidePencil,
+  FileQuestion as LucideFileQuestion,
+  Network as LucideNetwork
+} from 'lucide-vue-next'
+
+// Variables pour les modales
+const showSuccessModal = ref(false)
+const showPublishedModal = ref(false)
+const showDeletedModal = ref(false)
+
+// Variables pour les tables
+const tableData = ref([
+  { 
+    id: 1, 
+    nom: 'Jean Dupont', 
+    age: 45, 
+    adresse: 'Paris 15e arrondissement', 
+    email: 'jean.dupont@email.com', 
+    status: { text: 'Actif', variant: 'solid', color: 'green' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 2, 
+    nom: 'Marie Martin', 
+    age: 27, 
+    adresse: 'Lyon 3e arrondissement', 
+    email: 'marie.martin@email.com', 
+    status: { text: 'En attente', variant: 'soft', color: 'orange' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 3, 
+    nom: 'Pierre Bernard', 
+    age: 31, 
+    adresse: 'Marseille 2e arrondissement', 
+    email: 'pierre.bernard@email.com', 
+    status: { text: 'Inactif', variant: 'soft', color: 'black' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 4, 
+    nom: 'Sophie Laurent', 
+    age: 38, 
+    adresse: 'Toulouse centre-ville', 
+    email: 'sophie.laurent@email.com', 
+    status: { text: 'Validé', variant: 'stroke', color: 'primary', statusColor: 'green' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  },
+  { 
+    id: 5, 
+    nom: 'Thomas Petit', 
+    age: 29, 
+    adresse: 'Nice vieille ville', 
+    email: 'thomas.petit@email.com', 
+    status: { text: 'Suspendu', variant: 'solid', color: 'yellow' },
+    actions: [
+      { key: 'access', label: '>', variant: 'primary', handler: (row) => console.log('Accès:', row) }
+    ]
+  }
+])
+
+const tableColumns = ref([
+  { key: 'nom', label: 'NOM', type: 'text', cellClass: 'font-medium' },
+  { key: 'age', label: 'ÂGE', type: 'text' },
+  { key: 'adresse', label: 'ADRESSE', type: 'text' },
+  { key: 'email', label: 'EMAIL', type: 'text', cellClass: 'text-secondary-500', sortable: false },
+  { key: 'status', label: 'STATUS', type: 'tag' },
+  { key: 'actions', label: 'ACCES', type: 'action', headerClass: 'text-center', cellClass: 'text-center' }
+])
+
+// Fonctions pour les tables
+const handleDeleteRow = (data) => {
+  console.log('Supprimer la ligne:', data.row)
+  alert(`Suppression de ${data.row.nom}`)
+}
+
+const handleSortChange = (sortConfig) => {
+  console.log('Tri changé:', sortConfig)
+}
 
 // Configuration SEO pour la page
 useHead({
@@ -1654,5 +2021,95 @@ const selectOptions = [
   { value: '3', label: 'Button' },
   { value: '4', label: 'Button' },
   { value: '5', label: 'Button' }
+]
+
+// Mock data pour les événements
+const mockEvents = [
+  {
+    day: '23',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '25',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '26',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '28',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  },
+  {
+    day: '30',
+    monthYear: 'sept. 2025',
+    year: 2025,
+    tagLabel: 'Tag',
+    title: 'Titre lorem ispum'
+  }
+]
+
+// Mock data pour les documents
+const mockDocuments = [
+  { label: 'Button', url: '#' },
+  { label: 'Button', url: '#' },
+  { label: 'Button', url: '#' }
+]
+
+// Handler pour le clic sur un document
+const handleDocumentClick = (document) => {
+  console.log('Document cliqué:', document)
+}
+
+// Mock data pour les congés
+const mockVacations = [
+  { type: 'RTT', status: 'Accepté', date: '19/11/2025' },
+  { type: 'RTT', status: 'En attente', date: '19/11/2025' },
+  { type: 'RTT', status: 'Refusé', date: '19/11/2025' }
+]
+
+// Mock data pour les contacts
+const mockContacts = [
+  { name: 'Manager', email: 'manager@enterprise.com' },
+  { name: 'Service RH', email: 'rh@enterprise.com' }
+]
+
+// Mock data pour les accès rapides
+const mockQuickAccess = [
+  { label: 'Créer une annonce', icon: LucidePencil, color: 'secondary' },
+  { label: 'Outil de ticketing', icon: LucideFileQuestion, color: 'orange' },
+  { label: 'Organigramme', icon: LucideNetwork, color: 'green' }
+]
+
+// Mock data pour les annonces
+const mockAnnonces = [
+  {
+    title: 'Chef de Projet Digital',
+    contractType: 'CDI',
+    imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop'
+  },
+  {
+    title: 'Développeur Frontend Vue.js',
+    contractType: 'CDI',
+    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&h=200&fit=crop'
+  },
+  {
+    title: 'Designer UX/UI',
+    contractType: 'Stage',
+    imageUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=300&h=200&fit=crop'
+  }
 ]
 </script>

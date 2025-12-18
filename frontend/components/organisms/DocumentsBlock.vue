@@ -48,5 +48,3 @@ const handleDocumentClick = (document) => {
   emit('document-click', document)
 }
 </script>
-
-documents block
