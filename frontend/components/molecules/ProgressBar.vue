@@ -1,8 +1,7 @@
 <template>
   <div class="w-full">
-    <div class="flex items-center justify-between mb-2">
-      <span v-if="label" class="text-sm font-medium text-primary-900">{{ label }}</span>
-      <span class="text-sm font-medium text-primary-900">{{ percentage }}%</span>
+    <div v-if="label" class="flex items-center justify-between mb-2">
+      <span class="text-sm font-medium text-primary-900">{{ label }}</span>
     </div>
     <div class="w-full h-2 bg-grey-200 rounded-full overflow-hidden">
       <div
