@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col w-[245px] h-[303px]">
+  <div class="flex flex-col w-full h-[447px]">
     <apexchart
       :key="JSON.stringify(series)"
       type="bar"
       :options="chartOptions"
-      :series="[{ data: series }]"
+      :series="series"
       width="100%"
       height="100%"
     />
@@ -18,7 +18,10 @@ const props = defineProps({
   series: {
     type: Array,
     required: true,
-    default: () => [0, 0, 0, 0]
+    default: () => [
+      { name: 'Series 1', data: [0, 0, 0, 0] },
+      { name: 'Series 2', data: [0, 0, 0, 0] }
+    ]
   },
   labels: {
     type: Array,
@@ -27,7 +30,7 @@ const props = defineProps({
   },
   colors: {
     type: Array,
-    default: () => ['#EB5035', '#FFD83B', '#45CA24', '#476EF6']
+    default: () => ['#EB5035', '#FFD83B']
   }
 })
 
@@ -36,12 +39,19 @@ const chartOptions = computed(() => ({
     type: 'bar',
     toolbar: {
       show: false
+    },
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
     }
   },
   plotOptions: {
     bar: {
       horizontal: false,
-      distributed: true
+      columnWidth: '30px',
+      distributed: false
     }
   },
   colors: props.colors,
@@ -53,12 +63,14 @@ const chartOptions = computed(() => ({
     axisTicks: {
       show: false
     },
-    labels: {
-      style: {
-        fontSize: '16px',
-        fontWeight: 500,
+    axisBorder: {
+      show: false
+    },
+    labels: {      rotate: 0,      style: {
+        fontSize: '12px',
+        fontWeight: 400,
+        lineHeight: '1.125rem',
         fontFamily: 'Roboto, sans-serif',
-        lineHeight: '1.4',
         letterSpacing: '0px'
       }
     }
@@ -77,25 +89,40 @@ const chartOptions = computed(() => ({
       }
     },
     axisBorder: {
-      show: true
+      show: false
     }
   },
   dataLabels: {
-    enabled: true,
-    formatter: (val) => `${val}%`,
-    distributed: true,
-    style: {
-      fontSize: '12px',
-      fontWeight: 400,
-      lineHeight: '1.125rem',
-      fontFamily: 'Roboto, sans-serif',
-      colors: ['#AA271D', '#AF8434', '#146E4E', '#252958']
+    enabled: false
+  },
+  grid: {
+    show: false,
+    padding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    xaxis: {
+      lines: {
+        show: false
+      }
+    },
+    yaxis: {
+      lines: {
+        show: false
+      }
     }
   },
   tooltip: {
     enabled: false
   },
   states: {
+    active: {
+      filter: {
+        type: 'none'
+      }
+    },
     hover: {
       filter: {
         type: 'none'

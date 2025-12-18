@@ -1439,7 +1439,7 @@
       <section class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 gap-8">
           <!-- Doughnut Chart -->
           <div class="bg-white rounded-lg p-8 shadow-sm">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
@@ -1470,11 +1470,51 @@
             <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
               <ClientOnly>
                 <MoleculesBarChart
-                  :series="[8, 25, 78, 65]"
+                  :series="[2, 45, 78, 65]"
                   :labels="['D', 'I', 'S', 'C']"
                   :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
                 />
               </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Multiple Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Multiple Bar Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesMultipleBarChart
+                  :series="[
+                    { name: 'Income', data: [30, 45, 60, 40] },
+                    { name: 'Outcome', data: [20, 35, 50, 30] }
+                  ]"
+                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
+                  :colors="['#3A3B99', '#3A3B9933']"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Progress Bar</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-8">
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 25%</p>
+                <MoleculesProgressBar :percentage="25" label="Étape 1" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 50%</p>
+                <MoleculesProgressBar :percentage="50" label="Étape 2" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 75%</p>
+                <MoleculesProgressBar :percentage="75" label="Étape 3" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 100%</p>
+                <MoleculesProgressBar :percentage="100" label="Complété" />
+              </div>
             </div>
           </div>
         </div>

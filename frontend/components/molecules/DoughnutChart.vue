@@ -14,7 +14,7 @@
       
       <!-- Center Content -->
       <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
-        <div class="flex flex-col justify-center items-center w-[157px] h-[156px] bg-Light rounded-full">
+        <div class="flex flex-col justify-center items-center w-[140px] h-[140px] bg-Light rounded-full">
           <h2 class="text-h2 font-sans text-primary-500 leading-none">{{ centerValue }}</h2>
           <p class="text-base font-roboto text-center text-primary-900">{{ centerLabel }}</p>
         </div>
@@ -65,7 +65,7 @@ const chartOptions = computed(() => ({
   plotOptions: {
     pie: {
       donut: {
-        size: '70%',
+        size: '35%',
         background: 'transparent'
       }
     }
@@ -80,7 +80,9 @@ const chartOptions = computed(() => ({
     enabled: false
   },
   stroke: {
-    width: 0
+    show: true,
+    width: 4,
+    colors: ['#ECF8FD']
   },
   states: {
     hover: {
