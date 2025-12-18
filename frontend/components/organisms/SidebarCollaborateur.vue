@@ -45,14 +45,18 @@ const menuItems = [
 
 <style scoped>
 .sidebar-collaborateur {
+  position: fixed;
+  top: 82.73px;
+  left: 0;
   width: 300px;
-  min-height: 100vh;
+  height: calc(100vh - 82.73px);
   background: #252958;
   display: flex;
   flex-direction: column;
   padding: 32px 20px;
   box-sizing: border-box;
-  position: relative;
+  overflow-y: auto;
+  z-index: 40;
 }
 
 .sidebar-nav {
@@ -60,7 +64,6 @@ const menuItems = [
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow-y: auto;
 }
 
 .menu-item {
