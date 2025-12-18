@@ -61,9 +61,16 @@
                 </AtomsTag>
               </div>
 
-              <!-- Placeholder Bar Chart - flex-1 pour prendre l'espace restant -->
-              <div class="flex items-center justify-center w-full flex-1 min-h-[455px] bg-Grey-300 rounded-lg">
-                <span class="font-nunito font-bold text-xl text-primary-500">Bar Chart (Activité & Objectifs)</span>
+              <!-- Bar Chart - flex-1 pour prendre l'espace restant -->
+              <div class="flex items-center justify-center w-full flex-1 min-h-[455px]">
+                <MoleculesMultipleBarChart
+                  :series="[
+                    { name: 'Income', data: [62, 80, 50, 55] },
+                    { name: 'Outcome', data: [78, 90, 75, 70] }
+                  ]"
+                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
+                  :colors="['#3A3B99', '#3A3B9933']"
+                />
               </div>
             </div>
           </div>
