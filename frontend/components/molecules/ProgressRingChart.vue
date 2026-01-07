@@ -6,7 +6,7 @@
         <apexchart
           type="radialBar"
           :options="chartOptions"
-          :series="[percentage]"
+          :series="[adjustedPercentage]"
           height="200"
           width="200"
         />
@@ -50,6 +50,15 @@ const props = defineProps({
     type: Number,
     default: 30
   }
+})
+
+// Calculer le pourcentage ajusté pour l'arc partiel
+const adjustedPercentage = computed(() => {
+  // L'arc total est de (endAngle - startAngle) degrés
+  const arcDegrees = props.endAngle - props.startAngle
+  // Un cercle complet fait 360°
+  // On ajuste le pourcentage proportionnellement
+  return (props.percentage * 360) / arcDegrees
 })
 
 const chartOptions = computed(() => ({
@@ -108,7 +117,7 @@ const chartOptions = computed(() => ({
       fontFamily: 'Roboto, sans-serif'
     },
     y: {
-      formatter: (value) => `${value}%`
+      formatter: (value) => `${props.percentage}%`
     }
   }
 }))

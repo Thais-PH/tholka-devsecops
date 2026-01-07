@@ -8,10 +8,10 @@
       <!-- Sidebar -->
       <OrganismsSidebarCollaborateur active-item="accueil" />
 
-      <!-- Main Content -->
-      <div class="flex flex-col items-start p-[32px] gap-[20px] flex-1" style="margin-left: 300px;">
+      <!-- Main Content - Conteneur avec max-width basé sur Figma -->
+      <div class="flex flex-col items-start py-8 px-[3%] gap-5 flex-1 ml-[300px] w-full max-w-[1428px]">
         <!-- Menu secondaire -->
-        <div class="flex flex-col items-start p-0 gap-[16px] w-full max-w-[1324px]">
+        <div class="flex flex-col items-start p-0 gap-4 w-full">
           <MoleculesSecondaryMenu
             :items="secondaryMenuItems"
             :default-active-index="activeTabIndex"
@@ -19,8 +19,177 @@
           />
         </div>
 
+        <!-- Onglet Onboarding -->
+        <div v-if="activeTab === 'onboarding'" class="flex flex-col flex-wrap items-start gap-5 w-full">
+          <!-- Première ligne - Flex row wrap -->
+          <div class="flex flex-row flex-wrap items-start gap-5 w-full">
+            <!-- Bloc Push Onboarding - 61% de largeur (873/1428) -->
+            <div class="flex-shrink-0" style="width: calc(61.1% - 10px);">
+              <div class="flex flex-row items-stretch w-full h-[441px] bg-white rounded-lg overflow-hidden">
+                <!-- Left bloc - Checklist - 453px fixe -->
+                <div class="flex flex-col justify-between items-end py-5 px-6 gap-9 w-[453px] flex-shrink-0">
+                  <div class="flex flex-col items-start gap-4 w-full">
+                    <!-- Titre -->
+                    <div class="flex flex-row justify-between items-center px-6 gap-4 w-full h-[29px]">
+                      <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Onboarding</h5>
+                      <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
+                    </div>
+
+                    <!-- Checklist - 240px de hauteur -->
+                    <div class="flex flex-col justify-end items-start w-full h-[240px]">
+                      <!-- Item 1 - Checked -->
+                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                        <div class="flex flex-row items-center w-full h-[40px]">
+                          <AtomsCheckbox
+                            v-model="onboardingChecklist.item1"
+                            label="Visite des bureaux"
+                            :done="true"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Item 2 - Checked -->
+                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                        <div class="flex flex-row items-center w-full h-[40px]">
+                          <AtomsCheckbox
+                            v-model="onboardingChecklist.item2"
+                            label="Déjeuner d'équipe"
+                            :done="true"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Item 3 - Unchecked -->
+                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                        <div class="flex flex-row items-center w-full h-[40px]">
+                          <AtomsCheckbox
+                            v-model="onboardingChecklist.item3"
+                            label="Participer à la réunion d'équipe mensuelle"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Item 4 - Unchecked -->
+                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                        <div class="flex flex-row items-center w-full h-[40px]">
+                          <AtomsCheckbox
+                            v-model="onboardingChecklist.item4"
+                            label="Faire le point avec son manager"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Item 5 - Unchecked -->
+                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                        <div class="flex flex-row items-center w-full h-[40px]">
+                          <AtomsCheckbox
+                            v-model="onboardingChecklist.item5"
+                            label="Mettre à jour le passeport de compétences"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Button -->
+                  <AtomsButton variant="tertiary" size="md" justify="start" class="w-auto">
+                    Poursuivre mon parcours
+                    <template #icon-right>
+                      <LucideChevronRight :size="20" :stroke-width="1" />
+                    </template>
+                  </AtomsButton>
+                </div>
+
+                <!-- Right bloc - Image - Reste de l'espace -->
+                <div class="relative w-full h-[441px] overflow-hidden flex-1">
+                  <img 
+                    src="~/assets/img/onboarding_collab.jpg" 
+                    alt="Onboarding" 
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Colonne droite - 30% (428/1428) -->
+            <div class="flex flex-col gap-5 flex-1 min-w-[426px] h-[441px]">
+              <!-- Chart Progression -->
+              <div class="flex flex-col items-end py-5 px-5 w-full flex-1 bg-white rounded-lg">
+                <!-- Title -->
+                <div class="flex flex-col items-start gap-1 w-full">
+                  <div class="flex flex-row justify-between items-center w-full h-[29px]">
+                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Progression</h5>
+                    <LucideTrendingUp :size="24" :stroke-width="1" class="text-Orange-500" />
+                  </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="flex flex-row justify-center items-center w-full flex-1">
+                  <ClientOnly>
+                    <MoleculesProgressRingChart
+                      :percentage="68"
+                      center-value="68%"
+                      center-label=""
+                      :stroke-width="22"
+                    />
+                  </ClientOnly>
+                </div>
+              </div>
+
+              <!-- Contact de référence -->
+              <div class="w-full flex-shrink-0">
+                <OrganismsContactsBlock
+                  title="Contact de référence"
+                  :contacts="contacts"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc Opportunités internes - 100% largeur -->
+          <div class="flex flex-col items-start py-5 px-6 gap-10 w-full bg-white rounded-lg">
+            <!-- Header -->
+            <div class="flex flex-col items-start gap-2 w-full">
+              <div class="flex flex-row justify-between items-center w-full h-[29px]">
+                <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Ressources pour débuter dans les meilleures conditions</h5>
+              </div>
+
+              <!-- Tag IA -->
+              <div class="w-full h-[36px]">
+                <AtomsTag variant="soft" color="purple" size="md" class="!h-[36px] !px-2">
+                  <template #icon-left>
+                    <LucideSparkles :size="20" :stroke-width="1" />
+                  </template>
+                  <span class="text-sm leading-[130%]">61% des nouveaux collaborateurs qui ont consulté le Guide de l'entreprise se sentent pleinement opérationnels dès la première semaine</span>
+                </AtomsTag>
+              </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar">
+              <div
+                v-for="(annonce, index) in annoncesInternes"
+                :key="index"
+                class="flex-shrink-0"
+              >
+                <MoleculesCard
+                  type="annonce"
+                  :title="annonce.title"
+                  :contract-type="annonce.contractType"
+                  :image-url="annonce.imageUrl"
+                  :description="annonce.description"
+                  :has-video="annonce.hasVideo"
+                  :has-article="annonce.hasArticle"
+                  :has-list="annonce.hasList"
+                  :has-sound="annonce.hasSound"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Onglet Général -->
-        <div v-if="activeTab === 'general'" class="grid grid-cols-12 gap-[20px] w-full max-w-[1324px]">
+        <div v-if="activeTab === 'general'" class="grid grid-cols-12 gap-5 w-full">
           <!-- Colonne gauche - 8 colonnes sur 12 -->
           <div class="col-span-8 flex flex-col gap-[20px]">
             <!-- Accès rapides -->
@@ -42,7 +211,7 @@
             </div>
 
             <!-- Activité & Objectifs du mois -->
-            <div class="flex flex-col justify-between items-start py-[20px] px-[23px] gap-[20px] w-full min-h-[595px] bg-white rounded-lg">
+            <div class="flex flex-col justify-between items-start py-[20px] px-[23px] gap-[20px] w-full flex-1 bg-white rounded-lg">
               <div class="flex flex-col items-start p-0 gap-[8px] w-full">
                 <div class="flex flex-row justify-between items-center p-0 gap-[10px] w-full">
                   <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Activité & Objectifs du mois</h5>
@@ -54,7 +223,7 @@
                 </AtomsTag>
               </div>
 
-              <div class="flex items-center justify-center w-full flex-1 min-h-[455px]">
+              <div class="flex items-center justify-center w-full flex-1">
                 <MoleculesMultipleBarChart
                   :series="[
                     { name: 'Income', data: [62, 80, 50, 55] },
@@ -69,7 +238,7 @@
 
           <!-- Colonne droite - 4 colonnes sur 12 -->
           <div class="col-span-4 flex flex-col gap-[20px]">
-            <div class="w-full">
+            <div class="w-full flex-shrink-0">
               <OrganismsCalendarBlock />
             </div>
 
@@ -94,170 +263,6 @@
                     :description="profile.description"
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Onglet Onboarding -->
-        <div v-if="activeTab === 'onboarding'" class="flex flex-col gap-[20px] w-full max-w-[1324px]">
-          <!-- Première ligne -->
-          <div class="grid grid-cols-12 gap-[20px]">
-            <!-- Bloc Push Onboarding - 8 colonnes -->
-            <div class="col-span-8">
-              <div class="flex flex-row items-start w-full bg-white rounded-lg overflow-hidden">
-                <!-- Left bloc - Checklist -->
-                <div class="flex flex-col justify-between items-end py-[20px] px-[24px] gap-[37px] w-[453px]">
-                  <div class="flex flex-col items-start gap-[16px] w-full">
-                    <!-- Titre -->
-                    <div class="flex flex-row justify-between items-center px-[24px] gap-[16px] w-full">
-                      <div class="flex flex-row items-center gap-[10px]">
-                        <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Onboarding</h5>
-                        <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
-                      </div>
-                    </div>
-
-                    <!-- Checklist -->
-                    <div class="flex flex-col justify-end items-start w-full">
-                      <!-- Item 1 - Checked -->
-                      <div class="flex flex-col items-start py-[4px] pl-[24px] gap-[10px] w-full border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item1"
-                            label="Visite des bureaux"
-                            :disabled="true"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 2 - Checked -->
-                      <div class="flex flex-col items-start py-[4px] pl-[24px] gap-[10px] w-full border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item2"
-                            label="Déjeuner d'équipe"
-                            :disabled="true"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 3 - Unchecked -->
-                      <div class="flex flex-col items-start py-[4px] pl-[24px] gap-[10px] w-full border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item3"
-                            label="Participer à la réunion d’équipe mensuelle"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 4 - Unchecked -->
-                      <div class="flex flex-col items-start py-[4px] pl-[24px] gap-[10px] w-full border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item4"
-                            label="Faire le point avec son manager"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 5 - Unchecked -->
-                      <div class="flex flex-col items-start py-[4px] pl-[24px] gap-[10px] w-full border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item5"
-                            label="Mettre à jour le passeport de compétences"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Button -->
-                  <AtomsButton variant="tertiary" size="md" justify="start">
-                    Poursuivre mon parcours
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
-                </div>
-
-                <!-- Right bloc - Image -->
-                <div class="relative w-[420px] h-[441px] flex-1 overflow-hidden">
-                  <img 
-                    src="~/assets/img/onboarding_collab.jpg" 
-                    alt="Onboarding" 
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Colonne droite - 4 colonnes -->
-            <div class="col-span-4 flex flex-col gap-[20px]">
-              <!-- Chart Collaborateurs -->
-              <div class="flex flex-col items-end py-[20px] px-[20px] w-full bg-white rounded-lg">
-                <!-- Title -->
-                <div class="flex flex-col items-start gap-[4px] w-full mb-[20px]">
-                  <div class="flex flex-row justify-between items-center w-full">
-                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-center text-primary-500">Progression</h5>
-                    <LucideTrendingUp :size="24" :stroke-width="1" class="text-Orange-500" />
-                  </div>
-                </div>
-
-                <!-- Chart -->
-                <div class="flex flex-row justify-center items-center w-full">
-                  <ClientOnly>
-                    <MoleculesProgressRingChart
-                      :percentage="50"
-                      center-value="50"
-                      center-label=""
-                      :stroke-width="22"
-                    />
-                  </ClientOnly>
-                </div>
-              </div>
-
-              <!-- Contact de référence -->
-              <OrganismsContactsBlock
-                title="Contact de référence"
-                :contacts="contacts"
-              />
-            </div>
-          </div>
-
-          <!-- Bloc Opportunités internes -->
-          <div class="flex flex-col items-start py-[20px] px-[24px] gap-[40px] w-full bg-white rounded-lg">
-            <!-- Header -->
-            <div class="flex flex-col items-start gap-[8px] w-full">
-              <div class="flex flex-row justify-between items-center w-full">
-                <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Ressources pour débuter dans les meilleures conditions</h5>
-              </div>
-
-              <!-- Tag IA -->
-              <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !max-w-full">
-                <template #icon-left>
-                  <LucideSparkles :size="20" :stroke-width="1" />
-                </template>
-                61% des nouveaux collaborateurs qui ont consulté le Guide de l’entreprise se sentent pleinement opérationnels dès la première semaine
-              </AtomsTag>
-            </div>
-
-            <!-- Cards -->
-            <div class="flex flex-row items-center gap-[24px] w-full overflow-x-auto hide-scrollbar">
-              <div
-                v-for="(annonce, index) in annoncesInternes"
-                :key="index"
-                class="flex-shrink-0"
-              >
-                <MoleculesCard
-                  type="annonce"
-                  :title="annonce.title"
-                  :contract-type="annonce.contractType"
-                  :image-url="annonce.imageUrl"
-                  :description="annonce.description"
-                  :has-video="annonce.hasVideo"
-                />
               </div>
             </div>
           </div>
@@ -340,31 +345,39 @@ const onboardingChecklist = ref({
 const annoncesInternes = [
   {
     title: ' Guide de l’entreprise',
-    contractType: 'CDI',
     imageUrl: '/annonces/annonce-1.jpg',
     description: 'Les valeurs, les habitudes, les codes internes… tout ce qu’il faut savoir pour s’intégrer rapidement.',
-    hasVideo: true
+    hasVideo: false,
+    hasArticle: true,
+    hasList: false,
+    hasSound: false
   },
   {
     title: 'Histoire de l’entreprise',
-    contractType: 'CDI',
     imageUrl: '/annonces/annonce-2.jpg',
     description: 'Découvrir l’histoire de l’entreprise, son évolution et sa vision pour l’avenir.',
-    hasVideo: true
+    hasVideo: true,
+    hasArticle: false,
+    hasList: false,
+    hasSound: false
   },
   {
     title: 'Découverte de l’équipe',
-    contractType: 'Stage',
     imageUrl: '/annonces/annonce-3.jpg',
     description: 'Trois personnes essentielles de l’équipe à découvrir pour faciliter tes interactions.',
-    hasVideo: true
+    hasVideo: false,
+    hasArticle: false,
+    hasList: true,
+    hasSound: false
   },
   {
     title: 'Les rituels de l’équipe',
-    contractType: 'CDI',
     imageUrl: '/annonces/annonce-4.jpg',
     description: 'Plongée dans la journée type de l’équipe : pauses, réunions et habitudes qui rythment le travail.',
-    hasVideo: true
+    hasVideo: false,
+    hasArticle: false,
+    hasList: false,
+    hasSound: true
   }
 ]
 

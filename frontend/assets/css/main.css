@@ -101,3 +101,24 @@
     height: 1px;
   }
 }
+
+@media (max-width: 1728px) {
+  html {
+    font-size: calc(16px * (100vw / 1728));
+  }
+}
+
+@media (min-width: 1729px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
