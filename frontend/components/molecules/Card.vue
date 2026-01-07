@@ -36,39 +36,45 @@
   </div>
 
   <!-- Annonce Card -->
-  <div v-else-if="type === 'annonce'" class="flex flex-col items-start p-0 w-[258px] h-[139px]">
+  <div v-else-if="type === 'annonce'" class="flex flex-col items-start p-0 min-w-[258px] max-w-[300px]">
     <!-- Image section -->
-    <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[258px] h-[106px] bg-cover bg-center rounded-lg flex-none order-0 self-stretch"
+    <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-full h-[135px] bg-cover bg-center rounded-lg flex-none order-0 flex-shrink-0"
      :style="{ backgroundImage: `url(${imageUrl})` }">
-      <!-- Video icon badge -->
-      <div v-if="hasVideo" class="flex flex-row justify-center items-center p-[3px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
-        <LucideYoutube :size="17" :stroke-width="1.5" class="text-white" />
+      <!-- Icon badge -->
+      <div v-if="activeIcon" class="flex flex-row justify-center items-center p-[3px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
+        <LucidePlayCircle v-if="activeIcon === 'video'" :size="17" :stroke-width="1.5" class="text-white" />
+        <LucideAudioLines v-else-if="activeIcon === 'sound'" :size="17" :stroke-width="1.5" class="text-white" />
+        <LucideNewspaper v-else-if="activeIcon === 'article'" :size="17" :stroke-width="1.5" class="text-white" />
+        <LucideList v-else-if="activeIcon === 'list'" :size="17" :stroke-width="1.5" class="text-white" />
       </div>
     </div>
 
     <!-- Content -->
-    <div class="flex flex-col items-start px-[4px] pt-[8px] pb-0 gap-[16px] w-[258px] h-[33px] flex-none order-1 self-stretch">
-      <div class="flex flex-col items-start p-0 gap-[8px] w-[250px] h-[25px] flex-none order-0 self-stretch">
-        <!-- Frame avec titre et tag -->
-        <div class="flex flex-row justify-between items-center p-0 w-[250px] h-[25px] flex-none order-0 self-stretch">
-          <!-- Titre -->
-          <h6 class="font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-none order-0 overflow-hidden text-ellipsis whitespace-nowrap" style="max-width: 206px;">
-            {{ title }}
-          </h6>
+    <div class="flex flex-col items-start px-[16px] pt-[16px] pb-0 gap-[8px] w-full">
+      <!-- Frame avec titre et tag -->
+      <div class="flex flex-row justify-between items-center p-0 gap-[8px] w-full h-[19px]">
+        <!-- Titre -->
+        <h6 class="font-nunito font-bold text-[16px] leading-[120%] text-primary-500 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
+          {{ title }}
+        </h6>
 
-          <!-- Type de contrat tag - Container avec largeur fixe -->
-          <div class="flex-shrink-0 flex items-center justify-center order-1" style="width: 40px; height: 25px; overflow: hidden;">
-            <AtomsTag
-              variant="soft"
-              color="primary"
-              size="md"
-              class="!px-1 !py-1 !text-[11px]"
-            >
-              {{ contractType }}
-            </AtomsTag>
-          </div>
+        <!-- Type de contrat tag -->
+        <div v-if="contractType" class="flex-shrink-0">
+          <AtomsTag
+            variant="soft"
+            color="primary"
+            size="md"
+            class="!px-1 !py-1 !text-[11px] !whitespace-nowrap"
+          >
+            {{ contractType }}
+          </AtomsTag>
         </div>
       </div>
+
+      <!-- Description -->
+      <p v-if="description" class="w-full font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-2 overflow-hidden line-clamp-3">
+        {{ description }}
+      </p>
     </div>
   </div>
 
@@ -84,9 +90,12 @@
       <!-- Image section -->
       <div class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[311px] h-[135px] bg-cover bg-center rounded-t-lg flex-none order-1 self-stretch" 
            :style="{ backgroundImage: `url(${imageUrl})`, zIndex: 1 }">
-        <!-- Video icon badge (optionnel) -->
-        <div v-if="hasVideo" class="flex flex-row justify-between items-center p-[3px] gap-[10px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
-          <LucideYoutube :size="17" :stroke-width="1.5" class="text-white" />
+        <!-- Icon badge -->
+        <div v-if="activeIcon" class="flex flex-row justify-center items-center p-[3px] w-[24px] h-[24px] bg-Orange-500 rounded-full">
+          <LucideYoutube v-if="activeIcon === 'video'" :size="17" :stroke-width="1.5" class="text-white" />
+          <LucideVolume2 v-else-if="activeIcon === 'sound'" :size="17" :stroke-width="1.5" class="text-white" />
+          <LucideFileText v-else-if="activeIcon === 'article'" :size="17" :stroke-width="1.5" class="text-white" />
+          <LucideList v-else-if="activeIcon === 'list'" :size="17" :stroke-width="1.5" class="text-white" />
         </div>
       </div>
 
@@ -261,7 +270,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Youtube as LucideYoutube, ChevronRight as LucideChevronRight } from 'lucide-vue-next'
 
 const props = defineProps({
   type: {
@@ -304,6 +312,18 @@ const props = defineProps({
     required: false
   },
   hasVideo: {
+    type: Boolean,
+    default: false
+  },
+  hasSound: {
+    type: Boolean,
+    default: false
+  },
+  hasArticle: {
+    type: Boolean,
+    default: false
+  },
+  hasList: {
     type: Boolean,
     default: false
   },
@@ -361,6 +381,15 @@ const formatDate = computed(() => {
   const year = dateObj.getFullYear()
   
   return `${month} ${year}`
+})
+
+// Computed pour déterminer quel icône afficher
+const activeIcon = computed(() => {
+  if (props.hasVideo) return 'video'
+  if (props.hasSound) return 'sound'
+  if (props.hasArticle) return 'article'
+  if (props.hasList) return 'list'
+  return null
 })
 </script>
 

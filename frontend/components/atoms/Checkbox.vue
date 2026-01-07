@@ -20,7 +20,7 @@
         v-if="label"
         :for="id"
         class="text-base font-roboto cursor-pointer transition-colors duration-200"
-        :class="getTextClasses"
+        :class="[getTextClasses, { 'line-through': isDone }]"
       >
         {{ label }}
       </label>
@@ -67,6 +67,10 @@ const props = defineProps({
   error: {
     type: Boolean,
     default: false
+  },
+  done: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -97,6 +101,10 @@ const checked = computed({
       emit('update:modelValue', newValue)
     }
   }
+})
+
+const isDone = computed(() => {
+  return props.done || checked.value
 })
 
 const getTextClasses = computed(() => {
