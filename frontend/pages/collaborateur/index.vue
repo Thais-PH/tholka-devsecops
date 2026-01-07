@@ -267,6 +267,138 @@
             </div>
           </div>
         </div>
+
+        <!-- Onglet Congés -->
+        <div v-if="activeTab === 'conges'" class="flex flex-col gap-5 w-full">
+          <!-- Première ligne -->
+          <div class="flex flex-row gap-5 w-full">
+            <!-- Colonne gauche - Demandes de congés -->
+            <div class="flex flex-col gap-0 flex-1" style="max-width: calc(50% - 10px);">
+              <div class="flex flex-col justify-between items-end py-5 px-0 gap-4 w-full bg-white rounded-lg">
+                <!-- Header -->
+                <div class="flex flex-col items-start px-6 gap-2 w-full">
+                  <div class="flex flex-row justify-between items-center w-full h-[29px]">
+                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Demandes de congés</h5>
+                    <LucidePalmtree :size="24" :stroke-width="1" class="text-Orange-500" />
+                  </div>
+
+                  <AtomsTag variant="soft" color="purple" size="md" class="!w-auto">
+                    <template #icon-left>
+                      <LucideSparkles :size="20" :stroke-width="1" />
+                    </template>
+                    Moins de 10 jours restant pour poser vos congés de fin d'année
+                  </AtomsTag>
+                </div>
+
+                <!-- Liste des demandes -->
+                <div class="flex flex-col items-start w-full">
+                  <div v-for="(demande, index) in demandesConges" :key="index" class="flex flex-row items-center px-6 py-2 gap-[15px] w-full border-b border-secondary-300">
+                    <span class="font-roboto text-base text-primary-900 w-[43px] flex-shrink-0">{{ demande.type }}</span>
+                    <div class="flex-shrink-0">
+                      <AtomsTag :variant="'soft'" :color="demande.statusColor" size="md">
+                        {{ demande.status }}
+                      </AtomsTag>
+                    </div>
+                    <span class="font-roboto text-base text-primary-900 ml-auto">{{ demande.date }}</span>
+                  </div>
+                </div>
+
+                <!-- Bouton -->
+                <div class="flex flex-col items-start px-4 w-auto">
+                  <AtomsButton variant="tertiary" size="md" justify="start">
+                    Voir toutes les demandes
+                    <template #icon-right>
+                      <LucideChevronRight :size="20" :stroke-width="1" />
+                    </template>
+                  </AtomsButton>
+                </div>
+              </div>
+            </div>
+
+            <!-- Colonne droite -->
+            <div class="flex flex-col gap-5 flex-1" style="max-width: calc(50% - 10px);">
+              <!-- Chiffres clés -->
+              <div class="flex flex-row items-start gap-5 w-full">
+                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
+                  <h2 class="text-h2 font-sans text-primary-500 leading-none">9</h2>
+                  <p class="text-base font-roboto text-center text-primary-500">Jours restants</p>
+                </div>
+                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
+                  <h2 class="text-h2 font-sans text-primary-500 leading-none">12</h2>
+                  <p class="text-base font-roboto text-center text-primary-500">Jours acquis</p>
+                </div>
+                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
+                  <h2 class="text-h2 font-sans text-primary-500 leading-none">3</h2>
+                  <p class="text-base font-roboto text-center text-primary-500">Jours pris</p>
+                </div>
+              </div>
+
+              <!-- Action rapide intelligente -->
+              <div class="flex flex-col items-start py-5 px-6 gap-4 w-full flex-1 bg-white rounded-lg">
+                <div class="flex flex-col items-start gap-2 w-full">
+                  <div class="flex flex-row justify-between items-start w-full">
+                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Action rapide intelligente</h5>
+                    <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
+                  </div>
+
+                  <AtomsTag variant="soft" color="purple" size="md" class="!w-auto">
+                    <template #icon-left>
+                      <LucideSparkles :size="20" :stroke-width="1" />
+                    </template>
+                    Votre équipe est déjà fortement absente la semaine du 22 au 26 décembre
+                  </AtomsTag>
+                </div>
+
+                <div class="flex flex-col items-start gap-2 w-auto">
+                  <AtomsButton variant="tertiary" size="md" justify="start">
+                    Poser des congés pendant les vacances scolaires
+                    <template #icon-right>
+                      <LucideChevronRight :size="20" :stroke-width="1" />
+                    </template>
+                  </AtomsButton>
+                  <AtomsButton variant="tertiary" size="md" justify="start">
+                    Optimiser mes congés avec les jours fériés
+                    <template #icon-right>
+                      <LucideChevronRight :size="20" :stroke-width="1" />
+                    </template>
+                  </AtomsButton>
+                  <AtomsButton variant="tertiary" size="md" justify="start">
+                    Prendre RDV avec mon référent RH
+                    <template #icon-right>
+                      <LucideChevronRight :size="20" :stroke-width="1" />
+                    </template>
+                  </AtomsButton>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc Documents utiles -->
+          <div class="flex flex-col items-start py-5 px-6 gap-4 w-full bg-white rounded-lg">
+            <div class="flex flex-col items-start gap-2 w-full">
+              <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Documents utiles</h5>
+            </div>
+
+            <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar">
+              <div
+                v-for="(document, index) in documentsUtiles"
+                :key="index"
+                class="flex-shrink-0"
+              >
+                <MoleculesCard
+                  type="annonce"
+                  :title="document.title"
+                  :image-url="document.imageUrl"
+                  :description="document.description"
+                  :has-video="document.hasVideo"
+                  :has-article="document.hasArticle"
+                  :has-list="document.hasList"
+                  :has-sound="document.hasSound"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -281,7 +413,8 @@ import {
   Rocket as LucideRocket,
   ChevronRight as LucideChevronRight,
   TrendingUp as LucideTrendingUp,
-  Sparkles as LucideSparkles
+  Sparkles as LucideSparkles,
+  Palmtree as LucidePalmtree
 } from 'lucide-vue-next'
 
 useHead({
@@ -378,6 +511,54 @@ const annoncesInternes = [
     hasArticle: false,
     hasList: false,
     hasSound: true
+  }
+]
+
+// Données Congés
+const demandesConges = [
+  { type: 'RTT', status: 'Accepté', statusColor: 'green', date: '19/11/2025' },
+  { type: 'CP', status: 'En attente', statusColor: 'yellow', date: '19/11/2025' },
+  { type: 'RTT', status: 'Refusé', statusColor: 'orange', date: '19/11/2025' },
+  { type: 'CP', status: 'Accepté', statusColor: 'green', date: '19/11/2025' },
+  { type: 'CP', status: 'Accepté', statusColor: 'green', date: '19/11/2025' }
+]
+
+const documentsUtiles = [
+  {
+    title: 'Procédure de pose de congés',
+    imageUrl: '/documents/document-1.jpg',
+    description: 'Découvrez comment demander et valider vos congés facilement.',
+    hasVideo: false,
+    hasArticle: true,
+    hasList: false,
+    hasSound: false
+  },
+  {
+    title: 'Liste des RTT imposés',
+    imageUrl: '/documents/document-2.jpg',
+    description: 'Consultez les jours de RTT fixés par l’entreprise cette année.',
+    hasVideo: false,
+    hasArticle: false,
+    hasList: true,
+    hasSound: false
+  },
+  {
+    title: 'Congés exceptionnels',
+    imageUrl: '/documents/document-3.jpg',
+    description: 'Informez-vous sur les cas particuliers et les congés exceptionnels auxquels vous avez droit.',
+    hasVideo: false,
+    hasArticle: false,
+    hasList: true,
+    hasSound: false
+  },
+  {
+    title: 'Comprendre les jours de fractionnement',
+    imageUrl: '/documents/document-4.jpg',
+    description: 'Apprenez à bénéficier de jours supplémentaires grâce au fractionnement',
+    hasVideo: true,
+    hasArticle: false,
+    hasList: false,
+    hasSound: false
   }
 ]
 
