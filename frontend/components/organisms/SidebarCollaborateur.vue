@@ -1,5 +1,15 @@
 <template>
-  <aside class="sidebar-collaborateur">
+  <!-- Overlay mobile -->
+  <div 
+    v-if="isOpen" 
+    class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+    @click="$emit('close')"
+  ></div>
+  
+  <aside 
+    class="sidebar-collaborateur"
+    :class="{ 'is-open': isOpen }"
+  >
     <nav class="sidebar-nav">
       <AtomsButton
         v-for="item in menuItems"
@@ -29,8 +39,14 @@ const props = defineProps({
   activeItem: {
     type: String,
     default: 'accueil'
+  },
+  isOpen: {
+    type: Boolean,
+    default: false
   }
 })
+
+defineEmits(['close'])
 
 const menuItems = [
   { id: 'accueil', label: 'Accueil', icon: Home },
@@ -56,7 +72,22 @@ const menuItems = [
   padding: 32px 20px;
   box-sizing: border-box;
   overflow-y: auto;
-  z-index: 40;
+  z-index: 50;
+  /* Mobile: cachée par défaut, slide depuis la gauche */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Desktop: toujours visible */
+@media (min-width: 1024px) {
+  .sidebar-collaborateur {
+    transform: translateX(0);
+  }
+}
+
+/* Mobile: visible quand ouverte */
+.sidebar-collaborateur.is-open {
+  transform: translateX(0);
 }
 
 .sidebar-nav {
@@ -64,6 +95,13 @@ const menuItems = [
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-nav {
+    margin-top: 0;
+  }
 }
 
 .menu-item {

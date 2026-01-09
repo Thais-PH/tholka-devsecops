@@ -1,403 +1,578 @@
 <template>
-  <div class="flex flex-col w-full min-h-screen bg-secondary-300">
-    <!-- Header -->
-    <OrganismsNavbar />
+  <div class="flex flex-col w-full h-screen bg-secondary-300 overflow-hidden">
+    <!-- Header fixe -->
+    <OrganismsNavbar 
+      :is-sidebar-open="isSidebarOpen" 
+      @toggle-sidebar="isSidebarOpen = !isSidebarOpen" 
+    />
 
     <!-- Content avec Sidebar -->
-    <div class="flex w-full" style="margin-top: 82.73px;">
-      <!-- Sidebar -->
-      <OrganismsSidebarCollaborateur active-item="accueil" />
+    <div class="flex w-full flex-1 overflow-hidden" style="margin-top: 82.73px;">
+      <!-- Sidebar fixe -->
+      <OrganismsSidebarCollaborateur 
+        active-item="accueil" 
+        :is-open="isSidebarOpen"
+        @close="isSidebarOpen = false"
+      />
 
-      <!-- Main Content - Conteneur avec max-width basé sur Figma -->
-      <div class="flex flex-col items-start py-8 px-[3%] gap-5 flex-1 ml-[300px] w-full max-w-[1428px]">
-        <!-- Menu secondaire -->
-        <div class="flex flex-col items-start p-0 gap-4 w-full">
-          <MoleculesSecondaryMenu
-            :items="secondaryMenuItems"
-            :default-active-index="activeTabIndex"
-            @change="handleMenuChange"
-          />
-        </div>
-
-        <!-- Onglet Onboarding -->
-        <div v-if="activeTab === 'onboarding'" class="flex flex-col flex-wrap items-start gap-5 w-full">
-          <!-- Première ligne - Flex row wrap -->
-          <div class="flex flex-row flex-wrap items-start gap-5 w-full">
-            <!-- Bloc Push Onboarding - 61% de largeur (873/1428) -->
-            <div class="flex-shrink-0" style="width: calc(61.1% - 10px);">
-              <div class="flex flex-row items-stretch w-full h-[441px] bg-white rounded-lg overflow-hidden">
-                <!-- Left bloc - Checklist - 453px fixe -->
-                <div class="flex flex-col justify-between items-end py-5 px-6 gap-9 w-[453px] flex-shrink-0">
-                  <div class="flex flex-col items-start gap-4 w-full">
-                    <!-- Titre -->
-                    <div class="flex flex-row justify-between items-center px-6 gap-4 w-full h-[29px]">
-                      <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Onboarding</h5>
-                      <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
-                    </div>
-
-                    <!-- Checklist - 240px de hauteur -->
-                    <div class="flex flex-col justify-end items-start w-full h-[240px]">
-                      <!-- Item 1 - Checked -->
-                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item1"
-                            label="Visite des bureaux"
-                            :done="true"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 2 - Checked -->
-                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item2"
-                            label="Déjeuner d'équipe"
-                            :done="true"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 3 - Unchecked -->
-                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item3"
-                            label="Participer à la réunion d'équipe mensuelle"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 4 - Unchecked -->
-                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item4"
-                            label="Faire le point avec son manager"
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Item 5 - Unchecked -->
-                      <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
-                        <div class="flex flex-row items-center w-full h-[40px]">
-                          <AtomsCheckbox
-                            v-model="onboardingChecklist.item5"
-                            label="Mettre à jour le passeport de compétences"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Button -->
-                  <AtomsButton variant="tertiary" size="md" justify="start" class="w-auto">
-                    Poursuivre mon parcours
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
-                </div>
-
-                <!-- Right bloc - Image - Reste de l'espace -->
-                <div class="relative w-full h-[441px] overflow-hidden flex-1">
-                  <img 
-                    src="~/assets/img/onboarding_collab.jpg" 
-                    alt="Onboarding" 
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Colonne droite - 30% (428/1428) -->
-            <div class="flex flex-col gap-5 flex-1 min-w-[426px] h-[441px]">
-              <!-- Chart Progression -->
-              <div class="flex flex-col items-end py-5 px-5 w-full flex-1 bg-white rounded-lg">
-                <!-- Title -->
-                <div class="flex flex-col items-start gap-1 w-full">
-                  <div class="flex flex-row justify-between items-center w-full h-[29px]">
-                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Progression</h5>
-                    <LucideTrendingUp :size="24" :stroke-width="1" class="text-Orange-500" />
-                  </div>
-                </div>
-
-                <!-- Chart -->
-                <div class="flex flex-row justify-center items-center w-full flex-1">
-                  <ClientOnly>
-                    <MoleculesProgressRingChart
-                      :percentage="68"
-                      center-value="68%"
-                      center-label=""
-                      :stroke-width="22"
-                    />
-                  </ClientOnly>
-                </div>
-              </div>
-
-              <!-- Contact de référence -->
-              <div class="w-full flex-shrink-0">
-                <OrganismsContactsBlock
-                  title="Contact de référence"
-                  :contacts="contacts"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Bloc Opportunités internes - 100% largeur -->
-          <div class="flex flex-col items-start py-5 px-6 gap-10 w-full bg-white rounded-lg">
-            <!-- Header -->
-            <div class="flex flex-col items-start gap-2 w-full">
-              <div class="flex flex-row justify-between items-center w-full h-[29px]">
-                <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Ressources pour débuter dans les meilleures conditions</h5>
-              </div>
-
-              <!-- Tag IA -->
-              <div class="w-full h-[36px]">
-                <AtomsTag variant="soft" color="purple" size="md" class="!h-[36px] !px-2">
-                  <template #icon-left>
-                    <LucideSparkles :size="20" :stroke-width="1" />
-                  </template>
-                  <span class="text-sm leading-[130%]">61% des nouveaux collaborateurs qui ont consulté le Guide de l'entreprise se sentent pleinement opérationnels dès la première semaine</span>
-                </AtomsTag>
-              </div>
-            </div>
-
-            <!-- Cards -->
-            <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar">
-              <div
-                v-for="(annonce, index) in annoncesInternes"
-                :key="index"
-                class="flex-shrink-0"
-              >
-                <MoleculesCard
-                  type="annonce"
-                  :title="annonce.title"
-                  :contract-type="annonce.contractType"
-                  :image-url="annonce.imageUrl"
-                  :description="annonce.description"
-                  :has-video="annonce.hasVideo"
-                  :has-article="annonce.hasArticle"
-                  :has-list="annonce.hasList"
-                  :has-sound="annonce.hasSound"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Onglet Général -->
-        <div v-if="activeTab === 'general'" class="grid grid-cols-12 gap-5 w-full">
-          <!-- Colonne gauche - 8 colonnes sur 12 -->
-          <div class="col-span-8 flex flex-col gap-[20px]">
-            <!-- Accès rapides -->
-            <OrganismsQuickAccessBlock
-              title="Accès rapides"
-              :quick-access="quickAccessItems"
+      <!-- Main Content - Scrollable -->
+      <div class="flex-1 ml-0 lg:ml-[300px] overflow-y-auto">
+        <div class="flex flex-col items-start py-8 px-[3%] gap-5 w-full">
+          <!-- Menu secondaire -->
+          <div class="flex flex-col md:flex-row md:justify-between md:items-center p-0 gap-4 w-full">
+            <MoleculesSecondaryMenu
+              :items="secondaryMenuItems"
+              :default-active-index="activeTabIndex"
+              @change="handleMenuChange"
             />
+            
+            <!-- Bouton action visible uniquement sur l'onglet Congés -->
+            <AtomsButton v-if="activeTab === 'conges'" variant="primary" size="md" class="flex-shrink-0">
+              Faire une demande de congé
+              <template #icon-right>
+                <LucidePlus :size="20" :stroke-width="1.5" />
+              </template>
+            </AtomsButton>
+          </div>
 
-            <!-- Documents & Contacts - Grid interne -->
-            <div class="grid grid-cols-2 gap-[20px]">
-              <OrganismsDocumentsBlock
-                title="Derniers documents"
-                :documents="documents"
-              />
-              <OrganismsContactsBlock
-                title="Contact de référence"
-                :contacts="contacts"
-              />
-            </div>
+          <!-- ============================================ -->
+          <!-- ONGLET GÉNÉRAL - Grille Bento optimisée -->
+          <!-- ============================================ -->
+          <!-- ONGLET GÉNÉRAL - Layout Bento en 2 colonnes flex -->
+          <!-- ============================================ -->
+          <div v-if="activeTab === 'general'" class="w-full">
+            <div class="flex flex-col lg:flex-row gap-5 w-full lg:items-stretch">
 
-            <!-- Activité & Objectifs du mois -->
-            <div class="flex flex-col justify-between items-start py-[20px] px-[23px] gap-[20px] w-full flex-1 bg-white rounded-lg">
-              <div class="flex flex-col items-start p-0 gap-[8px] w-full">
-                <div class="flex flex-row justify-between items-center p-0 gap-[10px] w-full">
-                  <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Activité & Objectifs du mois</h5>
-                  <LucideBarChart4 :size="24" :stroke-width="1" class="text-Orange-500" />
-                </div>
-                
-                <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !max-w-full">
-                  Vous progressez sur 2 compétences clés ce mois-ci
-                </AtomsTag>
-              </div>
-
-              <div class="flex items-center justify-center w-full flex-1">
-                <MoleculesMultipleBarChart
-                  :series="[
-                    { name: 'Income', data: [62, 80, 50, 55] },
-                    { name: 'Outcome', data: [78, 90, 75, 70] }
-                  ]"
-                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
-                  :colors="['#3A3B99', '#3A3B9933']"
+              <!-- COLONNE GAUCHE (~66%) -->
+              <div class="flex flex-col gap-5 w-full lg:w-2/3">
+                <!-- Accès rapides -->
+                <OrganismsQuickAccessBlock
+                  title="Accès rapides"
+                  :quick-access="quickAccessItems"
                 />
-              </div>
-            </div>
-          </div>
 
-          <!-- Colonne droite - 4 colonnes sur 12 -->
-          <div class="col-span-4 flex flex-col gap-[20px]">
-            <div class="w-full flex-shrink-0">
-              <OrganismsCalendarBlock />
-            </div>
-
-            <div class="flex flex-col items-start py-[20px] px-[24px] gap-[19px] w-full flex-1 bg-white rounded-lg overflow-hidden">
-              <div class="flex flex-row justify-between items-center w-full">
-                <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Dernières arrivées</h5>
-                <LucideUsers :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
-              </div>
-
-              <div class="flex flex-row items-start gap-[16px] w-full overflow-x-auto pb-2 hide-scrollbar -mx-[24px] px-[24px]">
-                <div
-                  v-for="profile in newProfiles"
-                  :key="profile.id"
-                  class="flex-shrink-0"
-                >
-                  <MoleculesCard
-                    type="profile"
-                    :title="profile.name"
-                    :contract-type="profile.contractType"
-                    :image-url="profile.imageUrl"
-                    :image-position="profile.imagePosition"
-                    :description="profile.description"
-                  />
+                <!-- Documents + Contacts côte à côte -->
+                <div class="flex flex-col md:flex-row gap-5">
+                  <div class="w-full md:w-1/2">
+                    <OrganismsDocumentsBlock
+                      title="Derniers documents"
+                      :documents="documents"
+                    />
+                  </div>
+                  <div class="w-full md:w-1/2">
+                    <OrganismsContactsBlock
+                      title="Contact de référence"
+                      :contacts="contacts"
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Onglet Congés -->
-        <div v-if="activeTab === 'conges'" class="flex flex-col gap-5 w-full">
-          <!-- Première ligne -->
-          <div class="flex flex-row gap-5 w-full">
-            <!-- Colonne gauche - Demandes de congés -->
-            <div class="flex flex-col gap-0 flex-1" style="max-width: calc(50% - 10px);">
-              <div class="flex flex-col justify-between items-end py-5 px-0 gap-4 w-full bg-white rounded-lg">
-                <!-- Header -->
-                <div class="flex flex-col items-start px-6 gap-2 w-full">
-                  <div class="flex flex-row justify-between items-center w-full h-[29px]">
-                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Demandes de congés</h5>
-                    <LucidePalmtree :size="24" :stroke-width="1" class="text-Orange-500" />
+                <!-- Activité & Objectifs du mois -->
+                <div class="flex flex-col justify-between items-start py-5 px-6 gap-5 w-full bg-white rounded-lg flex-1">
+                  <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex flex-row justify-between items-center gap-2 w-full">
+                      <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Activité & Objectifs du mois</h5>
+                      <LucideBarChart4 :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                    </div>
+                    
+                    <AtomsTag variant="soft" color="purple" size="md" class="!w-auto">
+                      Vous progressez sur 2 compétences clés ce mois-ci
+                    </AtomsTag>
                   </div>
 
-                  <AtomsTag variant="soft" color="purple" size="md" class="!w-auto">
-                    <template #icon-left>
-                      <LucideSparkles :size="20" :stroke-width="1" />
-                    </template>
-                    Moins de 10 jours restant pour poser vos congés de fin d'année
-                  </AtomsTag>
+                  <div class="flex items-center justify-center w-full">
+                    <MoleculesMultipleBarChart
+                      :series="[
+                        { name: 'Income', data: [62, 80, 50, 55] },
+                        { name: 'Outcome', data: [78, 90, 75, 70] }
+                      ]"
+                      :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
+                      :colors="['#3A3B99', '#3A3B9933']"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- COLONNE DROITE (~33%) -->
+              <div class="flex flex-col gap-5 w-full lg:w-1/3">
+                <!-- Calendrier -->
+                <OrganismsCalendarBlock />
+
+                <!-- Dernières arrivées -->
+                <div class="flex flex-col items-start py-5 px-6 gap-4 w-full bg-white rounded-lg">
+                  <div class="flex flex-row justify-between items-center w-full">
+                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Dernières arrivées</h5>
+                    <LucideUsers :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                  </div>
+
+                  <div class="flex flex-row items-start gap-4 w-full overflow-x-auto hide-scrollbar -mx-6 px-6">
+                    <div
+                      v-for="profile in newProfiles"
+                      :key="profile.id"
+                      class="flex-shrink-0"
+                    >
+                      <MoleculesCard
+                        type="profile"
+                        :title="profile.name"
+                        :contract-type="profile.contractType"
+                        :image-url="profile.imageUrl"
+                        :image-position="profile.imagePosition"
+                        :description="profile.description"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============================================ -->
+          <!-- ONGLET ONBOARDING - Layout Bento flex optimisé -->
+          <!-- ============================================ -->
+          <div v-if="activeTab === 'onboarding'" class="w-full">
+            <div class="flex flex-col gap-5 w-full">
+
+              <!-- LIGNE 1 : 2 colonnes flex -->
+              <div class="flex flex-col lg:flex-row gap-5 w-full lg:items-stretch">
+
+                <!-- COLONNE GAUCHE (~66%) : Bloc Onboarding -->
+                <div class="w-full lg:w-2/3">
+                  <div class="flex flex-col md:flex-row items-stretch w-full h-full bg-white rounded-lg overflow-hidden">
+                    <!-- Checklist -->
+                    <div class="flex flex-col justify-between items-end py-5 px-6 gap-9 w-full md:w-[453px] flex-shrink-0">
+                      <div class="flex flex-col items-start gap-4 w-full">
+                        <div class="flex flex-row justify-between items-center px-6 gap-4 w-full h-[29px]">
+                          <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Onboarding</h5>
+                          <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
+                        </div>
+
+                        <div class="flex flex-col justify-end items-start w-full h-[240px]">
+                          <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                            <div class="flex flex-row items-center w-full h-[40px]">
+                              <AtomsCheckbox v-model="onboardingChecklist.item1" label="Visite des bureaux" :done="true" />
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                            <div class="flex flex-row items-center w-full h-[40px]">
+                              <AtomsCheckbox v-model="onboardingChecklist.item2" label="Déjeuner d'équipe" :done="true" />
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                            <div class="flex flex-row items-center w-full h-[40px]">
+                              <AtomsCheckbox v-model="onboardingChecklist.item3" label="Participer à la réunion d'équipe mensuelle" />
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                            <div class="flex flex-row items-center w-full h-[40px]">
+                              <AtomsCheckbox v-model="onboardingChecklist.item4" label="Faire le point avec son manager" />
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-start py-1 pl-6 gap-2.5 w-full h-[48px] border-b border-primary-500/30">
+                            <div class="flex flex-row items-center w-full h-[40px]">
+                              <AtomsCheckbox v-model="onboardingChecklist.item5" label="Mettre à jour le passeport de compétences" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <AtomsButton variant="tertiary" size="md" justify="start" class="w-auto">
+                        Poursuivre mon parcours
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="relative w-full h-[300px] md:h-auto overflow-hidden flex-1">
+                      <img src="~/assets/img/onboarding_collab.jpg" alt="Onboarding" class="w-full h-full object-cover" />
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Liste des demandes -->
-                <div class="flex flex-col items-start w-full">
-                  <div v-for="(demande, index) in demandesConges" :key="index" class="flex flex-row items-center px-6 py-2 gap-[15px] w-full border-b border-secondary-300">
-                    <span class="font-roboto text-base text-primary-900 w-[43px] flex-shrink-0">{{ demande.type }}</span>
-                    <div class="flex-shrink-0">
-                      <AtomsTag :variant="'soft'" :color="demande.statusColor" size="md">
-                        {{ demande.status }}
+                <!-- COLONNE DROITE (~33%) : Progression + Contact empilés -->
+                <div class="flex flex-col gap-5 w-full lg:w-1/3">
+                  <!-- Progression -->
+                  <div class="flex flex-col items-end py-5 px-5 w-full bg-white rounded-lg">
+                    <div class="flex flex-col items-start gap-1 w-full">
+                      <div class="flex flex-row justify-between items-center w-full">
+                        <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Progression</h5>
+                        <LucideTrendingUp :size="24" :stroke-width="1" class="text-Orange-500" />
+                      </div>
+                    </div>
+
+                    <div class="flex flex-row justify-center items-center w-full py-4">
+                      <ClientOnly>
+                        <MoleculesProgressRingChart
+                          :percentage="68"
+                          center-value="68%"
+                          center-label=""
+                          :stroke-width="22"
+                        />
+                      </ClientOnly>
+                    </div>
+                  </div>
+
+                  <!-- Contact de référence - flex-1 pour remplir l'espace restant -->
+                  <OrganismsContactsBlock
+                    title="Contact de référence"
+                    :contacts="contacts"
+                    class="flex-1"
+                  />
+                </div>
+
+              </div>
+
+              <!-- LIGNE 2 : Ressources - Pleine largeur -->
+              <div class="flex flex-col items-start py-5 px-6 gap-10 w-full bg-white rounded-lg overflow-hidden">
+                <div class="flex flex-col items-start gap-3 w-full">
+                  <div class="flex flex-row justify-between items-start w-full">
+                    <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Ressources pour débuter dans les meilleures conditions</h5>
+                  </div>
+
+                  <div class="w-full">
+                    <AtomsTag variant="soft" color="purple" size="md" class="!px-2 !w-auto !h-auto !py-2">
+                      <template #icon-left>
+                        <LucideSparkles :size="20" :stroke-width="1" class="flex-shrink-0" />
+                      </template>
+                      <span class="text-sm leading-[130%]">61% des nouveaux collaborateurs qui ont consulté le Guide de l'entreprise se sentent pleinement opérationnels dès la première semaine</span>
+                    </AtomsTag>
+                  </div>
+                </div>
+
+                <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar -mx-6 px-6">
+                  <div v-for="(annonce, index) in annoncesInternes" :key="index" class="flex-shrink-0">
+                    <MoleculesCard
+                      type="annonce"
+                      :title="annonce.title"
+                      :contract-type="annonce.contractType"
+                      :image-url="annonce.imageUrl"
+                      :description="annonce.description"
+                      :has-video="annonce.hasVideo"
+                      :has-article="annonce.hasArticle"
+                      :has-list="annonce.hasList"
+                      :has-sound="annonce.hasSound"
+                    />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============================================ -->
+          <!-- ONGLET CONGÉS - Layout Bento flex optimisé -->
+          <!-- ============================================ -->
+          <div v-if="activeTab === 'conges'" class="w-full">
+            <div class="flex flex-col gap-5 w-full">
+
+              <!-- LIGNE 1 : 2 colonnes flex -->
+              <div class="flex flex-col lg:flex-row gap-5 w-full lg:items-stretch">
+
+                <!-- COLONNE GAUCHE (~50%) : Demandes de congés -->
+                <div class="w-full lg:w-1/2">
+                  <div class="flex flex-col justify-between items-end py-5 px-0 gap-4 w-full h-full bg-white rounded-lg">
+                    <div class="flex flex-col items-start px-6 gap-2 w-full">
+                      <div class="flex flex-row justify-between items-center w-full">
+                        <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Demandes de congés</h5>
+                        <LucidePalmtree :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                      </div>
+
+                      <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !px-2 !h-auto !py-2">
+                        <template #icon-left>
+                          <LucideSparkles :size="20" :stroke-width="1" class="flex-shrink-0" />
+                        </template>
+                        <span class="text-sm">Moins de 10 jours restant pour poser vos congés de fin d'année</span>
                       </AtomsTag>
                     </div>
-                    <span class="font-roboto text-base text-primary-900 ml-auto">{{ demande.date }}</span>
+
+                    <div class="flex flex-col items-start w-full flex-1 overflow-y-auto">
+                      <div v-for="(demande, index) in demandesConges" :key="index" class="flex flex-row items-center px-6 py-2 gap-[15px] w-full border-b border-secondary-300">
+                        <span class="font-roboto text-base text-primary-900 w-[43px] flex-shrink-0">{{ demande.type }}</span>
+                        <div class="flex-shrink-0">
+                          <AtomsTag :variant="'soft'" :color="demande.statusColor" size="md">
+                            {{ demande.status }}
+                          </AtomsTag>
+                        </div>
+                        <span class="font-roboto text-base text-primary-900 ml-auto">{{ demande.date }}</span>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-col items-start px-4 w-auto">
+                      <AtomsButton variant="tertiary" size="md" justify="start">
+                        Voir toutes les demandes
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Bouton -->
-                <div class="flex flex-col items-start px-4 w-auto">
-                  <AtomsButton variant="tertiary" size="md" justify="start">
-                    Voir toutes les demandes
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
-                </div>
-              </div>
-            </div>
+                <!-- COLONNE DROITE (~50%) : Stats + Action rapide empilés -->
+                <div class="flex flex-col gap-5 w-full lg:w-1/2">
+                  <!-- Chiffres clés - 3 stats en ligne -->
+                  <div class="grid grid-cols-3 gap-5 w-full">
+                    <div class="flex flex-col justify-center items-center py-5 px-3 md:px-5 bg-white rounded-lg">
+                      <h2 class="text-h3 md:text-h2 font-sans text-primary-500 leading-none">9</h2>
+                      <p class="text-sm md:text-base font-roboto text-center text-primary-500">Jours restants</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center py-5 px-3 md:px-5 bg-white rounded-lg">
+                      <h2 class="text-h3 md:text-h2 font-sans text-primary-500 leading-none">12</h2>
+                      <p class="text-sm md:text-base font-roboto text-center text-primary-500">Jours acquis</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center py-5 px-3 md:px-5 bg-white rounded-lg">
+                      <h2 class="text-h3 md:text-h2 font-sans text-primary-500 leading-none">3</h2>
+                      <p class="text-sm md:text-base font-roboto text-center text-primary-500">Jours pris</p>
+                    </div>
+                  </div>
 
-            <!-- Colonne droite -->
-            <div class="flex flex-col gap-5 flex-1" style="max-width: calc(50% - 10px);">
-              <!-- Chiffres clés -->
-              <div class="flex flex-row items-start gap-5 w-full">
-                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
-                  <h2 class="text-h2 font-sans text-primary-500 leading-none">9</h2>
-                  <p class="text-base font-roboto text-center text-primary-500">Jours restants</p>
+                  <!-- Action rapide intelligente - flex-1 pour remplir l'espace -->
+                  <div class="flex flex-col items-start py-5 px-6 gap-4 w-full flex-1 bg-white rounded-lg">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                      <div class="flex flex-row justify-between items-start w-full gap-2">
+                        <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Action rapide intelligente</h5>
+                        <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                      </div>
+
+                      <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !px-2 !h-auto !py-2">
+                        <template #icon-left>
+                          <LucideSparkles :size="20" :stroke-width="1" class="flex-shrink-0" />
+                        </template>
+                        <span class="text-sm">Votre équipe est déjà fortement absente la semaine du 22 au 26 décembre</span>
+                      </AtomsTag>
+                    </div>
+
+                    <div class="flex flex-col items-start gap-2 w-full">
+                      <AtomsButton variant="tertiary" size="md" justify="start" class="w-full md:w-auto">
+                        Poser des congés pendant les vacances scolaires
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                      <AtomsButton variant="tertiary" size="md" justify="start" class="w-full md:w-auto">
+                        Optimiser mes congés avec les jours fériés
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                      <AtomsButton variant="tertiary" size="md" justify="start" class="w-full md:w-auto">
+                        Prendre RDV avec mon référent RH
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
-                  <h2 class="text-h2 font-sans text-primary-500 leading-none">12</h2>
-                  <p class="text-base font-roboto text-center text-primary-500">Jours acquis</p>
-                </div>
-                <div class="flex flex-col justify-center items-center py-5 px-5 flex-1 bg-white rounded-lg">
-                  <h2 class="text-h2 font-sans text-primary-500 leading-none">3</h2>
-                  <p class="text-base font-roboto text-center text-primary-500">Jours pris</p>
-                </div>
+
               </div>
 
-              <!-- Action rapide intelligente -->
-              <div class="flex flex-col items-start py-5 px-6 gap-4 w-full flex-1 bg-white rounded-lg">
+              <!-- LIGNE 2 : Documents utiles - Pleine largeur -->
+              <div class="flex flex-col items-start py-5 px-6 gap-4 w-full bg-white rounded-lg overflow-hidden">
                 <div class="flex flex-col items-start gap-2 w-full">
-                  <div class="flex flex-row justify-between items-start w-full">
-                    <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Action rapide intelligente</h5>
-                    <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
+                  <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Documents utiles</h5>
+                </div>
+
+                <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar -mx-6 px-6">
+                  <div v-for="(document, index) in documentsUtiles" :key="index" class="flex-shrink-0">
+                    <MoleculesCard
+                      type="annonce"
+                      :title="document.title"
+                      :image-url="document.imageUrl"
+                      :description="document.description"
+                      :has-video="document.hasVideo"
+                      :has-article="document.hasArticle"
+                      :has-list="document.hasList"
+                      :has-sound="document.hasSound"
+                    />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============================================ -->
+          <!-- ONGLET OPPORTUNITÉS - Layout Bento flex optimisé -->
+          <!-- ============================================ -->
+          <div v-if="activeTab === 'opportunites'" class="w-full">
+            <!-- Structure principale : 2 colonnes -->
+            <div class="flex flex-col lg:flex-row gap-5 w-full lg:items-stretch">
+
+              <!-- ========================================== -->
+              <!-- COLONNE GAUCHE (~66%) -->
+              <!-- ========================================== -->
+              <div class="flex flex-col gap-5 w-full lg:w-2/3">
+                
+                <!-- Bloc 1 : Opportunités internes -->
+                <div class="flex flex-col justify-center items-start py-5 px-6 gap-6 w-full bg-white rounded-lg">
+                  <div class="flex flex-col items-start gap-2 w-full">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 w-full">
+                      <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Opportunités internes</h5>
+                      <AtomsButton variant="tertiary" size="md" justify="start" class="flex-shrink-0">
+                        Voir toutes les opportunités
+                        <template #icon-right>
+                          <LucideChevronRight :size="20" :stroke-width="1" />
+                        </template>
+                      </AtomsButton>
+                    </div>
+
+                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                      <template #icon-left>
+                        <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
+                      </template>
+                      <span class="text-sm">Suggestions d'évolution basées sur ton expérience en marketing</span>
+                    </AtomsTag>
                   </div>
 
-                  <AtomsTag variant="soft" color="purple" size="md" class="!w-auto">
-                    <template #icon-left>
-                      <LucideSparkles :size="20" :stroke-width="1" />
-                    </template>
-                    Votre équipe est déjà fortement absente la semaine du 22 au 26 décembre
-                  </AtomsTag>
+                  <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar -mx-6 px-6">
+                    <div v-for="(opportunite, index) in opportunitesInternes" :key="index" class="flex-shrink-0">
+                      <MoleculesCard
+                        type="opportunite"
+                        :title="opportunite.title"
+                        :contract-type="opportunite.contractType"
+                        :image-url="opportunite.imageUrl"
+                        :description="opportunite.description"
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div class="flex flex-col items-start gap-2 w-auto">
-                  <AtomsButton variant="tertiary" size="md" justify="start">
-                    Poser des congés pendant les vacances scolaires
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
-                  <AtomsButton variant="tertiary" size="md" justify="start">
-                    Optimiser mes congés avec les jours fériés
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
-                  <AtomsButton variant="tertiary" size="md" justify="start">
-                    Prendre RDV avec mon référent RH
-                    <template #icon-right>
-                      <LucideChevronRight :size="20" :stroke-width="1" />
-                    </template>
-                  </AtomsButton>
+                <!-- Bloc 2 : Contact + Cooptation côte à côte -->
+                <div class="flex flex-col md:flex-row gap-5 w-full">
+                  <!-- Contact de référence -->
+                  <div class="w-full md:w-1/2">
+                    <OrganismsContactsBlock
+                      title="Contact de référence"
+                      :contacts="contactsRecrutement"
+                      class="h-full"
+                    />
+                  </div>
+
+                  <!-- Cooptation -->
+                  <div class="w-full md:w-1/2">
+                    <div class="flex flex-col items-start py-5 px-5 gap-4 bg-white rounded-lg h-full">
+                      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 w-full">
+                        <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Cooptation</h5>
+                        
+                        <div class="flex flex-row items-center gap-2 flex-shrink-0">
+                          <div class="flex flex-row items-center gap-0">
+                            <div class="w-[22px] h-[22px] relative">
+                              <div class="absolute inset-0 bg-cover bg-center rounded-full border border-secondary-300" style="background-image: url('/profiles/avatar-1.jpg');"></div>
+                            </div>
+                            <div class="w-[22px] h-[22px] relative -ml-[6px]">
+                              <div class="absolute inset-0 bg-cover bg-center rounded-full border border-secondary-300" style="background-image: url('/profiles/avatar-2.jpg');"></div>
+                            </div>
+                            <div class="w-[22px] h-[22px] relative -ml-[6px]">
+                              <div class="absolute inset-0 bg-cover bg-center rounded-full border border-secondary-300" style="background-image: url('/profiles/avatar-3.jpg');"></div>
+                            </div>
+                          </div>
+                          <span class="text-xs font-roboto text-primary-900 whitespace-nowrap">+ 50 collaborateurs en 2025</span>
+                        </div>
+                      </div>
+                      
+                      <p class="text-base font-roboto text-primary-900 w-full">Vous connaissez quelqu'un qui pourrait briller chez nous ? Recommandez-le !</p>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Bloc 3 : Compétences valorisées - flex-1 pour aligner avec la colonne droite -->
+                <div class="flex flex-col md:flex-row items-center py-5 px-5 gap-6 w-full bg-white rounded-lg overflow-hidden flex-1">
+                  <!-- Illustration -->
+                  <div class="w-full md:w-[200px] flex-shrink-0 flex items-center justify-center">
+                    <img src="~/assets/img/competences_illustration.svg" alt="Compétences" class="w-[180px] md:w-full object-contain" />
+                  </div>
+
+                  <!-- Contenu -->
+                  <div class="flex flex-col justify-center items-start py-0 px-0 md:px-3 gap-6 flex-1 w-full">
+                    <div class="flex flex-col items-start gap-1 w-full">
+                      <div class="flex flex-row justify-between items-center w-full gap-2">
+                        <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Compétences valorisées</h5>
+                        <LucideStar :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                      </div>
+                      <p class="text-sm md:text-base font-roboto text-primary-900 w-full">Ce que l'entreprise remarque et apprécie</p>
+                    </div>
+
+                    <div class="flex flex-col items-start gap-3 w-full">
+                      <div v-for="(competence, index) in competencesValorisees" :key="index" class="flex flex-row justify-between items-center w-full gap-2">
+                        <h6 class="font-nunito font-bold text-base md:text-[18px] leading-[120%] text-primary-900 flex-shrink-0">{{ competence.name }}</h6>
+                        <div class="flex flex-row items-center gap-0 flex-shrink-0">
+                          <LucideStar 
+                            v-for="star in 5"
+                            :key="star"
+                            :size="20"
+                            :stroke-width="1"
+                            :class="star <= competence.stars ? 'text-primary-500' : 'text-primary-500/30'"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- ========================================== -->
+              <!-- COLONNE DROITE (~33%) -->
+              <!-- ========================================== -->
+              <div class="flex flex-col gap-5 w-full lg:w-1/3">
+                
+                <!-- Bloc 1 : Potentiel de mobilité -->
+                <div class="flex flex-col items-end py-5 px-5 gap-4 w-full bg-white rounded-lg">
+                  <div class="flex flex-col items-start gap-1 w-full">
+                    <div class="flex flex-row justify-between items-center w-full gap-2">
+                      <h5 class="font-nunito font-bold text-xl md:text-2xl leading-[120%] text-primary-500">Potentiel de mobilité</h5>
+                      <LucideUserPlus2 :size="24" :stroke-width="1" class="text-Orange-500 flex-shrink-0" />
+                    </div>
+                  </div>
+
+                  <div class="flex flex-row flex-wrap items-center py-1 gap-2 w-full">
+                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                      <template #icon-left>
+                        <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
+                      </template>
+                      <span class="text-sm">3 postes compatibles</span>
+                    </AtomsTag>
+                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                      <template #icon-left>
+                        <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
+                      </template>
+                      <span class="text-sm">1 service intéressé</span>
+                    </AtomsTag>
+                  </div>
+
+                  <div class="flex flex-row justify-center items-center w-full py-2">
+                    <ClientOnly>
+                      <MoleculesProgressRingChart
+                        :percentage="72"
+                        center-value="72%"
+                        center-label="De compatibilité"
+                        :stroke-width="22"
+                      />
+                    </ClientOnly>
+                  </div>
+                </div>
+
+                <!-- Bloc 2 : À ne pas manquer (image calendrier + événements) -->
+                <div class="flex flex-col items-start w-full bg-white rounded-lg overflow-hidden flex-1">
+                  <!-- Image calendrier -->
+                  <div class="w-full h-[138px] bg-cover bg-center flex-shrink-0" style="background-image: url('/opportunites/banner.jpg');"></div>
+                  
+                  <!-- Événements -->
+                  <OrganismsEventsBlock
+                    title="À ne pas manquer"
+                    :events="eventsOpportunites"
+                    class="flex-1 w-full"
+                  />
+                </div>
+
+              </div>
+
             </div>
           </div>
 
-          <!-- Bloc Documents utiles -->
-          <div class="flex flex-col items-start py-5 px-6 gap-4 w-full bg-white rounded-lg">
-            <div class="flex flex-col items-start gap-2 w-full">
-              <h5 class="font-nunito font-bold text-2xl leading-[120%] text-primary-500">Documents utiles</h5>
-            </div>
-
-            <div class="flex flex-row items-start gap-6 w-full overflow-x-auto hide-scrollbar">
-              <div
-                v-for="(document, index) in documentsUtiles"
-                :key="index"
-                class="flex-shrink-0"
-              >
-                <MoleculesCard
-                  type="annonce"
-                  :title="document.title"
-                  :image-url="document.imageUrl"
-                  :description="document.description"
-                  :has-video="document.hasVideo"
-                  :has-article="document.hasArticle"
-                  :has-list="document.hasList"
-                  :has-sound="document.hasSound"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -414,12 +589,19 @@ import {
   ChevronRight as LucideChevronRight,
   TrendingUp as LucideTrendingUp,
   Sparkles as LucideSparkles,
-  Palmtree as LucidePalmtree
+  Palmtree as LucidePalmtree,
+  Star as LucideStar,
+  UserPlus2 as LucideUserPlus2,
+  CalendarHeart as LucideCalendarHeart,
+  Plus as LucidePlus
 } from 'lucide-vue-next'
 
 useHead({
   title: 'Accueil - Tholka',
 })
+
+// État de la sidebar mobile
+const isSidebarOpen = ref(false)
 
 // État actif du menu
 const activeTab = ref('general')
@@ -560,6 +742,76 @@ const documentsUtiles = [
     hasList: false,
     hasSound: false
   }
+]
+
+// Données Opportunités internes
+const opportunitesInternes = [
+  {
+    title: 'Chef de projet Marketing',
+    contractType: 'CDI',
+    imageUrl: '/opportunites/opportunite-1.jpg',
+    description: 'Pour évoluer vers la gestion, la stratégie et la coordination multi-équipes.'
+  },
+  {
+    title: 'Content Manager',
+    contractType: 'CDI',
+    imageUrl: '/opportunites/opportunite-2.jpg',
+    description: 'Pour développer ton expertise éditoriale et la stratégie de contenu.'
+  },
+  {
+    title: 'Growth Marketer',
+    contractType: 'CDI',
+    imageUrl: '/opportunites/opportunite-3.jpg',
+    description: 'Pour monter en compétence sur l’analyse, l’optimisation et les leviers d’acquisition.'
+  }
+]
+
+const contactsRecrutement = [
+  { name: 'Chargé de recrutement', email: 'recrutement@enterprise.com' }
+]
+
+const competencesValorisees = [
+  { name: 'UI / UX', stars: 3 },
+  { name: 'Data marketing', stars: 4 },
+  { name: 'Rédaction', stars: 4 }
+]
+
+const eventsOpportunites = [
+  {
+    day: '2',
+    monthYear: 'déc. 2025',
+    year: 2025,
+    tagLabel: 'Rencontre métier',
+    title: 'Équipe Brand & Communication'
+  },
+  {
+    day: '2',
+    monthYear: 'déc. 2025',
+    year: 2025,
+    tagLabel: 'Atelier',
+    title: 'Découvrir les métiers du numérique'
+  },
+  {
+    day: '2',
+    monthYear: 'déc. 2025',
+    year: 2025,
+    tagLabel: 'Webinar',
+    title: 'Webinar : Les tendances marketing 2025'
+  },
+  // {
+  //   day: '2',
+  //   monthYear: 'déc. 2025',
+  //   year: 2025,
+  //   tagLabel: 'Workshop',
+  //   title: 'Workshop “Data & Analytics : lire ses KPI marketing'
+  // },
+  // {
+  //   day: '2',
+  //   monthYear: 'déc. 2025',
+  //   year: 2025,
+  //   tagLabel: 'Workshop',
+  //   title: 'Workshop “Data & Analytics : lire ses KPI marketing'
+  // }
 ]
 
 const handleMenuChange = (data) => {

@@ -1,6 +1,6 @@
 <template>
   <!-- Event line Card - Structure Preline -->
-  <div v-if="type === 'event'" class="flex items-center py-1 gap-4 w-full max-w-[292px] h-[59px] bg-white rounded-none">
+  <div v-if="type === 'event'" class="flex items-center py-1 gap-4 w-full max-w-[292px] min-h-[59px] bg-white rounded-none">
     <!-- Section Date -->
     <div class="flex flex-col items-center w-[57px]">
       <!-- Jour -->
@@ -17,7 +17,7 @@
     <div class="h-[51px] w-px bg-[#EBEBF5]"></div>
 
     <!-- Section Contenu -->
-    <div class="flex flex-col justify-center items-start gap-2 w-[203px] h-[51px]">
+    <div class="flex flex-col justify-center items-start gap-2 w-[203px] min-h-[51px]">
       <!-- Tag -->
       <AtomsTag
         v-if="tag.text"
@@ -73,6 +73,40 @@
 
       <!-- Description -->
       <p v-if="description" class="w-full font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-2 overflow-hidden line-clamp-3">
+        {{ description }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Opportunité Card -->
+  <div v-else-if="type === 'opportunite'" class="flex flex-col items-start p-0 w-[311px] bg-white overflow-hidden">
+    <!-- Image section -->
+    <div class="w-[311px] h-[160px] bg-cover bg-center flex-shrink-0 rounded-lg" 
+         :style="{ backgroundImage: `url(${imageUrl})` }">
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col items-start p-[16px] gap-[8px] w-full">
+      <!-- Tag et titre -->
+      <div class="flex flex-col items-start gap-[8px] w-full">
+        <!-- Tag -->
+        <AtomsTag
+          variant="soft"
+          color="primary"
+          size="md"
+          class="!w-auto !h-[25px] !font-roboto !text-xs"
+        >
+          {{ contractType }}
+        </AtomsTag>
+
+        <!-- Title -->
+        <h6 class="w-full font-nunito font-bold text-[16px] leading-[120%] text-primary-500">
+          {{ title }}
+        </h6>
+      </div>
+
+      <!-- Description -->
+      <p class="w-full font-roboto font-normal text-[14px] leading-[16px] text-primary-500 overflow-hidden line-clamp-3">
         {{ description }}
       </p>
     </div>
@@ -275,7 +309,7 @@ const props = defineProps({
   type: {
     type: String,
     required: true,
-    validator: (v) => ['event', 'annonce', 'job', 'profile', 'stats'].includes(v)
+    validator: (v) => ['event', 'annonce', 'job', 'profile', 'stats', 'opportunite'].includes(v)
   },
   // Props pour Event line
   date: {
