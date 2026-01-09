@@ -110,7 +110,7 @@ const buttonClasses = computed(() => {
       ? 'border-transparent text-Light hover:border-b-[1px] hover:border-b-Light hover:rounded-none'
       : 'border-transparent text-primary-500 hover:border-b-[1px] hover:border-b-primary-500 hover:rounded-none',
 
-    navbar: 'border-transparent text-primary-500 hover:border-b-[1px] hover:border-b-secondary-500 hover:rounded-none',
+    navbar: 'border-transparent text-primary-500 hover:border-b-[1px] hover:border-b-primary-500 hover:rounded-none',
 
     menu: 'border-transparent bg-transparent text-Light hover:bg-white/15',
 

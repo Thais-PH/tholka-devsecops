@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] md:p-6 gap-[16px] w-full max-w-[340px] max-h-[412px] bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] md:p-6 gap-[16px] w-full bg-white rounded-lg">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue'
+
 interface Event {
   day: string
   monthYear: string
