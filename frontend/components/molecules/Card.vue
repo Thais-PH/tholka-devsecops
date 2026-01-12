@@ -338,8 +338,7 @@ const props = defineProps({
   },
   contractType: {
     type: String,
-    required: false,
-    validator: (v) => !v || ['CDD', 'CDI', 'Stage', 'Alternance', 'Intérim'].includes(v)
+    required: false
   },
   imageUrl: {
     type: String,

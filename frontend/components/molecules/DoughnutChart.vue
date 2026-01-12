@@ -1,20 +1,20 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-[10px]">
     <!-- Chart -->
-    <div class="relative w-[200px] h-[200px]">
+    <div class="relative" :style="{ width: `${props.size}px`, height: `${props.size}px` }">
       <ClientOnly>
         <apexchart
           type="donut"
           :options="chartOptions"
           :series="props.series"
-          height="200"
-          width="200"
+          :height="props.size"
+          :width="props.size"
         />
       </ClientOnly>
       
       <!-- Center Content -->
       <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
-        <div class="flex flex-col justify-center items-center w-[140px] h-[140px] bg-Light rounded-full">
+        <div class="flex flex-col justify-center items-center bg-Light rounded-full" :style="{ width: `${props.size * 0.7}px`, height: `${props.size * 0.7}px` }">
           <h2 class="text-h2 font-sans text-primary-500 leading-none">{{ centerValue }}</h2>
           <p class="text-base font-roboto text-center text-primary-900">{{ centerLabel }}</p>
         </div>
@@ -46,14 +46,18 @@ const props = defineProps({
   centerLabel: {
     type: String,
     default: 'Collaborateurs'
+  },
+  size: {
+    type: Number,
+    default: 200
   }
 })
 
 const chartOptions = computed(() => ({
   chart: {
     type: 'donut',
-    height: 200,
-    width: 200,
+    height: props.size,
+    width: props.size,
     fontFamily: 'Roboto, sans-serif',
     toolbar: {
       show: false
@@ -82,7 +86,7 @@ const chartOptions = computed(() => ({
   stroke: {
     show: true,
     width: 4,
-    colors: ['#ECF8FD']
+    colors: ['#FFFFFF']
   },
   states: {
     hover: {

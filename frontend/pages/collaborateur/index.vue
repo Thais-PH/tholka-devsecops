@@ -17,7 +17,7 @@
 
       <!-- Main Content - Scrollable -->
       <div class="flex-1 ml-0 lg:ml-[300px] overflow-y-auto">
-        <div class="flex flex-col items-start py-8 px-[3%] gap-5 w-full">
+        <div class="flex flex-col items-start p-6 lg:px-[52px] py-[32px] gap-5 w-full">
           <!-- Menu secondaire -->
           <div class="flex flex-col md:flex-row md:justify-between md:items-center p-0 gap-4 w-full">
             <MoleculesSecondaryMenu

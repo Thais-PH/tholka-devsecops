@@ -2,7 +2,7 @@
   <div class="w-full overflow-x-auto hide-scrollbar">
     <nav
       class="flex flex-row items-center p-1 relative bg-white rounded-[1000px]"
-      :style="{ width: 'fit-content', minWidth: '260px', height: '46px' }"
+      :style="{ width: 'fit-content', height: '46px' }"
       aria-label="Secondary Menu"
       role="tablist"
       aria-orientation="horizontal"

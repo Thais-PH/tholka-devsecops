@@ -1,25 +1,37 @@
 <template>
-  <aside class="sidebar-rh">
-    <nav class="sidebar-nav">
-      <AtomsButton
-        v-for="item in menuItems"
-        :key="item.id"
-        variant="menu"
-        size="md"
-        class="menu-item"
-        :class="{ 'is-active': activeItem === item.id }"
-      >
-        <template #icon-left>
-          <component :is="item.icon" :size="20" :stroke-width="1" />
-        </template>
-        {{ item.label }}
-      </AtomsButton>
-    </nav>
-    
-    <div class="sidebar-decoration">
-      <img src="~/assets/img/decorative-pattern.svg" alt="" />
-    </div>
-  </aside>
+  <div>
+    <!-- Overlay mobile -->
+    <div
+      v-if="isOpen"
+      class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+      @click="$emit('close')"
+    ></div>
+
+    <aside
+      class="sidebar-rh"
+      :class="{ 'is-open': isOpen }"
+    >
+      <nav class="sidebar-nav">
+        <AtomsButton
+          v-for="item in menuItems"
+          :key="item.id"
+          variant="menu"
+          size="md"
+          class="menu-item"
+          :class="{ 'is-active': activeItem === item.id }"
+        >
+          <template #icon-left>
+            <component :is="item.icon" :size="20" :stroke-width="1" />
+          </template>
+          {{ item.label }}
+        </AtomsButton>
+      </nav>
+
+      <div class="sidebar-decoration">
+        <img src="~/assets/img/decorative-pattern.svg" alt="" />
+      </div>
+    </aside>
+  </div>
 </template>
 
 <script setup>
@@ -29,8 +41,14 @@ const props = defineProps({
   activeItem: {
     type: String,
     default: 'accueil'
+  },
+  isOpen: {
+    type: Boolean,
+    default: false
   }
 })
+
+defineEmits(['close'])
 
 const menuItems = [
   { id: 'accueil', label: 'Accueil', icon: Home },
@@ -46,14 +64,33 @@ const menuItems = [
 
 <style scoped>
 .sidebar-rh {
+  position: fixed;
+  top: 82.73px;
+  left: 0;
   width: 300px;
-  min-height: 100vh;
+  height: calc(100vh - 82.73px);
   background: #252958;
   display: flex;
   flex-direction: column;
   padding: 32px 20px;
   box-sizing: border-box;
-  position: relative;
+  overflow-y: auto;
+  z-index: 50;
+  /* Mobile: cachée par défaut, slide depuis la gauche */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Desktop: toujours visible */
+@media (min-width: 1024px) {
+  .sidebar-rh {
+    transform: translateX(0);
+  }
+}
+
+/* Mobile: visible quand ouverte */
+.sidebar-rh.is-open {
+  transform: translateX(0);
 }
 
 .sidebar-nav {
@@ -61,7 +98,13 @@ const menuItems = [
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow-y: auto;
+  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-nav {
+    margin-top: 0;
+  }
 }
 
 .menu-item {

@@ -1,69 +1,97 @@
 <template>
-  <div class="flex flex-col gap-[16px] w-[423px] h-[288px] bg-white rounded-lg shadow-sm p-6 overflow-hidden">
-    <!-- Header -->
-    <div class="flex justify-between items-center w-full">
-      <h5 class="text-h5 text-primary-500">Collaborateurs</h5>
-      <img src="@/assets/icons/users-round.svg" alt="Collaborateurs" class="flex-shrink-0" style="width: 20px; height: 20px; filter: invert(45%) sepia(72%) saturate(1071%) hue-rotate(5deg) brightness(102%) contrast(103%);"/>
+  <div class="flex flex-col items-start p-5 w-full h-full min-h-[303px] bg-white rounded-lg box-border overflow-hidden">
+    <!-- Title Section -->
+    <div class="flex flex-col items-start gap-1 w-full flex-shrink-0">
+      <!-- Header Row -->
+      <div class="flex flex-row justify-between items-center w-full">
+        <h5 class="text-h5 text-primary-500">{{ title }}</h5>
+        <LucideUsers2 :size="24" :stroke-width="1" class="text-Orange-500" />
+      </div>
+
+      <!-- Month/Year Selector -->
+      <div class="relative">
+        <button
+          class="flex flex-row justify-center items-center py-1 gap-1 text-sm text-primary-900 font-roboto"
+          @click="toggleDropdown"
+        >
+          <span>{{ selectedMonthLabel }}</span>
+          <LucideChevronDown :size="17" :stroke-width="1" class="text-primary-500" />
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+          v-if="isDropdownOpen"
+          class="absolute top-full left-0 mt-1 bg-white border border-Grey-300 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto"
+        >
+          <button
+            v-for="option in monthOptions"
+            :key="option.value"
+            class="w-full px-4 py-2 text-sm text-left text-primary-900 hover:bg-secondary-300 font-roboto"
+            @click="selectMonth(option)"
+          >
+            {{ option.label }}
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- Main Content - Horizontal Layout -->
-    <div class="flex gap-4 flex-1 overflow-hidden">
-      <!-- Left: Stats Section -->
-      <div class="flex flex-col gap-4 justify-center flex-shrink-0">
-        <!-- Statistiques -->
-        <div class="bg-Light rounded-lg p-4 w-[150px]">
-          <!-- Départs -->
-          <div class="flex items-center gap-3 mb-3">
-            <AtomsTag 
-              variant="soft" 
-              color="orange" 
-              size="md"
-              status-color="orange"
-            >
-              Départs
-            </AtomsTag>
-            <span class="text-sm font-semibold text-primary-900">{{ departures }}</span>
-          </div>
-          
-          <!-- Arrivées -->
-          <div class="flex items-center gap-3 mb-3">
-            <AtomsTag 
-              variant="soft" 
-              color="secondary" 
-              size="md"
-              status-color="secondary"
-            >
-              Arrivées
-            </AtomsTag>
-            <span class="text-sm font-semibold text-primary-900">{{ arrivals }}</span>
-          </div>
-          
-          <!-- En poste -->
-          <div class="flex items-center gap-3">
-            <AtomsTag 
-              variant="soft" 
-              color="green" 
-              size="md"
-              status-color="green"
-            >
-              En poste
-            </AtomsTag>
-            <span class="text-sm font-semibold text-primary-900">{{ inPosition }}</span>
-          </div>
+    <!-- Chart Section -->
+    <div class="flex flex-row justify-between items-center w-full flex-1 min-h-0">
+      <!-- Legend -->
+      <div class="flex flex-col items-start gap-2">
+        <!-- Départs -->
+        <div class="flex flex-row items-center gap-[5px] lg:gap-[20px]">
+          <AtomsTag
+            variant="soft"
+            color="orange"
+            size="md"
+            status-color="orange"
+            class="min-w-[76px]"
+          >
+            <span class="text-xs font-xs font-roboto">Départs</span>
+          </AtomsTag>
+          <span class="text-xs font-xs font-roboto text-primary-700 min-w-[20px] text-right">{{ departures }}</span>
+        </div>
+
+        <!-- Arrivées -->
+        <div class="flex flex-row items-center gap-[5px] lg:gap-[20px]">
+          <AtomsTag
+            variant="soft"
+            color="secondary"
+            size="md"
+            status-color="secondary"
+            class="min-w-[76px]"
+          >
+            <span class="text-xs font-xs font-roboto">Arrivées</span>
+          </AtomsTag>
+          <span class="text-xs font-xs font-roboto text-primary-700 min-w-[20px] text-right">{{ arrivals }}</span>
+        </div>
+
+        <!-- En poste -->
+        <div class="flex flex-row items-center gap-[5px] lg:gap-[20px]">
+          <AtomsTag
+            variant="soft"
+            color="green"
+            size="md"
+            status-color="green"
+            class="min-w-[76px]"
+          >
+            <span class="text-xs font-xs font-roboto">En poste</span>
+          </AtomsTag>
+          <span class="text-xs font-xs font-roboto text-primary-700 min-w-[20px] text-right">{{ inPosition }}</span>
         </div>
       </div>
 
-      <!-- Right: Doughnut Chart -->
-      <div class="flex items-center justify-center flex-1 overflow-hidden">
-        <div style="transform: scale(1); transform-origin: center;">
-          <MoleculesDoughnutChart
-            :series="chartSeries"
-            :labels="chartLabels"
-            :colors="chartColors"
-            :center-value="totalCollaborateurs"
-            :center-label="'Collaborateurs'"
-          />
-        </div>
+      <!-- Doughnut Chart -->
+      <div class="w-[187px] h-[187px] flex-shrink-0">
+        <MoleculesDoughnutChart
+          :series="chartSeries"
+          :labels="chartLabels"
+          :colors="chartColors"
+          :center-value="computedCenterValue"
+          :center-label="centerLabel"
+          :size="187"
+        />
       </div>
     </div>
   </div>
@@ -71,15 +99,74 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { Users2 as LucideUsers2, ChevronDown as LucideChevronDown } from 'lucide-vue-next'
 
-// Statistiques RH
-const departures = ref(20)
-const arrivals = ref(30)
-const inPosition = ref(80)
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Collaborateurs'
+  },
+  centerValue: {
+    type: [String, Number],
+    default: null
+  },
+  centerLabel: {
+    type: String,
+    default: 'Collaborateurs'
+  },
+  departures: {
+    type: Number,
+    default: 20
+  },
+  arrivals: {
+    type: Number,
+    default: 30
+  },
+  inPosition: {
+    type: Number,
+    default: 80
+  }
+})
 
-// Données du chart calculées dynamiquement
-const chartSeries = computed(() => [arrivals.value, departures.value, inPosition.value])
-const chartLabels = ref(['Arrivées', 'Départs', 'En poste'])
-const chartColors = ref(['#55C3E9', '#F07F47', '#1CAB78']) // [secondary/cyan, orange, green]
-const totalCollaborateurs = computed(() => arrivals.value + departures.value + inPosition.value)
+// Computed pour la valeur centrale (utilise la prop ou calcule le total)
+const computedCenterValue = computed(() => {
+  if (props.centerValue !== null) {
+    return props.centerValue
+  }
+  return props.departures + props.arrivals + props.inPosition
+})
+
+// Données du chart
+const chartSeries = computed(() => [props.inPosition, props.arrivals, props.departures])
+const chartLabels = ref(['En poste', 'Arrivées', 'Départs'])
+const chartColors = ref(['#1CAB78', '#55C3E9', '#F07F47']) // [green, secondary/cyan, orange]
+
+// Month/Year Dropdown
+const isDropdownOpen = ref(false)
+const selectedMonth = ref({ label: 'Janvier 2026', value: '2026-01' })
+
+const monthOptions = [
+  { label: 'Janvier 2026', value: '2026-01' },
+  { label: 'Décembre 2025', value: '2025-12' },
+  { label: 'Novembre 2025', value: '2025-11' },
+  { label: 'Octobre 2025', value: '2025-10' },
+  { label: 'Septembre 2025', value: '2025-09' },
+  { label: 'Août 2025', value: '2025-08' }
+]
+
+const selectedMonthLabel = computed(() => selectedMonth.value.label)
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value
+}
+
+const selectMonth = (option: { label: string; value: string }) => {
+  selectedMonth.value = option
+  isDropdownOpen.value = false
+}
+
+// Close dropdown when clicking outside
+const closeDropdown = () => {
+  isDropdownOpen.value = false
+}
 </script>

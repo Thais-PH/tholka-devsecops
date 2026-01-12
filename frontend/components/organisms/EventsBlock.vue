@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 interface Event {
   day: string
   monthYear: string

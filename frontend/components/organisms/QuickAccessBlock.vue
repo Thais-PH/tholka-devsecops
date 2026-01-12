@@ -6,8 +6,8 @@
       <LucideRocket :size="24" :stroke-width="1" class="text-Orange-500" />
     </div>
 
-    <!-- Quick Access List - Horizontal -->
-    <div class="flex flex-row items-start w-full gap-6">
+    <!-- Quick Access List - Responsive -->
+    <div class="flex flex-wrap items-start w-full gap-4 lg:gap-6">
       <div 
         v-for="(access, index) in quickAccess" 
         :key="index"
