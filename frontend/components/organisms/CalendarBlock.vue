@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
+  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full max-w-[413px] bg-white rounded-lg shadow-sm">
     <!-- Calendar Grid -->
     <div class="w-full">
       <!-- Month Navigation -->

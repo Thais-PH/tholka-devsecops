@@ -1,19 +1,24 @@
 <template>
   <aside class="sidebar-collaborateur">
     <nav class="sidebar-nav">
-      <AtomsButton
+      <NuxtLink
         v-for="item in menuItems"
         :key="item.id"
-        variant="menu"
-        size="md"
-        class="menu-item"
-        :class="{ 'is-active': activeItem === item.id }"
+        :to="item.route"
+        class="menu-link-wrapper"
       >
-        <template #icon-left>
-          <component :is="item.icon" :size="20" :stroke-width="1" />
-        </template>
-        {{ item.label }}
-      </AtomsButton>
+        <AtomsButton
+          variant="menu"
+          size="md"
+          class="menu-item"
+          :class="{ 'is-active': activeItem === item.id }"
+        >
+          <template #icon-left>
+            <component :is="item.icon" :size="20" :stroke-width="1" />
+          </template>
+          {{ item.label }}
+        </AtomsButton>
+      </NuxtLink>
     </nav>
 
     <div class="sidebar-decoration">
@@ -33,13 +38,13 @@ const props = defineProps({
 })
 
 const menuItems = [
-  { id: 'accueil', label: 'Accueil', icon: Home },
-  { id: 'passeport', label: 'Passeport de compétences', icon: Bookmark },
-  { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket },
-  { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare },
-  { id: 'equipe', label: 'Équipe & Management', icon: Users },
-  { id: 'formation', label: 'Formation', icon: Briefcase },
-  { id: 'profil', label: 'Profil', icon: UserCircle2 }
+  { id: 'accueil', label: 'Accueil', icon: Home, route: '/collaborateur' },
+  { id: 'passeport', label: 'Passeport de compétences', icon: Bookmark, route: '/collaborateur/passeport' },
+  { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket, route: '/collaborateur/mobilite' },
+  { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare, route: '/collaborateur/bienetre' },
+  { id: 'equipe', label: 'Équipe & Management', icon: Users, route: '/collaborateur/equipe-management' },
+  { id: 'formation', label: 'Formation', icon: Briefcase, route: '/collaborateur/formation' },
+  { id: 'profil', label: 'Profil', icon: UserCircle2, route: '/collaborateur/profil' }
 ]
 </script>
 
@@ -74,6 +79,11 @@ const menuItems = [
 
 .menu-item.is-active {
   background: rgba(255, 255, 255, 0.15);
+}
+
+.menu-link-wrapper {
+  text-decoration: none;
+  display: block;
 }
 
 .sidebar-decoration {
