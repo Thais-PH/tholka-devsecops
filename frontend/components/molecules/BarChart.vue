@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-[245px] h-[303px]">
+  <div class="flex flex-col w-[320px] h-[380px]">
     <apexchart
       :key="JSON.stringify(series)"
       type="bar"

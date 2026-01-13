@@ -5,7 +5,7 @@
       @click="isOpen = !isOpen"
       class="h-[38px] px-4 py-2 inline-flex items-center justify-center gap-x-2 text-sm rounded-lg bg-Light border border-Grey-300 text-primary-500 hover:bg-Grey-100 transition-colors font-roboto font-normal"
     >
-      Filtres
+      {{ filterLabel }}
       <svg
         class="shrink-0 size-4 transition-transform"
         :class="{ 'rotate-180': isOpen }"
@@ -68,6 +68,10 @@
 import { ref } from 'vue'
 
 const props = defineProps({
+  filterLabel: {
+    type: String,
+    required: true
+  },
   filterOptions: {
     type: Array,
     required: true,
@@ -79,14 +83,14 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue', 'apply'])
+const emit = defineEmits(['update:modelValue', 'apply-filters'])
 
 const isOpen = ref(false)
 const selectedFilters = ref([...props.modelValue])
 
 const applyFilters = () => {
   emit('update:modelValue', selectedFilters.value)
-  emit('apply', selectedFilters.value)
+  emit('apply-filters', selectedFilters.value)
   isOpen.value = false
 }
 </script>

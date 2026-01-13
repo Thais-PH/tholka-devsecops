@@ -175,7 +175,7 @@
   <div v-else-if="type === 'profile'" class="flex flex-row justify-center items-start p-0 w-[302.75px] h-[203px] bg-white border border-primary-300 rounded-lg overflow-hidden">
     <!-- Image section à gauche -->
     <div 
-      class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[151.38px] h-[203px] rounded-tl-lg flex-none order-0 self-stretch flex-grow"
+      class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[151.38px] h-[203px] rounded-tl-lg flex-none order-0 self-stretch flex-grow relative"
       :style="{ 
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
@@ -183,6 +183,13 @@
         backgroundRepeat: 'no-repeat'
       }"
     >
+      <!-- DISC Icon overlay -->
+      <img 
+        v-if="discIcon"
+        :src="getDiscIconPath"
+        :alt="discIcon"
+        class="w-[28px] h-[28px] absolute bottom-[8px] right-[8px]"
+      />
     </div>
 
     <!-- Content à droite -->
@@ -304,6 +311,10 @@
 
 <script setup>
 import { computed } from 'vue'
+import iconDiscRed from '~/assets/icons/icon-disc-red.svg'
+import iconDiscYellow from '~/assets/icons/icon-disc-yellow.svg'
+import iconDiscGreen from '~/assets/icons/icon-disc-green.svg'
+import iconDiscBlue from '~/assets/icons/icon-disc-blue.svg'
 
 const props = defineProps({
   type: {
@@ -393,6 +404,12 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'center'
+  },
+  // Props pour l'icône DISC
+  discIcon: {
+    type: String,
+    required: false,
+    validator: (v) => !v || ['D', 'I', 'S', 'C'].includes(v)
   }
 })
 
@@ -423,6 +440,32 @@ const activeIcon = computed(() => {
   if (props.hasArticle) return 'article'
   if (props.hasList) return 'list'
   return null
+})
+
+// Computed pour mapper le profil DISC à la couleur de l'icône
+const discIconColor = computed(() => {
+  const colorMap = {
+    'D': 'red',
+    'I': 'yellow',
+    'S': 'green',
+    'C': 'blue'
+  }
+  return colorMap[props.discIcon] || 'blue'
+})
+
+// Map des icônes DISC
+const discIcons = {
+  'red': iconDiscRed,
+  'yellow': iconDiscYellow,
+  'green': iconDiscGreen,
+  'blue': iconDiscBlue
+}
+
+// Computed pour récupérer le chemin de l'icône DISC
+const getDiscIconPath = computed(() => {
+  if (!props.discIcon) return ''
+  const colorName = discIconColor.value
+  return discIcons[colorName] || discIcons['blue']
 })
 </script>
 
