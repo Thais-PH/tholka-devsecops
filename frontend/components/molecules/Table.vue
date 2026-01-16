@@ -106,16 +106,30 @@
               </AtomsTag>
             </div>
             
-            <div v-else-if="column.type === 'action'" class="flex gap-2 justify-center">
-              <button
-                v-for="action in getNestedValue(row, column.key)"
-                :key="action.key"
-                @click.stop="action.handler(row, rowIndex)"
-                :class="getActionButtonClass(action)"
-                :disabled="action.disabled && action.disabled(row)"
-              >
-                {{ action.label }}
-              </button>
+            <div v-else-if="column.type === 'action'" class="flex gap-2">
+              <template v-for="(action, actionIndex) in getNestedValue(row, column.key)" :key="actionIndex">
+                <!-- Bouton icon-only si l'action a un icon -->
+                <AtomsButton
+                  v-if="action.icon"
+                  variant="primary"
+                  size="sm"
+                  :icon-only="true"
+                  @click.stop="$emit('action-click', { action: action.action, row, rowIndex })"
+                >
+                  <template #icon-left>
+                    <component :is="iconMap[action.icon]" :size="17" :stroke-width="1.5" />
+                  </template>
+                </AtomsButton>
+                <!-- Bouton texte classique sinon -->
+                <button
+                  v-else
+                  @click.stop="action.handler && action.handler(row, rowIndex)"
+                  :class="getActionButtonClass(action)"
+                  :disabled="action.disabled && action.disabled(row)"
+                >
+                  {{ action.label }}
+                </button>
+              </template>
             </div>
             
             <!-- Type text par défaut -->
@@ -172,6 +186,12 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { ChevronRight as LucideChevronRight } from 'lucide-vue-next'
+
+// Map des icônes disponibles pour le type action
+const iconMap = {
+  ChevronRight: LucideChevronRight
+}
 
 const props = defineProps({
   // Données et structure
@@ -264,7 +284,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['row-click', 'selection-change', 'select-all', 'delete-row', 'sort-change'])
+const emit = defineEmits(['row-click', 'selection-change', 'select-all', 'delete-row', 'sort-change', 'action-click'])
 
 // Génération d'un nom unique pour les radio buttons
 const radioGroupName = `table-radio-${Math.random().toString(36).substr(2, 9)}`
@@ -273,13 +293,13 @@ const radioGroupName = `table-radio-${Math.random().toString(36).substr(2, 9)}`
 const currentSort = ref(props.defaultSort || null)
 
 // Classes de base Preline pour les tables
-const baseTableClasses = 'min-w-full divide-y divide-Grey-300'
+const baseTableClasses = 'min-w-full'
 
 // Classes selon la variante
 const variantClasses = {
   default: '',
   striped: '',
-  bordered: 'border border-Grey-300',
+  bordered: 'border border-primary-300',
   borderless: '',
   rounded: 'rounded-lg overflow-hidden'
 }
@@ -287,32 +307,29 @@ const variantClasses = {
 // Classes selon la taille
 const sizeClasses = {
   sm: {
-    cell: 'px-3 py-2 text-sm',
-    header: 'px-3 py-3 text-xs'
+    cell: 'px-4 py-2 text-sm',
+    header: 'px-4 py-2 text-xs'
   },
   md: {
-    cell: 'px-4 py-3 text-sm',
-    header: 'px-4 py-3 text-xs'
+    cell: 'px-5 py-3 text-sm',
+    header: 'px-5 py-3 text-base'
   },
   lg: {
     cell: 'px-6 py-4 text-base',
-    header: 'px-6 py-4 text-sm'
+    header: 'px-6 py-4 text-base'
   }
 }
 
 // Classes du header selon le style
 const headerStyleClasses = {
-  default: 'bg-primary-500/20',
+  default: 'bg-primary-500/10',
   gray: 'bg-Grey-500',
-  divided: 'bg-primary-500/20 divide-x divide-Grey-300'
+  divided: 'bg-primary-500/10 divide-x divide-primary-500/10'
 }
 
 // Classes calculées
 const containerClasses = computed(() => {
-  let classes = []
-  if (props.variant === 'rounded') {
-    classes.push('rounded-lg border border-Grey-300 overflow-hidden')
-  }
+  let classes = ['border border-primary-300 rounded-lg overflow-hidden']
   return classes
 })
 
@@ -333,13 +350,13 @@ const headerClasses = computed(() => {
 const headerCellClasses = computed(() => {
   let classes = [
     sizeClasses[props.size].header,
-    'text-left font-medium text-primary-500 uppercase tracking-wider font-roboto'
+    'text-left font-medium text-primary-500 font-roboto'
   ]
   return classes.join(' ')
 })
 
 const bodyClasses = computed(() => {
-  let classes = ['bg-Light divide-y divide-Grey-300']
+  let classes = ['bg-Light divide-y divide-primary-500/10']
   return classes.join(' ')
 })
 
