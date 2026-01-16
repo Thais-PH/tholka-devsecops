@@ -49,7 +49,7 @@ const props = defineProps({
 })
 
 // Classes de base Preline pour les badges
-const baseBadgeClasses = 'inline-flex items-center gap-x-1.5 rounded-full text-xs font-normal shrink-0'
+const baseBadgeClasses = 'inline-flex items-center gap-x-1.5 rounded-full text-xs font-normal font-roboto shrink-0'
 
 // Tailles selon Preline
 const sizeClasses = {
