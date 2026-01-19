@@ -12,19 +12,24 @@
       :class="{ 'is-open': isOpen }"
     >
       <nav class="sidebar-nav">
-        <AtomsButton
+        <NuxtLink
           v-for="item in menuItems"
           :key="item.id"
-          variant="menu"
-          size="md"
-          class="menu-item"
-          :class="{ 'is-active': activeItem === item.id }"
+          :to="item.route"
+          class="menu-link"
         >
-          <template #icon-left>
-            <component :is="item.icon" :size="20" :stroke-width="1" />
-          </template>
-          {{ item.label }}
-        </AtomsButton>
+          <AtomsButton
+            variant="menu"
+            size="md"
+            class="menu-item"
+            :class="{ 'is-active': activeItem === item.id }"
+          >
+            <template #icon-left>
+              <component :is="item.icon" :size="20" :stroke-width="1" />
+            </template>
+            {{ item.label }}
+          </AtomsButton>
+        </NuxtLink>
       </nav>
 
       <div class="sidebar-decoration">
@@ -51,14 +56,14 @@ const props = defineProps({
 defineEmits(['close'])
 
 const menuItems = [
-  { id: 'accueil', label: 'Accueil', icon: Home },
-  { id: 'equipe', label: 'Équipe & Management', icon: Users },
-  { id: 'recrutement', label: 'Recrutement', icon: Search },
-  { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket },
-  { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare },
-  { id: 'administration', label: 'Administration', icon: Files },
-  { id: 'remuneration', label: 'Rémunération', icon: Euro },
-  { id: 'formation', label: 'Formation', icon: Briefcase }
+  { id: 'accueil', label: 'Accueil', icon: Home, route: '/rh' },
+  { id: 'equipe', label: 'Équipe & Management', icon: Users, route: '/rh/equipe' },
+  { id: 'recrutement', label: 'Recrutement', icon: Search, route: '/rh/recrutement' },
+  { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket, route: '/rh/mobilite' },
+  { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare, route: '/rh/bienetre' },
+  { id: 'administration', label: 'Administration', icon: Files, route: '/rh/administration' },
+  { id: 'remuneration', label: 'Rémunération', icon: Euro, route: '/rh/remuneration' },
+  { id: 'formation', label: 'Formation', icon: Briefcase, route: '/rh/formation' }
 ]
 </script>
 
@@ -105,6 +110,11 @@ const menuItems = [
   .sidebar-nav {
     margin-top: 0;
   }
+}
+
+.menu-link {
+  text-decoration: none;
+  width: 100%;
 }
 
 .menu-item {
