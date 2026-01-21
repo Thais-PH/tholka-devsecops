@@ -223,7 +223,7 @@
       </div>
 
       <!-- Button "Voir le profil" -->
-      <div class="flex flex-row items-center gap-[4px] flex-none order-2 w-full">
+      <div v-if="showProfileLink" class="flex flex-row items-center gap-[4px] flex-none order-2 w-full">
         <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto whitespace-nowrap">
           Voir le profil
           <template #icon-right>
@@ -410,6 +410,12 @@ const props = defineProps({
     type: String,
     required: false,
     validator: (v) => !v || ['D', 'I', 'S', 'C'].includes(v)
+  },
+  // Props pour afficher/masquer le lien "Voir le profil"
+  showProfileLink: {
+    type: Boolean,
+    required: false,
+    default: true
   }
 })
 

@@ -202,15 +202,16 @@ const currentPage = ref(1)
 const itemsPerPage = 12
 const depthOffset = 25
 const levelGap = 20 // px spacing between cards in a level
-const cardScale = 0.7 // scale factor to reduce card size while keeping proportions
+const cardScale = 0.6 // réduit à 0.6 pour gérer le niveau supplémentaire
 const baseCardWidth = 272
 const baseCardHeight = 134
 const cardWidth = baseCardWidth * cardScale
 const cardHeight = baseCardHeight * cardScale
-const horizontalGap = 120
+const horizontalGap = 80 // réduit pour gérer le niveau supplémentaire
 const horizontalGapLevel1 = 40 // resserre la ligne du milieu (niveau 1)
-const verticalGap = 64
-const levelOffsetX = 70
+const horizontalGapLevel2 = 30 // resserre encore plus le niveau 2
+const verticalGap = 50 // réduit pour gérer 4 niveaux
+const levelOffsetX = 50 // réduit pour éviter que les cartes sortent
 const parentConnectorOffset = 12
 
 const handlePageChange = (page: number) => {
@@ -445,43 +446,53 @@ const paginatedCollaborators = computed(() => {
   return filteredCollaborators.value.slice(start, start + itemsPerPage)
 })
 
-// Organigramme data structure (simple 1-2-1 exemple de base)
+// Organigramme data structure (avec niveau RH au-dessus)
 const organigrammeData = ref<{ chef: Person }>({
   chef: {
-    id: 12,
-    name: 'Laurent Bonnet',
-    position: 'Directeur Général',
-    pole: 'Communication',
-    discProfile: 'D',
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
+    id: 1,
+    name: 'Alice Dupont',
+    position: 'Gestionnaire RH',
+    pole: 'RH',
+    discProfile: 'C',
+    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
     subordinates: [
       {
-        id: 3,
-        name: 'Claire Leblanc',
-        position: 'Responsable Marketing',
+        id: 12,
+        name: 'Laurent Bonnet',
+        position: 'Directeur Général',
         pole: 'Communication',
-        discProfile: 'I',
-        imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
+        discProfile: 'D',
+        imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
         subordinates: [
           {
-            id: 15,
-            name: 'Olivier Renaud',
-            position: 'Community Manager',
+            id: 3,
+            name: 'Claire Leblanc',
+            position: 'Responsable Marketing',
             pole: 'Communication',
             discProfile: 'I',
-            imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
+            imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
+            subordinates: [
+              {
+                id: 15,
+                name: 'Olivier Renaud',
+                position: 'Community Manager',
+                pole: 'Communication',
+                discProfile: 'I',
+                imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
+                subordinates: []
+              }
+            ]
+          },
+          {
+            id: 13,
+            name: 'Marie Leclerc',
+            position: 'Manager Pôle',
+            pole: 'Communication',
+            discProfile: 'I',
+            imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
             subordinates: []
           }
         ]
-      },
-      {
-        id: 13,
-        name: 'Marie Leclerc',
-        position: 'Manager Pôle',
-        pole: 'Communication',
-        discProfile: 'I',
-        imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
-        subordinates: []
       }
     ]
   }
@@ -507,7 +518,11 @@ const layoutNodes = computed<PositionedNode[]>(() => {
   const nodes: PositionedNode[] = []
   organigrammeLevels.value.forEach((level, depth) => {
     const offsetX = depth * levelOffsetX
-    const gapX = depth === 1 ? horizontalGapLevel1 : horizontalGap
+    // Ajuster l'espacement selon le niveau
+    let gapX = horizontalGap
+    if (depth === 1) gapX = horizontalGapLevel1
+    if (depth === 2) gapX = horizontalGapLevel2
+    
     level.forEach((person, idx) => {
       const x = offsetX + idx * (cardWidth + gapX)
       const y = depth * (cardHeight + verticalGap)
