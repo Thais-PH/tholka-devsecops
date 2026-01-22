@@ -1915,6 +1915,29 @@
             </div>
           </div>
         </div>
+
+        <!-- Filter Bar -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Filter Bar</h3>
+          
+          <!-- Variant Dark (sur fond foncé) -->
+          <div class="bg-primary-700 rounded-lg p-8 mb-6">
+            <p class="text-xs text-Light/70 mb-4 uppercase">Variant Dark</p>
+            <MoleculesFilterBar 
+              variant="dark"
+              @filter-change="(filters) => console.log('Filters changed:', filters)"
+            />
+          </div>
+
+          <!-- Variant Light (sur fond clair) -->
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <p class="text-xs text-Grey-500 mb-4 uppercase">Variant Light</p>
+            <MoleculesFilterBar 
+              variant="light"
+              @filter-change="(filters) => console.log('Filters changed:', filters)"
+            />
+          </div>
+        </div>
       </section>
     </div>
   </div>
