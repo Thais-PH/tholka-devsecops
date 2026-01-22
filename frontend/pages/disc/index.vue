@@ -9,77 +9,81 @@
       <OrganismsSidebarCollaborateur active-item="test-disc" />
 
       <!-- Main Content -->
-      <div class="flex flex-col items-start p-[32px] gap-[20px] flex-1" style="margin-left: 300px;">
+      <div class="flex flex-col items-start p-6 lg:p-[32px] gap-5 flex-1 ml-0 lg:ml-[300px]">
         <!-- Progress Bar (Outside the card) -->
-        <div class="w-full max-w-[1324px]">
-          <MoleculesProgressBar :percentage="(currentQuestionIndex + 1) / DISC_QUESTIONS.length * 100" />
+        <div class="w-full">
+          <MoleculesProgressBar :percentage="(getQuestionNumberInCategory() / getQuestionsCountInCategory()) * 100" />
         </div>
 
         <!-- Test Form -->
-        <div class="flex flex-col items-center p-[32px] gap-[24px] w-full max-w-[1324px] bg-white rounded-lg h-[580px]">
+        <div class="flex flex-col items-center px-4 md:px-[40px] pt-[40px] pb-[80px] gap-12 lg:gap-[96px] w-full bg-white rounded-[20px]">
 
           <!-- Question -->
-          <div v-if="currentQuestion" class="w-full flex flex-col justify-between flex-1">
-            <div class="flex flex-col gap-2">
-              <div class="flex justify-between items-center">
-                <span class="inline-block px-4 bg-[#EBEBF5] text-[#3A3B99] rounded-full font-roboto font-normal text-sm" style="height: 34px; display: flex; align-items: center; justify-content: center;">
-                  {{ currentQuestion.category }}
-                </span>
-                <p class="text-base font-roboto font-medium text-primary-500">Question {{ getQuestionNumberInCategory() }}/{{ getQuestionsCountInCategory() }}</p>
-              </div>
-              <h2 class="text-h2 font-sans text-primary-500 text-center line-clamp-3">{{ currentQuestion.question }}</h2>
+          <div v-if="currentQuestion" class="w-full flex flex-col items-center gap-12 lg:gap-[96px]">
+            <!-- Tag Row: catégorie + numéro de question -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0 w-full px-0">
+              <span class="inline-flex items-center justify-center px-4 py-2 bg-[#EBEBF5] text-[#3A3B99] rounded-[20px] font-roboto font-normal text-sm text-center">
+                {{ getCategoryIndex() + 1 }}/{{ getTotalCategories() }} - {{ currentQuestion.category }}
+              </span>
+              <p class="font-roboto font-medium text-base text-[#3A3B99] text-center">Question {{ getQuestionNumberInCategory() }}/{{ getQuestionsCountInCategory() }}</p>
             </div>
+
+            <!-- Titre de la question (séparé) -->
+            <h2 class="font-nunito font-bold text-2xl md:text-[40px] md:leading-[55px] text-center text-[#3A3B99] max-w-[770px] px-4">{{ currentQuestion.question }}</h2>
             
             <!-- Answer Options Row -->
-            <div class="flex items-center justify-center gap-8">
+            <!-- Ordre fixe: rouge (pas du tout), jaune (partiellement), vert (plutôt), bleu (vraiment) -->
+            <!-- La lettre DISC associée change selon la question mais reste cachée -->
+            <div class="flex flex-row flex-wrap justify-center items-center gap-6 lg:gap-[64px] w-full">
               <div
-                v-for="(option, index) in getSortedOptions(currentQuestion.options)"
+                v-for="(option, index) in currentQuestion.options"
                 :key="index"
-                class="flex flex-col items-center gap-4"
+                class="flex flex-col items-center gap-6 w-[180px] md:w-[220px] lg:w-[250px]"
               >
-                <!-- Icon Circle -->
+                <!-- Icon Circle - Icône fixe selon l'index (position) -->
                 <div
-                  class="flex items-center justify-center rounded-full transition-all"
-                  :style="{
-                    width: '247px',
-                    height: '247px',
-                    backgroundColor: answers[currentQuestionIndex] === option.color ? '#3A3B99' : '#3A3B991A'
-                  }"
+                  class="flex items-center justify-center rounded-full transition-all w-[180px] h-[180px] md:w-[220px] md:h-[220px] lg:w-[247px] lg:h-[247px]"
+                  :class="answers[currentQuestionIndex] === option.color ? 'bg-primary-500' : 'bg-[rgba(58,59,153,0.1)]'"
                 >
+                  <!-- Index 0: Pas du tout d'accord = Rouge -->
                   <img
-                    v-if="option.color === 'D'"
+                    v-if="index === 0"
                     src="~/assets/icons/red.svg"
-                    alt="Dominance"
-                    class="w-24 h-24"
+                    alt="Pas du tout d'accord"
+                    class="w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40"
                   />
+                  <!-- Index 1: Partiellement d'accord = Jaune -->
                   <img
-                    v-else-if="option.color === 'I'"
+                    v-else-if="index === 1"
                     src="~/assets/icons/yellow.svg"
-                    alt="Influence"
-                    class="w-24 h-24"
+                    alt="Partiellement d'accord"
+                    class="w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40"
                   />
+                  <!-- Index 2: Plutôt d'accord = Vert -->
                   <img
-                    v-else-if="option.color === 'S'"
+                    v-else-if="index === 2"
                     src="~/assets/icons/green.svg"
-                    alt="Stabilité"
-                    class="w-24 h-24"
+                    alt="Plutôt d'accord"
+                    class="w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44"
                   />
+                  <!-- Index 3: Vraiment d'accord = Bleu -->
                   <img
-                    v-else-if="option.color === 'C'"
+                    v-else-if="index === 3"
                     src="~/assets/icons/blue.svg"
-                    alt="Conformité"
-                    class="w-24 h-24"
+                    alt="Vraiment d'accord"
+                    class="w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44"
                   />
                 </div>
 
-                <!-- Button -->
-                <button
-                  class="px-4 py-3 font-roboto font-normal text-base rounded-lg bg-primary-500 text-white hover:bg-primary-700 transition-all"
-                  :style="{ width: '250px' }"
+                <!-- Button - Le texte est fixe, la lettre DISC (option.color) est cachée -->
+                <AtomsButton
+                  variant="primary"
+                  size="lg"
+                  class="w-full !text-[14px] md:!text-[16px] lg:!text-[20px] whitespace-nowrap"
                   @click="selectAnswerAndNext(option.color)"
                 >
                   {{ option.text }}
-                </button>
+                </AtomsButton>
               </div>
             </div>
           </div>
@@ -114,11 +118,6 @@ const selectAnswerAndNext = (color: string) => {
   }
 }
 
-const getSortedOptions = (options: any[]) => {
-  const discOrder = ['D', 'I', 'S', 'C']
-  return [...options].sort((a, b) => discOrder.indexOf(a.color) - discOrder.indexOf(b.color))
-}
-
 const getQuestionsCountInCategory = () => {
   if (!currentQuestion.value) return 0
   return DISC_QUESTIONS.filter(q => q.category === currentQuestion.value.category).length
@@ -129,5 +128,26 @@ const getQuestionNumberInCategory = () => {
   const questionsInCategory = DISC_QUESTIONS.filter(q => q.category === currentQuestion.value.category)
   const currentQuestionInCategory = questionsInCategory.findIndex(q => q.question === currentQuestion.value.question)
   return currentQuestionInCategory + 1
+}
+
+// Récupérer toutes les catégories uniques
+const getCategories = () => {
+  const categories: string[] = []
+  DISC_QUESTIONS.forEach(q => {
+    if (!categories.includes(q.category)) {
+      categories.push(q.category)
+    }
+  })
+  return categories
+}
+
+const getTotalCategories = () => {
+  return getCategories().length
+}
+
+const getCategoryIndex = () => {
+  if (!currentQuestion.value) return 0
+  const categories = getCategories()
+  return categories.indexOf(currentQuestion.value.category)
 }
 </script>
