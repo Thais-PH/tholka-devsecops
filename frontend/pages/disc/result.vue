@@ -63,7 +63,7 @@ const discCounts = computed(() => {
       counts[answer as keyof typeof counts]++
     }
   })
-  
+
   const total = answers.value.length
   return {
     D: total > 0 ? Math.round((counts.D / total) * 100) : 0,
@@ -85,7 +85,7 @@ const dominantProfile = computed(() => {
   const profiles = ['D', 'I', 'S', 'C']
   let maxValue = 0
   let maxProfile = 'D'
-  
+
   profiles.forEach(profile => {
     const value = discCounts.value[profile as keyof typeof discCounts.value]
     if (value > maxValue) {
@@ -93,7 +93,7 @@ const dominantProfile = computed(() => {
       maxProfile = profile
     }
   })
-  
+
   return maxProfile
 })
 
@@ -110,12 +110,12 @@ const profileType = computed(() => {
 
 const profileCardBgColor = computed(() => {
   const colorMap: { [key: string]: string } = {
-    D: '#EB5035', // orange-500
-    I: '#FFD83B', // yellow-500
-    S: '#45CA24', // green-500
-    C: '#6B7280'  // secondary-500
+    D: '#EB5035', // Red/Orange
+    I: '#FFD83B', // Yellow
+    S: '#45CA24', // Green
+    C: '#476EF6'  // Blue
   }
-  return colorMap[dominantProfile.value] || '#6B7280'
+  return colorMap[dominantProfile.value] || '#476EF6'
 })
 
 const tagBgColor = computed(() => {
@@ -123,7 +123,7 @@ const tagBgColor = computed(() => {
     D: '#FEEAE5', // soft orange
     I: '#FEF9E7', // soft yellow
     S: '#E8F5E0', // soft green
-    C: '#EBEBF5'  // soft secondary
+    C: '#EDF4FF'  // soft blue
   }
   return colorMap[dominantProfile.value] || '#EBEBF5'
 })
@@ -133,7 +133,7 @@ const tagTextColor = computed(() => {
     D: '#EB5035', // orange-500
     I: '#FFD83B', // yellow-500
     S: '#45CA24', // green-500
-    C: '#3A3B99'  // primary-500
+    C: '#476EF6'  // Blue-disc
   }
   return colorMap[dominantProfile.value] || '#3A3B99'
 })
@@ -147,12 +147,21 @@ const testDate = computed(() => {
 })
 
 onMounted(() => {
-  const storedAnswers = sessionStorage.getItem('discAnswers')
+  // On vérifie d'abord localStorage, puis sessionStorage pour la rétrocompatibilité
+  const storedAnswers = localStorage.getItem('discAnswers') || sessionStorage.getItem('discAnswers')
+
   if (storedAnswers) {
     try {
-      answers.value = JSON.parse(storedAnswers)
+      const parsed = JSON.parse(storedAnswers)
+      // Vérification basique que ce n'est pas un tableau vide
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        answers.value = parsed
+      } else {
+        router.push('/disc')
+      }
     } catch (e) {
       console.error('Erreur en parsant les réponses du test DISC', e)
+      router.push('/disc') // Redirection en cas d'erreur de parsing
     }
   } else {
     router.push('/disc')
