@@ -195,7 +195,6 @@ defineEmits(['toggle-sidebar'])
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1664px;
   height: 66.73px;
 }
 
