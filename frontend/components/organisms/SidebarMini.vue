@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar-mini">
+  <aside class="sidebar-mini" :class="{ 'is-static': isStatic }">
     <nav class="sidebar-nav">
       <button
         v-for="item in menuItems"
@@ -26,6 +26,10 @@ const props = defineProps({
     type: String,
     default: 'rh',
     validator: (value) => ['rh', 'collaborateur'].includes(value)
+  },
+  isStatic: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -103,5 +107,10 @@ const menuItems = computed(() =>
 
 .menu-item.is-active {
   background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-mini.is-static {
+  min-height: 800px;
+  height: 800px;
 }
 </style>

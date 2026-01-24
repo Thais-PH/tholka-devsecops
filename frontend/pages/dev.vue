@@ -4,10 +4,19 @@
       <!-- Header -->
       <div class="mb-12">
         <h1 class="text-4xl font-bold text-primary-900 mb-2">Design System</h1>
+
+        <div class="mt-8 overflow-x-auto">
+          <MoleculesSecondaryMenu
+            :items="navigationItems"
+            :active-item="activeSection"
+            @change="(e) => activeSection = e.item.id"
+            class="flex-wrap"
+          />
+        </div>
       </div>
 
       <!-- Couleurs -->
-      <section class="mb-16">
+      <section v-show="activeSection === 'couleurs'" class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Couleurs</h2>
 
         <!-- Main Usage -->
@@ -296,7 +305,7 @@
       </section>
 
       <!-- Typographies -->
-      <section class="mb-16">
+      <section v-show="activeSection === 'typographies'" class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Typographies</h2>
 
         <!-- Titles - Nunito -->
@@ -403,7 +412,7 @@
       </section>
 
       <!-- Boutons Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'boutons'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Boutons</h2>
 
         <!-- Primary Buttons -->
@@ -836,7 +845,7 @@
       </section>
 
       <!-- Menu Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'menus'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Menus</h2>
 
         <!-- Navbar -->
@@ -858,19 +867,19 @@
             <div class="flex gap-8 justify-center">
               <div>
                 <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
-                <OrganismsSidebarRH active-item="accueil" />
+                <OrganismsSidebarRH active-item="accueil" :is-static="true" />
               </div>
               <div>
                 <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
-                <OrganismsSidebarMini active-item="accueil" variant="rh" />
+                <OrganismsSidebarMini active-item="accueil" variant="rh" :is-static="true" />
               </div>
               <div>
                 <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
-                <OrganismsSidebarCollaborateur active-item="accueil" />
+                <OrganismsSidebarCollaborateur active-item="accueil" :is-static="true" />
               </div>
               <div>
                 <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
-                <OrganismsSidebarMini active-item="accueil" variant="collaborateur" />
+                <OrganismsSidebarMini active-item="accueil" variant="collaborateur" :is-static="true" />
               </div>
             </div>
           </div>
@@ -917,7 +926,7 @@
       </section>
 
       <!-- Tags Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'tags'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
         
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
@@ -1174,7 +1183,7 @@
       </section>
 
       <!-- Alertes Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'alertes'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Alertes</h2>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -1248,7 +1257,7 @@
       </section>
 
       <!-- Cards Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'cards'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Cards</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
@@ -1317,7 +1326,7 @@
       </section>
 
       <!-- Modal Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'modal'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Modal</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
@@ -1372,7 +1381,7 @@
       </section>
 
       <!-- Table Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'tables'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tables</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
@@ -1393,7 +1402,7 @@
       </section>
 
       <!-- Steps & Stepper Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'steps'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
 
         <!-- Steps individuels -->
@@ -1436,7 +1445,7 @@
       </section>
 
       <!-- Charts Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'charts'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
 
         <div class="grid grid-cols-1 gap-8">
@@ -1521,6 +1530,7 @@
       </section>
 
       <!-- Editor -->
+      <section v-show="activeSection === 'editor'">
       <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
         <h3 class="text-2xl font-semibold text-primary-700 mb-6">Editor</h3>
         <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
@@ -1532,9 +1542,10 @@
           />
         </div>
       </div>
+      </section>
 
       <!-- Pagination Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'pagination'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Pagination</h2>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -1551,7 +1562,7 @@
       </section>
 
       <!-- Filter Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'filter'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Filter</h2>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -1568,7 +1579,7 @@
       </section>
 
       <!-- Blocks Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'blocks'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
 
         <div class="bg-white rounded-lg p-8 shadow-sm">
@@ -1662,7 +1673,7 @@
       </section>
 
       <!-- Forms Section -->
-      <section class="mt-8 mb-16">
+      <section v-show="activeSection === 'forms'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Forms</h2>
 
         <!-- Checkboxes -->
@@ -1929,6 +1940,27 @@ import {
   FileQuestion as LucideFileQuestion,
   Network as LucideNetwork
 } from 'lucide-vue-next'
+
+// Navigation principale
+const activeSection = ref('couleurs')
+const navigationItems = [
+  { id: 'couleurs', label: 'Couleurs' },
+  { id: 'typographies', label: 'Typographies' },
+  { id: 'boutons', label: 'Boutons' },
+  { id: 'menus', label: 'Menus' },
+  { id: 'tags', label: 'Tags' },
+  { id: 'alertes', label: 'Alertes' },
+  { id: 'cards', label: 'Cards' },
+  { id: 'modal', label: 'Modal' },
+  { id: 'tables', label: 'Tables' },
+  { id: 'steps', label: 'Steps & Stepper' },
+  { id: 'charts', label: 'Charts' },
+  { id: 'editor', label: 'Editor' },
+  { id: 'pagination', label: 'Pagination' },
+  { id: 'filter', label: 'Filter' },
+  { id: 'blocks', label: 'Blocks' },
+  { id: 'forms', label: 'Forms' }
+]
 
 // Variables pour les modales
 const showSuccessModal = ref(false)

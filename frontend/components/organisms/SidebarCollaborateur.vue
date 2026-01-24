@@ -8,7 +8,7 @@
   
   <aside 
     class="sidebar-collaborateur"
-    :class="{ 'is-open': isOpen }"
+    :class="{ 'is-open': isOpen, 'is-static': isStatic }"
   >
     <nav class="sidebar-nav">
       <NuxtLink
@@ -48,6 +48,10 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false
+  },
+  isStatic: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -81,6 +85,12 @@ const menuItems = [
   /* Mobile: cachée par défaut, slide depuis la gauche */
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-collaborateur.is-static {
+  position: relative;
+  top: auto;
+  height: 800px;
 }
 
 /* Desktop: toujours visible */
