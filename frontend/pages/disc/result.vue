@@ -1,36 +1,41 @@
 <template>
   <div class="flex flex-col w-full min-h-screen bg-secondary-300">
-    <OrganismsNavbar />
+    <OrganismsNavbar :is-sidebar-open="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
     <div class="flex w-full" style="margin-top: 82.73px;">
-      <OrganismsSidebarCollaborateur active-item="test-disc" />
-      <div class="flex flex-col items-start p-[32px] gap-[20px] flex-1" style="margin-left: 300px;">
-        <!-- Grid 2x2 avec proportions -->
-        <div class="grid gap-[20px] w-full" style="grid-template-columns: 2fr 1fr;">
+      <OrganismsSidebarCollaborateur active-item="test-disc" :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
+
+      <div class="flex flex-col items-start p-4 lg:p-[32px] gap-[20px] flex-1 lg:ml-[300px] w-full">
+        <!-- Grid Responsive -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-[20px] w-full">
+
           <!-- Haut Gauche: Image DISC -->
-          <div class="flex items-center justify-center bg-white rounded-lg" style="height: 500px; padding: 27px 142px;">
-            <img src="~/assets/img/disc-s.svg" alt="DISC Profile" class="w-full h-full object-contain" />
+          <div class="xl:col-span-2 flex items-center justify-center bg-white rounded-lg h-[300px] lg:h-full lg:min-h-[400px] p-4 lg:px-[142px] lg:py-[27px]">
+            <img :src="discImage" alt="DISC Profile" class="w-full h-full object-contain" />
           </div>
 
           <!-- Haut Droite: Profil DISC + BarChart + Date -->
-          <div class="flex flex-col bg-white rounded-lg" style="height: 500px; padding: 0 23px;">
-            <h5 class="text-h5 font-sans text-primary-500 pt-[16px]">Profil DISC</h5>
-            <div class="flex-1 flex items-center justify-start pl-0">
+          <div class="col-span-1 flex flex-col bg-white rounded-lg h-auto lg:h-full min-h-[400px] p-4 lg:px-[23px] lg:py-0">
+            <div class="flex flex-row justify-between items-center w-full pt-[16px]">
+              <h5 class="text-h5 font-sans text-primary-500">Profil DISC</h5>
+              <LucideBarChart4 :size="24" :stroke-width="1" class="text-Orange-500" />
+            </div>
+            <div class="flex-1 flex items-center justify-center w-full min-h-[350px] mt-[20px]">
               <MoleculesBarChart :series="discPercentages" :labels="['D', 'I', 'S', 'C']" />
             </div>
-            <p class="font-roboto text-sm pb-[16px] text-center" style="color: #050D2E;">Date du test : {{ testDate }}</p>
+            <p class="font-roboto font-normal italic text-[24px] leading-normal text-center text-primary-700 pb-[16px] mt-[30px]">Date du test : {{ testDate }}</p>
           </div>
 
           <!-- Bas Gauche: Comportement -->
-          <div class="flex flex-col bg-white rounded-lg" style="height: 299px; padding: 0 20px;">
+          <div class="xl:col-span-2 flex flex-col bg-white rounded-lg h-auto min-h-[299px] p-4 lg:px-[20px]">
             <h4 class="text-h4 font-sans text-primary-500 pt-[24px]">Comportement à adopter avec les autres :</h4>
             <p class="font-roboto text-sm mt-[12px]" style="color: #050D2E;">Description du comportement à venir</p>
-            <h6 class="text-h6 font-sans text-primary-500 mt-[16px]">Points forts</h6>
+            <h6 class="text-[18px] font-bold font-sans text-primary-500 mt-[16px]">Points forts</h6>
             <div class="flex gap-2 flex-wrap mt-[8px]">
               <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 1</span>
               <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 2</span>
               <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 3</span>
             </div>
-            <h6 class="text-h6 font-sans text-primary-500 mt-[16px]">Points à travailler</h6>
+            <h6 class="text-[18px] font-bold font-sans text-primary-500 mt-[16px]">Points à travailler</h6>
             <div class="flex gap-2 flex-wrap mt-[8px]">
               <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 4</span>
               <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 5</span>
@@ -38,10 +43,22 @@
           </div>
 
           <!-- Bas Droite: Profil Summary -->
-          <div class="flex flex-col text-white rounded-lg" style="height: 299px; padding: 0 20px;" :style="{ backgroundColor: profileCardBgColor }">
+          <div class="col-span-1 flex flex-col text-white rounded-lg h-auto min-h-[299px] p-4 lg:px-[20px]" :style="{ backgroundColor: profileCardBgColor }">
             <h4 class="text-h4 font-sans pt-[24px]">{{ profileType }}</h4>
             <p class="font-roboto text-sm mt-[12px]">Description du profil à venir</p>
-            <a href="#" class="font-roboto text-base mt-auto pb-[24px] hover:underline">Voir mon passeport de compétences ></a>
+            <AtomsButton
+              class="mt-[10px]"
+              variant="tertiary"
+              size="lg"
+              justify="start"
+              :on-white="true"
+              @click="router.push('/collaborateur/passeport')"
+            >
+              Voir mon passeport de compétences
+              <template #icon-right>
+                <LucideChevronRight :size="24" :stroke-width="1" />
+              </template>
+            </AtomsButton>
           </div>
         </div>
       </div>
@@ -52,9 +69,15 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+// Images DISC
+import discD from '~/assets/img/disc-d.jpg'
+import discI from '~/assets/img/disc-i.jpg'
+import discS from '~/assets/img/disc-s.jpg'
+import discSvg from '~/assets/img/disc-s.svg'
 
 const router = useRouter()
 const answers = ref<string[]>([])
+const isSidebarOpen = ref(false)
 
 const discCounts = computed(() => {
   const counts = { D: 0, I: 0, S: 0, C: 0 }
@@ -95,6 +118,17 @@ const dominantProfile = computed(() => {
   })
 
   return maxProfile
+})
+
+// Image selon le profil
+const discImage = computed(() => {
+  const images: { [key: string]: string } = {
+    D: discD,
+    I: discI,
+    S: discSvg,
+    C: discS
+  }
+  return images[dominantProfile.value] || discSvg
 })
 
 // Couleur et type de profil

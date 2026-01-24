@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col w-full min-h-screen bg-secondary-300">
     <!-- Header -->
-    <OrganismsNavbar />
+    <OrganismsNavbar :is-sidebar-open="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
 
     <!-- Content avec Sidebar -->
     <div class="flex w-full" style="margin-top: 82.73px;">
       <!-- Sidebar -->
-      <OrganismsSidebarCollaborateur active-item="test-disc" />
+      <OrganismsSidebarCollaborateur active-item="test-disc" :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
 
       <!-- Main Content -->
       <div class="relative flex flex-col items-start p-6 lg:p-[32px] gap-5 flex-1 ml-0 lg:ml-[300px]">
@@ -128,6 +128,7 @@ const currentQuestion = ref(DISC_QUESTIONS[0])
 
 // État pour l'overlay vidéo
 const showVideoOverlay = ref(false)
+const isSidebarOpen = ref(false)
 
 // Calcul du profil dominant
 const discCounts = computed(() => {

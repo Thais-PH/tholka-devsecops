@@ -3,6 +3,7 @@
     <!-- Navbar -->
     <OrganismsNavbar
       variant="rh"
+      :is-sidebar-open="isSidebarOpen"
       @toggle-sidebar="isSidebarOpen = !isSidebarOpen"
     />
 
