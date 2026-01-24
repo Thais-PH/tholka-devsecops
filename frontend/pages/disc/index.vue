@@ -194,6 +194,11 @@ onUnmounted(() => {
 })
 
 const selectAnswerAndNext = (color: string) => {
+  // Retire le focus du bouton pour éviter que le style "actif/hover" persiste sur la question suivante
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur()
+  }
+
   answers.value[currentQuestionIndex.value] = color
   
   if (currentQuestionIndex.value < DISC_QUESTIONS.length - 1) {
