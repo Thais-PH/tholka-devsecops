@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-[320px] h-[380px]">
+  <div class="flex flex-col w-full h-full">
     <apexchart
       :key="JSON.stringify(series)"
       type="bar"
@@ -34,6 +34,7 @@ const props = defineProps({
 const chartOptions = computed(() => ({
   chart: {
     type: 'bar',
+    offsetX: -18,
     toolbar: {
       show: false
     }
@@ -41,7 +42,8 @@ const chartOptions = computed(() => ({
   plotOptions: {
     bar: {
       horizontal: false,
-      distributed: true
+      distributed: true,
+      columnWidth: '50px'
     }
   },
   colors: props.colors,
@@ -54,8 +56,9 @@ const chartOptions = computed(() => ({
       show: false
     },
     labels: {
+      offsetY: 17,
       style: {
-        fontSize: '16px',
+        fontSize: '26px',
         fontWeight: 500,
         fontFamily: 'Roboto, sans-serif',
         lineHeight: '1.4',
@@ -70,7 +73,7 @@ const chartOptions = computed(() => ({
     labels: {
       formatter: (val) => `${val}%`,
       style: {
-        fontSize: '12px',
+        fontSize: '24px',
         fontWeight: 400,
         lineHeight: '1.313rem',
         fontFamily: 'Roboto, sans-serif'
@@ -85,7 +88,7 @@ const chartOptions = computed(() => ({
     formatter: (val) => `${val}%`,
     distributed: true,
     style: {
-      fontSize: '12px',
+      fontSize: '20px',
       fontWeight: 400,
       lineHeight: '1.125rem',
       fontFamily: 'Roboto, sans-serif',
@@ -101,6 +104,9 @@ const chartOptions = computed(() => ({
         type: 'none'
       }
     }
+  },
+  fill: {
+    opacity: 1
   }
 }))
 </script>

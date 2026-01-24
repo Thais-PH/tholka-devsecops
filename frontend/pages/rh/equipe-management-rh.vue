@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col w-full min-h-screen bg-secondary-300">
     <!-- Header -->
-    <OrganismsNavbar />
+    <OrganismsNavbar :is-sidebar-open="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
 
     <!-- Content avec Sidebar -->
     <div class="flex w-full" style="margin-top: 82.73px;">
       <!-- Sidebar -->
-      <OrganismsSidebarCollaborateur active-item="equipe" />
+      <OrganismsSidebarCollaborateur active-item="equipe" :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
 
       <!-- Main Content -->
       <div class="flex flex-col items-start p-[32px] gap-[24px] flex-1" style="margin-left: 300px;">
@@ -186,6 +186,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+
+const isSidebarOpen = ref(false)
 
 type Person = {
   id: number

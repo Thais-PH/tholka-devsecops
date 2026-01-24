@@ -1,15 +1,31 @@
 <template>
   <div class="flex flex-col w-full min-h-screen bg-secondary-300">
     <!-- Header -->
-    <OrganismsNavbar />
+    <OrganismsNavbar :is-sidebar-open="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
 
     <!-- Content avec Sidebar -->
     <div class="flex w-full" style="margin-top: 82.73px;">
       <!-- Sidebar -->
-      <OrganismsSidebarCollaborateur active-item="test-disc" />
+      <OrganismsSidebarCollaborateur active-item="test-disc" :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
 
       <!-- Main Content -->
-      <div class="flex flex-col items-start p-6 lg:p-[32px] gap-5 flex-1 ml-0 lg:ml-[300px]">
+      <div class="relative flex flex-col items-start p-6 lg:p-[32px] gap-5 flex-1 ml-0 lg:ml-[300px]">
+        <!-- Video/GIF Overlay -->
+        <Transition name="fade">
+          <div
+            v-if="showVideoOverlay"
+            class="absolute inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm"
+          >
+            <!-- GIF pour tous les profils -->
+            <img
+              :src="videoSource"
+              alt="Reveal animation"
+              class="max-w-[500px] max-h-[500px] w-auto h-auto object-contain"
+              @load="startGifTimer"
+            />
+          </div>
+        </Transition>
+
         <!-- Progress Bar (Outside the card) -->
         <div class="w-full">
           <MoleculesProgressBar :percentage="(getQuestionNumberInCategory() / getQuestionsCountInCategory()) * 100" />
@@ -94,27 +110,106 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, nextTick, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { DISC_QUESTIONS } from '~/types/disc'
+
+// Import des vidéos
+import videoRouge from '~/assets/videos/reveal rouge.gif'
+import videoJaune from '~/assets/videos/reveal jaune.gif'
+import videoVert from '~/assets/videos/reveal vert.gif'
+import videoBleu from '~/assets/videos/reveal bleu.gif'
 
 const router = useRouter()
 
 const answers = ref<(string | null)[]>(new Array(DISC_QUESTIONS.length).fill(null))
 const currentQuestionIndex = ref(0)
-
 const currentQuestion = ref(DISC_QUESTIONS[0])
 
+// État pour l'overlay vidéo
+const showVideoOverlay = ref(false)
+const isSidebarOpen = ref(false)
+
+// Calcul du profil dominant
+const discCounts = computed(() => {
+  const counts = { D: 0, I: 0, S: 0, C: 0 }
+  answers.value.forEach((answer) => {
+    if (answer && answer in counts) {
+      counts[answer as keyof typeof counts]++
+    }
+  })
+  return counts
+})
+
+const dominantProfile = computed(() => {
+  const profiles = ['D', 'I', 'S', 'C'] as const
+  let maxValue = 0
+  let maxProfile: 'D' | 'I' | 'S' | 'C' = 'D'
+
+  profiles.forEach(profile => {
+    const value = discCounts.value[profile]
+    if (value > maxValue) {
+      maxValue = value
+      maxProfile = profile
+    }
+  })
+
+  return maxProfile
+})
+
+// Source de la vidéo selon le profil dominant
+const videoSource = computed(() => {
+  const videoMap: { [key: string]: string } = {
+    D: videoRouge,    // Dominance - Rouge
+    I: videoJaune,    // Influence - Jaune
+    S: videoVert,     // Stabilité - Vert
+    C: videoBleu      // Conformité - Bleu
+  }
+  return videoMap[dominantProfile.value] || videoBleu
+})
+
+const timerId = ref<NodeJS.Timeout | null>(null)
+
+// Gestion du GIF (pas d'événement ended, donc on utilise un timer)
+const startGifTimer = () => {
+  // Durées spécifiques selon le profil (couleur)
+  const durations: { [key: string]: number } = {
+    D: 5200, // Rouge: 5.2s
+    I: 5700, // Jaune: 5.7s
+    S: 4170, // Vert: 4.17s (inchangé)
+    C: 4700  // Bleu: 4.7s
+  }
+
+  const duration = durations[dominantProfile.value] || 4170
+
+  timerId.value = setTimeout(() => {
+    router.push('/disc/result')
+  }, duration)
+}
+
+onUnmounted(() => {
+  if (timerId.value) {
+    clearTimeout(timerId.value)
+  }
+})
+
 const selectAnswerAndNext = (color: string) => {
+  // Retire le focus du bouton pour éviter que le style "actif/hover" persiste sur la question suivante
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur()
+  }
+
   answers.value[currentQuestionIndex.value] = color
   
   if (currentQuestionIndex.value < DISC_QUESTIONS.length - 1) {
     currentQuestionIndex.value++
     currentQuestion.value = DISC_QUESTIONS[currentQuestionIndex.value]
   } else {
-    // Dernière question, soumettre le test
-    sessionStorage.setItem('discAnswers', JSON.stringify(answers.value))
-    router.push('/disc/transition')
+    // Dernière question, afficher la vidéo en overlay
+    // On utilise localStorage pour plus de fiabilité
+    localStorage.setItem('discAnswers', JSON.stringify(answers.value))
+    sessionStorage.setItem('discAnswers', JSON.stringify(answers.value)) // Backup
+    showVideoOverlay.value = true
   }
 }
 
@@ -151,3 +246,16 @@ const getCategoryIndex = () => {
   return categories.indexOf(currentQuestion.value.category)
 }
 </script>
+
+<style scoped>
+/* Transition fade pour l'overlay vidéo */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
