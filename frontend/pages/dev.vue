@@ -15,8 +15,8 @@
         </div>
       </div>
 
-      <!-- Couleurs -->
-      <section v-show="activeSection === 'couleurs'" class="mb-16">
+      <!-- Colors & Typography Section -->
+      <section v-show="activeSection === 'fondation'" class="mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Couleurs</h2>
 
         <!-- Main Usage -->
@@ -302,11 +302,9 @@
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Typographies -->
-      <section v-show="activeSection === 'typographies'" class="mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Typographies</h2>
+        <!-- Typographies -->
+        <h2 class="text-3xl font-bold text-primary-900 mb-8 mt-8">Typographies</h2>
 
         <!-- Titles - Nunito -->
         <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
@@ -405,6 +403,174 @@
               <div class="flex-1">
                 <p class="text-xs font-roboto text-primary-900">Texte très petit pour les légendes, les notes et les informations complémentaires</p>
                 <p class="text-xs text-Grey-500 mt-1">12px / 1.125rem • 400 Regular • Line height: 18px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alertes Section -->
+      <section v-show="activeSection === 'alertes'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Alertes</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-4">
+              <!-- Warning Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Warning - Soft</p>
+                <AtomsAlert
+                  variant="warning-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Warning Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Warning - Solid</p>
+                <AtomsAlert
+                  variant="warning-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Info -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Info</p>
+                <AtomsAlert
+                  variant="info"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Success Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Success - Soft</p>
+                <AtomsAlert
+                  variant="success-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- Success Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Success - Solid</p>
+                <AtomsAlert
+                  variant="success-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- IA Soft -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Soft</p>
+                <AtomsAlert
+                  variant="ia-soft"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+
+              <!-- IA Solid -->
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">IA - Solid</p>
+                <AtomsAlert
+                  variant="ia-solid"
+                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blocks Section -->
+      <section v-show="activeSection === 'blocks'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Calendar Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsCalendarBlock />
+                </div>
+              </div>
+
+              <!-- Annonce Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsAnnonceBlock
+                    title="Opportunités internes"
+                    :annonces="mockAnnonces"
+                  />
+                </div>
+              </div>
+
+              <!-- Events Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsEventsBlock
+                    title="Événements"
+                    :events="mockEvents"
+                  />
+                </div>
+              </div>
+
+              <!-- Chart Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsChartBlock />
+                </div>
+              </div>
+
+              <!-- Documents Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Documents Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsDocumentsBlock
+                    title="Derniers documents"
+                    :documents="mockDocuments"
+                    @document-click="handleDocumentClick"
+                  />
+                </div>
+              </div>
+
+              <!-- Vacations Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Vacations Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsVacationsBlock
+                    title="Mes congés"
+                    :vacations="mockVacations"
+                  />
+                </div>
+              </div>
+
+              <!-- Contacts Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Contacts Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsContactsBlock
+                    title="Mes contacts de référence"
+                    :contacts="mockContacts"
+                  />
+                </div>
+              </div>
+
+              <!-- Quick Access Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Quick Access Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsQuickAccessBlock
+                    title="Mes accès rapides"
+                    :quick-access="mockQuickAccess"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -844,425 +1010,13 @@
         </div>
       </section>
 
-      <!-- Menu Section -->
-      <section v-show="activeSection === 'menus'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Menus</h2>
-
-        <!-- Navbar -->
-        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Navbar</h3>
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="relative h-[100px]">
-              <div class="absolute inset-0">
-                <OrganismsNavbar :is-static="true" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebars -->
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Sidebars</h3>
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="flex gap-8 justify-center">
-              <div>
-                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
-                <OrganismsSidebarRH active-item="accueil" :is-static="true" />
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
-                <OrganismsSidebarMini active-item="accueil" variant="rh" :is-static="true" />
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
-                <OrganismsSidebarCollaborateur active-item="accueil" :is-static="true" />
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
-                <OrganismsSidebarMini active-item="accueil" variant="collaborateur" :is-static="true" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tabs</h3>
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="space-y-8">
-              <!-- Items individuels -->
-              <div>
-                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Items individuels</h4>
-                <div class="flex gap-4 items-center justify-center">
-                  <div>
-                    <p class="text-xs text-Grey-500 mb-2 text-center">Default</p>
-                    <AtomsTabItem label="Text" variant="default" />
-                  </div>
-                  <div>
-                    <p class="text-xs text-Grey-500 mb-2 text-center">Active</p>
-                    <AtomsTabItem label="Text" variant="active" />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu secondaire -->
-              <div>
-                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Menu secondaire</h4>
-                <div class="flex justify-center">
-                  <MoleculesSecondaryMenu
-                    :items="[
-                      { id: 'item1', label: 'Text' },
-                      { id: 'item2', label: 'Text' },
-                      { id: 'item3', label: 'Text' },
-                      { id: 'item4', label: 'Text' }
-                    ]"
-                    @change="(event) => console.log('Menu changed:', event)"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tags Section -->
-      <section v-show="activeSection === 'tags'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
-        
-        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
-          <!-- Statut Section -->
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Statut</h3>
-            <div class="flex flex-wrap gap-4">
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Validé</p>
-                <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
-              </div>
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">En cours</p>
-                <AtomsTag variant="solid" color="primary" size="md" status-color="orange">Tag</AtomsTag>
-              </div>
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Brouillon</p>
-                <AtomsTag variant="solid" color="primary" size="md" status-color="yellow">Tag</AtomsTag>
-              </div>
-            </div>
-          </div>
-
-          <!-- Solid Tags -->
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Solid</h3>
-            
-            <!-- Medium Tags -->
-            <div class="mb-8">
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="solid" color="secondary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="solid" color="green" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="solid" color="orange" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="solid" color="yellow" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="solid" color="black" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="solid" color="white" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-
-            <!-- Large Tags -->
-            <div>
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="solid" color="primary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="solid" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="solid" color="green" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="solid" color="orange" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="solid" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="solid" color="black" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="solid" color="white" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-          </div>          <!-- Soft Tags -->
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Soft</h3>
-
-            <!-- Medium Soft -->
-            <div class="mb-6">
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="soft" color="primary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="soft" color="secondary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="soft" color="green" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="soft" color="orange" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="soft" color="yellow" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="soft" color="black" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="soft" color="white" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">IA</p>
-                  <AtomsTag variant="soft" color="purple" size="md">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-
-            <!-- Large Soft -->
-            <div>
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="soft" color="primary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="soft" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="soft" color="green" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="soft" color="orange" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="soft" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="soft" color="black" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="soft" color="white" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">IA</p>
-                  <AtomsTag variant="soft" color="purple" size="lg">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stroke Tags -->
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stroke</h3>
-
-            <!-- Medium Stroke -->
-            <div class="mb-6">
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="stroke" color="primary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="stroke" color="secondary" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="stroke" color="green" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="stroke" color="orange" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="stroke" color="yellow" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="stroke" color="black" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="stroke" color="white" size="md" status-color="green">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-
-            <!-- Large Stroke -->
-            <div>
-              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
-              <div class="flex flex-wrap gap-4">
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
-                  <AtomsTag variant="stroke" color="primary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
-                  <AtomsTag variant="stroke" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Green</p>
-                  <AtomsTag variant="stroke" color="green" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
-                  <AtomsTag variant="stroke" color="orange" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
-                  <AtomsTag variant="stroke" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">Black</p>
-                  <AtomsTag variant="stroke" color="black" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-                <div>
-                  <p class="text-xs text-Grey-500 mb-2">White</p>
-                  <AtomsTag variant="stroke" color="white" size="lg" status-color="green">Tag</AtomsTag>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Alertes Section -->
-      <section v-show="activeSection === 'alertes'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Alertes</h2>
-
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="space-y-4">
-              <!-- Warning Soft -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Warning - Soft</p>
-                <AtomsAlert
-                  variant="warning-soft"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- Warning Solid -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Warning - Solid</p>
-                <AtomsAlert
-                  variant="warning-solid"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- Info -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Info</p>
-                <AtomsAlert
-                  variant="info"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- Success Soft -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Success - Soft</p>
-                <AtomsAlert
-                  variant="success-soft"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- Success Solid -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">Success - Solid</p>
-                <AtomsAlert
-                  variant="success-solid"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- IA Soft -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">IA - Soft</p>
-                <AtomsAlert
-                  variant="ia-soft"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-
-              <!-- IA Solid -->
-              <div>
-                <p class="text-xs text-Grey-500 mb-2">IA - Solid</p>
-                <AtomsAlert
-                  variant="ia-solid"
-                  message="Des signaux faibles de mal-être ont été détectés. Un risque de burn-out est en cours."
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Cards Section -->
       <section v-show="activeSection === 'cards'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Cards</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Event line</h3>
-          
+
           <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="event"
@@ -1273,7 +1027,7 @@
           </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce</h3>
-          
+
           <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="annonce"
@@ -1285,7 +1039,7 @@
           </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Formation</h3>
-          
+
           <div class="flex flex-wrap gap-6">
             <MoleculesCard
               type="job"
@@ -1299,7 +1053,7 @@
           </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Profile</h3>
-          
+
           <div class="flex flex-wrap gap-6">
             <MoleculesCard
               type="profile"
@@ -1311,7 +1065,7 @@
           </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Stats</h3>
-          
+
           <div class="flex flex-wrap gap-6">
             <MoleculesCard
               type="stats"
@@ -1323,15 +1077,12 @@
             />
           </div>
         </div>
-      </section>
 
-      <!-- Modal Section -->
-      <section v-show="activeSection === 'modal'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Modal</h2>
+        <h2 class="text-3xl font-bold text-primary-900 mb-8 mt-8">Modal</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Modal de confirmation</h3>
-          
+
           <div class="flex flex-wrap gap-4 mb-6">
             <button
               @click="showSuccessModal = true"
@@ -1380,155 +1131,6 @@
         </div>
       </section>
 
-      <!-- Table Section -->
-      <section v-show="activeSection === 'tables'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tables</h2>
-
-        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Table basique</h3>
-          
-          <div class="mb-8">
-            <MoleculesTable
-              :data="tableData"
-              :columns="tableColumns"
-              variant="default"
-              hoverable
-              :sortable="true"
-              :default-sort="{ key: 'nom', order: 'asc' }"
-              @sort-change="handleSortChange"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Steps & Stepper Section -->
-      <section v-show="activeSection === 'steps'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
-
-        <!-- Steps individuels -->
-        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Steps</h3>
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="flex gap-8 justify-center items-start">
-              <div>
-                <p class="text-xs text-Grey-500 mb-4 text-center">Default</p>
-                <AtomsStep :step-number="1" label="Step" />
-              </div>
-              <div>
-                <p class="text-xs text-Grey-500 mb-4 text-center">Active</p>
-                <AtomsStep :step-number="1" label="Step" :is-active="true" />
-              </div>
-              <div>
-                <p class="text-xs text-Grey-500 mb-4 text-center">Completed</p>
-                <AtomsStep :step-number="1" label="Step" :is-completed="true" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Stepper complet -->
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stepper</h3>
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="flex justify-center">
-              <MoleculesStepper
-                :steps="[
-                  'Intitulé et contexte',
-                  'Compétences techniques',
-                  'Compétences comportementales',
-                  'Contrat et temps de travail',
-                ]"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Charts Section -->
-      <section v-show="activeSection === 'charts'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Charts</h2>
-
-        <div class="grid grid-cols-1 gap-8">
-          <!-- Doughnut Chart -->
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
-            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-10 justify-center">
-              <ClientOnly>
-                <MoleculesDoughnutChart
-                  :series="[73, 14, 13]"
-                  :labels="['En poste', 'Arrivées', 'Départs']"
-                  :colors="['#1CAB78', '#55C3E9', '#F07F47']"
-                  center-value="50"
-                  center-label="Collaborateurs"
-                />
-              </ClientOnly>
-              <ClientOnly>
-                <MoleculesProgressRingChart
-                  :percentage="73"
-                  center-value="50"
-                  center-label="Collaborateurs"
-                  :stroke-width="22"
-                />
-              </ClientOnly>
-            </div>
-          </div>
-
-          <!-- Bar Chart -->
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Bar Chart DISC</h3>
-            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
-              <ClientOnly>
-                <MoleculesBarChart
-                  :series="[2, 45, 78, 65]"
-                  :labels="['D', 'I', 'S', 'C']"
-                  :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
-                />
-              </ClientOnly>
-            </div>
-          </div>
-
-          <!-- Multiple Bar Chart -->
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Multiple Bar Chart</h3>
-            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
-              <ClientOnly>
-                <MoleculesMultipleBarChart
-                  :series="[
-                    { name: 'Income', data: [30, 45, 60, 40] },
-                    { name: 'Outcome', data: [20, 35, 50, 30] }
-                  ]"
-                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
-                  :colors="['#3A3B99', '#3A3B9933']"
-                />
-              </ClientOnly>
-            </div>
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Progress Bar</h3>
-            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-8">
-              <div>
-                <p class="text-sm text-primary-900 mb-3">Progress 25%</p>
-                <MoleculesProgressBar :percentage="25" label="Étape 1" />
-              </div>
-              <div>
-                <p class="text-sm text-primary-900 mb-3">Progress 50%</p>
-                <MoleculesProgressBar :percentage="50" label="Étape 2" />
-              </div>
-              <div>
-                <p class="text-sm text-primary-900 mb-3">Progress 75%</p>
-                <MoleculesProgressBar :percentage="75" label="Étape 3" />
-              </div>
-              <div>
-                <p class="text-sm text-primary-900 mb-3">Progress 100%</p>
-                <MoleculesProgressBar :percentage="100" label="Complété" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Editor -->
       <section v-show="activeSection === 'editor'">
       <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
@@ -1542,134 +1144,6 @@
           />
         </div>
       </div>
-      </section>
-
-      <!-- Pagination Section -->
-      <section v-show="activeSection === 'pagination'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Pagination</h2>
-
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Basic Pagination</h3>
-          <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
-            <MoleculesPagination
-              :current-page="currentPaginationPage"
-              :total-pages="10"
-              @page-change="currentPaginationPage = $event"
-            />
-          </div>
-          <p class="text-sm text-Grey-500 mt-4">Page actuelle: {{ currentPaginationPage }}</p>
-        </div>
-      </section>
-
-      <!-- Filter Section -->
-      <section v-show="activeSection === 'filter'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Filter</h2>
-
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Dropdown Filter</h3>
-          <div class="bg-Grey-300 rounded-lg p-8 flex justify-start">
-            <MoleculesFilter
-              :filter-options="filterOptions"
-              v-model="activeFilters"
-              @apply="handleFilterApply"
-            />
-          </div>
-          <p class="text-sm text-Grey-500 mt-4">Filtres actifs: {{ activeFilters.join(', ') || 'Aucun' }}</p>
-        </div>
-      </section>
-
-      <!-- Blocks Section -->
-      <section v-show="activeSection === 'blocks'" class="mt-8 mb-16">
-        <h2 class="text-3xl font-bold text-primary-900 mb-8">Blocks</h2>
-
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <div class="space-y-8">
-              <!-- Calendar Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsCalendarBlock />
-                </div>
-              </div>
-
-              <!-- Annonce Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsAnnonceBlock
-                    title="Opportunités internes"
-                    :annonces="mockAnnonces"
-                  />
-                </div>
-              </div>
-
-              <!-- Events Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsEventsBlock
-                    title="Événements"
-                    :events="mockEvents"
-                  />
-                </div>
-              </div>
-
-              <!-- Chart Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsChartBlock />
-                </div>
-              </div>
-
-              <!-- Documents Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Documents Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsDocumentsBlock
-                    title="Derniers documents"
-                    :documents="mockDocuments"
-                    @document-click="handleDocumentClick"
-                  />
-                </div>
-              </div>
-
-              <!-- Vacations Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Vacations Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsVacationsBlock
-                    title="Mes congés"
-                    :vacations="mockVacations"
-                  />
-                </div>
-              </div>
-
-              <!-- Contacts Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Contacts Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsContactsBlock
-                    title="Mes contacts de référence"
-                    :contacts="mockContacts"
-                  />
-                </div>
-              </div>
-
-              <!-- Quick Access Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Quick Access Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsQuickAccessBlock
-                    title="Mes accès rapides"
-                    :quick-access="mockQuickAccess"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Forms Section -->
@@ -1926,6 +1400,547 @@
             </div>
           </div>
         </div>
+
+        <!-- Filter Bar -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Filter Bar</h3>
+          
+          <!-- Variant Dark (sur fond foncé) -->
+          <div class="bg-primary-700 rounded-lg p-8 mb-6">
+            <p class="text-xs text-Light/70 mb-4 uppercase">Variant Dark</p>
+            <MoleculesFilterBar
+              variant="dark"
+              @filter-change="(filters) => console.log('Filters changed:', filters)"
+            />
+          </div>
+
+          <!-- Variant Light (sur fond clair) -->
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <p class="text-xs text-Grey-500 mb-4 uppercase">Variant Light</p>
+            <MoleculesFilterBar
+              variant="light"
+              @filter-change="(filters) => console.log('Filters changed:', filters)"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section v-show="activeSection === 'filter'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Filter</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Dropdown Filter</h3>
+          <div class="bg-Grey-300 rounded-lg p-8 flex justify-start">
+            <MoleculesFilter
+              :filter-options="filterOptions"
+              v-model="activeFilters"
+              @apply="handleFilterApply"
+            />
+          </div>
+          <p class="text-sm text-Grey-500 mt-4">Filtres actifs: {{ activeFilters.join(', ') || 'Aucun' }}</p>
+        </div>
+      </section>
+
+      <!-- Menu Section -->
+      <section v-show="activeSection === 'menus'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Menus</h2>
+
+        <!-- Navbar -->
+        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Navbar</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="relative h-[100px]">
+              <div class="absolute inset-0">
+                <OrganismsNavbar :is-static="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebars -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Sidebars</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex gap-8 justify-center">
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">RH</p>
+                <OrganismsSidebarRH active-item="accueil" :is-static="true" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini RH</p>
+                <OrganismsSidebarMini active-item="accueil" variant="rh" :is-static="true" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Collaborateur</p>
+                <OrganismsSidebarCollaborateur active-item="accueil" :is-static="true" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-primary-700 mb-4 text-center">Mini Collaborateur</p>
+                <OrganismsSidebarMini active-item="accueil" variant="collaborateur" :is-static="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tabs</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="space-y-8">
+              <!-- Items individuels -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Items individuels</h4>
+                <div class="flex gap-4 items-center justify-center">
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Default</p>
+                    <AtomsTabItem label="Text" variant="default" />
+                  </div>
+                  <div>
+                    <p class="text-xs text-Grey-500 mb-2 text-center">Active</p>
+                    <AtomsTabItem label="Text" variant="active" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Menu secondaire -->
+              <div>
+                <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Menu secondaire</h4>
+                <div class="flex justify-center">
+                  <MoleculesSecondaryMenu
+                    :items="[
+                      { id: 'item1', label: 'Text' },
+                      { id: 'item2', label: 'Text' },
+                      { id: 'item3', label: 'Text' },
+                      { id: 'item4', label: 'Text' }
+                    ]"
+                    @change="(event) => console.log('Menu changed:', event)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pagination Section -->
+      <section v-show="activeSection === 'pagination'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Pagination</h2>
+
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Basic Pagination</h3>
+          <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+            <MoleculesPagination
+              :current-page="currentPaginationPage"
+              :total-pages="10"
+              @page-change="currentPaginationPage = $event"
+            />
+          </div>
+          <p class="text-sm text-Grey-500 mt-4">Page actuelle: {{ currentPaginationPage }}</p>
+        </div>
+      </section>
+
+      <!-- Steps & Stepper Section -->
+      <section v-show="activeSection === 'steps'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Steps & Stepper</h2>
+
+        <!-- Steps individuels -->
+        <div class="mb-12 bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Steps</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex gap-8 justify-center items-start">
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Default</p>
+                <AtomsStep :step-number="1" label="Step" />
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Active</p>
+                <AtomsStep :step-number="1" label="Step" :is-active="true" />
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-4 text-center">Completed</p>
+                <AtomsStep :step-number="1" label="Step" :is-completed="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepper complet -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stepper</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <div class="flex justify-center">
+              <MoleculesStepper
+                :steps="[
+                  'Intitulé et contexte',
+                  'Compétences techniques',
+                  'Compétences comportementales',
+                  'Contrat et temps de travail',
+                ]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-3xl font-bold text-primary-900 mb-8 mt-8">Charts</h2>
+
+        <div class="grid grid-cols-1 gap-8">
+          <!-- Doughnut Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Doughnut Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-10 justify-center">
+              <ClientOnly>
+                <MoleculesDoughnutChart
+                  :series="[73, 14, 13]"
+                  :labels="['En poste', 'Arrivées', 'Départs']"
+                  :colors="['#1CAB78', '#55C3E9', '#F07F47']"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                />
+              </ClientOnly>
+              <ClientOnly>
+                <MoleculesProgressRingChart
+                  :percentage="73"
+                  center-value="50"
+                  center-label="Collaborateurs"
+                  :stroke-width="22"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Bar Chart DISC</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesBarChart
+                  :series="[2, 45, 78, 65]"
+                  :labels="['D', 'I', 'S', 'C']"
+                  :colors="['#EB5035', '#FFD83B', '#45CA24', '#476EF6']"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Multiple Bar Chart -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Multiple Bar Chart</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex justify-center">
+              <ClientOnly>
+                <MoleculesMultipleBarChart
+                  :series="[
+                    { name: 'Income', data: [30, 45, 60, 40] },
+                    { name: 'Outcome', data: [20, 35, 50, 30] }
+                  ]"
+                  :labels="['Gestion de projet', 'SEO/SEA', 'Gestion des réseaux sociaux', 'CRM & Emailing']"
+                  :colors="['#3A3B99', '#3A3B9933']"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Progress Bar</h3>
+            <div class="bg-Grey-300 rounded-lg p-8 flex flex-col gap-8">
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 25%</p>
+                <MoleculesProgressBar :percentage="25" label="Étape 1" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 50%</p>
+                <MoleculesProgressBar :percentage="50" label="Étape 2" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 75%</p>
+                <MoleculesProgressBar :percentage="75" label="Étape 3" />
+              </div>
+              <div>
+                <p class="text-sm text-primary-900 mb-3">Progress 100%</p>
+                <MoleculesProgressBar :percentage="100" label="Complété" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section v-show="activeSection === 'tables'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tables</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Table basique</h3>
+
+          <div class="mb-8">
+            <MoleculesTable
+              :data="tableData"
+              :columns="tableColumns"
+              variant="default"
+              hoverable
+              :sortable="true"
+              :default-sort="{ key: 'nom', order: 'asc' }"
+              @sort-change="handleSortChange"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Tags Section -->
+      <section v-show="activeSection === 'tags'" class="mt-8 mb-16">
+        <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <!-- Statut Section -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Statut</h3>
+            <div class="flex flex-wrap gap-4">
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Validé</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">En cours</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="orange">Tag</AtomsTag>
+              </div>
+              <div>
+                <p class="text-xs text-Grey-500 mb-2">Brouillon</p>
+                <AtomsTag variant="solid" color="primary" size="md" status-color="yellow">Tag</AtomsTag>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solid Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Solid</h3>
+
+            <!-- Medium Tags -->
+            <div class="mb-8">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="solid" color="primary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="solid" color="secondary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="solid" color="green" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="solid" color="orange" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="solid" color="yellow" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="solid" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="solid" color="white" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Tags -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="solid" color="primary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="solid" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="solid" color="green" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="solid" color="orange" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="solid" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="solid" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="solid" color="white" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>          <!-- Soft Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Soft</h3>
+
+            <!-- Medium Soft -->
+            <div class="mb-6">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="soft" color="primary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="soft" color="secondary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="soft" color="green" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="soft" color="orange" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="soft" color="yellow" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="soft" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="soft" color="white" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">IA</p>
+                  <AtomsTag variant="soft" color="purple" size="md">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Soft -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="soft" color="primary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="soft" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="soft" color="green" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="soft" color="orange" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="soft" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="soft" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="soft" color="white" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">IA</p>
+                  <AtomsTag variant="soft" color="purple" size="lg">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stroke Tags -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stroke</h3>
+
+            <!-- Medium Stroke -->
+            <div class="mb-6">
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Medium</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="stroke" color="primary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="stroke" color="secondary" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="stroke" color="green" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="stroke" color="orange" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="stroke" color="yellow" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="stroke" color="black" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="stroke" color="white" size="md" status-color="green">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Stroke -->
+            <div>
+              <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Large</h4>
+              <div class="flex flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Primary</p>
+                  <AtomsTag variant="stroke" color="primary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Secondary</p>
+                  <AtomsTag variant="stroke" color="secondary" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Green</p>
+                  <AtomsTag variant="stroke" color="green" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Orange</p>
+                  <AtomsTag variant="stroke" color="orange" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Yellow</p>
+                  <AtomsTag variant="stroke" color="yellow" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">Black</p>
+                  <AtomsTag variant="stroke" color="black" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+                <div>
+                  <p class="text-xs text-Grey-500 mb-2">White</p>
+                  <AtomsTag variant="stroke" color="white" size="lg" status-color="green">Tag</AtomsTag>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
@@ -1942,24 +1957,21 @@ import {
 } from 'lucide-vue-next'
 
 // Navigation principale
-const activeSection = ref('couleurs')
+const activeSection = ref('fondation')
 const navigationItems = [
-  { id: 'couleurs', label: 'Couleurs' },
-  { id: 'typographies', label: 'Typographies' },
-  { id: 'boutons', label: 'Boutons' },
-  { id: 'menus', label: 'Menus' },
-  { id: 'tags', label: 'Tags' },
-  { id: 'alertes', label: 'Alertes' },
+  { id: 'fondation', label: 'Foundation' },
+  { id: 'alertes', label: 'Alerts' },
+  { id: 'blocks', label: 'Blocs' },
+  { id: 'boutons', label: 'Button' },
   { id: 'cards', label: 'Cards' },
-  { id: 'modal', label: 'Modal' },
-  { id: 'tables', label: 'Tables' },
-  { id: 'steps', label: 'Steps & Stepper' },
-  { id: 'charts', label: 'Charts' },
   { id: 'editor', label: 'Editor' },
-  { id: 'pagination', label: 'Pagination' },
+  { id: 'forms', label: 'Forms' },
   { id: 'filter', label: 'Filter' },
-  { id: 'blocks', label: 'Blocks' },
-  { id: 'forms', label: 'Forms' }
+  { id: 'menus', label: 'Menu' },
+  { id: 'pagination', label: 'Pagination' },
+  { id: 'steps', label: 'Steps & graph' },
+  { id: 'tables', label: 'Tables' },
+  { id: 'tags', label: 'Tags' },
 ]
 
 // Variables pour les modales
