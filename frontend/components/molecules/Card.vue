@@ -113,7 +113,7 @@
   </div>
 
   <!-- Job Card - Structure Preline (Formation) -->
-  <div v-else-if="type === 'job'" class="relative" :class="{ 'ml-20': orderNumber }">
+  <div v-else-if="type === 'job'" class="relative">
     <!-- Numéro d'ordre - Calque arrière-plan, position fixe -->
     <div v-if="orderNumber" class="absolute font-nunito font-bold pointer-events-none" style="width: 90px; height: 165px; left: -71px; top: -4px; font-size: 150px; line-height: 110%; color: #F07F47; z-index: 0;">
       {{ orderNumber }}
@@ -146,12 +146,12 @@
         <!-- First bloc -->
         <div class="flex flex-col items-start p-0 gap-[8px] w-[279px] h-[52px] flex-none order-0 self-stretch">
           <!-- Tag list -->
-          <div class="flex flex-row items-start p-0 gap-[8px] w-[40px] h-[25px] flex-none order-0">
+          <div class="flex flex-row items-start p-0 gap-[8px] w-auto flex-none order-0">
             <AtomsTag
               variant="soft"
               color="primary"
               size="md"
-              class="!w-[40px] !h-[25px] !font-roboto !text-xs"
+              class="!font-roboto !text-xs"
             >
               {{ contractType }}
             </AtomsTag>

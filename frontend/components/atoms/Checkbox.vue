@@ -8,8 +8,8 @@
         type="checkbox"
         :value="value"
         :disabled="disabled"
-        class="custom-checkbox w-[16px] h-[16px] bg-white border border-primary-300 rounded-[4px] cursor-pointer transition-colors duration-200"
-        :class="{ 'error-checkbox': error }"
+        class="custom-checkbox w-[16px] h-[16px] bg-white border rounded-[4px] cursor-pointer transition-colors duration-200"
+        :class="[{ 'error-checkbox': error }, borderColor]"
         @change="handleChange"
       />
     </div>
@@ -71,6 +71,10 @@ const props = defineProps({
   done: {
     type: Boolean,
     default: false
+  },
+  borderColor: {
+    type: String,
+    default: 'border-primary-300'
   }
 })
 

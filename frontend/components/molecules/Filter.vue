@@ -1,71 +1,65 @@
 <template>
-  <div class="relative">
+  <div class="relative" ref="filterRef">
     <!-- Dropdown Button -->
     <button
-      @click="isOpen = !isOpen"
-      class="h-[38px] px-4 py-2 inline-flex items-center justify-center gap-x-2 text-sm rounded-lg bg-Light border border-Grey-300 text-primary-500 hover:bg-Grey-100 transition-colors font-roboto font-normal"
+      ref="buttonRef"
+      @click="toggleDropdown"
+      :class="buttonClasses"
     >
       {{ filterLabel }}
-      <svg
-        class="shrink-0 size-4 transition-transform"
-        :class="{ 'rotate-180': isOpen }"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
+      <LucideChevronDown
+        v-if="!isOpen"
+        :size="24"
+        :stroke-width="1"
+        class="shrink-0"
+      />
+      <LucideChevronUp
+        v-else
+        :size="24"
+        :stroke-width="1"
+        class="shrink-0"
+      />
     </button>
 
-    <!-- Dropdown Content -->
+    <!-- Dropdown Content (position absolute, suit le bouton naturellement) -->
     <div
       v-show="isOpen"
       @click.stop
-      class="absolute right-0 mt-2 w-64 bg-Light border border-Grey-300 rounded-lg shadow-lg z-50"
+      :class="dropdownClasses"
     >
       <!-- Filter Options -->
-      <div class="p-4 max-h-96 overflow-y-auto">
-        <div v-for="option in filterOptions" :key="option.id" class="mb-3">
-          <label class="flex items-center justify-between cursor-pointer">
-            <span class="text-sm font-roboto text-primary-900">{{ option.label }}</span>
-            <input
-              type="checkbox"
+      <div class="overflow-y-auto w-full">
+        <div v-for="option in filterOptions" :key="option.id" class="mb-4 last:mb-0">
+          <label class="flex items-center justify-between cursor-pointer group" :for="`filter-option-${option.id}`">
+            <span :class="['text-base font-roboto transition-colors whitespace-nowrap mr-4', optionLabelClasses]">{{ option.label }}</span>
+            <AtomsCheckbox
+              :id="`filter-option-${option.id}`"
               :value="option.id"
               v-model="selectedFilters"
-              class="w-4 h-4 rounded border-Grey-500 text-primary-500"
+              :border-color="checkboxBorderColor"
+              class="p-1"
             />
           </label>
         </div>
       </div>
 
       <!-- Apply Button -->
-      <div class="p-4">
-        <button
-          @click="applyFilters"
-          class="w-full h-[38px] px-4 py-2 inline-flex items-center justify-center text-sm rounded-lg bg-primary-500 text-Light hover:bg-primary-700 transition-colors font-roboto font-normal"
-        >
-          Appliquer
-        </button>
-      </div>
+      <AtomsButton
+        @click="applyFilters"
+        variant="primary"
+        size="md"
+        :on-white="variant === 'text'"
+        :class="applyButtonClasses"
+      >
+        Afficher les résultats
+      </AtomsButton>
     </div>
-
-    <!-- Overlay to close dropdown -->
-    <div
-      v-if="isOpen"
-      @click="isOpen = false"
-      class="fixed inset-0 z-40"
-    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ChevronDown as LucideChevronDown, ChevronUp as LucideChevronUp } from 'lucide-vue-next'
 
 const props = defineProps({
   filterLabel: {
@@ -80,6 +74,11 @@ const props = defineProps({
   modelValue: {
     type: Array,
     default: () => []
+  },
+  variant: {
+    type: String,
+    default: 'button',
+    validator: (v) => ['button', 'text'].includes(v)
   }
 })
 
@@ -87,10 +86,85 @@ const emit = defineEmits(['update:modelValue', 'apply-filters'])
 
 const isOpen = ref(false)
 const selectedFilters = ref([...props.modelValue])
+const buttonRef = ref(null)
+const filterRef = ref(null)
+
+const toggleDropdown = () => {
+  isOpen.value = !isOpen.value
+}
+
+const closeDropdown = () => {
+  isOpen.value = false
+}
+
+const handleClickOutside = (event) => {
+  if (filterRef.value && !filterRef.value.contains(event.target)) {
+    closeDropdown()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
+const buttonClasses = computed(() => {
+  if (props.variant === 'text') {
+    // Style Dark
+    const base = 'h-[38px] px-6 py-3 inline-flex items-center justify-center gap-x-1 text-base rounded-lg transition-colors font-roboto font-normal'
+    const state = isOpen.value
+      ? 'bg-white/15 text-white'
+      : 'bg-transparent text-white hover:text-white/80'
+    return `${base} ${state}`
+  }
+  // Style Light (défaut)
+  const base = 'h-[38px] px-6 py-3 inline-flex items-center justify-center gap-x-1 text-base rounded-lg transition-colors font-roboto font-normal'
+  const state = isOpen.value
+    ? 'bg-white text-primary-500 shadow-sm'
+    : 'bg-white text-primary-500 hover:bg-gray-50'
+  return `${base} ${state}`
+})
+
+const dropdownClasses = computed(() => {
+  // Position absolute, centré sur mobile et desktop
+  const base = 'absolute top-full mt-2 left-1/2 -translate-x-1/2 min-w-[240px] w-max max-w-[calc(100vw-32px)] rounded-lg shadow-lg z-50 flex flex-col gap-5 px-6 py-4 overflow-hidden'
+  if (props.variant === 'text') {
+    // Dark
+    return `${base} bg-[#252958]`
+  }
+  // Light
+  return `${base} bg-white border border-Grey-200`
+})
+
+const optionLabelClasses = computed(() => {
+  if (props.variant === 'text') {
+    return 'text-white'
+  }
+  return 'text-[#050D2E]'
+})
+
+const checkboxBorderColor = computed(() => {
+  if (props.variant === 'button') {
+    return 'border-Grey-500' // Light variant uses Grey-500
+  }
+  return 'border-primary-300' // Default/Dark variant
+})
+
+const applyButtonClasses = computed(() => {
+  if (props.variant === 'text') {
+    // Dark: Style outline blanc sans hover effect distinct
+    return 'w-full !bg-transparent !border-white !text-white hover:!bg-transparent hover:!text-white'
+  }
+  // Light: Bouton plein bleu (défaut composant)
+  return 'w-full'
+})
 
 const applyFilters = () => {
   emit('update:modelValue', selectedFilters.value)
   emit('apply-filters', selectedFilters.value)
-  isOpen.value = false
+  closeDropdown()
 }
 </script>

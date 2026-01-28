@@ -1400,45 +1400,55 @@
             </div>
           </div>
         </div>
-
-        <!-- Filter Bar -->
-        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Filter Bar</h3>
-          
-          <!-- Variant Dark (sur fond foncé) -->
-          <div class="bg-primary-700 rounded-lg p-8 mb-6">
-            <p class="text-xs text-Light/70 mb-4 uppercase">Variant Dark</p>
-            <MoleculesFilterBar
-              variant="dark"
-              @filter-change="(filters) => console.log('Filters changed:', filters)"
-            />
-          </div>
-
-          <!-- Variant Light (sur fond clair) -->
-          <div class="bg-Grey-300 rounded-lg p-8">
-            <p class="text-xs text-Grey-500 mb-4 uppercase">Variant Light</p>
-            <MoleculesFilterBar
-              variant="light"
-              @filter-change="(filters) => console.log('Filters changed:', filters)"
-            />
-          </div>
-        </div>
       </section>
 
       <!-- Filter Section -->
       <section v-show="activeSection === 'filter'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Filter</h2>
 
-        <div class="bg-white rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Dropdown Filter</h3>
-          <div class="bg-Grey-300 rounded-lg p-8 flex justify-start">
-            <MoleculesFilter
-              :filter-options="filterOptions"
-              v-model="activeFilters"
-              @apply="handleFilterApply"
-            />
+        <!-- Filter Bars -->
+        <div class="bg-white rounded-lg p-8 shadow-sm mt-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Filter Bar</h3>
+
+          <!-- Barre de filtre -->
+          <div class="mb-8">
+            <div class="bg-Grey-300 rounded-lg p-8">
+               <div class="w-full min-h-[54px] flex items-center justify-start px-4 rounded-md">
+                 <MoleculesFilterBar
+                   :filters="devFiltersDark"
+                   variant="dark"
+                   @update-filter="handleDevFilterUpdate"
+                   @apply-filter="handleFilterApply"
+                 />
+               </div>
+            </div>
           </div>
-          <p class="text-sm text-Grey-500 mt-4">Filtres actifs: {{ activeFilters.join(', ') || 'Aucun' }}</p>
+
+          <!-- Light Variant -->
+          <div class="mb-8">
+            <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Variant Light</h4>
+            <div class="bg-Grey-300 rounded-lg p-8">
+              <MoleculesFilterBar
+                :filters="devFilters"
+                variant="light"
+                @update-filter="handleDevFilterUpdate"
+                @apply-filter="handleFilterApply"
+              />
+            </div>
+          </div>
+
+          <!-- Dark Variant -->
+          <div>
+            <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Variant Dark</h4>
+            <div class="bg-primary-700 rounded-lg p-8">
+              <MoleculesFilterBar
+                :filters="devFiltersDark"
+                variant="dark"
+                @update-filter="handleDevFilterUpdate"
+                @apply-filter="handleFilterApply"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -2078,6 +2088,105 @@ const filterOptions = [
   { id: 'training', label: 'Formation' }
 ]
 const activeFilters = ref([])
+
+// Filters for FilterBar demo
+const devFilters = ref([
+  {
+    id: 'category',
+    label: 'Catégorie',
+    value: [],
+    options: [
+      { id: 'management', label: 'Management & Leadership' },
+      { id: 'behavioral', label: 'Compétences comportementales' },
+      { id: 'performance', label: 'Performance & Organisation' },
+      { id: 'tools', label: 'Outils & pratiques' },
+      { id: 'rh', label: 'Ressources Humaines' },
+      { id: 'metier', label: 'Compétences métier' },
+      { id: 'developpement', label: 'Développement personnel' },
+      { id: 'culture', label: 'Culture & valeurs de l’entreprise' },
+    ]
+  },
+  {
+    id: 'discProfile',
+    label: 'Profil DISC',
+    value: [],
+    options: [
+      { id: 'red', label: 'Rouge' },
+      { id: 'green', label: 'Vert' },
+      { id: 'yellow', label: 'Jaune' },
+      { id: 'blue', label: 'Bleu' },
+    ]
+  },
+  {
+    id: 'department',
+    label: 'Pôle',
+    value: [],
+    options: [
+      { id: 'communication', label: 'Communication' },
+      { id: 'finance', label: 'Comptabilité' },
+      { id: 'rh', label: 'RH' },
+      { id: 'it', label: 'Informatique' },
+      { id: 'data', label: 'Data & Analytics' },
+      { id: 'design', label: 'Designer' },
+      { id: 'sav', label: 'SAV' },
+      { id: 'logistic', label: 'Logistique' },
+      { id: 'support', label: 'Support' },
+    ]
+  },
+  {
+    id: 'contractType',
+    label: 'Type de contrat',
+    value: [],
+    options: [
+      { id: 'cdd', label: 'CDD' },
+      { id: 'cdi', label: 'CDI' },
+    ]
+  }
+])
+
+const devFiltersDark = ref([
+  {
+    id: 'category',
+    label: 'Catégorie',
+    value: [],
+    options: [
+      { id: 'management', label: 'Management & Leadership' },
+      { id: 'comportemental', label: 'Compétences comportementales' },
+      { id: 'performance', label: 'Performance & Organisation' },
+      { id: 'outils', label: 'Outils & pratiques' },
+      { id: 'rh', label: 'Ressources Humaines' },
+      { id: 'metier', label: 'Compétences métier' },
+      { id: 'developpement', label: 'Développement personnel' },
+      { id: 'culture', label: 'Culture & valeurs de l\'entreprise' }
+    ]
+  },
+  {
+    id: 'type',
+    label: 'Type de formation',
+    value: [],
+    options: [
+      { id: 'capsule', label: 'Capsule de savoir' },
+      { id: 'parcours', label: 'Parcours de formation' },
+    ]
+  },
+  {
+    id: 'modality',
+    label: 'Modalité',
+    value: [],
+    options: [
+      { id: 'in-person', label: 'Présentiel' },
+      { id: 'remote', label: 'Distanciel' },
+      { id: 'e-learning', label: 'E-learning' },
+    ]
+  }
+])
+
+const handleDevFilterUpdate = ({ id, value }) => {
+  const filter = devFilters.value.find(f => f.id === id)
+  if (filter) {
+    filter.value = value
+  }
+}
 
 const handleFilterApply = (filters) => {
   console.log('Filtres appliqués:', filters)
