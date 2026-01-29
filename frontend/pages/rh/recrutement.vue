@@ -18,46 +18,55 @@
 
       <!-- Main Content -->
       <main class="flex-1 overflow-y-auto hide-scrollbar lg:ml-[300px]">
-        <div class="flex flex-col items-start p-4 md:p-8 gap-6 md:gap-8 w-full">
+        <div class="flex flex-col items-start p-4 md:px-[52px] md:py-8 gap-6 md:gap-8 w-full">
           
           <!-- Header: Titre + Bouton -->
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full">
             <h1 class="text-h3 md:text-h1 text-primary-500">Recrutement</h1>
-            <AtomsButton variant="primary" size="md">
-              <template #icon-left>
-                <LucidePlus :size="20" :stroke-width="1" />
-              </template>
-              Nouvelle offre d'emploi
-            </AtomsButton>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+              <AtomsButton variant="secondary" size="md">
+                Voir les offres archivées
+              </AtomsButton>
+              <AtomsButton variant="primary" size="md" @click="showNewOfferModal = true">
+                <template #icon-left>
+                  <LucidePlus :size="20" :stroke-width="1" />
+                </template>
+                Nouvelle offre d'emploi
+              </AtomsButton>
+            </div>
           </div>
 
-          <!-- Stats Cards Row -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 w-full">
-            <div 
-              v-for="(offer, index) in activeOffers" 
-              :key="index"
-              class="flex flex-col items-start p-6 bg-white rounded-lg"
-            >
-              <div class="flex flex-col gap-6 w-full">
-                <!-- Tag + Titre -->
-                <div class="flex flex-col gap-2">
-                  <AtomsTag 
-                    variant="soft" 
-                    color="primary"
-                    status-color="primary"
-                    size="md"
-                    class="w-fit"
-                  >
-                    {{ offer.status }}
-                  </AtomsTag>
-                  <span class="text-base font-sans font-bold text-primary-500 line-clamp-2">
-                    {{ offer.title }}
+          <!-- Stats Cards Section -->
+          <div class="flex flex-col items-start p-4 md:px-5 md:py-4 gap-6 w-full bg-white rounded-lg">
+            <h4 class="text-h4 text-primary-500">Dernières offres publiées</h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-full">
+              <div
+                v-for="(offer, index) in activeOffers"
+                :key="index"
+                class="flex flex-col items-start p-6 bg-white rounded-lg border border-Grey-300"
+              >
+                <div class="flex flex-col gap-6 w-full">
+                  <!-- Tag + Titre -->
+                  <div class="flex flex-col gap-2">
+                    <AtomsTag
+                      variant="soft"
+                      color="primary"
+                      status-color="primary"
+                      size="md"
+                      class="w-fit"
+                    >
+                      {{ offer.status }}
+                    </AtomsTag>
+                    <span class="text-base font-sans font-bold text-primary-500 line-clamp-2">
+                      {{ offer.title }}
+                    </span>
+                  </div>
+                  <!-- Candidats count -->
+                  <span class="text-xs font-roboto text-primary-900">
+                    {{ offer.candidates }} candidats
                   </span>
                 </div>
-                <!-- Candidats count -->
-                <span class="text-xs font-roboto text-primary-900">
-                  {{ offer.candidates }} candidats
-                </span>
               </div>
             </div>
           </div>
@@ -78,6 +87,13 @@
         </div>
       </main>
     </div>
+
+    <!-- Modal Nouvelle Offre -->
+    <MoleculesModalNewOffer
+      :is-open="showNewOfferModal"
+      @close="showNewOfferModal = false"
+      @continue="handleNewOfferContinue"
+    />
   </div>
 </template>
 
@@ -91,6 +107,9 @@ useHead({
 
 // État de la sidebar mobile
 const isSidebarOpen = ref(false)
+
+// État de la modale nouvelle offre
+const showNewOfferModal = ref(false)
 
 // Données des offres actives (cartes stats)
 const activeOffers = [
@@ -235,6 +254,24 @@ const candidaturesData = ref([
 const handleActionClick = (data) => {
   console.log('Action clicked:', data.row)
   // Navigation vers le détail de l'offre
+}
+
+const handleNewOfferContinue = (choice) => {
+  console.log('Choice selected:', choice)
+  showNewOfferModal.value = false
+
+  // Navigation selon le choix
+  switch (choice) {
+    case 'manual':
+      // navigateTo('/rh/recrutement/nouvelle-offre')
+      break
+    case 'import':
+      // navigateTo('/rh/recrutement/import')
+      break
+    case 'ats':
+      // navigateTo('/rh/recrutement/ats')
+      break
+  }
 }
 </script>
 

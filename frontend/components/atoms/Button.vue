@@ -103,8 +103,8 @@ const buttonClasses = computed(() => {
       : 'border-transparent bg-primary-500 text-Light hover:bg-primary-700 focus:bg-primary-700',
 
     secondary: props.onWhite
-      ? 'border-[2px] border-Light text-Light hover:bg-Light hover:text-primary-500'
-      : 'border-[2px] border-primary-500 text-primary-500 hover:border-primary-700 hover:text-primary-700',
+      ? 'border-[1px] border-Light text-Light hover:bg-Light hover:text-primary-500'
+      : 'border-[1px] border-primary-500 text-primary-500 hover:border-primary-700 hover:text-primary-700',
 
     tertiary: props.onWhite
       ? 'border-transparent text-Light hover:border-b-[1px] hover:border-b-Light hover:rounded-none'
