@@ -1,21 +1,26 @@
 <template>
-  <div class="flex flex-col w-full min-h-screen bg-secondary-300">
+  <div class="flex flex-col w-full h-screen bg-secondary-300 overflow-hidden">
     <!-- Header -->
     <OrganismsNavbar :is-sidebar-open="isSidebarOpen" @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
 
     <!-- Content avec Sidebar -->
-    <div class="flex w-full" style="margin-top: 82.73px;">
+    <div class="flex flex-1 overflow-hidden pt-[82.73px]">
       <!-- Sidebar -->
-      <OrganismsSidebarCollaborateur active-item="equipe" :is-open="isSidebarOpen" @close="isSidebarOpen = false" />
+      <OrganismsSidebarRH
+        active-item="equipe"
+        :is-open="isSidebarOpen"
+        @close="isSidebarOpen = false"
+      />
 
       <!-- Main Content -->
-      <div class="flex flex-col items-start p-[32px] gap-[24px] flex-1" style="margin-left: 300px;">
-        <!-- Header avec Switch et Filtres -->
-        <div class="flex items-center justify-between w-full max-w-[1324px]">
-          <!-- View Switch Button (Gauche) -->
-          <div class="flex items-center gap-[8px] bg-white rounded-[20px] p-[4px] border border-Grey-300">
-            <button
-              @click="currentView = 'directory'"
+      <main class="flex-1 lg:ml-[300px] overflow-y-auto">
+        <div class="flex flex-col items-start p-[32px] gap-[24px] w-full">
+          <!-- Header avec Switch et Filtres -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full max-w-[1324px]">
+            <!-- View Switch Button (Gauche) -->
+            <div class="flex items-center gap-[8px] bg-white rounded-[20px] p-[4px] border border-Grey-300">
+              <button
+                @click="currentView = 'directory'"
               :class="[
                 'px-4 py-2 rounded-[16px] font-roboto text-sm transition-colors',
                 currentView === 'directory'
@@ -39,7 +44,7 @@
           </div>
 
           <!-- Filters Section (Droite) -->
-          <div v-if="currentView === 'directory'" class="flex gap-[12px]">
+          <div v-if="currentView === 'directory'" class="flex flex-wrap gap-[12px]">
             <MoleculesFilter
               v-for="(filter, index) in filters"
               :key="index"
@@ -78,68 +83,80 @@
 
         <!-- Mapping View -->
         <div v-else-if="currentView === 'mapping'" class="w-full flex flex-col gap-[24px]">
-          <div class="flex gap-[24px] w-full">
+          <div class="flex flex-col lg:flex-row gap-[24px] w-full">
             <!-- Organigramme Block -->
-            <div class="w-1/2 bg-white rounded-lg p-[20px] border border-Grey-300" style="min-height: 600px;">
-              <div class="flex flex-col gap-[24px] mb-[32px]">
+            <div class="w-full lg:w-1/2 bg-white rounded-lg p-[20px] border border-Grey-300" style="min-height: 480px;">
+              <div class="flex flex-col gap-[16px] mb-[32px]">
                 <div class="flex justify-between items-center">
                   <h5 class="text-xl font-semibold text-primary-500">Organigramme</h5>
+                  <LucideUsersRound :size="24" :stroke-width="1.5" class="text-Orange-500" />
                 </div>
-                <h6 class="text-base font-semibold text-primary-500">Communication</h6>
+                <div class="flex items-center justify-between gap-3">
+                  <label class="text-sm font-semibold text-primary-500">Pôle</label>
+                  <select
+                    v-model="selectedPoleMapping"
+                    class="w-[220px] h-[40px] px-3 py-2 border border-Grey-300 rounded-lg text-sm text-primary-500 bg-white focus:outline-none focus:ring-2 focus:ring-Orange-500"
+                  >
+                    <option v-for="pole in poleOptions" :key="pole" :value="pole">{{ pole }}</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="relative" :style="{ height: `${layoutHeight}px` }">
-                <!-- Connecteurs -->
-                <svg class="absolute inset-0 pointer-events-none" :style="{ width: '100%', height: `${layoutHeight}px` }">
-                  <g stroke="#AEACAC" stroke-width="1" fill="none">
-                    <template v-for="(link, idx) in connectors" :key="`link-${idx}`">
-                      <path
-                        v-if="link.type === 'parent'"
-                        :d="`M ${link.x1} ${link.y1} L ${link.x1} ${link.y2} L ${link.x2} ${link.y2}`"
-                      />
-                      <line
-                        v-else
-                        :x1="link.x1"
-                        :y1="link.y1"
-                        :x2="link.x2"
-                        :y2="link.y2"
-                      />
-                    </template>
-                  </g>
-                </svg>
+              <div class="overflow-x-auto pb-4">
+                <div class="relative min-w-[800px]" :style="{ height: `${layoutHeight}px` }">
+                  <!-- Connecteurs -->
+                  <svg class="absolute inset-0 pointer-events-none" :style="{ width: '100%', height: `${layoutHeight}px` }">
+                    <g stroke="#AEACAC" stroke-width="1" fill="none">
+                      <template v-for="(link, idx) in connectors" :key="`link-${idx}`">
+                        <path
+                          v-if="link.type === 'parent'"
+                          :d="`M ${link.x1} ${link.y1} L ${link.x1} ${link.y2} L ${link.x2} ${link.y2}`"
+                        />
+                        <line
+                          v-else
+                          :x1="link.x1"
+                          :y1="link.y1"
+                          :x2="link.x2"
+                          :y2="link.y2"
+                        />
+                      </template>
+                    </g>
+                  </svg>
 
-                <!-- Cartes positionnées -->
-                <div
-                  v-for="node in layoutNodes"
-                  :key="node.id"
-                  class="absolute origin-top-left"
-                  :style="{
-                    left: `${node.x}px`,
-                    top: `${node.y}px`,
-                    transform: `scale(${cardScale})`
-                  }"
-                >
-                  <MoleculesCard
-                    type="profile"
-                    :image-url="node.person.imageUrl"
-                    :title="node.person.name"
-                    :contract-type="node.person.pole"
-                    :description="node.person.position"
-                    :disc-icon="node.person.discProfile"
-                    :show-profile-link="false"
-                  />
+                  <!-- Cartes positionnées -->
+                  <div
+                    v-for="node in layoutNodes"
+                    :key="node.id"
+                    class="absolute origin-top-left"
+                    :style="{
+                      left: `${node.x}px`,
+                      top: `${node.y}px`,
+                      transform: `scale(${cardScale})`
+                    }"
+                  >
+                    <MoleculesCard
+                      type="profile"
+                      :image-url="node.person.imageUrl"
+                      :title="node.person.name"
+                      :contract-type="node.person.pole"
+                      :description="node.person.position"
+                      :disc-icon="node.person.discProfile"
+                      :show-profile-link="false"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- DISC Block -->
-            <div class="w-1/2 bg-white rounded-lg p-[20px] border border-Grey-300 flex flex-col gap-[24px]" style="min-height: 600px;">
+            <div class="w-full lg:w-1/2 bg-white rounded-lg p-[20px] border border-Grey-300 flex flex-col gap-[24px]" style="min-height: 480px;">
               <div class="flex justify-between items-center w-full">
-                <h5 class="text-xl font-semibold text-primary-500">DISC</h5>
+                <h5 class="text-xl font-semibold text-primary-500">Répartition DISC</h5>
+                <LucideChartPie :size="24" :stroke-width="1.5" class="text-Orange-500" />
               </div>
 
               <div class="flex flex-1 items-center justify-center">
-                <div class="relative" style="width: 520px; height: 520px;">
+                <div class="relative w-full max-w-[520px] aspect-square">
                   <!-- DISC circulaire avec 4 quadrants -->
                   <div class="relative w-full h-full rounded-full overflow-hidden">
                     <!-- Quadrant D (Rouge - haut droit) -->
@@ -152,26 +169,30 @@
                     <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-[#476EF6]" style="border-radius: 100% 0 0 0;"></div>
                     
                     <!-- Lettres DISC - centrées et alignées -->
-                    <div class="absolute" style="left: 120px; top: 110px; font-family: 'Nunito'; font-weight: 700; font-size: 88px; line-height: 1; color: rgba(253, 253, 253, 0.5);">C</div>
-                    <div class="absolute" style="left: 345px; top: 110px; font-family: 'Nunito'; font-weight: 700; font-size: 88px; line-height: 1; color: rgba(253, 253, 253, 0.5);">D</div>
-                    <div class="absolute" style="left: 120px; top: 330px; font-family: 'Nunito'; font-weight: 700; font-size: 88px; line-height: 1; color: rgba(253, 253, 253, 0.5);">S</div>
-                    <div class="absolute" style="left: 365px; top: 330px; font-family: 'Nunito'; font-weight: 700; font-size: 88px; line-height: 1; color: rgba(253, 253, 253, 0.5);">I</div>
+                    <div class="absolute" style="left: 23%; top: 21%; font-family: 'Nunito'; font-weight: 700; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; color: rgba(253, 253, 253, 0.5);">C</div>
+                    <div class="absolute" style="left: 66%; top: 21%; font-family: 'Nunito'; font-weight: 700; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; color: rgba(253, 253, 253, 0.5);">D</div>
+                    <div class="absolute" style="left: 23%; top: 63%; font-family: 'Nunito'; font-weight: 700; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; color: rgba(253, 253, 253, 0.5);">S</div>
+                    <div class="absolute" style="left: 70%; top: 63%; font-family: 'Nunito'; font-weight: 700; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; color: rgba(253, 253, 253, 0.5);">I</div>
                   </div>
                   
                   <!-- Pastilles pour chaque personne -->
                   <div
                     v-for="person in discPositions"
                     :key="person.id"
-                    class="absolute flex items-center justify-center bg-black rounded-full"
+                    class="absolute flex items-center justify-center bg-black rounded-full cursor-pointer transition-transform hover:scale-110 group"
                     :style="{
-                      left: `${person.x}px`,
-                      top: `${person.y}px`,
-                      width: '42px',
-                      height: '42px'
+                      left: `${person.x}%`,
+                      top: `${person.y}%`,
+                      width: '8%',
+                      height: '8%'
                     }"
-                    :title="person.name"
                   >
-                    <span class="text-white font-roboto text-base">{{ person.initials }}</span>
+                    <span class="text-white font-roboto text-[calc(clamp(0.5rem,_1vw_+_0.2rem,_1rem))]">{{ person.initials }}</span>
+                    <!-- Tooltip personnalisé -->
+                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-primary-900 text-white text-sm font-roboto rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50">
+                      {{ person.name }}
+                      <div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-primary-900"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -179,14 +200,20 @@
           </div>
         </div>
       </div>
+      </main>
     </div>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
+useHead({
+  title: 'Équipe & Management - Tholka RH',
+})
+
+// État de la sidebar mobile
 const isSidebarOpen = ref(false)
 
 type Person = {
@@ -214,6 +241,7 @@ const horizontalGapLevel1 = 40 // resserre la ligne du milieu (niveau 1)
 const horizontalGapLevel2 = 30 // resserre encore plus le niveau 2
 const verticalGap = 50 // réduit pour gérer 4 niveaux
 const levelOffsetX = 50 // réduit pour éviter que les cartes sortent
+const maxCardsPerRow = 2 // limite à 2 cartes par ligne
 const parentConnectorOffset = 12
 
 const handlePageChange = (page: number) => {
@@ -449,60 +477,95 @@ const paginatedCollaborators = computed(() => {
 })
 
 // Organigramme data structure (avec niveau RH au-dessus)
-const organigrammeData = ref<{ chef: Person }>({
-  chef: {
-    id: 1,
-    name: 'Alice Dupont',
-    position: 'Gestionnaire RH',
-    pole: 'RH',
-    discProfile: 'C',
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
-    subordinates: [
-      {
-        id: 12,
-        name: 'Laurent Bonnet',
-        position: 'Directeur Général',
-        pole: 'Communication',
-        discProfile: 'D',
-        imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
-        subordinates: [
-          {
-            id: 3,
-            name: 'Claire Leblanc',
-            position: 'Responsable Marketing',
-            pole: 'Communication',
-            discProfile: 'I',
-            imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
-            subordinates: [
-              {
-                id: 15,
-                name: 'Olivier Renaud',
-                position: 'Community Manager',
-                pole: 'Communication',
-                discProfile: 'I',
-                imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
-                subordinates: []
-              }
-            ]
-          },
-          {
-            id: 13,
-            name: 'Marie Leclerc',
-            position: 'Manager Pôle',
-            pole: 'Communication',
-            discProfile: 'I',
-            imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
-            subordinates: []
-          }
-        ]
+const poleOptions = computed(() => {
+  const set = new Set<string>()
+  collaborators.value.forEach((c) => {
+    if (c.pole) set.add(c.pole)
+  })
+  return Array.from(set)
+})
+
+const selectedPoleMapping = ref('')
+
+watch(poleOptions, (opts) => {
+  if (!selectedPoleMapping.value && opts.length) {
+    selectedPoleMapping.value = opts[0]
+  } else if (selectedPoleMapping.value && !opts.includes(selectedPoleMapping.value)) {
+    selectedPoleMapping.value = opts[0] || ''
+  }
+}, { immediate: true })
+
+const organigrammeData = computed<{ chef: Person } | null>(() => {
+  const rhLead = collaborators.value.find((c) => c.pole === 'RH') || collaborators.value[0]
+  if (!rhLead || !selectedPoleMapping.value) return null
+
+  // Récupérer tous les membres du pôle sélectionné (sans le RH)
+  const poleMembers = collaborators.value.filter(
+    (c) => c.pole === selectedPoleMapping.value && c.id !== rhLead.id
+  )
+
+  if (poleMembers.length === 0) {
+    // Si le pôle n'a pas de membres (RH ne compte pas), retourner just le RH sans subordinates
+    return {
+      chef: {
+        ...rhLead,
+        subordinates: []
       }
-    ]
+    }
+  }
+
+  // Fonctions de classification par seniority
+  const isDirector = (person: Person) => {
+    const title = person.position.toLowerCase()
+    return title.includes('directeur') || title.includes('directrice') || title.includes('pdg')
+  }
+
+  const isResponsable = (person: Person) => {
+    const title = person.position.toLowerCase()
+    return (title.includes('responsable') || title.includes('manager')) && !isDirector(person)
+  }
+
+  // Trier les membres par niveau hiérarchique
+  const directors = poleMembers.filter(isDirector)
+  const responsables = poleMembers.filter(isResponsable)
+  const juniors = poleMembers.filter((p) => !isDirector(p) && !isResponsable(p))
+
+  // Construire la hiérarchie : directeurs > responsables > juniors
+  let level1: Person[] = []
+
+  if (directors.length > 0) {
+    // Directeurs en niveau 1, tous les autres en subordinates
+    level1 = directors.map((dir) => ({
+      ...dir,
+      subordinates: responsables.concat(juniors)
+    }))
+  } else if (responsables.length > 0) {
+    // Pas de directeur : responsables en niveau 1, juniors distribués sous eux
+    level1 = responsables.map((resp, idx) => ({
+      ...resp,
+      subordinates: juniors.filter((_, jIdx) => jIdx % Math.max(1, responsables.length) === idx)
+    }))
+  } else {
+    // Que des juniors : tous en niveau 1 sans subordinates
+    level1 = juniors.map((j) => ({
+      ...j,
+      subordinates: []
+    }))
+  }
+
+  return {
+    chef: {
+      ...rhLead,
+      subordinates: level1
+    }
   }
 })
 
 // Construire les niveaux de l'organigramme pour un padding horizontal régulier
 const organigrammeLevels = computed(() => {
   const levels: Person[][] = []
+  if (!organigrammeData.value) return levels
+
   const walk = (person: Person, depth: number) => {
     if (!levels[depth]) levels[depth] = []
     levels[depth].push(person)
@@ -520,14 +583,15 @@ const layoutNodes = computed<PositionedNode[]>(() => {
   const nodes: PositionedNode[] = []
   organigrammeLevels.value.forEach((level, depth) => {
     const offsetX = depth * levelOffsetX
-    // Ajuster l'espacement selon le niveau
     let gapX = horizontalGap
     if (depth === 1) gapX = horizontalGapLevel1
     if (depth === 2) gapX = horizontalGapLevel2
-    
+
     level.forEach((person, idx) => {
-      const x = offsetX + idx * (cardWidth + gapX)
-      const y = depth * (cardHeight + verticalGap)
+      const col = idx % maxCardsPerRow
+      const row = Math.floor(idx / maxCardsPerRow)
+      const x = offsetX + col * (cardWidth + gapX)
+      const y = depth * (cardHeight + verticalGap) + row * (cardHeight + verticalGap)
       nodes.push({ id: person.id, person, x, y })
     })
   })
@@ -535,9 +599,13 @@ const layoutNodes = computed<PositionedNode[]>(() => {
 })
 
 const layoutHeight = computed(() => {
-  const levelsCount = organigrammeLevels.value.length
-  if (!levelsCount) return 0
-  return levelsCount * cardHeight + (levelsCount - 1) * verticalGap + 40 // extra breathing room
+  let maxY = 0
+  organigrammeLevels.value.forEach((level, depth) => {
+    const rows = Math.ceil(level.length / maxCardsPerRow)
+    const bottomY = depth * (cardHeight + verticalGap) + (rows - 1) * (cardHeight + verticalGap) + cardHeight
+    if (bottomY > maxY) maxY = bottomY
+  })
+  return maxY + 40 // extra breathing room
 })
 
 const connectors = computed<Connector[]>(() => {
@@ -563,11 +631,18 @@ const connectors = computed<Connector[]>(() => {
       walk(child)
     })
   }
-  walk(organigrammeData.value.chef)
+  if (organigrammeData.value) {
+    walk(organigrammeData.value.chef)
+  }
 
   // Sibling connectors (mid-right to mid-left)
   organigrammeLevels.value.forEach((level) => {
     level.forEach((person, idx) => {
+      const currentRow = Math.floor(idx / maxCardsPerRow)
+      const nextRow = Math.floor((idx + 1) / maxCardsPerRow)
+      // Skip sibling connector when next card is on the next wrapped row
+      if (currentRow !== nextRow) return
+
       const currentNode = nodeById.get(person.id)
       const nextPerson = level[idx + 1]
       if (currentNode && nextPerson) {
@@ -595,7 +670,9 @@ const allOrganigrammePersons = computed(() => {
     persons.push(person)
     person.subordinates?.forEach(walk)
   }
-  walk(organigrammeData.value.chef)
+  if (organigrammeData.value) {
+    walk(organigrammeData.value.chef)
+  }
   return persons
 })
 
@@ -655,8 +732,8 @@ const discPositions = computed(() => {
         id: person.id,
         name: person.name,
         initials: initials.toUpperCase(),
-        x,
-        y
+        x: (x / 520) * 100,
+        y: (y / 520) * 100
       })
     })
   })
