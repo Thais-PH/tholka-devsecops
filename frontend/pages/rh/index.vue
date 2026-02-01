@@ -216,6 +216,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import {
   Pencil,
   FileQuestion, 
@@ -226,6 +227,9 @@ import {
   ChevronRight as LucideChevronRight
 } from 'lucide-vue-next'
 
+const route = useRoute()
+const router = useRouter()
+
 useHead({
   title: 'Accueil RH - Tholka',
 })
@@ -233,14 +237,24 @@ useHead({
 // État de la sidebar mobile
 const isSidebarOpen = ref(false)
 
-// État actif du menu
-const activeTab = ref('general')
-const activeTabIndex = ref(0)
-
+// Menu items (déclaré avant pour pouvoir l'utiliser dans l'initialisation)
 const secondaryMenuItems = [
   { id: 'general', label: 'Général' },
   { id: 'action-rh', label: 'Action RH' }
 ]
+
+// État actif du menu - initialisé depuis l'URL si présent
+const getInitialTab = () => {
+  const tabFromUrl = route.query.tab
+  const validTabs = secondaryMenuItems.map(item => item.id)
+  return validTabs.includes(tabFromUrl) ? tabFromUrl : 'general'
+}
+const getInitialTabIndex = () => {
+  const tab = getInitialTab()
+  return secondaryMenuItems.findIndex(item => item.id === tab)
+}
+const activeTab = ref(getInitialTab())
+const activeTabIndex = ref(getInitialTabIndex())
 
 // Données Général
 const quickAccessItems = [
@@ -289,9 +303,12 @@ const newProfiles = [
   }
 ]
 
+// Gestion du changement de menu - persiste l'onglet dans l'URL
 const handleMenuChange = (data) => {
   activeTab.value = data.item.id
   activeTabIndex.value = data.index
+  // Met à jour l'URL sans recharger la page (replace pour ne pas polluer l'historique)
+  router.replace({ query: { ...route.query, tab: activeTab.value } })
 }
 
 // Données Action RH

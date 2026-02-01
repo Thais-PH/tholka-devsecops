@@ -3,7 +3,7 @@
     <!-- Inline container -->
     <div class="step-inline" :class="[inlineJustifyClass, { 'step-inline-mini': mini }]">
       <!-- Left Divider -->
-      <div v-if="!isFirst" class="step-divider" :class="[dividerClass, { 'step-divider-mini': mini }]" />
+      <div class="step-divider" :class="[dividerClass, { 'step-divider-mini': mini, 'invisible': isFirst }]" />
 
       <!-- Button Icon -->
       <div class="step-icon-wrapper" :class="{ 'step-icon-wrapper-mini': mini }">
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Right Divider -->
-      <div v-if="!isLast" class="step-divider" :class="[dividerClass, { 'step-divider-mini': mini }]" />
+      <div class="step-divider" :class="[dividerClass, { 'step-divider-mini': mini, 'invisible': isLast }]" />
     </div>
 
     <!-- Vertical Title -->
@@ -136,7 +136,7 @@ const inlineJustifyClass = computed(() => {
   align-items: center;
   padding: 0;
   gap: 8px;
-  width: 206px;
+  width: 100%;
   height: 28px;
 }
 
@@ -147,7 +147,7 @@ const inlineJustifyClass = computed(() => {
 }
 
 .step-divider {
-  width: 81px;
+  flex: 1;
   height: 1px;
   background: rgba(58, 59, 153, 0.1);
   transition: background 0.2s ease;
