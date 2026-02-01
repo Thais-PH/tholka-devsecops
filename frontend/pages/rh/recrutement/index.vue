@@ -76,9 +76,7 @@
             <MoleculesTable
               :data="candidaturesData"
               :columns="candidaturesColumns"
-              variant="simple"
-              :striped="false"
-              :hover="true"
+              :hoverable="true"
               @row-click="handleActionClick"
               @action-click="handleActionClick"
             />
@@ -99,7 +97,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { Plus as LucidePlus } from 'lucide-vue-next'
+
+const router = useRouter()
 
 useHead({
   title: 'Recrutement - Tholka RH',
@@ -253,7 +254,17 @@ const candidaturesData = ref([
 
 const handleActionClick = (data) => {
   console.log('Action clicked:', data.row)
-  // Navigation vers le détail de l'offre
+  // Navigation vers le détail de l'offre avec un ID basé sur l'index
+  const rowIndex = candidaturesData.value.findIndex(item => item.annonce === data.row.annonce)
+  const offerId = rowIndex >= 0 ? rowIndex + 1 : 1
+  const row = data.row
+  router.push({
+    path: `/rh/recrutement/${offerId}`,
+    query: {
+      title: row.annonce,
+      status: row.statut.text === 'Publiée' ? 'published' : row.statut.text === 'Brouillon' ? 'archived' : 'paused'
+    }
+  })
 }
 
 const handleNewOfferContinue = (choice) => {

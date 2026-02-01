@@ -31,7 +31,18 @@
             @click="handleSort(column)"
           >
             <div class="flex items-center justify-between">
-              <span>{{ column.label }}</span>
+              <div class="flex items-center" :class="column.headerIcon ? 'gap-2' : ''">
+                <span>{{ column.label }}</span>
+                <!-- Icône d'aide optionnelle -->
+                <button
+                  v-if="column.headerIcon"
+                  type="button"
+                  class="text-primary-500 hover:text-primary-700 transition-colors"
+                  @click.stop="$emit('header-icon-click', { column, columnKey: column.key })"
+                >
+                  <component :is="iconMap[column.headerIcon]" :size="16" :stroke-width="1.5" />
+                </button>
+              </div>
               <!-- Flèches de tri -->
               <div v-if="column.sortable !== false && column.type !== 'action'" class="flex flex-col ml-2">
                 <svg 
@@ -95,8 +106,9 @@
             :class="[cellClasses, column.cellClass || '', getHighlightClass(row, column)]"
           >
             <!-- Rendu selon le type de colonne -->
-            <div v-if="column.type === 'tag'">
+            <div v-if="column.type === 'tag'" class="flex justify-start">
               <AtomsTag
+                v-if="getNestedValue(row, column.key)"
                 :variant="getNestedValue(row, column.key).variant || 'solid'"
                 :color="getNestedValue(row, column.key).color || 'primary'"
                 :status-color="getNestedValue(row, column.key).statusColor"
@@ -105,14 +117,21 @@
                 {{ getNestedValue(row, column.key).text }}
               </AtomsTag>
             </div>
+
+            <div v-else-if="column.type === 'stepper'" class="flex justify-start">
+              <MoleculesStepper
+                :steps="getNestedValue(row, column.key)"
+                :mini="true"
+              />
+            </div>
             
-            <div v-else-if="column.type === 'action'" class="flex gap-2">
+            <div v-else-if="column.type === 'action'" class="flex justify-start gap-2">
               <template v-for="(action, actionIndex) in getNestedValue(row, column.key)" :key="actionIndex">
                 <!-- Bouton icon-only si l'action a un icon -->
                 <AtomsButton
                   v-if="action.icon"
                   variant="primary"
-                  size="sm"
+                  size="table"
                   :icon-only="true"
                   @click.stop="$emit('action-click', { action: action.action, row, rowIndex })"
                 >
@@ -121,14 +140,15 @@
                   </template>
                 </AtomsButton>
                 <!-- Bouton texte classique sinon -->
-                <button
+                <AtomsButton
                   v-else
+                  variant="secondary"
+                  size="sm"
                   @click.stop="action.handler && action.handler(row, rowIndex)"
-                  :class="getActionButtonClass(action)"
                   :disabled="action.disabled && action.disabled(row)"
                 >
                   {{ action.label }}
-                </button>
+                </AtomsButton>
               </template>
             </div>
             
@@ -152,15 +172,16 @@
           <td v-if="hasLegacyActions" :class="cellClasses">
             <slot name="actions" :row="row" :index="rowIndex">
               <!-- Actions par défaut -->
-              <button 
+              <AtomsButton
                 v-for="action in (actions.length ? actions : defaultActions)" 
                 :key="action.key"
+                :variant="action.variant || 'secondary'"
+                size="sm"
                 @click.stop="action.handler(row, rowIndex)"
-                :class="getActionButtonClass(action)"
                 :disabled="action.disabled && action.disabled(row)"
               >
                 {{ action.label }}
-              </button>
+              </AtomsButton>
             </slot>
           </td>
         </tr>
@@ -186,11 +207,12 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { ChevronRight as LucideChevronRight } from 'lucide-vue-next'
+import { ChevronRight as LucideChevronRight, HelpCircle as LucideHelpCircle } from 'lucide-vue-next'
 
-// Map des icônes disponibles pour le type action
+// Map des icônes disponibles pour le type action et header
 const iconMap = {
-  ChevronRight: LucideChevronRight
+  ChevronRight: LucideChevronRight,
+  HelpCircle: LucideHelpCircle
 }
 
 const props = defineProps({
@@ -284,7 +306,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['row-click', 'selection-change', 'select-all', 'delete-row', 'sort-change', 'action-click'])
+const emit = defineEmits(['row-click', 'selection-change', 'select-all', 'delete-row', 'sort-change', 'action-click', 'header-icon-click'])
 
 // Génération d'un nom unique pour les radio buttons
 const radioGroupName = `table-radio-${Math.random().toString(36).substr(2, 9)}`
@@ -363,7 +385,7 @@ const bodyClasses = computed(() => {
 const cellClasses = computed(() => {
   let classes = [
     sizeClasses[props.size].cell,
-    'whitespace-nowrap text-primary-900 font-roboto'
+    'whitespace-nowrap text-primary-900 font-roboto text-left'
   ]
   return classes.join(' ')
 })
@@ -462,18 +484,6 @@ const getHighlightClass = (row, column) => {
     return 'bg-Yellow-300'
   }
   return ''
-}
-
-const getActionButtonClass = (action) => {
-  const baseClasses = 'px-2 py-1 text-xs rounded transition-colors font-roboto'
-  const variantClasses = {
-    primary: 'bg-primary-500 text-Light hover:bg-primary-700',
-    secondary: 'bg-secondary-500 text-Light hover:bg-secondary-700',
-    danger: 'bg-Red-500 text-Light hover:bg-Red-700',
-    success: 'bg-Green-500 text-Light hover:bg-Green-700'
-  }
-  
-  return `${baseClasses} ${variantClasses[action.variant] || variantClasses.primary}`
 }
 
 const captionClasses = computed(() => {

@@ -490,25 +490,6 @@
         <div class="bg-white rounded-lg p-8 shadow-sm">
           <div class="bg-Grey-300 rounded-lg p-8">
             <div class="space-y-8">
-              <!-- Calendar Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsCalendarBlock />
-                </div>
-              </div>
-
-              <!-- Annonce Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsAnnonceBlock
-                    title="Opportunités internes"
-                    :annonces="mockAnnonces"
-                  />
-                </div>
-              </div>
-
               <!-- Events Block -->
               <div>
                 <h3 class="text-2xl font-semibold text-primary-700 mb-6">Events Block</h3>
@@ -517,14 +498,6 @@
                     title="Événements"
                     :events="mockEvents"
                   />
-                </div>
-              </div>
-
-              <!-- Chart Block -->
-              <div>
-                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
-                <div class="flex justify-center">
-                  <OrganismsChartBlock />
                 </div>
               </div>
 
@@ -569,6 +542,33 @@
                   <OrganismsQuickAccessBlock
                     title="Mes accès rapides"
                     :quick-access="mockQuickAccess"
+                  />
+                </div>
+              </div>
+
+              <!-- Calendar Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Calendar Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsCalendarBlock />
+                </div>
+              </div>
+
+              <!-- Chart Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Chart Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsChartBlock />
+                </div>
+              </div>
+
+              <!-- Annonce Block -->
+              <div>
+                <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce Block</h3>
+                <div class="flex justify-center">
+                  <OrganismsAnnonceBlock
+                    title="Opportunités internes"
+                    :annonces="mockAnnonces"
                   />
                 </div>
               </div>
@@ -1015,16 +1015,6 @@
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Cards</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Event line</h3>
-
-          <div class="flex flex-wrap gap-6 mb-8">
-            <MoleculesCard
-              type="event"
-              :date="new Date(2025, 8, 23)"
-              :tag="{ text: 'Tag', variant: 'stroke', color: 'primary', size: 'md' }"
-              content-text="Titre lorem ipsum"
-            />
-          </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Annonce</h3>
 
@@ -1035,12 +1025,39 @@
               contract-type="CDD"
               image-url="/card.jpg"
               :has-video="true"
+              :style="{ width: '258px' }"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Stats</h3>
+
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="stats"
+              title="Titre lorem ipsum"
+              :candidates-processed="10"
+              :candidates-pending="1"
+              :candidates-rejected="2"
+              :candidates-total="13"
+              :style="{ width: '240px' }"
+            />
+          </div>
+
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Event line</h3>
+
+          <div class="flex flex-wrap gap-6 mb-8">
+            <MoleculesCard
+              type="event"
+              :date="new Date(2025, 8, 23)"
+              :tag="{ text: 'Tag', variant: 'stroke', color: 'primary', size: 'md' }"
+              content-text="Titre lorem ipsum"
+              :style="{ width: '292px' }"
             />
           </div>
 
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Formation</h3>
 
-          <div class="flex flex-wrap gap-6">
+          <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="job"
               :order-number="1"
@@ -1049,31 +1066,32 @@
               image-url="/card.jpg"
               description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
               :has-video="true"
+              :style="{ width: '311px' }"
             />
           </div>
 
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Profile</h3>
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Profile</h3>
 
-          <div class="flex flex-wrap gap-6">
+          <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
               type="profile"
               title="Titre lorem ipsum"
               contract-type="CDD"
               image-url="/card.jpg"
               description="Nous recherchons un(e) Chef de projet informatique pour piloter...."
+              :style="{ width: '334px' }"
             />
           </div>
 
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6 mt-8">Stats</h3>
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">People Small</h3>
 
-          <div class="flex flex-wrap gap-6">
+          <div class="flex flex-wrap gap-6 mb-8">
             <MoleculesCard
-              type="stats"
+              type="people-small"
               title="Titre lorem ipsum"
-              :candidates-processed="10"
-              :candidates-pending="1"
-              :candidates-rejected="2"
-              :candidates-total="13"
+              image-url="/card.jpg"
+              button-label="Voir le profil"
+              :style="{ width: '292px' }"
             />
           </div>
         </div>
@@ -1081,52 +1099,22 @@
         <h2 class="text-3xl font-bold text-primary-900 mb-8 mt-8">Modal</h2>
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
-          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Modal de confirmation</h3>
-
           <div class="flex flex-wrap gap-4 mb-6">
             <button
               @click="showSuccessModal = true"
               class="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600"
             >
-              Succès création
-            </button>
-            <button
-              @click="showPublishedModal = true"
-              class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:blue-600"
-            >
-              Succès publication
-            </button>
-            <button
-              @click="showDeletedModal = true"
-              class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
-            >
-              Succès suppression
+              Ouvrir la modal
             </button>
           </div>
 
-          <!-- Modales -->
+          <!-- Modal -->
           <MoleculesModal
             :is-open="showSuccessModal"
-            title="Annonce créée avec succès"
-            message="Votre annonce a été créée et sauvegardée. Vous pouvez maintenant la publier ou la modifier."
-            button-text="Parfait"
+            title="Votre annonce a été publiée !"
+            message='Vous pouvez la retrouver dans l&#39;onglet "Recrutement"'
+            button-text="Retour aux annonces"
             @close="showSuccessModal = false"
-          />
-
-          <MoleculesModal
-            :is-open="showPublishedModal"
-            title="Annonce publiée"
-            message="Votre annonce est maintenant en ligne et visible par les candidats."
-            button-text="Compris"
-            @close="showPublishedModal = false"
-          />
-
-          <MoleculesModal
-            :is-open="showDeletedModal"
-            title="Annonce supprimée"
-            message="L'annonce a été définitivement supprimée de la plateforme."
-            button-text="OK"
-            @close="showDeletedModal = false"
           />
         </div>
       </section>
@@ -1410,20 +1398,6 @@
         <div class="bg-white rounded-lg p-8 shadow-sm mt-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Filter Bar</h3>
 
-          <!-- Barre de filtre -->
-          <div class="mb-8">
-            <div class="bg-Grey-300 rounded-lg p-8">
-               <div class="w-full min-h-[54px] flex items-center justify-start px-4 rounded-md">
-                 <MoleculesFilterBar
-                   :filters="devFiltersDark"
-                   variant="dark"
-                   @update-filter="handleDevFilterUpdate"
-                   @apply-filter="handleFilterApply"
-                 />
-               </div>
-            </div>
-          </div>
-
           <!-- Light Variant -->
           <div class="mb-8">
             <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Variant Light</h4>
@@ -1447,6 +1421,21 @@
                 @update-filter="handleDevFilterUpdate"
                 @apply-filter="handleFilterApply"
               />
+            </div>
+          </div>
+
+          <!-- Barre de filtre -->
+          <div class="mt-8">
+            <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Inline</h4>
+            <div class="bg-Grey-300 rounded-lg p-8">
+               <div class="w-full min-h-[54px] flex items-center justify-start px-4 rounded-md">
+                 <MoleculesFilterBar
+                   :filters="devFiltersDark"
+                   variant="dark"
+                   @update-filter="handleDevFilterUpdate"
+                   @apply-filter="handleFilterApply"
+                 />
+               </div>
             </div>
           </div>
         </div>
@@ -1494,20 +1483,20 @@
         </div>
 
         <!-- Tabs -->
-        <div class="bg-white rounded-lg p-8 shadow-sm">
+        <div class="bg-white rounded-lg p-8 shadow-sm mb-8">
           <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tabs</h3>
           <div class="bg-Grey-300 rounded-lg p-8">
             <div class="space-y-8">
               <!-- Items individuels -->
               <div>
                 <h4 class="text-sm font-medium text-Grey-600 mb-4 uppercase">Items individuels</h4>
-                <div class="flex gap-4 items-center justify-center">
+                <div class="flex gap-4 items-center">
                   <div>
-                    <p class="text-xs text-Grey-500 mb-2 text-center">Default</p>
+                    <p class="text-xs text-Grey-500 mb-2">Default</p>
                     <AtomsTabItem label="Text" variant="default" />
                   </div>
                   <div>
-                    <p class="text-xs text-Grey-500 mb-2 text-center">Active</p>
+                    <p class="text-xs text-Grey-500 mb-2">Active</p>
                     <AtomsTabItem label="Text" variant="active" />
                   </div>
                 </div>
@@ -1529,6 +1518,20 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="bg-white rounded-lg p-8 shadow-sm">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Breadcrumb</h3>
+          <div class="bg-Grey-300 rounded-lg p-8">
+            <AtomsBreadcrumb
+              :items="[
+                { label: 'Accueil', to: '/' },
+                { label: 'Text', to: '#' },
+                { label: 'Text' }
+              ]"
+            />
           </div>
         </div>
       </section>
@@ -1700,6 +1703,7 @@
       <section v-show="activeSection === 'tags'" class="mt-8 mb-16">
         <h2 class="text-3xl font-bold text-primary-900 mb-8">Tags</h2>
 
+        <!-- Tags -->
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <!-- Statut Section -->
           <div class="mb-8">
@@ -1793,7 +1797,9 @@
                 </div>
               </div>
             </div>
-          </div>          <!-- Soft Tags -->
+          </div>
+
+          <!-- Soft Tags -->
           <div class="mb-8">
             <h3 class="text-2xl font-semibold text-primary-700 mb-6">Soft</h3>
 
@@ -1951,6 +1957,18 @@
             </div>
           </div>
         </div>
+
+        <!-- Dropdown de tags -->
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm mt-8">
+          <h3 class="text-2xl font-semibold text-primary-700 mb-6">Tag Dropdown</h3>
+            <div>
+              <p class="text-xs text-Grey-500 mb-2">Dropdown</p>
+              <AtomsTagDropdown
+                v-model="selectedTagDropdown"
+                :options="tagDropdownOptions"
+              />
+            </div>
+        </div>
       </section>
     </div>
   </div>
@@ -1986,8 +2004,14 @@ const navigationItems = [
 
 // Variables pour les modales
 const showSuccessModal = ref(false)
-const showPublishedModal = ref(false)
-const showDeletedModal = ref(false)
+
+// Variables pour le Tag Dropdown
+const selectedTagDropdown = ref('active')
+const tagDropdownOptions = [
+  { value: 'active', label: 'Publiée', color: 'primary', variant: 'solid', statusColor: 'green' },
+  { value: 'pending', label: 'En pause', color: 'orange', variant: 'solid', statusColor: 'green' },
+  { value: 'archived', label: 'Archivée', color: 'green', variant: 'solid', statusColor: 'green' }
+]
 
 // Variables pour les tables
 const tableData = ref([

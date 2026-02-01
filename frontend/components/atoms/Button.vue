@@ -93,7 +93,8 @@ const buttonClasses = computed(() => {
   const iconSizes = {
     sm: 'w-[26px] h-[26px] p-[4px]',
     md: 'w-[38px] h-[38px] p-[8px]',
-    lg: 'w-[56px] h-[56px] p-[12px]'
+    lg: 'w-[56px] h-[56px] p-[12px]',
+    table: 'w-[33px] h-[25px] py-[4px] px-[8px]'
   }
 
   // Variantes de couleurs

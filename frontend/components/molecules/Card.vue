@@ -307,20 +307,76 @@
       </div>
     </div>
   </div>
+
+  <!-- People Small Card -->
+  <div v-else-if="type === 'people-small'" class="flex flex-row justify-center items-start p-0 w-full h-[80px] bg-white border border-[#EBEBF5] rounded-lg overflow-hidden">
+    <!-- Image section -->
+    <div
+      class="flex flex-row items-end p-[5px] gap-[10px] w-[85px] h-[80px] rounded-tl-lg rounded-bl-lg flex-shrink-0"
+      :style="{
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: imagePosition || 'center',
+        backgroundRepeat: 'no-repeat'
+      }"
+    >
+      <!-- DISC Icon overlay (si nécessaire) -->
+      <div v-if="discIcon" class="flex items-center p-1 bg-white rounded-full">
+        <img
+          :src="getDiscIconPath"
+          :alt="discIcon"
+          class="w-[19px] h-[20px]"
+        />
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col items-start justify-between p-4 gap-3 flex-1 h-[80px]">
+      <!-- Body -->
+      <div class="flex flex-col items-start gap-2 w-full">
+        <!-- Title -->
+        <h6 class="w-full font-nunito font-bold text-[16px] leading-[120%] text-primary-500 truncate">
+          {{ title }}
+        </h6>
+      </div>
+
+      <!-- Button Voir le profil -->
+      <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto !min-w-0">
+        <template v-if="buttonIconLeft && iconMap[buttonIconLeft]" #icon-left>
+          <component :is="iconMap[buttonIconLeft]" :size="17" :stroke-width="1" />
+        </template>
+        {{ buttonLabel || 'Voir le profil' }}
+        <template v-if="buttonIconRight && iconMap[buttonIconRight]" #icon-right>
+          <component :is="iconMap[buttonIconRight]" :size="17" :stroke-width="1" />
+        </template>
+      </AtomsButton>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import { ChevronRight as LucideChevronRight, ChevronLeft as LucideChevronLeft, ArrowRight as LucideArrowRight, ArrowLeft as LucideArrowLeft, ExternalLink as LucideExternalLink, File as LucideFile } from 'lucide-vue-next'
 import iconDiscRed from '~/assets/icons/icon-disc-red.svg'
 import iconDiscYellow from '~/assets/icons/icon-disc-yellow.svg'
 import iconDiscGreen from '~/assets/icons/icon-disc-green.svg'
 import iconDiscBlue from '~/assets/icons/icon-disc-blue.svg'
 
+// Map des icônes disponibles pour les boutons
+const iconMap = {
+  ChevronRight: LucideChevronRight,
+  ChevronLeft: LucideChevronLeft,
+  ArrowRight: LucideArrowRight,
+  ArrowLeft: LucideArrowLeft,
+  ExternalLink: LucideExternalLink,
+  File: LucideFile
+}
+
 const props = defineProps({
   type: {
     type: String,
     required: true,
-    validator: (v) => ['event', 'annonce', 'job', 'profile', 'stats', 'opportunite'].includes(v)
+    validator: (v) => ['event', 'annonce', 'job', 'profile', 'stats', 'opportunite', 'people-small'].includes(v)
   },
   // Props pour Event line
   date: {
@@ -416,6 +472,23 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true
+  },
+  // Props pour le libellé du bouton (people-small)
+  buttonLabel: {
+    type: String,
+    required: false,
+    default: 'Voir le profil'  },
+  // Props pour l'icône gauche du bouton (nom de l'icône: 'ChevronLeft', 'ArrowLeft', etc.)
+  buttonIconLeft: {
+    type: String,
+    required: false,
+    default: null
+  },
+  // Props pour l'icône droite du bouton (nom de l'icône: 'ChevronRight', 'ArrowRight', etc.)
+  buttonIconRight: {
+    type: String,
+    required: false,
+    default: 'ChevronRight'
   }
 })
 
