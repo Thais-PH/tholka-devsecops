@@ -3,6 +3,7 @@
     <AtomsStep
       v-for="(step, index) in steps"
       :key="index"
+      class="flex-1"
       :step-number="index + 1"
       :label="step.label || step"
       :is-active="getIsActive(step, index)"
@@ -41,6 +42,10 @@ const containerClasses = computed(() => {
 
 // Détermine si une étape est active
 const getIsActive = (step, index) => {
+  // Si le step a une propriété active, l'utiliser
+  if (typeof step.active === 'boolean') {
+    return step.active
+  }
   // Si currentStep est défini, utiliser ce mode
   if (props.currentStep !== null) {
     return index === props.currentStep

@@ -429,8 +429,15 @@ const handleCandidateAccess = (candidate) => {
 // Gestion des actions du tableau
 const handleActionClick = ({ action, row, rowIndex }) => {
   if (action === 'access') {
-    console.log('Access candidate:', row)
-    // Navigation vers le profil du candidat
+    // Navigation vers le détail de la candidature
+    router.push({
+      path: `/rh/recrutement/candidature/${rowIndex + 1}`,
+      query: {
+        name: row.name,
+        offerId: offerId.value,
+        offerTitle: offerTitle.value
+      }
+    })
   }
 }
 
