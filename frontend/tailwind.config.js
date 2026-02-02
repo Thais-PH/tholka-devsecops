@@ -78,6 +78,10 @@ export default {
         'h2': ['40px', { lineHeight: '3.75rem', fontWeight: '700' }],
         'h1': ['48px', { lineHeight: '4.5rem', fontWeight: '700' }],
       },
+
+      screens: {
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [

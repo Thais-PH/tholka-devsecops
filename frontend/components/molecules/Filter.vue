@@ -32,7 +32,17 @@
         <div v-for="option in filterOptions" :key="option.id" class="mb-4 last:mb-0">
           <label class="flex items-center justify-between cursor-pointer group" :for="`filter-option-${option.id}`">
             <span :class="['text-base font-roboto transition-colors whitespace-nowrap mr-4', optionLabelClasses]">{{ option.label }}</span>
+            <!-- Checkbox disabled (non sélectionnable) en mode singleSelect -->
             <AtomsCheckbox
+              v-if="singleSelect && selectedFilters.length > 0 && !selectedFilters.includes(option.id)"
+              :id="`filter-option-${option.id}`"
+              :disabled="true"
+              :border-color="checkboxBorderColor"
+              class="p-1"
+            />
+            <!-- Checkbox normale -->
+            <AtomsCheckbox
+              v-else
               :id="`filter-option-${option.id}`"
               :value="option.id"
               v-model="selectedFilters"
@@ -79,6 +89,15 @@ const props = defineProps({
     type: String,
     default: 'button',
     validator: (v) => ['button', 'text'].includes(v)
+  },
+  dropdownPosition: {
+    type: String,
+    default: 'center',
+    validator: (v) => ['left', 'center', 'right', 'responsive'].includes(v)
+  },
+  singleSelect: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -88,6 +107,11 @@ const isOpen = ref(false)
 const selectedFilters = ref([...props.modelValue])
 const buttonRef = ref(null)
 const filterRef = ref(null)
+const isMobile = ref(false)
+
+const checkIsMobile = () => {
+  isMobile.value = window.innerWidth < 768
+}
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
@@ -105,10 +129,13 @@ const handleClickOutside = (event) => {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
+  checkIsMobile()
+  window.addEventListener('resize', checkIsMobile)
 })
 
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
+  window.removeEventListener('resize', checkIsMobile)
 })
 
 const buttonClasses = computed(() => {
@@ -129,14 +156,36 @@ const buttonClasses = computed(() => {
 })
 
 const dropdownClasses = computed(() => {
-  // Position absolute, centré sur mobile et desktop
-  const base = 'absolute top-full mt-2 left-1/2 -translate-x-1/2 min-w-[240px] w-max max-w-[calc(100vw-32px)] rounded-lg shadow-lg z-50 flex flex-col gap-5 px-6 py-4 overflow-hidden'
+  // Position absolute avec alignement configurable
+  const base = 'absolute top-full mt-2 min-w-[240px] w-max max-w-[calc(100vw-32px)] rounded-lg shadow-lg z-50 flex flex-col gap-5 px-6 py-4 overflow-hidden'
+
+  // Déterminer la position effective
+  let effectivePosition = props.dropdownPosition
+  if (props.dropdownPosition === 'responsive') {
+    effectivePosition = isMobile.value ? 'left' : 'center'
+  }
+
+  // Position du dropdown
+  let positionClass = ''
+  switch (effectivePosition) {
+    case 'left':
+      positionClass = 'left-0'
+      break
+    case 'right':
+      positionClass = 'right-0'
+      break
+    case 'center':
+    default:
+      positionClass = 'left-1/2 -translate-x-1/2'
+      break
+  }
+
   if (props.variant === 'text') {
     // Dark
-    return `${base} bg-[#252958]`
+    return `${base} ${positionClass} bg-[#252958]`
   }
   // Light
-  return `${base} bg-white border border-Grey-200`
+  return `${base} ${positionClass} bg-white border border-Grey-200`
 })
 
 const optionLabelClasses = computed(() => {

@@ -3,7 +3,7 @@
     <div class="navbar-container">
       <!-- Bouton Burger / Close (mobile only) -->
       <button 
-        class="lg:hidden flex items-center justify-center w-10 h-10 text-primary-500 relative"
+        :class="['flex items-center justify-center w-10 h-10 text-primary-500 relative', wideBreakpoint ? '3xl:hidden' : 'lg:hidden']"
         @click="$emit('toggle-sidebar')"
         aria-label="Menu"
       >
@@ -160,6 +160,10 @@ const props = defineProps({
     default: false
   },
   isSidebarOpen: {
+    type: Boolean,
+    default: false
+  },
+  wideBreakpoint: {
     type: Boolean,
     default: false
   }

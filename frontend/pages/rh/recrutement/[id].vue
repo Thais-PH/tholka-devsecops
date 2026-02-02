@@ -407,7 +407,7 @@ const getStatusIndicatorColor = (status) => {
 const handleNavigation = (itemId) => {
   const routes = {
     accueil: '/rh',
-    equipe: '/rh/equipe-management-rh',
+    equipe: '/rh/equipe',
     recrutement: '/rh/recrutement',
     mobilite: '/rh/mobilite',
     bienetre: '/rh/bienetre',

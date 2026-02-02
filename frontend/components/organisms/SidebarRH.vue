@@ -3,13 +3,13 @@
     <!-- Overlay mobile -->
     <div
       v-if="isOpen"
-      class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+      :class="['fixed inset-0 bg-black/50 z-40', wideBreakpoint ? '3xl:hidden' : 'lg:hidden']"
       @click="$emit('close')"
     ></div>
 
     <aside
       class="sidebar-rh"
-      :class="{ 'is-open': isOpen, 'is-static': isStatic }"
+      :class="{ 'is-open': isOpen, 'is-static': isStatic, 'wide-breakpoint': wideBreakpoint }"
     >
       <nav class="sidebar-nav">
         <NuxtLink
@@ -52,6 +52,10 @@ const props = defineProps({
     default: false
   },
   isStatic: {
+    type: Boolean,
+    default: false
+  },
+  wideBreakpoint: {
     type: Boolean,
     default: false
   }
@@ -98,7 +102,13 @@ const menuItems = [
 
 /* Desktop: toujours visible */
 @media (min-width: 1024px) {
-  .sidebar-rh {
+  .sidebar-rh:not(.wide-breakpoint) {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1700px) {
+  .sidebar-rh.wide-breakpoint {
     transform: translateX(0);
   }
 }
@@ -117,7 +127,13 @@ const menuItems = [
 }
 
 @media (min-width: 1024px) {
-  .sidebar-nav {
+  .sidebar-rh:not(.wide-breakpoint) .sidebar-nav {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1700px) {
+  .sidebar-rh.wide-breakpoint .sidebar-nav {
     margin-top: 0;
   }
 }

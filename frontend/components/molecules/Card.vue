@@ -172,10 +172,15 @@
   </div>
 
   <!-- Profile Card - Structure horizontale -->
-  <div v-else-if="type === 'profile'" class="flex flex-row justify-center items-start p-0 w-[302.75px] h-[203px] bg-white border border-primary-300 rounded-lg overflow-hidden">
+  <div
+    v-else-if="type === 'profile'"
+    :class="['flex flex-row items-stretch w-full bg-white border border-primary-300 rounded-lg overflow-hidden', fullWidth ? '' : 'max-w-[400px] min-w-[280px]']"
+    :style="fixedHeight ? { height: fixedHeight } : {}"
+  >
     <!-- Image section à gauche -->
     <div 
-      class="flex flex-row justify-end items-start p-[5px] gap-[10px] w-[151.38px] h-[203px] rounded-tl-lg flex-none order-0 self-stretch flex-grow relative"
+      class="relative w-1/2 rounded-tl-lg"
+      :class="{ 'min-h-[200px]': !fixedHeight }"
       :style="{ 
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
@@ -183,47 +188,52 @@
         backgroundRepeat: 'no-repeat'
       }"
     >
-      <!-- DISC Icon overlay -->
-      <img 
+      <!-- DISC Icon overlay - bas gauche avec fond blanc -->
+      <div
         v-if="discIcon"
-        :src="getDiscIconPath"
-        :alt="discIcon"
-        class="w-[28px] h-[28px] absolute bottom-[8px] right-[8px]"
-      />
+        class="absolute bottom-2 left-2 flex items-center justify-center p-1 bg-white rounded-full"
+        style="width: 27px; height: 28px;"
+      >
+        <img
+          :src="getDiscIconPath"
+          alt="Profil DISC"
+          class="w-[19px] h-[20px]"
+        />
+      </div>
     </div>
 
     <!-- Content à droite -->
-    <div class="flex flex-col justify-between items-start p-[16px] gap-[8px] w-[151.38px] h-[203px] flex-none order-2 flex-grow">
+    <div class="flex flex-col justify-between items-start p-4 gap-2 w-1/2">
       <!-- Frame principal -->
-      <div class="flex flex-col items-start p-0 gap-[8px] w-full h-[105px] flex-none order-1 self-stretch">
+      <div class="flex flex-col items-start gap-2 w-full">
         <!-- First bloc -->
-        <div class="flex flex-col items-start p-0 gap-[8px] w-full h-[49px] flex-none order-0 self-stretch">
+        <div class="flex flex-col items-start gap-2 w-full">
           <!-- Tag list -->
-          <div class="flex flex-row items-start p-0 gap-[8px] h-[25px] flex-none order-0">
+          <div class="flex flex-row items-start gap-2">
             <AtomsTag 
               variant="soft" 
               color="primary" 
               size="md"
-              class="!h-[25px] !font-roboto !text-xs !px-2 !w-auto"
+              class="!font-roboto !text-xs"
             >
               {{ contractType }}
             </AtomsTag>
           </div>
 
           <!-- Title -->
-          <h6 class="w-full h-[16px] font-nunito font-bold text-[13.24px] leading-[120%] text-primary-500 flex-none order-1 self-stretch truncate">
+          <h6 class="w-full font-nunito font-bold text-sm leading-tight text-primary-500 truncate">
             {{ title }}
           </h6>
         </div>
 
         <!-- Content/Description -->
-        <p class="w-full h-[48px] font-roboto font-normal text-[14px] leading-[16px] text-primary-500 flex-none order-1 self-stretch overflow-hidden line-clamp-3">
+        <p class="w-full font-roboto font-normal text-sm leading-4 text-primary-500 overflow-hidden line-clamp-3">
           {{ description }}
         </p>
       </div>
 
       <!-- Button "Voir le profil" -->
-      <div v-if="showProfileLink" class="flex flex-row items-center gap-[4px] flex-none order-2 w-full">
+      <div v-if="showProfileLink" class="flex flex-row items-center gap-1 w-full mt-auto">
         <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto whitespace-nowrap">
           Voir le profil
           <template #icon-right>
@@ -357,10 +367,6 @@
 <script setup>
 import { computed } from 'vue'
 import { ChevronRight as LucideChevronRight, ChevronLeft as LucideChevronLeft, ArrowRight as LucideArrowRight, ArrowLeft as LucideArrowLeft, ExternalLink as LucideExternalLink, File as LucideFile } from 'lucide-vue-next'
-import iconDiscRed from '~/assets/icons/icon-disc-red.svg'
-import iconDiscYellow from '~/assets/icons/icon-disc-yellow.svg'
-import iconDiscGreen from '~/assets/icons/icon-disc-green.svg'
-import iconDiscBlue from '~/assets/icons/icon-disc-blue.svg'
 
 // Map des icônes disponibles pour les boutons
 const iconMap = {
@@ -489,6 +495,18 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'ChevronRight'
+  },
+  // Props pour la hauteur fixe (utilisée par type profile dans l'organigramme)
+  fixedHeight: {
+    type: String,
+    required: false,
+    default: null
+  },
+  // Props pour désactiver le max-width (utilisée dans l'organigramme)
+  fullWidth: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 
@@ -521,30 +539,16 @@ const activeIcon = computed(() => {
   return null
 })
 
-// Computed pour mapper le profil DISC à la couleur de l'icône
-const discIconColor = computed(() => {
-  const colorMap = {
-    'D': 'red',
-    'I': 'yellow',
-    'S': 'green',
-    'C': 'blue'
-  }
-  return colorMap[props.discIcon] || 'blue'
-})
-
-// Map des icônes DISC
-const discIcons = {
-  'red': iconDiscRed,
-  'yellow': iconDiscYellow,
-  'green': iconDiscGreen,
-  'blue': iconDiscBlue
-}
-
-// Computed pour récupérer le chemin de l'icône DISC
+// Computed pour récupérer le chemin de l'icône DISC depuis le dossier public
 const getDiscIconPath = computed(() => {
   if (!props.discIcon) return ''
-  const colorName = discIconColor.value
-  return discIcons[colorName] || discIcons['blue']
+  const iconMap = {
+    'D': '/icons/icon-disc-red.svg',
+    'I': '/icons/icon-disc-yellow.svg',
+    'S': '/icons/icon-disc-green.svg',
+    'C': '/icons/icon-disc-blue.svg'
+  }
+  return iconMap[props.discIcon] || '/icons/icon-disc-green.svg'
 })
 </script>
 

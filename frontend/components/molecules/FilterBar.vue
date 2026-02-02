@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center gap-3 md:flex-row md:flex-nowrap md:items-center md:gap-6">
+  <div class="flex flex-col items-start gap-3 md:flex-row md:flex-nowrap md:items-center md:gap-6">
     <MoleculesFilter
       v-for="filter in filters"
       :key="filter.id"
@@ -7,6 +7,8 @@
       :filter-options="filter.options"
       :model-value="filter.value"
       :variant="filterVariant"
+      :dropdown-position="dropdownPosition"
+      :single-select="filter.singleSelect || false"
       @update:modelValue="(val) => $emit('update-filter', { id: filter.id, value: val })"
       @apply-filters="(val) => $emit('apply-filter', { id: filter.id, value: val })"
     />
@@ -26,6 +28,11 @@ const props = defineProps({
     type: String,
     default: 'dark',
     validator: (v) => ['dark', 'light'].includes(v)
+  },
+  dropdownPosition: {
+    type: String,
+    default: 'responsive',
+    validator: (v) => ['left', 'center', 'right', 'responsive'].includes(v)
   }
 })
 
