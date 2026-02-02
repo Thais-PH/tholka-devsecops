@@ -2,13 +2,13 @@
   <!-- Overlay mobile -->
   <div 
     v-if="isOpen" 
-    class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+    :class="['fixed inset-0 bg-black/50 z-40', wideBreakpoint ? '3xl:hidden' : 'lg:hidden']"
     @click="$emit('close')"
   ></div>
   
   <aside 
     class="sidebar-collaborateur"
-    :class="{ 'is-open': isOpen, 'is-static': isStatic }"
+    :class="{ 'is-open': isOpen, 'is-static': isStatic, 'wide-breakpoint': wideBreakpoint }"
   >
     <nav class="sidebar-nav">
       <NuxtLink
@@ -52,6 +52,10 @@ const props = defineProps({
   isStatic: {
     type: Boolean,
     default: false
+  },
+  wideBreakpoint: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -62,7 +66,7 @@ const menuItems = [
   { id: 'passeport', label: 'Passeport de compétences', icon: Bookmark, route: '/collaborateur/passeport' },
   { id: 'mobilite', label: 'Mobilité & Carrière', icon: Rocket, route: '/collaborateur/mobilite' },
   { id: 'bienetre', label: 'Bien-être & Engagement', icon: MessagesSquare, route: '/collaborateur/bienetre' },
-  { id: 'equipe', label: 'Équipe & Management', icon: Users, route: '/collaborateur/equipe-management' },
+  { id: 'equipe', label: 'Équipe & Management', icon: Users, route: '/collaborateur/equipe' },
   { id: 'formation', label: 'Formation', icon: Briefcase, route: '/collaborateur/formation' },
   { id: 'profil', label: 'Profil', icon: UserCircle2, route: '/collaborateur/profil' }
 ]
@@ -95,7 +99,13 @@ const menuItems = [
 
 /* Desktop: toujours visible */
 @media (min-width: 1024px) {
-  .sidebar-collaborateur {
+  .sidebar-collaborateur:not(.wide-breakpoint) {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1700px) {
+  .sidebar-collaborateur.wide-breakpoint {
     transform: translateX(0);
   }
 }
@@ -114,7 +124,13 @@ const menuItems = [
 }
 
 @media (min-width: 1024px) {
-  .sidebar-nav {
+  .sidebar-collaborateur:not(.wide-breakpoint) .sidebar-nav {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1700px) {
+  .sidebar-collaborateur.wide-breakpoint .sidebar-nav {
     margin-top: 0;
   }
 }

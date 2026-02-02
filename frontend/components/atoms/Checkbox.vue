@@ -207,16 +207,13 @@ const handleChange = (event) => {
 .custom-checkbox:disabled {
   cursor: not-allowed !important;
   --tw-ring-color: #3A3B9950 !important;
-  border: none !important;
-}
-
-.custom-checkbox:disabled {
-  background-color: #FFFFFF50 !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #AEACAC !important;
 }
 
 .custom-checkbox:disabled:checked {
   background-color: #3A3B9950 !important;
-  border: none !important;
+  border: 1px solid #3A3B9950 !important;
 }
 
 .custom-checkbox:disabled:focus {
