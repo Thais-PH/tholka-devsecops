@@ -1117,6 +1117,37 @@
             @close="showSuccessModal = false"
           />
         </div>
+
+        <h2 class="text-3xl font-bold text-primary-900 mb-8 mt-8">Modal Profil</h2>
+
+        <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
+          <div class="flex flex-wrap gap-4 mb-6">
+            <button
+              @click="showSmallProfileModal = true"
+              class="py-2 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-700"
+            >
+              Ouvrir Modal Profil (Small)
+            </button>
+            <button
+              @click="showLargeProfileModal = true"
+              class="py-2 px-4 bg-secondary-500 text-white rounded-lg hover:bg-secondary-700"
+            >
+              Ouvrir Modal Profil (Large)
+            </button>
+          </div>
+
+          <MoleculesModalProfil
+            :is-open="showSmallProfileModal"
+            variant="small"
+            @close="showSmallProfileModal = false"
+          />
+
+          <MoleculesModalProfil
+            :is-open="showLargeProfileModal"
+            variant="large"
+            @close="showLargeProfileModal = false"
+          />
+        </div>
       </section>
 
       <!-- Editor -->
@@ -2004,6 +2035,8 @@ const navigationItems = [
 
 // Variables pour les modales
 const showSuccessModal = ref(false)
+const showSmallProfileModal = ref(false)
+const showLargeProfileModal = ref(false)
 
 // Variables pour le Tag Dropdown
 const selectedTagDropdown = ref('active')
