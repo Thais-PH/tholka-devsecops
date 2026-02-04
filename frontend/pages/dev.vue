@@ -1122,29 +1122,74 @@
 
         <div class="bg-Grey-300 rounded-lg p-8 shadow-sm">
           <div class="flex flex-wrap gap-4 mb-6">
+            <!-- Dominant (Red) -->
             <button
-              @click="showSmallProfileModal = true"
-              class="py-2 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-700"
+                @click="currentProfileType = 'D'; showSmallProfileModal = true"
+                class="py-2 px-4 bg-[#EB5035] text-white rounded-lg hover:opacity-90"
             >
-              Ouvrir Modal Profil (Small)
+                Dominant - Small
             </button>
             <button
-              @click="showLargeProfileModal = true"
-              class="py-2 px-4 bg-secondary-500 text-white rounded-lg hover:bg-secondary-700"
+                @click="currentProfileType = 'D'; showLargeProfileModal = true"
+                class="py-2 px-4 bg-[#EB5035] text-white rounded-lg hover:opacity-90"
             >
-              Ouvrir Modal Profil (Large)
+                Dominant - Large
+            </button>
+
+            <!-- Influent (Yellow) -->
+            <button
+                @click="currentProfileType = 'I'; showSmallProfileModal = true"
+                class="py-2 px-4 bg-[#FFD83B] text-black rounded-lg hover:opacity-90"
+            >
+                Influent - Small
+            </button>
+            <button
+                @click="currentProfileType = 'I'; showLargeProfileModal = true"
+                class="py-2 px-4 bg-[#FFD83B] text-black rounded-lg hover:opacity-90"
+            >
+                Influent - Large
+            </button>
+
+            <!-- Stable (Green) -->
+            <button
+                @click="currentProfileType = 'S'; showSmallProfileModal = true"
+                class="py-2 px-4 bg-[#45CA24] text-white rounded-lg hover:opacity-90"
+            >
+                Stable - Small
+            </button>
+            <button
+                @click="currentProfileType = 'S'; showLargeProfileModal = true"
+                class="py-2 px-4 bg-[#45CA24] text-white rounded-lg hover:opacity-90"
+            >
+                Stable - Large
+            </button>
+
+            <!-- Conforme (Blue) -->
+            <button
+                @click="currentProfileType = 'C'; showSmallProfileModal = true"
+                class="py-2 px-4 bg-[#476EF6] text-white rounded-lg hover:opacity-90"
+            >
+                Conforme - Small
+            </button>
+            <button
+                @click="currentProfileType = 'C'; showLargeProfileModal = true"
+                class="py-2 px-4 bg-[#476EF6] text-white rounded-lg hover:opacity-90"
+            >
+                Conforme - Large
             </button>
           </div>
 
           <MoleculesModalProfil
             :is-open="showSmallProfileModal"
             variant="small"
+            :profile-type="currentProfileType"
             @close="showSmallProfileModal = false"
           />
 
           <MoleculesModalProfil
             :is-open="showLargeProfileModal"
             variant="large"
+            :profile-type="currentProfileType"
             @close="showLargeProfileModal = false"
           />
         </div>
@@ -2037,6 +2082,7 @@ const navigationItems = [
 const showSuccessModal = ref(false)
 const showSmallProfileModal = ref(false)
 const showLargeProfileModal = ref(false)
+const currentProfileType = ref<'D'|'I'|'S'|'C'>('D')
 
 // Variables pour le Tag Dropdown
 const selectedTagDropdown = ref('active')

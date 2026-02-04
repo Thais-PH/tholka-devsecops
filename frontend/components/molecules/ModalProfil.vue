@@ -1,123 +1,188 @@
 <script setup lang="ts">
-import { LucideX, LucideZap } from 'lucide-vue-next';
+import { X as LucideX } from 'lucide-vue-next';
+import { computed } from 'vue';
 
 interface Props {
   variant?: 'small' | 'large';
   isOpen?: boolean;
+  profileType?: 'D' | 'I' | 'S' | 'C';
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   variant: 'small',
-  isOpen: false
+  isOpen: false,
+  profileType: 'D'
 });
 
 const emit = defineEmits(['close']);
+
+const profileData = computed(() => {
+  const data = {
+    D: {
+      title: 'Le profil rouge',
+      icon: '/icons/icon-disc-red.svg',
+      description: "Le Dominant est une personne énergique, factuelle et <span class='font-medium'>orientée vers l'action</span>. Il est tenace, <span class='font-medium'>extraverti et se concentre intensément sur l'atteinte de ses objectifs</span>. Son style est direct, parfois perçu comme autoritaire ou agressif.",
+      communication: "Soyez <span class='font-medium'>direct et factuel</span>. Allez droit au but, car il apprécie les <span class='font-medium'>décisions rapides</span> et n'a pas besoin d'une multitude de détails pour agir. Évitez de lui imposer une structure trop rigide ou des processus trop longs qui pourraient le freiner dans son élan.",
+      tags: ['Energique', 'Factuel', 'Direct'],
+      tagColor: 'orange'
+    },
+    I: {
+      title: 'Le profil jaune',
+      icon: '/icons/icon-disc-yellow.svg',
+      description: "L'Influent est <span class='font-medium'>sociable, optimiste et solaire</span>. Il accorde une grande importance aux relations personnelles et à la convivialité. Très <span class='font-medium'>éloquent, il sait convaincre les autres</span> tout en restant attaché à un fonctionnement démocratique.",
+      communication: "Adoptez une <span class='font-medium'>attitude enthousiaste et chaleureuse</span>. Communiquez de manière claire et ouverte, en mettant l'accent sur la vision d'ensemble et l'aspect humain. Il est <span class='font-medium'>sensible au charisme et apprécie les échanges stimulants</span> qui favorisent la dynamique de groupe.",
+      tags: ['Enthousiaste', 'Optimiste', 'Sociable'],
+      tagColor: 'yellow'
+    },
+    S: {
+      title: 'Le profil vert',
+      icon: '/icons/icon-disc-green.svg',
+      description: "Le Stable est une <span class='font-medium'>personne fiable, sérieuse et cohérente</span>. Il apprécie la clarté et peut se montrer réservé ou <span class='font-medium'>timide lors d'un premier contact</span>. Il est prêt à s'investir pleinement pour défendre les causes qui lui tiennent à coeur",
+      communication: "<span class='font-medium'>Soyez clair et rassurant</span>. Il a besoin de <span class='font-medium'>comprendre</span> la cohérence d'un projet <span class='font-medium'>avant de s'engager</span>. Evitez les changements brusques ou imprévus, car il <span class='font-medium'>préfère les environnements stables</span> et routiniers plutôt que le mouvement perpétuel.",
+      tags: ['Patient', 'Collaborateur', 'Fiable'],
+      tagColor: 'green'
+    },
+    C: {
+      title: 'Le profil bleu',
+      icon: '/icons/icon-disc-blue.svg',
+      description: "Le Conforme est <span class='font-medium'>réfléchi et analytique</span>. Il n'agit jamais sans avoir mûrement réfléchi et analysé son environnement pour le comprendre. Il peut paraître froid ou indifférent car il <span class='font-medium'>privilégie la réflexion à l'émotion</span>.",
+      communication: "Fournissez des <span class='font-medium'>informations précises et détaillées</span> pour nourrir son besoin de compréhension. Ne le brusquez pas et évitez les rapports de force, car il réagit mal à l'autorité directe <span class='font-medium'>Donnez-lui le temps nécessaire pour traiter les données</span> avant d'attendre une réponse ou une action de sa part.",
+      tags: ['Précis', 'Analytique', 'Méthodique'],
+      tagColor: 'secondary'
+    }
+  };
+  return data[props.profileType];
+});
 </script>
 
 <template>
-  <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm" @click.self="emit('close')">
-    <div 
-      class="bg-Light rounded-[8px] relative flex flex-col items-center shadow-xl box-border transition-all duration-300 isolate overflow-y-auto md:overflow-hidden max-h-[90vh] md:max-h-none"
-      :class="[
-        variant === 'small' ? 'w-[90%] md:w-[732px] md:h-[470px]' : 'w-[90%] md:w-[732px] md:h-[906px]',
-        'p-[24px] gap-[32px] md:p-[40px] md:gap-[66px]'
-      ]"
+  <Teleport to="body">
+    <Transition 
+      enter-active-class="transition ease-out duration-300"
+      enter-from-class="opacity-0 slide-y-4"
+      enter-to-class="opacity-100 slide-y-0"
+      leave-active-class="transition ease-in duration-200"
+      leave-from-class="opacity-100 slide-y-0"
+      leave-to-class="opacity-0 slide-y-4"
     >
-      <!-- Close Button -->
-      <!-- Button Icons provided in CSS: right: 10px, top: 10px -->
-      <div class="absolute right-[10px] top-[10px] z-0">
-        <AtomsButton 
-            variant="forms" 
-            size="md" 
-            :icon-only="true" 
-            @click="emit('close')"
-            class="!p-0 flex items-center justify-center"
-        >
-             <LucideX :size="16" :stroke-width="1.5" color="#1F2937" />
-        </AtomsButton>
-      </div>
-
-      <!-- Reveal Section (Icon + Text) -->
-      <!-- Small: height 342px, gap 24px -->
-      <!-- Large: height 826px, gap 24px -->
-      <div 
-        class="flex flex-col items-center gap-[24px] w-full flex-none order-1 self-stretch z-10"
-        :class="variant === 'small' ? 'md:h-[342px]' : 'md:h-[826px]'"
-      >
-        <!-- Static Icon (62x62) -->
-        <div class="flex-none order-0 w-[62px] h-[62px] flex items-center justify-center relative">
-          <div class="box-border flex flex-row justify-center items-center p-0 w-[62px] h-[62px] bg-Red-500 border-[7px] border-Orange-300 rounded-full">
-            <!-- Zap Icon (26x26) -->
-             <LucideZap :size="26" :stroke-width="2" color="white" fill="white" class="flex-none order-0 flex-grow-0" />
-          </div>
-        </div>
-
-        <!-- Text Section -->
-        <!-- Small: Gap 24px, Height 256px -->
-        <!-- Large: Gap 32px, Height 740px -->
+      <div v-if="isOpen" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/20 backdrop-blur-sm" @click.self="emit('close')">
+        <!-- Main Container -->
+        <!-- Updated to match Figma 'Pop up' layer -->
         <div 
-          class="flex flex-col items-center w-full flex-none order-1 self-stretch"
+          class="bg-white rounded-[8px] relative flex flex-col items-center justify-center shadow-xl box-border transition-all duration-300 isolate overflow-y-auto md:overflow-visible"
           :class="[
-            variant === 'small' ? 'gap-[24px] md:h-[256px]' : 'gap-[32px] md:h-[740px]'
+            variant === 'small' ? 'w-[90%] md:w-[732px] md:h-[507.34px]' : 'w-[90%] md:w-[732px] md:h-[903.34px]',
+            'p-[24px] md:p-[40px] gap-[32px] md:gap-[66px]'
           ]"
         >
-            <!-- Title -->
-            <div class="flex flex-col items-start p-0 gap-[10px] w-full h-auto md:h-[32px] flex-none order-0 self-stretch">
-                <h3 class="w-full font-roboto font-medium text-[20px] leading-[160%] text-center text-primary-500 flex-none order-0 self-stretch">
-                    <slot name="title">Titre du Profil</slot>
-                </h3>
+          <!-- Close Button -->
+          <div class="absolute right-[10px] top-[10px] z-20">
+            <AtomsButton 
+                variant="forms" 
+                size="md" 
+                :icon-only="true" 
+                @click="emit('close')"
+                class="!p-0 flex items-center justify-center w-[38px] h-[38px] rounded-[8px]"
+            >
+                 <LucideX :size="16" :stroke-width="2" color="#1F2937" />
+            </AtomsButton>
+          </div>
+
+          <!-- Reveal Section -->
+          <div 
+            class="flex flex-col items-center gap-[8px] w-full max-w-[652px] flex-none order-1 z-10"
+          >
+            <!-- Icon Disc -->
+            <img :src="profileData.icon" :alt="`Icone Profil ${profileData.title}`" class="flex-none order-0 w-[72.65px] h-[75.34px]" />
+
+            <!-- Text Wrapper -->
+            <!-- Matches Figma 'text' and 'Content' groups -->
+            <div 
+                class="flex flex-col items-center w-full"
+                :class="variant === 'small' ? 'gap-[24px]' : 'gap-[32px]'"
+            >
+                
+                 <!-- Content Group: Title + Paragraphs -->
+                 <!-- Note: For Large variant, these are direct children of the text wrapper (gap 32px) -->
+                 <!-- For Small variant, they were grouped in a 'Content Group' with gap 10px? 
+                      Check previous CSS: Small 'text' gap 24px. Inside 'text': Content(Title), Desc, Comm. 
+                      Large CSS: 'text' gap 32px. Items: Title, Desc, Comm, Diagram, Typo.
+                 -->
+
+                 <!-- Title -->
+                 <h3 class="w-full font-roboto font-medium text-[20px] leading-[160%] text-center text-[#3A3B99]">
+                    <slot name="title">{{ profileData.title }}</slot>
+                 </h3>
+                 
+                 <!-- Description -->
+                 <div class="w-full font-roboto font-normal text-base text-[#050D2E]">
+                     <slot name="description" :description="profileData.description">
+                        <span class="text-[#3A3B99]">Qui est-il ?</span><br>
+                        <span v-html="profileData.description"></span>
+                     </slot>
+                 </div>
+                 
+                 <!-- Communication -->
+                 <div class="w-full font-roboto font-normal text-base text-[#050D2E]">
+                     <slot name="communication" :communication="profileData.communication">
+                        <span class="text-[#3A3B99]">Comment communiquer avec lui ?</span><br>
+                        <span v-html="profileData.communication"></span>
+                     </slot>
+                 </div>
+
+                 <!-- Soyez Section (Only for Small) -->
+                 <div v-if="variant === 'small'" class="flex flex-col items-start gap-[8px] w-full self-stretch">
+                    <!-- Title Row -->
+                    <div class="flex flex-row items-center gap-[16px] w-full h-[22px]">
+                        <span class="font-roboto font-medium text-[16px] leading-[140%] text-[#3A3B99]">Soyez :</span>
+                    </div>
+                    <!-- Tags Row -->
+                    <div class="flex flex-row items-start gap-[8px] w-full flex-wrap">
+                        <AtomsTag 
+                            v-for="(tag, index) in profileData.tags" 
+                            :key="index"
+                            variant="soft"
+                            size="md"
+                            :color="profileData.tagColor"
+                        >
+                            {{ tag }}
+                        </AtomsTag>
+                    </div>
+                 </div>
+
+                 <!-- Large Variant Extras -->
+                 <template v-if="variant === 'large'">
+                    <!-- Reading Diagram -->
+                    <div class="w-full h-auto md:h-[240px] font-roboto font-normal text-base text-[#050D2E]">
+                        <slot name="diagram-info">
+                            <span class="text-[#3A3B99]">Lire le diagramme coloré</span><br>
+                            Entre <span class="font-medium">0% et 30%</span>, on considérera la dimension comme <span class="font-medium">très difficilement mobilisable</span>. Elle demandera un effort particulier pour être exprimée.<br>
+                            Entre <span class="font-medium">30% et 50%</span>, c’est une dimension qui <span class="font-medium">n’est pas spontanée</span>, qui demandera aussi un effort mais sans difficulté notable.<br>
+                            Entre <span class="font-medium">50% et 70%</span>, il s’agit d’une dimension <span class="font-medium">mobilisable très facilement</span>.<br>
+                            Entre <span class="font-medium">70% et 100%</span>, c’est une dimension qui <span class="font-medium">s’exprime naturellement et sans effort</span>, elle aura d’ailleurs du mal à être refrénée.
+                        </slot>
+                    </div>
+
+                    <!-- Typologies -->
+                    <div class="w-full h-auto md:h-[164px] font-roboto font-normal text-base text-[#050D2E]">
+                        <slot name="typology-info">
+                            <span class="text-[#3A3B99]">Les typologies de graphique</span><br>
+                            <span class="font-medium">Un graphique nivelé</span> (dont les scores des dimensions sont tous autour de 50%) montre une capacité à passer d'un mode à un autre sans trop d’effort, ni difficulté notable. Il s’agit d’un <span class="font-medium">profil naturellement adaptable</span>.<br>
+                            <span class="font-medium">Un graphique polarisé</span> (avec de grands écarts entre les scores) révèle une <span class="font-medium">capacité forte à se développer</span> dans les dimensions aux scores élevés.
+                        </slot>
+                    </div>
+                 </template>
+
             </div>
-
-            <!-- Description (Shared) -->
-            <div class="w-full h-auto md:h-[88px] font-roboto font-medium text-[16px] leading-[140%] text-primary-500 flex-none order-1 self-stretch">
-                 <slot name="description">
-                    Qui est-il ?<br>
-                    Le Dominant est une personne énergique, factuelle et orientée vers l'action. Il est tenace, extraverti et se concentre intensément sur l'atteinte de ses objectifs. Son style est direct, parfois perçu comme autoritaire ou agressif.
-                 </slot>
-            </div>
-
-            <!-- Communication (Shared) -->
-            <div class="w-full h-auto md:h-[88px] font-roboto font-medium text-[16px] leading-[140%] text-primary-500 flex-none order-2 self-stretch">
-                 <slot name="communication">
-                    Comment communiquer avec lui ?<br>
-                    Soyez direct et factuel. Allez droit au but, car il apprécie les décisions rapides et n'a pas besoin d'une multitude de détails pour agir. Évitez de lui imposer une structure trop rigide ou des processus trop longs qui pourraient le freiner dans son élan.
-                 </slot>
-            </div>
-
-            <!-- Extra content for Large variant -->
-            <template v-if="variant === 'large'">
-                <!-- Reading Diagram -->
-                <div class="w-full h-auto md:h-[240px] font-roboto font-medium text-[16px] leading-[140%] text-primary-500 flex-none order-3 self-stretch">
-                    <slot name="diagram-info">
-                        Lire le diagramme coloré<br>
-                        Entre 0% et 30%, on considérera la dimension comme très difficilement mobilisable. Elle demandera un effort particulier pour être exprimée.<br>
-                        Entre 30% et 50%, c’est une dimension qui n’est pas spontanée, qui demandera aussi un effort mais sans difficulté notable.<br>
-                        Entre 50% et 70%, il s’agit d’une dimension mobilisable très facilement.<br>
-                        Entre 70% et 100%, c’est une dimension qui s’exprime naturellement et sans effort, elle aura d’ailleurs du mal à être refrénée.
-                    </slot>
-                </div>
-
-                <!-- Typologies -->
-                <div class="w-full h-auto md:h-[164px] font-roboto font-medium text-[16px] leading-[140%] text-primary-500 flex-none order-4 self-stretch">
-                    <slot name="typology-info">
-                        Les typologies de graphique<br>
-                        Un graphique nivelé (dont les scores des dimensions sont tous autour de 50%) montre une capacité à passer d'un mode à un autre sans trop d’effort, ni difficulté notable. Il s’agit d’un profil naturellement adaptable.<br>
-                        Un graphique polarisé (avec de grands écarts entre les scores) révèle une capacité forte à se développer dans les dimensions aux scores élevés.
-                    </slot>
-                </div>
-            </template>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>
 /* Ensure fonts are available if not loaded globally */
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap'); */
-
-/* .font-roboto {
-  font-family: 'Roboto', sans-serif;
-} */
 </style>
