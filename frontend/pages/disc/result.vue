@@ -27,25 +27,18 @@
 
           <!-- Bas Gauche: Comportement -->
           <div class="xl:col-span-2 flex flex-col bg-white rounded-lg h-auto min-h-[299px] p-4 lg:px-[20px]">
-            <h4 class="text-h4 font-sans text-primary-500 pt-[24px]">Comportement à adopter avec les autres :</h4>
-            <p class="font-roboto text-sm mt-[12px]" style="color: #050D2E;">Description du comportement à venir</p>
-            <h6 class="text-[18px] font-bold font-sans text-primary-500 mt-[16px]">Points forts</h6>
+            <h4 class="text-h4 font-sans text-primary-500 pt-[24px]">Son comportement avec les autres :</h4>
+            <p class="font-roboto text-sm mt-[12px]" style="color: #050D2E;">{{ activeProfileContent.behavior }}</p>
+            <h6 class="text-[18px] font-bold font-sans text-primary-500 mt-[16px]">Pour communiquer avec un profil {{ profileType }}, soyez :</h6>
             <div class="flex gap-2 flex-wrap mt-[8px]">
-              <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 1</span>
-              <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 2</span>
-              <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 3</span>
-            </div>
-            <h6 class="text-[18px] font-bold font-sans text-primary-500 mt-[16px]">Points à travailler</h6>
-            <div class="flex gap-2 flex-wrap mt-[8px]">
-              <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 4</span>
-              <span class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">Tag 5</span>
+              <span v-for="(tag, index) in activeProfileContent.strengths" :key="index" class="px-3 py-1 rounded-[20px] text-sm font-roboto" :style="{ backgroundColor: tagBgColor, color: tagTextColor }">{{ tag }}</span>
             </div>
           </div>
 
           <!-- Bas Droite: Profil Summary -->
           <div class="col-span-1 flex flex-col text-white rounded-lg h-auto min-h-[299px] p-4 lg:px-[20px]" :style="{ backgroundColor: profileCardBgColor }">
             <h4 class="text-h4 font-sans pt-[24px]">{{ profileType }}</h4>
-            <p class="font-roboto text-sm mt-[12px]">Description du profil à venir</p>
+            <p class="font-roboto text-sm mt-[12px]">{{ activeProfileContent.summary }}</p>
             <AtomsButton
               class="mt-[10px]"
               variant="tertiary"
@@ -144,10 +137,10 @@ const profileType = computed(() => {
 
 const profileCardBgColor = computed(() => {
   const colorMap: { [key: string]: string } = {
-    D: '#EB5035', // Red/Orange
-    I: '#FFD83B', // Yellow
-    S: '#45CA24', // Green
-    C: '#476EF6'  // Blue
+    D: '#AA271D', // Red 700
+    I: '#FCC253', // Yellow 500
+    S: '#1CAB78', // Green 500
+    C: '#476EF6'  // Blue Disc
   }
   return colorMap[dominantProfile.value] || '#476EF6'
 })
@@ -178,6 +171,33 @@ const testDate = computed(() => {
   const month = String(today.getMonth() + 1).padStart(2, '0')
   const year = String(today.getFullYear()).slice(-2)
   return `${day}/${month}/${year}`
+})
+
+const profilesContent = {
+  D: {
+    behavior: "Allez droit au but, car il apprécie les décisions rapides et n'a pas besoin d'une multitude de détails pour agir. Evitez de lui imposer une structure trop rigide ou des processus trop longs qui pourraient le freiner dans son élan",
+    strengths: ["Confiant", "Affirmatif", "Bref"],
+    summary: "Le Dominant est une personne énergique, factuelle et orientée vers l'action. Il est tenace, extraverti et se concentre intensément sur l'atteinte des ses objectifs. Son style est direct, parfois perçu comme autoritaire ou agressif."
+  },
+  I: {
+    behavior: "Communiquez de manière claire et ouverte, en mettant l'accent sur la vision d'ensemble et l'aspect humain. Il est sensible au charisme et apprécie les échanges qui favorisent la dynamique de groupe.",
+    strengths: ["Détendu", "Vivant", "Dans l'émotion"],
+    summary: "L'Influent est sociable, optimiste et solaire. Il accore une grande importance aux relations personnelles et à la convivialité. Très éloquent, il sait convaincre les autres tout en restant attaché à un fonctionnement démocratique"
+  },
+  S: {
+    behavior: "Il a besoin de comprendre la cohérence d'un projet avant de s'engager. Evitez les changements brusques ou imprévus, car il préfère les environnements stables et routiniers plutôt que le mouvement perpétuel.",
+    strengths: ["Clair", "Rassurant", "Bienveillant", "Patient"],
+    summary: "Le Stable est une personne fiable, sérieuse et cohérente. Il apprécie la clarté et peut se montrer réservé ou timide lors d'un premier contact. Il est prêt à s'investir pleinement pour défendre les causes qui lui tiennent à coeur"
+  },
+  C: {
+    behavior: "Fournissez des informations précises et détaillées pour nourrir son besoin de compréhension. Ne le brusquez pas et évitez les rapports de force, car il réagit mal à l'autorité directe. Donnez-lui le temps nécessaire pour traiter les données avant d'attendre une réponse ou une action de sa part.",
+    strengths: ["Sérieux", "Professionnel", "Objectif", "Direct", "Organisé", "Précis", "Logique"],
+    summary: "Le Conforme est réfléchi et analytique. Il n'agit jamais sans avoir mûrement réfléchi et analysé son environnement pour le comprendre. Il peut paraître froid ou indifférent car il privilégie la réflexion à l'émotion."
+  }
+}
+
+const activeProfileContent = computed(() => {
+  return profilesContent[dominantProfile.value] || profilesContent.D
 })
 
 onMounted(() => {
