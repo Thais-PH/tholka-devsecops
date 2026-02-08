@@ -221,6 +221,7 @@
                   variant="primary"
                   size="md"
                   class="w-full"
+                  @click="showDiscModal = true"
                 >
                   Consulter les clés de lecture
                   <template #icon-right>
@@ -233,6 +234,14 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Profil DISC -->
+    <MoleculesModalProfil
+      :is-open="showDiscModal"
+      variant="large"
+      :profile-type="getDominantProfile()"
+      @close="showDiscModal = false"
+    />
   </div>
 </template>
 
@@ -257,6 +266,17 @@ const isSidebarOpen = ref(false)
 
 // État de l'alerte IA
 const alertDismissed = ref(false)
+
+// État de la modal DISC
+const showDiscModal = ref(false)
+
+// Calcul du profil DISC dominant
+const getDominantProfile = () => {
+  const scores = discData.series
+  const maxIndex = scores.indexOf(Math.max(...scores))
+  const profiles = ['D', 'I', 'S', 'C']
+  return profiles[maxIndex]
+}
 
 // Données du profil
 const profileInfo = {
@@ -308,7 +328,7 @@ const ambition = {
   ],
   iaRecommendation: {
     badge: 'Sources : Passeport Compétences ; Référentiel Métier ; Historique Mobilité',
-    text: 'Vous validez 92% des prérequis techniques. Pour sécuriser son passage au poste de Responsable, Lia préconise de prioriser le développement du leadership et de la gestion budgétaire via le plan d\'action ci-dessus.'
+    text: 'Vous validez 92% des prérequis techniques. Pour sécuriser son passage au poste de Responsable, Lia préconise de prioriser le développement du leadership et de la gestion budgétaire via le plan d\'action ci-dessous.'
   }
 }
 
