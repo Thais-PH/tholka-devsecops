@@ -5,7 +5,7 @@
     tabindex="-1"
   >
     <!-- Contenu principal -->
-    <div class="flex items-center gap-[32px] flex-1 justify-center">
+    <div class="flex flex-col lg:flex-row items-center gap-3 lg:gap-[32px] flex-1 justify-center">
       <!-- Message et Icône -->
       <div class="flex items-center gap-[8px]">
         <!-- Message -->
@@ -13,20 +13,34 @@
           <slot>{{ message }}</slot>
         </span>
         
-        <!-- Icône -->
-        <LucideAlertCircle :size="20" :stroke-width="1" :class="iconColor" />
+        <!-- Icône (Sparkles pour IA, AlertCircle pour les autres) -->
+        <LucideSparkles v-if="variant.startsWith('ia')" :size="20" :stroke-width="1" :class="iconColor" class="shrink-0" />
+        <LucideAlertCircle v-else :size="20" :stroke-width="1" :class="iconColor" class="shrink-0" />
       </div>
 
-      <!-- Bouton "Lu" (disparaît au clic) -->
+      <!-- Bouton "Lu" pour variantes IA (style custom) -->
       <button
-        v-if="!isDismissed"
+        v-if="!isDismissed && dismissible && variant.startsWith('ia')"
         type="button"
-        :class="buttonClasses"
+        class="ia-dismiss-btn shrink-0"
         @click="handleDismiss"
       >
-        <span class="text-sm font-roboto text-center">Lu</span>
+        <span>Lu</span>
         <LucideCheck :size="17" :stroke-width="1" />
       </button>
+
+      <!-- Bouton "Lu" pour autres variantes -->
+      <AtomsButton
+        v-else-if="!isDismissed && dismissible"
+        variant="secondary"
+        size="sm"
+        @click="handleDismiss"
+      >
+        Lu
+        <template #icon-right>
+          <LucideCheck :size="17" :stroke-width="1" />
+        </template>
+      </AtomsButton>
     </div>
   </div>
 </template>
@@ -58,7 +72,7 @@ const handleDismiss = () => {
 }
 
 const alertClasses = computed(() => {
-  const base = 'flex flex-row items-center p-[12px] h-[50px] rounded-lg transition-all duration-300 font-roboto'
+  const base = 'flex flex-row items-center p-[12px] h-auto lg:h-[50px] rounded-lg transition-all duration-300 font-roboto w-full'
   
   const variants = {
     'warning-soft': 'bg-Orange-300 border-l-2 border-Orange-500',
@@ -101,23 +115,43 @@ const iconColor = computed(() => {
   return 'text-Light'
 })
 
-const buttonClasses = computed(() => {
-  const base = 'flex flex-row justify-center items-center px-2 py-1 gap-1 h-[26px] border rounded-lg transition-all'
-  const isSoft = props.variant.includes('soft')
-  
-  if (props.variant.startsWith('warning')) {
-    return isSoft 
-      ? `${base} border-Orange-500 text-Orange-500 hover:bg-Orange-500 hover:text-Light`
-      : `${base} border-Light text-Light hover:bg-Light hover:text-Orange-500`
-  } else if (props.variant.startsWith('success')) {
-    return isSoft
-      ? `${base} border-Green-500 text-Green-500 hover:bg-Green-500 hover:text-Light`
-      : `${base} border-Light text-Light hover:bg-Light hover:text-Green-500`
-  } else if (props.variant.startsWith('ia')) {
-    return isSoft
-      ? `${base} border-[#6420BE] text-[#6420BE] hover:bg-[#6420BE] hover:text-Light`
-      : `${base} border-Light text-Light hover:bg-Light hover:text-[#7F3ADA]`
-  }
-  return `${base} border-Light text-Light hover:bg-Light hover:text-secondary-500`
-})
+// Import des icônes
+import { AlertCircle as LucideAlertCircle, Sparkles as LucideSparkles, Check as LucideCheck } from 'lucide-vue-next'
 </script>
+
+<style scoped>
+/* Bouton custom pour alerte IA */
+.ia-dismiss-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+  min-width: 54px;
+  height: 26px;
+  border: 1px solid #6420BE;
+  border-radius: 8px;
+  background: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  text-align: center;
+  color: #6420BE;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ia-dismiss-btn:hover {
+  background: #FFFFFF;
+  color: #6420BE;
+  border-color: #FFFFFF;
+}
+
+.ia-dismiss-btn:hover svg {
+  stroke: #6420BE;
+}
+</style>

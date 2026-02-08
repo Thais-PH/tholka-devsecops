@@ -2,6 +2,7 @@
   <div class="flex flex-col w-full h-screen bg-secondary-300 overflow-hidden">
     <!-- Header fixe -->
     <OrganismsNavbar 
+      user-type="collab"
       :is-sidebar-open="isSidebarOpen" 
       @toggle-sidebar="isSidebarOpen = !isSidebarOpen" 
     />
