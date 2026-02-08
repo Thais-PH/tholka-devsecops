@@ -420,7 +420,7 @@
                       </AtomsButton>
                     </div>
 
-                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                    <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !px-2 !h-auto !py-1.5">
                       <template #icon-left>
                         <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
                       </template>
@@ -530,13 +530,13 @@
                   </div>
 
                   <div class="flex flex-row flex-wrap items-center py-1 gap-2 w-full">
-                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                    <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !px-2 !h-auto !py-1.5">
                       <template #icon-left>
                         <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
                       </template>
                       <span class="text-sm">3 postes compatibles</span>
                     </AtomsTag>
-                    <AtomsTag variant="soft" color="purple" size="sm" class="!w-auto !px-2 !h-auto !py-1.5">
+                    <AtomsTag variant="soft" color="purple" size="md" class="!w-auto !px-2 !h-auto !py-1.5">
                       <template #icon-left>
                         <LucideSparkles :size="16" :stroke-width="1" class="flex-shrink-0" />
                       </template>

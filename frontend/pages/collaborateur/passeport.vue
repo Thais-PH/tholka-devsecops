@@ -125,7 +125,7 @@
                           :key="skill"
                           variant="stroke"
                           color="primary"
-                          size="lg"
+                          size="md"
                         >
                           {{ skill }}
                         </AtomsTag>
@@ -352,5 +352,10 @@ const discData = {
 .alert-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+/* Override couleur texte des tags compétences */
+:deep(.tag-text-green) {
+  color: theme('colors.Green-700') !important;
 }
 </style>

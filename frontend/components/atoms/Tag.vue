@@ -39,7 +39,7 @@ const props = defineProps({
   size: {
     type: String,
     default: 'md',
-    validator: (v) => ['md', 'lg'].includes(v)
+    validator: (v) => ['sm', 'md', 'lg'].includes(v)
   },
   statusColor: {
     type: String,
@@ -53,8 +53,9 @@ const baseBadgeClasses = 'inline-flex items-center gap-x-1.5 rounded-full font-n
 
 // Tailles selon Preline
 const sizeClasses = {
+  sm: 'py-1 px-2 text-sm',      // padding md + texte lg
   md: 'py-1 px-2 text-xs',
-  lg: 'py-1.5 px-3 text-sm'
+  lg: 'p-2 text-sm'
 }
 
 // Variantes et couleurs selon le design system

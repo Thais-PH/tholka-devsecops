@@ -14,7 +14,8 @@
           :key="tag"
           :variant="tagVariant"
           :color="tagColor"
-          size="lg"
+          size="sm"
+          :class="`tag-text-${tagColor}`"
         >
           {{ tag }}
         </AtomsTag>
@@ -31,7 +32,8 @@
             :key="'expanded-' + tag"
             :variant="tagVariant"
             :color="tagColor"
-            size="lg"
+            size="sm"
+            :class="`tag-text-${tagColor}`"
           >
             {{ tag }}
           </AtomsTag>
@@ -44,7 +46,7 @@
             key="expand-btn"
             variant="stroke"
             color="primary"
-            size="lg"
+            size="sm"
             class="cursor-pointer hover:bg-primary-300 transition-colors"
             @click="toggleExpand"
           >
@@ -55,7 +57,7 @@
             key="collapse-btn"
             variant="stroke"
             color="primary"
-            size="lg"
+            size="sm"
             class="cursor-pointer hover:bg-primary-300 transition-colors"
             @click="toggleExpand"
           >
