@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start px-[24px] py-[20px] gap-[16px] w-full bg-white rounded-lg shadow-sm">
+  <div :class="containerClasses">
     <!-- Header -->
     <div class="flex justify-between items-center w-full">
       <h5 class="text-h5 text-primary-500">{{ title }}</h5>
@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { File as LucideFile, ChevronRight as LucideChevronRight } from 'lucide-vue-next'
 
 const props = defineProps({
@@ -36,7 +37,19 @@ const props = defineProps({
   documents: {
     type: Array,
     required: true
+  },
+  flexGap: {
+    type: Boolean,
+    default: false
   }
+})
+
+// Classes du container
+const containerClasses = computed(() => {
+  const base = 'flex flex-col items-start px-[24px] py-[20px] w-full bg-white rounded-lg shadow-sm'
+  return props.flexGap
+    ? `${base} gap-[8px]`
+    : `${base} gap-[16px]`
 })
 
 const emit = defineEmits(['document-click'])

@@ -55,8 +55,8 @@
             @click="isDropdownOpen = !isDropdownOpen"
           >
             <img 
-              src="~/assets/img/rh.svg" 
-              alt="Profil utilisateur"
+              :src="userAvatar"
+              :alt="userName"
               class="w-full h-full object-cover"
             />
           </button>
@@ -140,7 +140,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { 
   Menu as LucideMenu, 
   X as LucideX,
@@ -150,6 +150,10 @@ import {
   User as LucideUser,
   LogOut as LucideLogOut
 } from 'lucide-vue-next'
+
+// Import des images d'avatar
+import avatarCollab from '~/assets/img/collab.png'
+import avatarRH from '~/assets/img/rh.png'
 
 // État du dropdown avatar
 const isDropdownOpen = ref(false)
@@ -166,7 +170,22 @@ const props = defineProps({
   wideBreakpoint: {
     type: Boolean,
     default: false
+  },
+  userType: {
+    type: String,
+    default: 'rh',
+    validator: (value) => ['collab', 'rh'].includes(value)
   }
+})
+
+// Avatar selon le type d'utilisateur
+const userAvatar = computed(() => {
+  return props.userType === 'collab' ? avatarCollab : avatarRH
+})
+
+// Nom d'utilisateur selon le type
+const userName = computed(() => {
+  return props.userType === 'collab' ? 'Thomas Lemoine' : 'Paul Duchemin'
 })
 
 defineEmits(['toggle-sidebar'])

@@ -5,8 +5,8 @@
       type="bar"
       :options="chartOptions"
       :series="[{ data: series }]"
-      width="100%"
-      height="100%"
+      :width="width"
+      :height="height"
     />
   </div>
 </template>
@@ -28,6 +28,38 @@ const props = defineProps({
   colors: {
     type: Array,
     default: () => ['#EB5035', '#FFD83B', '#45CA24', '#476EF6']
+  },
+  // Dimensions
+  width: {
+    type: [String, Number],
+    default: '100%'
+  },
+  height: {
+    type: [String, Number],
+    default: '100%'
+  },
+  // Tailles de police
+  xAxisFontSize: {
+    type: String,
+    default: '26px'
+  },
+  yAxisFontSize: {
+    type: String,
+    default: '24px'
+  },
+  dataLabelsFontSize: {
+    type: String,
+    default: '20px'
+  },
+  // Largeur des barres
+  columnWidth: {
+    type: String,
+    default: '50px'
+  },
+  // Écart au-dessus des labels X (D, I, S, C)
+  xAxisLabelOffset: {
+    type: Number,
+    default: 17
   }
 })
 
@@ -43,7 +75,7 @@ const chartOptions = computed(() => ({
     bar: {
       horizontal: false,
       distributed: true,
-      columnWidth: '50px'
+      columnWidth: props.columnWidth
     }
   },
   colors: props.colors,
@@ -56,9 +88,9 @@ const chartOptions = computed(() => ({
       show: false
     },
     labels: {
-      offsetY: 17,
+      offsetY: props.xAxisLabelOffset,
       style: {
-        fontSize: '26px',
+        fontSize: props.xAxisFontSize,
         fontWeight: 500,
         fontFamily: 'Roboto, sans-serif',
         lineHeight: '1.4',
@@ -73,7 +105,7 @@ const chartOptions = computed(() => ({
     labels: {
       formatter: (val) => `${val}%`,
       style: {
-        fontSize: '24px',
+        fontSize: props.yAxisFontSize,
         fontWeight: 400,
         lineHeight: '1.313rem',
         fontFamily: 'Roboto, sans-serif'
@@ -88,7 +120,7 @@ const chartOptions = computed(() => ({
     formatter: (val) => `${val}%`,
     distributed: true,
     style: {
-      fontSize: '20px',
+      fontSize: props.dataLabelsFontSize,
       fontWeight: 400,
       lineHeight: '1.125rem',
       fontFamily: 'Roboto, sans-serif',
@@ -96,7 +128,30 @@ const chartOptions = computed(() => ({
     }
   },
   tooltip: {
-    enabled: false
+    enabled: true,
+    custom: function({ series, seriesIndex, dataPointIndex, w }) {
+      const value = series[seriesIndex][dataPointIndex]
+      let message = ''
+
+      if (value >= 0 && value < 30) {
+        message = '0% à 30% :<br>La dimension est très difficilement mobilisable.'
+      } else if (value >= 30 && value < 50) {
+        message = '30% à 50% :<br>La dimension n\'est pas spontanée et demande un effort.'
+      } else if (value >= 50 && value < 70) {
+        message = '50% à 70% :<br>La dimension est mobilisable très facilement.'
+      } else {
+        message = '70% à 100% :<br>La dimension est naturelle et sans effort.'
+      }
+
+      return `
+        <div class="disc-tooltip-wrapper">
+          <div class="disc-tooltip-content">
+            <span class="disc-tooltip-text">${message}</span>
+          </div>
+          <div class="disc-tooltip-arrow"></div>
+        </div>
+      `
+    }
   },
   states: {
     hover: {
@@ -110,3 +165,56 @@ const chartOptions = computed(() => ({
   }
 }))
 </script>
+
+<style>
+/* Override ApexCharts tooltip container */
+.apexcharts-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  transform: translateX(45%);
+}
+
+/* Tooltip DISC */
+.disc-tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.disc-tooltip-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 10px;
+  gap: 4px;
+  background: #0E0E0E;
+  border-radius: 4px;
+}
+
+.disc-tooltip-text {
+  width: 100%;
+  font-family: 'Roboto', sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.disc-tooltip-arrow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #0E0E0E;
+}
+</style>
