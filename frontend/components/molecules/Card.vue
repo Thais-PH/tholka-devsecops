@@ -234,7 +234,7 @@
 
       <!-- Button "Voir le profil" -->
       <div v-if="showProfileLink" class="flex flex-row items-center gap-1 w-full mt-auto">
-        <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto whitespace-nowrap">
+        <AtomsButton variant="tertiary" size="sm" justify="start" class="!text-sm !p-0 !h-auto whitespace-nowrap" @click="emit('view-profile')">
           Voir le profil
           <template #icon-right>
             <LucideChevronRight :size="17" :stroke-width="1" />
@@ -377,6 +377,8 @@ const iconMap = {
   ExternalLink: LucideExternalLink,
   File: LucideFile
 }
+
+const emit = defineEmits(['view-profile'])
 
 const props = defineProps({
   type: {

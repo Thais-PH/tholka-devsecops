@@ -18,29 +18,35 @@
         <LucideAlertCircle v-else :size="20" :stroke-width="1" :class="iconColor" class="shrink-0" />
       </div>
 
-      <!-- Bouton "Lu" pour variantes IA (style custom) -->
-      <button
-        v-if="!isDismissed && dismissible && variant.startsWith('ia')"
-        type="button"
-        class="ia-dismiss-btn shrink-0"
-        @click="handleDismiss"
-      >
-        <span>Lu</span>
-        <LucideCheck :size="17" :stroke-width="1" />
-      </button>
+      <!-- Slot action personnalisé OU bouton "Lu" par défaut -->
+      <template v-if="!isDismissed && dismissible">
+        <!-- Slot pour action personnalisée -->
+        <slot name="action">
+          <!-- Bouton "Lu" pour variantes IA (style custom) -->
+          <button
+            v-if="variant.startsWith('ia')"
+            type="button"
+            class="ia-dismiss-btn shrink-0"
+            @click="handleDismiss"
+          >
+            <span>Lu</span>
+            <LucideCheck :size="17" :stroke-width="1" />
+          </button>
 
-      <!-- Bouton "Lu" pour autres variantes -->
-      <AtomsButton
-        v-else-if="!isDismissed && dismissible"
-        variant="secondary"
-        size="sm"
-        @click="handleDismiss"
-      >
-        Lu
-        <template #icon-right>
-          <LucideCheck :size="17" :stroke-width="1" />
-        </template>
-      </AtomsButton>
+          <!-- Bouton "Lu" pour autres variantes -->
+          <AtomsButton
+            v-else
+            variant="secondary"
+            size="sm"
+            @click="handleDismiss"
+          >
+            Lu
+            <template #icon-right>
+              <LucideCheck :size="17" :stroke-width="1" />
+            </template>
+          </AtomsButton>
+        </slot>
+      </template>
     </div>
   </div>
 </template>

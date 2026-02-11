@@ -45,6 +45,7 @@
                   :contract-type="collaborator.pole"
                   :description="collaborator.position"
                   :disc-icon="collaborator.discProfile"
+                  @view-profile="navigateTo(`/rh/passeport/${collaborator.id}`)"
                 />
               </div>
 

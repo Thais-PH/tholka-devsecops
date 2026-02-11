@@ -284,8 +284,8 @@ const profileInfo = {
   position: 'Chargé de missions marketing',
   department: 'CDI',
   location: 'Agence de Nantes',
-  startDate: '10/09/2025',
-  salary: '31 000€'
+  startDate: '10/09/2022',
+  salary: '35 000€'
 }
 
 // Compétences comportementales
