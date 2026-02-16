@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: DevSecOps Pipeline
 
 on:
   push:
@@ -7,8 +7,43 @@ on:
     branches: [ "master", "main" ]
 
 jobs:
-  # --- FRONTEND (NUXT) ---
+  # --- SECURITY SCANS (SAST & SCA) ---
+  security-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Important pour SonarQube et Gitleaks
+
+      # 1. Secret Detection (Gitleaks)
+      - name: Gitleaks - Detect Secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true 
+
+      # 2. Dependency Scan (Trivy fs)
+      - name: Trivy - File System Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          hide-progress: false
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+        continue-on-error: true
+
+      # 3. SonarQube Scan (Configuration pour serveur SonarQube)
+      # Simulé ici car nécessite un serveur accessible publiquement
+      # - name: SonarQube Scan
+      #   uses: sonarsource/sonarqube-scan-action@master
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+  # --- FRONTEND JOBS ---
   build-frontend:
+    needs: security-check
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -26,11 +61,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Lint
+        run: npm run lint --if-present
+
       - name: Build
         run: npm run build
 
-  # --- BACKEND (DRUPAL) ---
+  # --- BACKEND JOBS ---
   build-backend:
+    needs: security-check
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -50,3 +89,31 @@ jobs:
         
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
+
+  # --- DOCKER BUILD & SCAN ---
+  docker-build:
+    needs: [build-frontend, build-backend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Build l'image PHP (Backend)
+      - name: Build PHP Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Tholka
+          file: ./Tholka/docker/php/Dockerfile
+          push: false # On ne push pas encore sur le Docker Hub, on scanne localement
+          load: true
+          tags: tholka-php:latest
+
+      # Scan de l'image Docker construite (Container Security)
+      - name: Trivy - Image Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'tholka-php:latest'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
