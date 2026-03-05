@@ -1,43 +1,90 @@
-name: CI Quality Gate (Nuxt & Drupal)
+name: CI/CD MyDigitalStartup - Industrialisation & Sécurité
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch: # Pour lancer le pipeline à la main si besoin
 
 jobs:
-  # --- JOB FRONTEND (Nuxt) ---
-  nuxt-ci:
+  # --- MISSION 1 : QUALITÉ & TESTS ---
+  quality-gate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v4
+
+      # Setup & Test Frontend (Nuxt)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           cache-dependency-path: './frontend/package-lock.json'
-      - name: Install dependencies
-        run: npm install
-      - name: Build Nuxt (Vérification compilation)
-        run: npm run build
+      - name: Install Nuxt dependencies
+        run: |
+          cd frontend
+          npm install
+      - name: Build Nuxt (Check compilation)
+        run: |
+          cd frontend
+          npm run build
 
-  # --- JOB BACKEND (Drupal) ---
-  drupal-ci:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend
-    steps:
-      - uses: actions/checkout@v4
+      # Setup & Test Backend (Drupal)
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3' # Drupal 11 recommande PHP 8.3
+          php-version: '8.3'
           extensions: mbstring, xml, ctype, iconv, gd, dom, curl
       - name: Install Composer dependencies
-        run: composer install --no-progress --no-interaction
+        run: |
+          cd backend
+          composer install --no-progress --no-interaction
+
+  # --- MISSION 2 : SÉCURITÉ (DevSecOps) ---
+  security-scans:
+    needs: quality-gate # On ne scanne que si le build de base passe
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. SCA (Software Composition Analysis) - Dépendances
+      - name: Scan Backend (Composer Audit)
+        run: |
+          cd backend
+          composer audit
+      
+      - name: Scan Frontend (NPM Audit)
+        run: |
+          cd frontend
+          npm audit --audit-level=high
+
+      # 2. Secret Detection (Gitleaks)
+      - name: Secret Detection
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3. Container Scan (Trivy)
+      # On build les images pour les scanner avant de les valider
+      - name: Build Backend Image
+        run: docker build -t my-backend:latest -f docker/php/Dockerfile .
+      
+      - name: Build Frontend Image
+        run: docker build -t my-frontend:latest -f docker/nuxt/Dockerfile ./frontend
+
+      - name: Scan Backend Image (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'my-backend:latest'
+          format: 'table'
+          exit-code: '0' # Informatif pour l'évaluation
+          severity: 'CRITICAL,HIGH'
+
+      - name: Scan Frontend Image (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'my-frontend:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
