@@ -91,3 +91,25 @@ jobs:
           format: 'table'
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
+
+  deploy:
+    needs: security-scans # On ne déploie QUE si la sécurité est validée
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' # On ne déploie que depuis la branche master
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/${{ secrets.SSH_USER }}/mon-projet # Adapte le chemin vers ton dossier
+            git pull origin master
+            # On crée un fichier .env à la volée avec tes secrets
+            echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" > .env
+            echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+            echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+            # On relance les containers
+            docker compose up -d --build
