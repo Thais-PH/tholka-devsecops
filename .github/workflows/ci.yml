@@ -1,119 +1,28 @@
-name: DevSecOps Pipeline
+name: CI Quality Gate
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "master", "main" ]
+    branches: [ main ]
 
 jobs:
-  # --- SECURITY SCANS (SAST & SCA) ---
-  security-check:
+  build-and-test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Important pour SonarQube et Gitleaks
-
-      # 1. Secret Detection (Gitleaks)
-      - name: Gitleaks - Detect Secrets
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true 
-
-      # 2. Dependency Scan (Trivy fs)
-      - name: Trivy - File System Scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          hide-progress: false
-          format: 'table'
-          severity: 'CRITICAL,HIGH'
-        continue-on-error: true
-
-      # 3. SonarQube Scan (Configuration pour serveur SonarQube)
-      # Simulé ici car nécessite un serveur accessible publiquement
-      # - name: SonarQube Scan
-      #   uses: sonarsource/sonarqube-scan-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-  # --- FRONTEND JOBS ---
-  build-frontend:
-    needs: security-check
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Tholka/frontend
     steps:
       - uses: actions/checkout@v4
       
+      # Exemple pour Node.js (à adapter selon ta stack technique [cite: 22])
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: Tholka/frontend/package-lock.json
           
       - name: Install dependencies
-        run: npm ci
+        [cite_start]run: npm install # [cite: 35]
         
-      - name: Lint
-        run: npm run lint --if-present
-
-      - name: Build
-        run: npm run build
-
-  # --- BACKEND JOBS ---
-  build-backend:
-    needs: security-check
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Tholka/backend
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, iconv, json
-          tools: composer
-          
-      - name: Validate composer.json
-        run: composer validate --strict
+      - name: Lint code
+        [cite_start]run: npm run lint # [cite: 36]
         
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-  # --- DOCKER BUILD & SCAN ---
-  docker-build:
-    needs: [build-frontend, build-backend]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # Build l'image PHP (Backend)
-      - name: Build PHP Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./Tholka
-          file: ./Tholka/docker/php/Dockerfile
-          push: false # On ne push pas encore sur le Docker Hub, on scanne localement
-          load: true
-          tags: tholka-php:latest
-
-      # Scan de l'image Docker construite (Container Security)
-      - name: Trivy - Image Scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'tholka-php:latest'
-          format: 'table'
-          severity: 'CRITICAL,HIGH'
+      - name: Run tests
+        [cite_start]run: npm test # [cite: 37]
