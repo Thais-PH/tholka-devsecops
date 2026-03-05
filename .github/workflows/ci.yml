@@ -1,4 +1,4 @@
-name: CI Quality Gate
+name: CI Quality Gate (Nuxt & Drupal)
 
 on:
   push:
@@ -7,22 +7,37 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  # --- JOB FRONTEND (Nuxt) ---
+  nuxt-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v4
-      
-      # Exemple pour Node.js (à adapter selon ta stack technique [cite: 22])
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
       - name: Install dependencies
-        [cite_start]run: npm install # [cite: 35]
-        
-      - name: Lint code
-        [cite_start]run: npm run lint # [cite: 36]
-        
-      - name: Run tests
-        [cite_start]run: npm test # [cite: 37]
+        run: npm install
+      - name: Build Nuxt (Vérification compilation)
+        run: npm run build
+
+  # --- JOB BACKEND (Drupal) ---
+  drupal-ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3' # Drupal 11 recommande PHP 8.3
+          extensions: mbstring, xml, ctype, iconv, gd, dom, curl
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-interaction
