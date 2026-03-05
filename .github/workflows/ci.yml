@@ -64,7 +64,7 @@ jobs:
       # 2. Secret Detection (Gitleaks)
       - name: Secret Detection
         uses: gitleaks/gitleaks-action@v2
-        continues-on-error: true # On ne bloque pas le pipeline, mais on veut les résultats
+        continue-on-error: true # On ne bloque pas le pipeline, mais on veut les résultats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
