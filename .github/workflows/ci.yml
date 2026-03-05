@@ -2,9 +2,9 @@ name: CI Quality Gate (Nuxt & Drupal)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   # --- JOB FRONTEND (Nuxt) ---
