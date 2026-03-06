@@ -34,7 +34,7 @@ WORKDIR /var/www/html
 RUN rm -rf /var/www/html/*
 
 # Copie des vendors depuis le stage de build
-COPY --from=vendor /app/vendor /var/www/html/vendor
+COPY --from=vendor /app/ /var/www/html/
 
 # Copie du code source backend
 COPY backend/ /var/www/html/
