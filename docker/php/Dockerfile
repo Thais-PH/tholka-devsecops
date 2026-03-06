@@ -30,11 +30,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /var/www/html
 
+# On nettoie avant de copier (pour être sûr)
+RUN rm -rf /var/www/html/*
+
 # Copie des vendors depuis le stage de build
 COPY --from=vendor /app/vendor /var/www/html/vendor
 
 # Copie du code source backend
-COPY backend/ .
+COPY backend/ /var/www/html/
 
 # On s'assure que les permissions sont correctes
-RUN chown -R www-data:www-data /var/www/html
+RUN ls -la /var/www/html && chown -R www-data:www-data /var/www/html
