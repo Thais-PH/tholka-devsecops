@@ -104,12 +104,29 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/${{ secrets.SSH_USER }}/mon-projet # Adapte le chemin vers ton dossier
+            # 1. Installation de Docker et Git si absents
+            if ! command -v docker &> /dev/null; then
+              sudo apt-get update
+              sudo apt-get install -y docker.io docker-compose-plugin git
+              sudo usermod -aG docker ubuntu
+            fi
+            
+            # 2. On se place dans le dossier home 
+            cd /home/ubuntu
+
+            # 3. Si le projet n'existe pas, on le clone
+            if [ ! -d "mon-projet" ]; then
+              git clone https://github.com/${{ github.repository }}.git mon-projet
+            fi
+
+            cd mon-projet
             git pull origin master
-            # On crée un fichier .env à la volée avec tes secrets
+
+            # 4. Création du fichier .env
             echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" > .env
             echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
             echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
             echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
-            # On relance les containers
-            docker compose up -d --build
+
+            # 5. Lancement des containers
+            sudo docker compose up -d --build
