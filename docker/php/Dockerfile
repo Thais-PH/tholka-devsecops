@@ -34,7 +34,7 @@ WORKDIR /var/www/html
 COPY --from=vendor /app/vendor /var/www/html/vendor
 
 # Copie du code source backend
-COPY backend /var/www/html
+COPY backend/ .
 
 # On s'assure que les permissions sont correctes
 RUN chown -R www-data:www-data /var/www/html
