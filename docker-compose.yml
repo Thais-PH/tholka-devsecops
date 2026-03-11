@@ -19,8 +19,8 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     container_name: tholka_php
-    volumes:
-      - ./backend:/var/www/html
+    # volumes:
+    #   - ./backend:/var/www/html
     restart: always
     depends_on:
       - db
