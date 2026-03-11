@@ -1,5 +1,5 @@
 <script setup>
-// L'URL de ton API Drupal
+// L'URL de mon API Drupal
 const drupalApiUrl = "http://83.228.218.79/jsonapi/node/article"
 
 // On récupère les données
